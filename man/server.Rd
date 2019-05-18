@@ -28,8 +28,10 @@ smtp <- server(host = "smtp.gmail.com",
                port = 465,
                username = "bob@gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
-envelope() \%>\%
+msg <- envelope() \%>\%
   from("bob@gmail.com") \%>\%
-  to("alice@yahoo.com") \%>\%
-  smtp()
+  to("alice@yahoo.com")
+\dontrun{
+smtp(msg, verbose = TRUE)
+}
 }
