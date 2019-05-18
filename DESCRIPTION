@@ -15,8 +15,7 @@ Imports:
     glue,
     mime
 Suggests:
-    dplyr
+    dplyr,
+    testthat (>= 2.1.0)
 Remotes: jeroen/curl@smtp
 RoxygenNote: 6.1.1
-Suggests: 
-    testthat (>= 2.1.0)
