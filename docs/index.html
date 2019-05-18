@@ -65,7 +65,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="emayili" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#emayili" class="anchor"></a>emayili <img src="inst/hex/emayili-hex.png" align="right" alt="" width="120">
+<a href="#emayili" class="anchor"></a>emayili <img src="reference/figures/emayili-hex.png" align="right" alt="" width="120">
 </h1></div>
 
 <p>emayili is a package for sending emails from R. The design goals are:</p>
@@ -89,20 +89,20 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(emayili)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">email &lt;-<span class="st"> </span><span class="kw">envelope</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4">email &lt;-<span class="st"> </span><span class="kw"><a href="reference/envelope.html">envelope</a></span>()</a></code></pre></div>
 <p>Add addresses for the sender and recipient.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">from</span>(<span class="st">"alice@yahoo.com"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">to</span>(<span class="st">"bob@google.com"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">cc</span>(<span class="st">"craig@google.com"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/from.html">from</a></span>(<span class="st">"alice@yahoo.com"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/to.html">to</a></span>(<span class="st">"bob@google.com"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/cc.html">cc</a></span>(<span class="st">"craig@google.com"</span>)</a></code></pre></div>
 <p>Add a subject.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subject</span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/subject.html">subject</a></span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
 <p>Add a body.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
 <p>Add an attachment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">attachment</span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/attachment.html">attachment</a></span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
 <p>Create a SMTP server object and send the message.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">smtp &lt;-<span class="st"> </span><span class="kw">server</span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">smtp &lt;-<span class="st"> </span><span class="kw"><a href="reference/server.html">server</a></span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">               <span class="dt">port =</span> <span class="dv">465</span>,</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">               <span class="dt">username =</span> <span class="st">"bob@gmail.com"</span>,</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">               <span class="dt">password =</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)</a>

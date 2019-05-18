@@ -107,7 +107,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span>(<span class='no'>msg</span>, <span class='kw'>content</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"plain"</span>, <span class='st'>"html"</span>))</pre>
+    <pre class="usage"><span class='fu'>body</span>(<span class='no'>msg</span>, <span class='kw'>content</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"plain"</span>, <span class='st'>"html"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,7 +132,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>envelope</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span>(<span class='st'>"Hello!"</span>)</div><div class='output co'>#&gt; Date:         Sat, 18 May 2019 11:39:58 GMT</div><div class='input'><span class='fu'>envelope</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span>(<span class='st'>"&lt;b&gt;Hello!&lt;/b&gt;"</span>, <span class='st'>"html"</span>)</div><div class='output co'>#&gt; Date:         Sat, 18 May 2019 11:39:58 GMT</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>body</span>(<span class='st'>"Hello!"</span>)</div><div class='output co'>#&gt; Date:         Sat, 18 May 2019 12:43:13 GMT</div><div class='input'><span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>body</span>(<span class='st'>"&lt;b&gt;Hello!&lt;/b&gt;"</span>, <span class='st'>"html"</span>)</div><div class='output co'>#&gt; Date:         Sat, 18 May 2019 12:43:13 GMT</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
