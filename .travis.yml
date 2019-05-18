@@ -12,6 +12,8 @@ after_success:
 
 notifications:
   email:
+    recipients:
+      - andrew@exegetic.biz
     on_success: change
     on_failure: change
 
