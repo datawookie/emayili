@@ -5,9 +5,11 @@
 #' @return A message object.
 #' @export
 #' @examples
+#' \dontrun{
 #' msg <- envelope()
 #' attachment(msg, "report.xlsx")
 #' attachment(msg, "visualisations.png")
+#' }
 attachment <- function(msg, path){
   type <- guess_type(path, empty = NULL)
 

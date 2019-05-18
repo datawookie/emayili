@@ -18,7 +18,9 @@ A message object.
 Add an attachment to a message object
 }
 \examples{
+\dontrun{
 msg <- envelope()
 attachment(msg, "report.xlsx")
 attachment(msg, "visualisations.png")
+}
 }

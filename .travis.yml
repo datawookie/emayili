@@ -4,9 +4,9 @@ cache: packages
 warnings_are_errors: false
 latex: false
 r_packages:
-- covr
+  - covr
 after_success:
-- Rscript -e "covr::codecov()"
+  - Rscript -e 'library(covr); codecov()'
 notifications:
   email:
     recipients:
