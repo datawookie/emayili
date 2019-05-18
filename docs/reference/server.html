@@ -136,14 +136,23 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>smtp</span> <span class='kw'>&lt;-</span> <span class='fu'>server</span>(<span class='kw'>host</span> <span class='kw'>=</span> <span class='st'>"smtp.gmail.com"</span>,
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
+<span class='no'>smtp</span> <span class='kw'>&lt;-</span> <span class='fu'>server</span>(<span class='kw'>host</span> <span class='kw'>=</span> <span class='st'>"smtp.gmail.com"</span>,
                <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>465</span>,
                <span class='kw'>username</span> <span class='kw'>=</span> <span class='st'>"bob@gmail.com"</span>,
                <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)
-<span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span>
+<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='from.html'>from</a></span>(<span class='st'>"bob@gmail.com"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='to.html'>to</a></span>(<span class='st'>"alice@yahoo.com"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>smtp</span>()</div><div class='output co'>#&gt; <span class='error'>Error in curl_fetch_memory(url, handle = h): Login denied</span></div></pre>
+  <span class='fu'><a href='to.html'>to</a></span>(<span class='st'>"alice@yahoo.com"</span>)</div><span class='co'># NOT RUN {</span>
+<span class='fu'>smtp</span>(<span class='no'>msg</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -160,7 +169,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Andrew B. Collier.</p>
+  <p>Developed by <a href='https://datawookie.netlify.com/'>Andrew B. Collier</a>.</p>
 </div>
 
 <div class="pkgdown">

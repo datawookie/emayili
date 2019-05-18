@@ -128,7 +128,11 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>msg</span> <span class='kw'>%&gt;%</span> <span class='fu'>attachment</span>(<span class='st'>"report.xlsx"</span>) <span class='kw'>%&gt;%</span> <span class='fu'>attachment</span>(<span class='st'>"visualisations.png"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): object 'msg' not found</span></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span>()
+<span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='st'>"report.xlsx"</span>)
+<span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='st'>"visualisations.png"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,7 +149,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Andrew B. Collier.</p>
+  <p>Developed by <a href='https://datawookie.netlify.com/'>Andrew B. Collier</a>.</p>
 </div>
 
 <div class="pkgdown">
