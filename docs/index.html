@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Send email messages • imeyili</title>
+<title>Send email messages • emayili</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">imeyili</a>
+        <a class="navbar-link" href="index.html">emayili</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -57,45 +57,61 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
 
+    
+    
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="emayili" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#emayili" class="anchor"></a>emayili <img src="inst/hex/emayili-hex.png" align="right" alt="" width="120">
+</h1></div>
+
+<p>emayili is a package for sending emails from R. The design goals are:</p>
+<ul>
+<li>works on all manner of SMTP servers and</li>
+<li>has minimal dependencies (or dependencies which are easily satisfied).</li>
+</ul>
+<p>The package name is an adaption of the Zulu word for email, emayili.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>At the moment you need to install a specific branch of the <code>{curl}</code> package.</p>
-<pre class="{r}"><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("jeroen/curl", ref = "smtp")</a></code></pre>
-<p>Then install <code>{imeyili}</code>.</p>
-<pre class="{r}"><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("datawookie/imeyili")</a></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"jeroen/curl"</span>, <span class="dt">ref =</span> <span class="st">"smtp"</span>)</a></code></pre></div>
+<p>Then install <code>{emayili}</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"datawookie/emayili"</span>)</a></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>First create a message object.</p>
-<pre class="{r}"><code><a href="https://rdrr.io/r/base/library.html">library(imeyili)
-library(dplyr)
-
-email &lt;- envelope()</a></code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(emayili)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">email &lt;-<span class="st"> </span><span class="kw">envelope</span>()</a></code></pre></div>
 <p>Add addresses for the sender and recipient.</p>
-<pre class="{r}"><code>email &lt;- email() %&gt;%
-  from("alice@yahoo.com") %&gt;%
-  to("bob@google.com") %&gt;%
-  cc("craig@google.com")</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">from</span>(<span class="st">"alice@yahoo.com"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">to</span>(<span class="st">"bob@google.com"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">cc</span>(<span class="st">"craig@google.com"</span>)</a></code></pre></div>
 <p>Add a subject.</p>
-<pre class="{r}"><code>email &lt;- email() %&gt;% subject("This is a plain text message!")</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subject</span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
 <p>Add a body.</p>
-<pre class="{r}"><code>email &lt;- email() %&gt;% body("Hello!")</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
 <p>Add an attachment.</p>
-<pre class="{r}"><code>email &lt;- email() %&gt;% attachment("image.jpg")</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">attachment</span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
 <p>Create a SMTP server object and send the message.</p>
-<pre class="{r}"><code>smtp &lt;- server(host = "smtp.gmail.com",
-               port = 465,
-               username = "bob@gmail.com",
-               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
-smtp(email, verbose = TRUE)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">smtp &lt;-<span class="st"> </span><span class="kw">server</span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">               <span class="dt">port =</span> <span class="dv">465</span>,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">               <span class="dt">username =</span> <span class="st">"bob@gmail.com"</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">               <span class="dt">password =</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">smtp</span>(email, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="similar-packages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#similar-packages" class="anchor"></a>Similar Packages</h2>
+<p>There are a selection of other R packages which also send emails:</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/blastula/index.html">blastula</a></li>
 <li>
@@ -106,7 +122,7 @@ smtp(email, verbose = TRUE)</code></pre>
 <li><a href="https://cran.r-project.org/web/packages/sendmailR/index.html">sendmailR</a></li>
 </ul>
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -123,8 +139,18 @@ smtp(email, verbose = TRUE)</code></pre>
 </ul>
 </div>
 
-  </div>
+      <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/datawookie/emayili"><img src="https://travis-ci.org/datawookie/emayili.svg?branch=master" alt="Travis-CI build status"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://codecov.io/github/r-lib/pkgdown?branch=master"><img src="https://img.shields.io/codecov/c/github/r-lib/pkgdown/master.svg" alt="Codecov test coverage"></a></li>
+</ul>
 </div>
+</div>
+
+</div>
+
 
       <footer><div class="copyright">
   <p>Developed by Andrew B. Collier.</p>

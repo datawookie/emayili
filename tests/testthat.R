@@ -1,4 +1,4 @@
 library(testthat)
-library(imeyili)
+library(emayili)
 
-test_check("imeyili")
+test_check("emayili")

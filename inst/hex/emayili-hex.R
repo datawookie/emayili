@@ -13,7 +13,7 @@ sticker(here::here("inst/hex/envelope-regular.png"),
         s_width = 0.6,
         s_height = 0.6,
         # Package name
-        package = "{imeyili}",
+        package = "{emayili}",
         p_size = 16,
         p_y = 0.45,
         p_color = "#ffffff",
@@ -26,6 +26,6 @@ sticker(here::here("inst/hex/envelope-regular.png"),
         l_y = 0.45,
         l_alpha = 0.4,
         # Output
-        filename = here::here("inst/hex/imeyili-hex.png"),
+        filename = here::here("inst/hex/emayili-hex.png"),
         dpi = 300
 )
