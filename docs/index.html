@@ -9,7 +9,7 @@
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Send email messages">
 <meta property="og:description" content="A package for writing and sending emails. Minimal dependencies.">
 <meta name="twitter:card" content="summary">
@@ -59,19 +59,39 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="install" class="section level2">
+<div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#install" class="anchor"></a>Install</h2>
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>At the moment you need to install a specific branch of the <code>{curl}</code> package.</p>
-<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("jeroen/curl", ref = "smtp")</a></code></pre>
+<pre class="{r}"><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("jeroen/curl", ref = "smtp")</a></code></pre>
 <p>Then install <code>{imeyili}</code>.</p>
-<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("datawookie/imeyili")</a></code></pre>
-<p><a href="https://ec.haxx.se/usingcurl-smtp.html" class="uri">https://ec.haxx.se/usingcurl-smtp.html</a> (REFERENCE) <a href="https://curl.haxx.se/libcurl/c/smtp-tls.html" class="uri">https://curl.haxx.se/libcurl/c/smtp-tls.html</a></p>
-<p>$ export PASSWORD=“my_secret_password” $ curl smtps://smtp.gmail.com:465 -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –mail-rcpt “<a href="mailto:collierab@gmail.com" class="email">collierab@gmail.com</a>” –ssl –ssl-reqd -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:$PASSWORD -T mail.txt –anyauth</p>
-<p>$ curl <a href="smtp://smtp.gmail.com:587" class="uri">smtp://smtp.gmail.com:587</a> -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –ssl -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:$PASSWORD -T mail.txt -k –anyauth</p>
-<p>The contents of the <code>mail.txt</code> file are:</p>
-<p>From: “User Name” <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a> To: “John Smith” <a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a> Cc: “John Smith” <a href="mailto:collierab@gmail.com" class="email">collierab@gmail.com</a> Subject: This is a test</p>
-<p>Hi John, I’m sending this mail with curl thru my gmail account. Bye!</p>
+<pre class="{r}"><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("datawookie/imeyili")</a></code></pre>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>First create a message object.</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/library.html">library(imeyili)
+library(dplyr)
+
+email &lt;- envelope()</a></code></pre>
+<p>Add addresses for the sender and recipient.</p>
+<pre class="{r}"><code>email &lt;- email() %&gt;%
+  from("alice@yahoo.com") %&gt;%
+  to("bob@google.com") %&gt;%
+  cc("craig@google.com")</code></pre>
+<p>Add a subject.</p>
+<pre class="{r}"><code>email &lt;- email() %&gt;% subject("This is a plain text message!")</code></pre>
+<p>Add a body.</p>
+<pre class="{r}"><code>email &lt;- email() %&gt;% body("Hello!")</code></pre>
+<p>Add an attachment.</p>
+<pre class="{r}"><code>email &lt;- email() %&gt;% attachment("image.jpg")</code></pre>
+<p>Create a SMTP server object and send the message.</p>
+<pre class="{r}"><code>smtp &lt;- server(host = "smtp.gmail.com",
+               port = 465,
+               username = "bob@gmail.com",
+               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+smtp(email, verbose = TRUE)</code></pre>
 </div>
 <div id="similar-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -84,15 +104,6 @@
 <li><a href="https://cran.r-project.org/web/packages/mail/index.html">mail</a></li>
 <li><a href="https://cran.r-project.org/web/packages/mailR/index.html">mailR</a></li>
 <li><a href="https://cran.r-project.org/web/packages/sendmailR/index.html">sendmailR</a></li>
-</ul>
-</div>
-<div id="todo" class="section level2">
-<h2 class="hasAnchor">
-<a href="#todo" class="anchor"></a>TODO</h2>
-<ul>
-<li>tests</li>
-<li>CI/Travis</li>
-<li>multipart emails (base 64 encode images)</li>
 </ul>
 </div>
 
@@ -108,7 +119,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Andrew Collier <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Andrew B. Collier <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
@@ -116,7 +127,7 @@
 </div>
 
       <footer><div class="copyright">
-  <p>Developed by Andrew Collier.</p>
+  <p>Developed by Andrew B. Collier.</p>
 </div>
 
 <div class="pkgdown">
