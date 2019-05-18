@@ -59,37 +59,16 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="s3-method-for-class-mime" class="section level2">
+<div id="install" class="section level2">
 <h2 class="hasAnchor">
-<a href="#s3-method-for-class-mime" class="anchor"></a>S3 method for class ‘mime’</h2>
-<p>to(x, vals, …)</p>
-</div>
-<div id="s3-method-for-class-mime-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#s3-method-for-class-mime-1" class="anchor"></a>S3 method for class ‘mime’</h2>
-<p>from(x, val, …)</p>
-</div>
-<div id="s3-method-for-class-mime-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#s3-method-for-class-mime-2" class="anchor"></a>S3 method for class ‘mime’</h2>
-<p>cc(x, vals, …)</p>
-</div>
-<div id="s3-method-for-class-mime-3" class="section level2">
-<h2 class="hasAnchor">
-<a href="#s3-method-for-class-mime-3" class="anchor"></a>S3 method for class ‘mime’</h2>
-<p>bcc(x, vals, …)</p>
-</div>
-<div id="s3-method-for-class-mime-4" class="section level2">
-<h2 class="hasAnchor">
-<a href="#s3-method-for-class-mime-4" class="anchor"></a>S3 method for class ‘mime’</h2>
-<p>subject(x, val, …)</p>
-<p>text_body(mime, body, …)</p>
-<p>html_body(mime, body, …)</p>
-<p>attach_part(mime, part, …)</p>
-<p>attach_file(mime, filename, type = NULL, …)</p>
+<a href="#install" class="anchor"></a>Install</h2>
+<p>At the moment you need to install a specific branch of the <code>{curl}</code> package.</p>
+<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("jeroen/curl", ref = "smtp")</a></code></pre>
+<p>Then install <code>{imeyili}</code>.</p>
+<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("datawookie/imeyili")</a></code></pre>
 <p><a href="https://ec.haxx.se/usingcurl-smtp.html" class="uri">https://ec.haxx.se/usingcurl-smtp.html</a> (REFERENCE) <a href="https://curl.haxx.se/libcurl/c/smtp-tls.html" class="uri">https://curl.haxx.se/libcurl/c/smtp-tls.html</a></p>
-<p>$ curl smtps://smtp.gmail.com:465 -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –mail-rcpt “<a href="mailto:collierab@gmail.com" class="email">collierab@gmail.com</a>” –ssl –ssl-reqd -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:PASSWORD -T mail.txt –anyauth</p>
-<p>$ curl <a href="smtp://smtp.gmail.com:587" class="uri">smtp://smtp.gmail.com:587</a> -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –ssl -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:PASSWORD -T mail.txt -k –anyauth</p>
+<p>$ export PASSWORD=“my_secret_password” $ curl smtps://smtp.gmail.com:465 -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –mail-rcpt “<a href="mailto:collierab@gmail.com" class="email">collierab@gmail.com</a>” –ssl –ssl-reqd -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:$PASSWORD -T mail.txt –anyauth</p>
+<p>$ curl <a href="smtp://smtp.gmail.com:587" class="uri">smtp://smtp.gmail.com:587</a> -v –mail-from “<a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>” –mail-rcpt “<a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a>” –ssl -u <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a>:$PASSWORD -T mail.txt -k –anyauth</p>
 <p>The contents of the <code>mail.txt</code> file are:</p>
 <p>From: “User Name” <a href="mailto:andrew.b.collier@gmail.com" class="email">andrew.b.collier@gmail.com</a> To: “John Smith” <a href="mailto:andrew@exegetic.biz" class="email">andrew@exegetic.biz</a> Cc: “John Smith” <a href="mailto:collierab@gmail.com" class="email">collierab@gmail.com</a> Subject: This is a test</p>
 <p>Hi John, I’m sending this mail with curl thru my gmail account. Bye!</p>
@@ -114,32 +93,6 @@
 <li>tests</li>
 <li>CI/Travis</li>
 <li>multipart emails (base 64 encode images)</li>
-</ul>
-</div>
-<div id="tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tests" class="anchor"></a>Tests</h2>
-<ul>
-<li>[ ] create email</li>
-<li>[ ] add subject</li>
-<li>[ ] add recipients (to, cc, bcc)</li>
-<li>[ ] add body</li>
-<li>[ ] add multipart</li>
-<li>[ ] add HTML body</li>
-<li>[ ] add attachments</li>
-</ul>
-</div>
-<div id="blog-posts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#blog-posts" class="anchor"></a>BLOG POSTS</h2>
-<ul>
-<li>[ ] Proof of Concept</li>
-<li>[ ] Analysis of other packages (mailR and sendmail)</li>
-<li>[ ] Package setup</li>
-<li>[ ] Tests</li>
-<li>[ ] Implementation</li>
-<li>[ ] CI/Travis</li>
-<li>[ ] CRAN</li>
 </ul>
 </div>
 
