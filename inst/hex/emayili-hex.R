@@ -26,6 +26,6 @@ sticker(here::here("inst/hex/envelope-regular.png"),
         l_y = 0.45,
         l_alpha = 0.4,
         # Output
-        filename = here::here("docs/emayili-hex.png"),
+        filename = here::here("man/figures/emayili-hex.png"),
         dpi = 300
 )
