@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# emayili <img src="inst/hex/emayili-hex.png" align="right" alt="" width="120" />
+# emayili <img src="docs/emayili-hex.png" align="right" alt="" width="120" />
 
 [![Travis-CI build
 status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
