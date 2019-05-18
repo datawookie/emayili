@@ -1,11 +1,11 @@
 test_that("to: set from individual arguments", {
   msg <- envelope() %>% to("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$To, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$To, c("bob@gmail.com", "alice@yahoo.com"))
 })
 
 test_that("to: set from vector", {
   msg <- envelope() %>% to(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$To, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$To, c("bob@gmail.com", "alice@yahoo.com"))
 })
 
 test_that("from: set", {
