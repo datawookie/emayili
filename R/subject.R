@@ -13,6 +13,6 @@ subject <- function(msg, subject = NULL){
     msg$header$Subject
   } else {
     msg$header$Subject <- subject
-    msg
+    invisible(msg)
   }
 }

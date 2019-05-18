@@ -23,5 +23,5 @@ attachment <- function(msg, path){
 
   msg$parts <- c(msg$parts, list(mime))
 
-  msg
+  invisible(msg)
 }

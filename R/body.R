@@ -26,6 +26,6 @@ body <- function(msg, content = NULL, type = c("plain", "html")){
 
     msg$parts <- c(msg$parts, list(body))
 
-    msg
+    invisible(msg)
   }
 }

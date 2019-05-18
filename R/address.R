@@ -14,7 +14,7 @@ to <- function(msg, ...){
     msg$header$To
   } else {
     msg$header$To <- arguments
-    msg
+    invisible(msg)
   }
 }
 
@@ -32,7 +32,7 @@ from <- function(msg, from = NULL){
     msg$header$From
   } else {
     msg$header$From <- from
-    msg
+    invisible(msg)
   }
 }
 
@@ -52,7 +52,7 @@ cc <- function(msg, ...){
     msg$header$Cc
   } else {
     msg$header$Cc <- paste0(arguments, collapse = ", ")
-    msg
+    invisible(msg)
   }
 }
 
@@ -72,6 +72,6 @@ bcc <- function(msg, ...){
     msg$header$Bcc
   } else {
     msg$header$Bcc <- paste0(arguments, collapse = ", ")
-    msg
+    invisible(msg)
   }
 }
