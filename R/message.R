@@ -1,0 +1,43 @@
+#' @export
+message <- function(x, ...) UseMethod("message")
+
+#' @export
+header <- function(x, ...) UseMethod("header")
+
+#' @rdname envelope
+#' @export
+header.envelope <- function(msg) {
+  if (!is.null(msg$header$To)) {
+    msg$header$To <- paste0(msg$header$To, collapse = ", ")
+  }
+  if (!is.null(msg$header$Cc)) {
+    msg$header$Cc <- paste0(msg$header$Cc, collapse = ", ")
+  }
+  if (!is.null(msg$header$Bcc)) {
+    msg$header$Bcc <- paste0(msg$header$Bcc, collapse = ", ")
+  }
+
+  paste(
+    msg$header %>% names() %>% paste0(":") %>% sprintf("%-13s", .),
+    msg$header,
+    collapse = "\n"
+  )
+}
+
+#' @rdname envelope
+#' @export
+message.envelope <- function(msg){
+  message <- list(
+    header(msg),
+    "MIME-Version: 1.0",
+    sprintf('Content-type: multipart/alternative; boundary="%s"', msg$boundary)
+  )
+
+  for (part in msg$parts) {
+    message <- c(message, paste0("\n--", msg$boundary, "\n", format(part)))
+  }
+
+  message <- c(message, paste0("\n--", msg$boundary, "--\n"))
+
+  do.call(paste0, c(list(message), collapse = "\n"))
+}

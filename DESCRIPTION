@@ -1,0 +1,17 @@
+Package: imeyili
+Type: Package
+Title: Send email messages
+Version: 0.1.0
+Authors@R: person("Andrew", "Collier", email = "andrew@exegetic.biz", role = c("aut", "cre"))
+Description: A package for writing and sending emails. Minimal dependencies.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    curl,
+    magrittr,
+    httr,
+    glue
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0)
