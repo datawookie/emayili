@@ -5,7 +5,8 @@
 #' @return A message object.
 #' @export
 #' @examples
-#' msg %>% attachment("report.xlsx") %>% attachment("visualisations.png")
+#' attachment(msg, "report.xlsx")
+#' attachment(msg, "visualisations.png")
 attachment <- function(msg, path){
   type <- guess_type(path, empty = NULL)
 

@@ -6,8 +6,9 @@
 #' @return A message object.
 #' @export
 #' @examples
-#' envelope() %>% body("Hello!")
-#' envelope() %>% body("<b>Hello!</b>", "html")
+#' msg <- envelope()
+#' body(msg, "Hello!")
+#' body(msg, "<b>Hello!</b>", "html")
 body <- function(msg, content = NULL, type = c("plain", "html")){
   type = type[1]
 

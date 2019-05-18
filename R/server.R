@@ -8,6 +8,8 @@
 #' @return A function which is used to send messages to the server.
 #' @export
 #' @examples
+#' library(dplyr)
+#'
 #' smtp <- server(host = "smtp.gmail.com",
 #'                port = 465,
 #'                username = "bob@gmail.com",

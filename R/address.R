@@ -5,8 +5,9 @@
 #' @return A message object.
 #' @export
 #' @examples
-#' envelope() %>% to("bob@gmail.com", "alice@yahoo.com")
-#' envelope() %>% to(c("bob@gmail.com", "alice@yahoo.com"))
+#' msg <- envelope()
+#' to(msg, "bob@gmail.com", "alice@yahoo.com")
+#' to(msg, c("bob@gmail.com", "alice@yahoo.com"))
 to <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {
@@ -24,7 +25,8 @@ to <- function(msg, ...){
 #' @return A message object.
 #' @export
 #' @examples
-#' envelope() %>% from("craig@gmail.com")
+#' msg <- envelope()
+#' from(msg, "craig@gmail.com")
 from <- function(msg, from = NULL){
   if (is.null(from)) {
     msg$header$From
@@ -41,8 +43,9 @@ from <- function(msg, from = NULL){
 #' @return A message object.
 #' @export
 #' @examples
-#' envelope() %>% cc("bob@gmail.com", "alice@yahoo.com")
-#' envelope() %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
+#' msg <- envelope()
+#' cc(msg, "bob@gmail.com", "alice@yahoo.com")
+#' cc(msg, c("bob@gmail.com", "alice@yahoo.com"))
 cc <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {
@@ -60,8 +63,9 @@ cc <- function(msg, ...){
 #' @return A message object.
 #' @export
 #' @examples
-#' envelope() %>% bcc("bob@gmail.com", "alice@yahoo.com")
-#' envelope() %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
+#' msg <- envelope()
+#' bcc(msg, "bob@gmail.com", "alice@yahoo.com")
+#' bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
 bcc <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {

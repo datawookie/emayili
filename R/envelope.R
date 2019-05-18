@@ -3,7 +3,7 @@
 #' @return A message object.
 #' @export
 #' @examples
-#' email <- envelope()
+#' msg <- envelope()
 envelope <- function() {
   structure(
     list(

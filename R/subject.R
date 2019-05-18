@@ -6,7 +6,8 @@
 #' @return A message object or the subject of the message object (if \code{subject} is \code{NULL}).
 #' @export
 #' @examples
-#' msg %>% subject("Updated report")
+#' msg <- envelope()
+#' subject(msg, "Updated report")
 subject <- function(msg, subject = NULL){
   if (is.null(subject)) {
     msg$header$Subject
