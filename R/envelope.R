@@ -1,7 +1,9 @@
 #' Create a message object
 #'
-#' @family envelope
+#' @return A message object.
 #' @export
+#' @examples
+#' email <- envelope()
 envelope <- function() {
   structure(
     list(

@@ -1,7 +1,21 @@
 #' Create a SMTP server object
 #'
-#' @family server
+#' @param host DNS name or IP address of the SMTP server.
+#' @param port Port that the SMTP server is listening on.
+#' @param username Username for SMTP server.
+#' @param password Password for SMTP server.
+#'
+#' @return A function which is used to send messages to the server.
 #' @export
+#' @examples
+#' smtp <- server(host = "smtp.gmail.com",
+#'                port = 465,
+#'                username = "bob@gmail.com",
+#'                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+#' envelope() %>%
+#'   from("bob@gmail.com") %>%
+#'   to("alice@yahoo.com") %>%
+#'   smtp()
 server <- function(host, port, username, password) {
   function(msg, verbose = FALSE){
     tmpfile = tempfile()

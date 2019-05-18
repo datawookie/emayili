@@ -1,6 +1,6 @@
 #' Create a MIME (Multipurpose Internet Mail Extensions) object
 #'
-#' @export
+#' @return A MIME object.
 mime <- function(content_type, encoding, format, charset, ...) {
   structure(
     list(
@@ -16,26 +16,9 @@ mime <- function(content_type, encoding, format, charset, ...) {
     class="mime")
 }
 
-# content-type: text/plain
-# Content-Disposition: inline
-# Content-Transfer-Encoding: quoted-printable
-
-# content-type: text/html
-
-header.mime <- function(msg) {
-  header <- msg$header[lengths(msg$header) != 0]
-  #
-  c(
-    "Content-Type: ",
-    header$content_type
-  )
-}
-
-#' @export
-format <- function(x, ...) UseMethod("format")
-
-#' @rdname mime
-#' @export
+#' Forma the header of a MIME object
+#'
+#' @return A formatted header string.
 format.mime <- function(msg) {
   with(msg$header,
        c(

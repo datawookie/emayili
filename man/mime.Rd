@@ -2,12 +2,12 @@
 % Please edit documentation in R/mime.R
 \name{mime}
 \alias{mime}
-\alias{format.mime}
 \title{Create a MIME (Multipurpose Internet Mail Extensions) object}
 \usage{
 mime(content_type, encoding, format, charset, ...)
-
-\method{format}{mime}(msg)
+}
+\value{
+A MIME object.
 }
 \description{
 Create a MIME (Multipurpose Internet Mail Extensions) object

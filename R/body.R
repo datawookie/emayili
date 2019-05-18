@@ -1,9 +1,14 @@
+#' Add a body to a message object
+#'
+#' @param msg A message object.
+#' @param content A string of message content.
+#' @param type Content type (plain text or HTML).
+#' @return A message object.
 #' @export
-body <- function(x, ...) UseMethod("body")
-
-#' @rdname envelope
-#' @export
-body.envelope <- function(msg, content = NULL, type = c("plain", "html")){
+#' @examples
+#' envelope() %>% body("Hello!")
+#' envelope() %>% body("<b>Hello!</b>", "html")
+body <- function(msg, content = NULL, type = c("plain", "html")){
   type = type[1]
 
   if (is.null(content)) {

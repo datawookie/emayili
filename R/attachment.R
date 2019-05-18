@@ -1,16 +1,11 @@
+#' Add an attachment to a message object
+#'
+#' @param msg A message object.
+#' @param path Path to a file.
+#' @return A message object.
 #' @export
-attachment <- function(x, ...) UseMethod("send")
-
-encode_base64 <- function(x, line_length = 76L, newline = "\r\n") {
-  if(is.raw(x)) {
-    base64encode(x, 76L, newline)
-  } else {
-    base64encode(charToRaw(x), 76L, "\r\n")
-  }
-}
-
-#' @rdname envelope
-#' @export
+#' @examples
+#' msg %>% attachment("report.xlsx") %>% attachment("visualisations.png")
 attachment <- function(msg, path){
   type <- guess_type(path, empty = NULL)
 

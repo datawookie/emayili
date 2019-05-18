@@ -1,18 +1,13 @@
+#' Add To field to message object header
+#'
+#' @param msg A message object.
+#' @param ... Email addresses.
+#' @return A message object.
 #' @export
-to <- function(x, ...) UseMethod("to")
-
-#' @export
-from <- function(x, ...) UseMethod("from")
-
-#' @export
-cc <- function(x, ...) UseMethod("cc")
-
-#' @export
-bcc <- function(x, ...) UseMethod("bcc")
-
-#' @rdname envelope
-#' @export
-to.envelope <- function(msg, ...){
+#' @examples
+#' envelope() %>% to("bob@gmail.com", "alice@yahoo.com")
+#' envelope() %>% to(c("bob@gmail.com", "alice@yahoo.com"))
+to <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$To
@@ -22,9 +17,15 @@ to.envelope <- function(msg, ...){
   }
 }
 
-#' @rdname envelope
+#' Add From field to message object header
+#'
+#' @param msg A message object.
+#' @param ... Email address.
+#' @return A message object.
 #' @export
-from.envelope <- function(msg, from = NULL){
+#' @examples
+#' envelope() %>% from("craig@gmail.com")
+from <- function(msg, from = NULL){
   if (is.null(from)) {
     msg$header$From
   } else {
@@ -33,9 +34,16 @@ from.envelope <- function(msg, from = NULL){
   }
 }
 
-#' @rdname envelope
+#' Add Cc field to message object header
+#'
+#' @param msg A message object.
+#' @param ... Email addresses.
+#' @return A message object.
 #' @export
-cc.envelope <- function(msg, ...){
+#' @examples
+#' envelope() %>% cc("bob@gmail.com", "alice@yahoo.com")
+#' envelope() %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
+cc <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$Cc
@@ -45,9 +53,16 @@ cc.envelope <- function(msg, ...){
   }
 }
 
-#' @rdname envelope
+#' Add Bcc field to message object header
+#'
+#' @param msg A message object.
+#' @param ... Email addresses.
+#' @return A message object.
 #' @export
-bcc.envelope <- function(msg, ...){
+#' @examples
+#' envelope() %>% bcc("bob@gmail.com", "alice@yahoo.com")
+#' envelope() %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
+bcc <- function(msg, ...){
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$Bcc

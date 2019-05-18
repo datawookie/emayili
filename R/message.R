@@ -1,12 +1,4 @@
-#' @export
-message <- function(x, ...) UseMethod("message")
-
-#' @export
-header <- function(x, ...) UseMethod("header")
-
-#' @rdname envelope
-#' @export
-header.envelope <- function(msg) {
+header <- function(msg) {
   if (!is.null(msg$header$To)) {
     msg$header$To <- paste0(msg$header$To, collapse = ", ")
   }
@@ -24,9 +16,7 @@ header.envelope <- function(msg) {
   )
 }
 
-#' @rdname envelope
-#' @export
-message.envelope <- function(msg){
+message <- function(msg){
   message <- list(
     header(msg),
     "MIME-Version: 1.0",

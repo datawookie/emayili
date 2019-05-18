@@ -6,7 +6,28 @@
 \usage{
 server(host, port, username, password)
 }
+\arguments{
+\item{host}{DNS name or IP address of the SMTP server.}
+
+\item{port}{Port that the SMTP server is listening on.}
+
+\item{username}{Username for SMTP server.}
+
+\item{password}{Password for SMTP server.}
+}
+\value{
+A function which is used to send messages to the server.
+}
 \description{
 Create a SMTP server object
 }
-\concept{server}
+\examples{
+smtp <- server(host = "smtp.gmail.com",
+               port = 465,
+               username = "bob@gmail.com",
+               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+envelope() \%>\%
+  from("bob@gmail.com") \%>\%
+  to("alice@yahoo.com") \%>\%
+  smtp()
+}
