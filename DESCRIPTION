@@ -2,9 +2,9 @@ Package: imeyili
 Type: Package
 Title: Send email messages
 Version: 0.1.0
-Authors@R: person("Andrew", "Collier", email = "andrew@exegetic.biz", role = c("aut", "cre"))
+Authors@R: person("Andrew B.", "Collier", email = "andrew@exegetic.biz", role = c("aut", "cre"))
 Description: A package for writing and sending emails. Minimal dependencies.
-License: What license is it under?
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
