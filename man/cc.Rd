@@ -18,6 +18,7 @@ A message object.
 Add Cc field to message object header
 }
 \examples{
-envelope() \%>\% cc("bob@gmail.com", "alice@yahoo.com")
-envelope() \%>\% cc(c("bob@gmail.com", "alice@yahoo.com"))
+msg <- envelope()
+cc(msg, "bob@gmail.com", "alice@yahoo.com")
+cc(msg, c("bob@gmail.com", "alice@yahoo.com"))
 }

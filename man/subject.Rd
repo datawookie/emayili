@@ -18,5 +18,6 @@ A message object or the subject of the message object (if \code{subject} is \cod
 Add or query subject of message
 }
 \examples{
-msg \%>\% subject("Updated report")
+msg <- envelope()
+subject(msg, "Updated report")
 }

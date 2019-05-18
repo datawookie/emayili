@@ -18,6 +18,7 @@ A message object.
 Add Bcc field to message object header
 }
 \examples{
-envelope() \%>\% bcc("bob@gmail.com", "alice@yahoo.com")
-envelope() \%>\% bcc(c("bob@gmail.com", "alice@yahoo.com"))
+msg <- envelope()
+bcc(msg, "bob@gmail.com", "alice@yahoo.com")
+bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
 }

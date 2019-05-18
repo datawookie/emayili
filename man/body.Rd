@@ -20,6 +20,7 @@ A message object.
 Add a body to a message object
 }
 \examples{
-envelope() \%>\% body("Hello!")
-envelope() \%>\% body("<b>Hello!</b>", "html")
+msg <- envelope()
+body(msg, "Hello!")
+body(msg, "<b>Hello!</b>", "html")
 }

@@ -18,5 +18,6 @@ A message object.
 Add From field to message object header
 }
 \examples{
-envelope() \%>\% from("craig@gmail.com")
+msg <- envelope()
+from(msg, "craig@gmail.com")
 }

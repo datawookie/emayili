@@ -22,6 +22,8 @@ A function which is used to send messages to the server.
 Create a SMTP server object
 }
 \examples{
+library(dplyr)
+
 smtp <- server(host = "smtp.gmail.com",
                port = 465,
                username = "bob@gmail.com",

@@ -18,6 +18,7 @@ A message object.
 Add To field to message object header
 }
 \examples{
-envelope() \%>\% to("bob@gmail.com", "alice@yahoo.com")
-envelope() \%>\% to(c("bob@gmail.com", "alice@yahoo.com"))
+msg <- envelope()
+to(msg, "bob@gmail.com", "alice@yahoo.com")
+to(msg, c("bob@gmail.com", "alice@yahoo.com"))
 }

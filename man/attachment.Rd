@@ -18,5 +18,7 @@ A message object.
 Add an attachment to a message object
 }
 \examples{
-msg \%>\% attachment("report.xlsx") \%>\% attachment("visualisations.png")
+msg <- envelope()
+attachment(msg, "report.xlsx")
+attachment(msg, "visualisations.png")
 }

@@ -13,5 +13,5 @@ A message object.
 Create a message object
 }
 \examples{
-email <- envelope()
+msg <- envelope()
 }
