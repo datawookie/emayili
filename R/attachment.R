@@ -5,6 +5,7 @@
 #' @return A message object.
 #' @export
 #' @examples
+#' msg <- envelope()
 #' attachment(msg, "report.xlsx")
 #' attachment(msg, "visualisations.png")
 attachment <- function(msg, path){
