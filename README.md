@@ -5,10 +5,11 @@
 
 [![Travis-CI build
 status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN](https://img.shields.io/cran/v/emayili.svg)](https://cran.r-project.org/web/packages/emayili/index.html)
 
 emayili is a package for sending emails from R. The design goals are:
 
@@ -56,19 +57,19 @@ email <- email %>%
 Add a subject.
 
 ``` r
-email <- email() %>% subject("This is a plain text message!")
+email <- email %>% subject("This is a plain text message!")
 ```
 
 Add a body.
 
 ``` r
-email <- email() %>% body("Hello!")
+email <- email %>% body("Hello!")
 ```
 
 Add an attachment.
 
 ``` r
-email <- email() %>% attachment("image.jpg")
+email <- email %>% attachment("image.jpg")
 ```
 
 Create a SMTP server object and send the message.

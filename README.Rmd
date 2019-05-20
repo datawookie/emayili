@@ -55,19 +55,19 @@ email <- email %>%
 Add a subject.
 
 ```{r eval=FALSE}
-email <- email() %>% subject("This is a plain text message!")
+email <- email %>% subject("This is a plain text message!")
 ```
 
 Add a body.
 
 ```{r eval=FALSE}
-email <- email() %>% body("Hello!")
+email <- email %>% body("Hello!")
 ```
 
 Add an attachment.
 
 ```{r eval=FALSE}
-email <- email() %>% attachment("image.jpg")
+email <- email %>% attachment("image.jpg")
 ```
 
 Create a SMTP server object and send the message.

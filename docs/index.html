@@ -96,11 +96,11 @@
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/to.html">to</a></span>(<span class="st">"bob@google.com"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/cc.html">cc</a></span>(<span class="st">"craig@google.com"</span>)</a></code></pre></div>
 <p>Add a subject.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/subject.html">subject</a></span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/subject.html">subject</a></span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
 <p>Add a body.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
 <p>Add an attachment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">email &lt;-<span class="st"> </span><span class="kw">email</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/attachment.html">attachment</a></span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/attachment.html">attachment</a></span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
 <p>Create a SMTP server object and send the message.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">smtp &lt;-<span class="st"> </span><span class="kw"><a href="reference/server.html">server</a></span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">               <span class="dt">port =</span> <span class="dv">465</span>,</a>
@@ -144,8 +144,8 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/datawookie/emayili"><img src="https://travis-ci.org/datawookie/emayili.svg?branch=master" alt="Travis-CI build status"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://codecov.io/github/datawookie/emayili"><img src="https://img.shields.io/codecov/c/github/datawookie/emayili.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://cran.r-project.org/web/packages/emayili/index.html"><img src="https://img.shields.io/cran/v/emayili.svg" alt="CRAN"></a></li>
 </ul>
 </div>
