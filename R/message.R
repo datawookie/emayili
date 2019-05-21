@@ -10,7 +10,7 @@ header <- function(msg) {
   }
 
   paste(
-    msg$header %>% names() %>% paste0(":") %>% sprintf("%-13s", .),
+    msg$header %>% names() %>% sub("_", "-", .) %>% paste0(":") %>% sprintf("%-13s", .),
     msg$header,
     collapse = "\n"
   )

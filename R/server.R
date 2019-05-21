@@ -46,6 +46,8 @@ server <- function(host, port, username, password) {
     protocol <- ifelse(port == 465, "smtps", "smtp")
 
     url = sprintf("%s://%s:%d", protocol, host, port)
+    #
+    if (verbose) base::message("Sending email to ", url, ".")
 
     curl_fetch_memory(url, handle = h)
 

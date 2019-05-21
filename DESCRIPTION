@@ -1,7 +1,7 @@
 Package: emayili
 Type: Package
 Title: Send email messages
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Andrew B.", "Collier", email = "andrew@exegetic.biz", role = c("aut", "cre"))
 Description: A package for writing and sending emails. Minimal dependencies.
 License: GPL-3

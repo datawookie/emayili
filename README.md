@@ -54,6 +54,9 @@ email <- email %>%
   cc("craig@google.com")
 ```
 
+There are also `bcc()` and `reply()` functions for setting the `Bcc` and
+`Reply-To` fields.
+
 Add a subject.
 
 ``` r

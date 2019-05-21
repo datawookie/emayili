@@ -51,7 +51,7 @@ cc <- function(msg, ...){
   if (is.null(arguments)) {
     msg$header$Cc
   } else {
-    msg$header$Cc <- paste0(arguments, collapse = ", ")
+    msg$header$Cc <- arguments
     invisible(msg)
   }
 }
@@ -71,7 +71,25 @@ bcc <- function(msg, ...){
   if (is.null(arguments)) {
     msg$header$Bcc
   } else {
-    msg$header$Bcc <- paste0(arguments, collapse = ", ")
+    msg$header$Bcc <- arguments
+    invisible(msg)
+  }
+}
+
+#' Add Reply-To field to message object header
+#'
+#' @param msg A message object.
+#' @param ... Email addresses.
+#' @return A message object.
+#' @export
+#' @examples
+#' msg <- envelope()
+#' reply(msg, "gerry@gmail.com")
+reply <- function(msg, reply_to = NULL){
+  if (is.null(reply_to)) {
+    msg$header$Reply_To
+  } else {
+    msg$header$Reply_To <- reply_to
     invisible(msg)
   }
 }
