@@ -15,20 +15,20 @@ test_that("from: set", {
 
 test_that("cc: set from individual arguments", {
   msg <- envelope() %>% cc("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$Cc, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$Cc, c("bob@gmail.com", "alice@yahoo.com"))
 })
 
 test_that("cc: set from vector", {
   msg <- envelope() %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$Cc, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$Cc, c("bob@gmail.com", "alice@yahoo.com"))
 })
 
 test_that("bcc: set from individual arguments", {
   msg <- envelope() %>% bcc("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$Bcc, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$Bcc, c("bob@gmail.com", "alice@yahoo.com"))
 })
 
 test_that("bcc: set from vector", {
   msg <- envelope() %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$Bcc, "bob@gmail.com, alice@yahoo.com")
+  expect_equal(msg$header$Bcc, c("bob@gmail.com", "alice@yahoo.com"))
 })
