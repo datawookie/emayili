@@ -81,6 +81,8 @@ smtp <- server(host = "smtp.gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
 smtp(email, verbose = TRUE)
 ```
+## Using Gmail
+If you're using a Gmail domain name like "joesmith@gmail.com", Google will most probably flag the attempt to send an email as a security threat. In order to circumvent this, grant less secure apps [access](https://support.google.com/accounts/answer/6010255)
 
 ## Similar Packages
 
