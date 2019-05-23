@@ -2,7 +2,10 @@ Package: emayili
 Type: Package
 Title: Send email messages
 Version: 0.1.1
-Authors@R: person("Andrew B.", "Collier", email = "andrew@exegetic.biz", role = c("aut", "cre"))
+Authors@R: as.person(c(
+ "Andrew B. Collier <andrew@exegetic.biz> [aut, cre]",
+ "Gerard Walsh <gerard@exegetic.biz [ctb]"
+ ))
 Description: A package for writing and sending emails. Minimal dependencies.
 License: GPL-3
 Encoding: UTF-8
