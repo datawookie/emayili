@@ -26,6 +26,9 @@ server <- function(host, port, username, password) {
     #
     writeLines(message(msg), tmpfile)
 
+    # If you get the "The certificate chain was issued by an authority that is not trusted." error then
+    # can add in ssl_verifypeer = FALSE.
+    #
     h <- new_handle(username = username,
                     password = password,
                     mail_from = msg$header$From,
