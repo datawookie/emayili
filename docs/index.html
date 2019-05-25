@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -73,14 +73,14 @@
 <li>works on all manner of SMTP servers and</li>
 <li>has minimal dependencies (or dependencies which are easily satisfied).</li>
 </ul>
-<p>The package name is an adaption of the Zulu word for email, emayili.</p>
+<p>The package name is an adaption of the Zulu word for email, imeyili.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>At the moment you need to install a specific branch of the <code>{curl}</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"jeroen/curl"</span>, <span class="dt">ref =</span> <span class="st">"smtp"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"jeroen/curl"</span>, <span class="dt">ref =</span> <span class="st">"smtp"</span>)</a></code></pre></div>
 <p>Then install <code>{emayili}</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"datawookie/emayili"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"datawookie/emayili"</span>)</a></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -108,11 +108,16 @@
 <a class="sourceLine" id="cb8-3" data-line-number="3">               <span class="dt">username =</span> <span class="st">"bob@gmail.com"</span>,</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">               <span class="dt">password =</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">smtp</span>(email, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="using-gmail" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-gmail" class="anchor"></a>Using Gmail</h3>
+<p>If you’re trying to send email using a Google Mail account, then Google will most probably flag the attempt to send an email as a security threat. In order to circumvent this, <a href="https://support.google.com/accounts/answer/6010255">grant access</a> to less secure apps.</p>
+</div>
 </div>
 <div id="similar-packages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#similar-packages" class="anchor"></a>Similar Packages</h2>
-<p>There are a selection of other R packages which also send emails:</p>
+<p>There is a selection of other R packages which also send emails:</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/blastula/index.html">blastula</a></li>
 <li>
@@ -138,6 +143,7 @@
 <ul class="list-unstyled">
 <li>
 <a href="https://datawookie.netlify.com/">Andrew B. Collier</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 

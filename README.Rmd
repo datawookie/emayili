@@ -16,20 +16,20 @@ emayili is a package for sending emails from R. The design goals are:
 - works on all manner of SMTP servers and
 - has minimal dependencies (or dependencies which are easily satisfied).
 
-The package name is an adaption of the Zulu word for email, emayili.
+The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
 At the moment you need to install a specific branch of the `{curl}` package.
 
 ```{r eval=FALSE}
-devtools::install_github("jeroen/curl", ref = "smtp")
+remotes::install_github("jeroen/curl", ref = "smtp")
 ```
 
 Then install `{emayili}`.
 
 ```{r eval=FALSE}
-devtools::install_github("datawookie/emayili")
+remotes::install_github("datawookie/emayili")
 ```
 
 ## Usage
@@ -81,12 +81,14 @@ smtp <- server(host = "smtp.gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
 smtp(email, verbose = TRUE)
 ```
-## Using Gmail
-If you're using a Gmail domain name like "joesmith@gmail.com", Google will most probably flag the attempt to send an email as a security threat. In order to circumvent this, [grant access](https://support.google.com/accounts/answer/6010255) to less secure apps."
+
+### Using Gmail
+
+If you're trying to send email using a Google Mail account, then Google will most probably flag the attempt to send an email as a security threat. In order to circumvent this, [grant access](https://support.google.com/accounts/answer/6010255) to less secure apps.
 
 ## Similar Packages
 
-There are a selection of other R packages which also send emails:
+There is a selection of other R packages which also send emails:
 
 - [blastula](https://cran.r-project.org/web/packages/blastula/index.html)
 - [blatr](https://cran.r-project.org/web/packages/blatr/index.html) (Windows)

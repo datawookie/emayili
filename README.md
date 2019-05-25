@@ -17,7 +17,7 @@ emayili is a package for sending emails from R. The design goals are:
   - has minimal dependencies (or dependencies which are easily
     satisfied).
 
-The package name is an adaption of the Zulu word for email, emayili.
+The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
@@ -25,13 +25,13 @@ At the moment you need to install a specific branch of the `{curl}`
 package.
 
 ``` r
-devtools::install_github("jeroen/curl", ref = "smtp")
+remotes::install_github("jeroen/curl", ref = "smtp")
 ```
 
 Then install `{emayili}`.
 
 ``` r
-devtools::install_github("datawookie/emayili")
+remotes::install_github("datawookie/emayili")
 ```
 
 ## Usage
@@ -85,9 +85,17 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
+### Using Gmail
+
+If you’re trying to send email using a Google Mail account, then Google
+will most probably flag the attempt to send an email as a security
+threat. In order to circumvent this, [grant
+access](https://support.google.com/accounts/answer/6010255) to less
+secure apps.
+
 ## Similar Packages
 
-There are a selection of other R packages which also send
+There is a selection of other R packages which also send
     emails:
 
   - [blastula](https://cran.r-project.org/web/packages/blastula/index.html)
