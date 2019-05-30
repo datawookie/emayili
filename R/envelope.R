@@ -18,5 +18,5 @@ envelope <- function() {
 
 #' @export
 print.envelope <- function(msg) {
-  cat(header(msg))
+  cat(paste0(header(msg), "\n"))
 }
