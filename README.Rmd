@@ -20,10 +20,10 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-At the moment you need to install a specific branch of the `{curl}` package.
+At the moment you need to install the development version the `{curl}` package.
 
 ```{r eval=FALSE}
-remotes::install_github("jeroen/curl", ref = "smtp")
+remotes::install_github("jeroen/curl")
 ```
 
 Then install `{emayili}`.
