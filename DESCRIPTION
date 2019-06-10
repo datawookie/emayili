@@ -20,5 +20,5 @@ Imports:
 Suggests:
     dplyr,
     testthat (>= 2.1.0)
-Remotes: jeroen/curl@smtp
+Remotes: jeroen/curl
 RoxygenNote: 6.1.1
