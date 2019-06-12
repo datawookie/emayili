@@ -1,24 +1,31 @@
-Package: emayili
 Type: Package
+Package: emayili
 Title: Send email messages
 Version: 0.1.1
-Authors@R: as.person(c(
- "Andrew B. Collier <andrew@exegetic.biz> [aut, cre]",
- "Gerard Walsh <gerard@exegetic.biz> [ctb]"
- ))
-Description: A package for writing and sending emails. Minimal dependencies.
+Authors@R: 
+    c(person(given = c("Andrew", "B."),
+             family = "Collier",
+             role = c("aut", "cre"),
+             email = "andrew@exegetic.biz"),
+      person(given = "Gerard",
+             family = "Walsh",
+             role = "ctb",
+             email = "gerard@exegetic.biz"))
+Description: A package for writing and sending emails.
+    Minimal dependencies.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
 Imports:
-    curl,
+    base,
     base64enc,
-    magrittr,
-    httr,
+    curl,
     glue,
+    httr,
+    magrittr,
     mime
 Suggests:
-    dplyr,
     testthat (>= 2.1.0)
-Remotes: jeroen/curl
+Remotes: 
+    jeroen/curl
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.1.1
