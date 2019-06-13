@@ -10,7 +10,12 @@ Authors@R:
       person(given = "Gerard",
              family = "Walsh",
              role = "ctb",
-             email = "gerard@exegetic.biz"))
+             email = "gerard@exegetic.biz"),
+      person(given = "Antoine",
+             family = "Bichat",
+             role = "ctb,
+             email = "a.bichat@yahoo.fr",
+             comment = c(ORCID = "0000-0001-6599-7081")))
 Description: A package for writing and sending emails.
     Minimal dependencies.
 License: GPL-3
