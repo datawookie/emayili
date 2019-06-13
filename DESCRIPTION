@@ -13,7 +13,7 @@ Authors@R:
              email = "gerard@exegetic.biz"),
       person(given = "Antoine",
              family = "Bichat",
-             role = "ctb,
+             role = "ctb",
              email = "a.bichat@yahoo.fr",
              comment = c(ORCID = "0000-0001-6599-7081")))
 Description: A package for writing and sending emails.
