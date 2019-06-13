@@ -38,7 +38,7 @@ First create a message object.
 
 ```{r eval=FALSE}
 library(emayili)
-library(dplyr)
+library(magrittr)
 
 email <- envelope()
 ```

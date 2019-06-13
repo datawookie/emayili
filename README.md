@@ -40,7 +40,7 @@ First create a message object.
 
 ``` r
 library(emayili)
-library(dplyr)
+library(magrittr)
 
 email <- envelope()
 ```
