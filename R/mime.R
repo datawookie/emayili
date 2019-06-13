@@ -16,7 +16,7 @@ mime <- function(content_type, encoding, format, charset, ...) {
     class="mime")
 }
 
-#' Forma the header of a MIME object
+#' Format the header of a MIME object
 #'
 #' @return A formatted header string.
 format.mime <- function(msg) {

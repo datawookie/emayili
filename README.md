@@ -21,11 +21,11 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-At the moment you need to install a specific branch of the `{curl}`
+At the moment you need to install the development version the `{curl}`
 package.
 
 ``` r
-remotes::install_github("jeroen/curl", ref = "smtp")
+remotes::install_github("jeroen/curl")
 ```
 
 Then install `{emayili}`.
@@ -40,7 +40,7 @@ First create a message object.
 
 ``` r
 library(emayili)
-library(dplyr)
+library(magrittr)
 
 email <- envelope()
 ```
@@ -85,13 +85,17 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
-### Using Gmail
+### Using STARTTLS security protocol
 
-If you’re trying to send email using a Google Mail account, then Google
-will most probably flag the attempt to send an email as a security
-threat. In order to circumvent this, [grant
-access](https://support.google.com/accounts/answer/6010255) to less
-secure apps.
+If you’re trying to send email with a host that uses a STARTTLS security
+protocol (like Google Mail or Yahoo\!), then it will most probably be
+blocked as it’s not enough secure. In order to circumvent this, you can
+grant access to less secure apps:
+
+  - [Google](https://myaccount.google.com/security)
+    ([details](https://support.google.com/accounts/answer/6010255))
+  - [Yahoo\!](https://login.yahoo.com/account/security)
+  - [AOL](https://login.aol.com/account/security)
 
 ## Similar Packages
 
@@ -105,3 +109,4 @@ There is a selection of other R packages which also send
   - [mail](https://cran.r-project.org/web/packages/mail/index.html)
   - [mailR](https://cran.r-project.org/web/packages/mailR/index.html)
   - [sendmailR](https://cran.r-project.org/web/packages/sendmailR/index.html)
+  - [ponyexpress](https://github.com/ropenscilabs/ponyexpress)

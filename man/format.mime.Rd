@@ -2,7 +2,7 @@
 % Please edit documentation in R/mime.R
 \name{format.mime}
 \alias{format.mime}
-\title{Forma the header of a MIME object}
+\title{Format the header of a MIME object}
 \usage{
 \method{format}{mime}(msg)
 }
@@ -10,5 +10,5 @@
 A formatted header string.
 }
 \description{
-Forma the header of a MIME object
+Format the header of a MIME object
 }
