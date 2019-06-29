@@ -42,6 +42,7 @@ server <- function(host, port, username, password) {
 
     handle_setopt(h, verbose = verbose)
 
+    port <- as.integer(port)
     if (port %in% c(465, 587)) {
       handle_setopt(h, use_ssl = 1)
     }
