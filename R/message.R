@@ -20,7 +20,7 @@ message <- function(msg){
   message <- list(
     header(msg),
     "MIME-Version: 1.0",
-    sprintf('Content-type: multipart/related; boundary="%s"', msg$boundary)
+    sprintf('Content-type: multipart/mixed; boundary="%s"', msg$boundary)
   )
 
   for (part in msg$parts) {
