@@ -29,8 +29,6 @@ Imports:
     mime
 Suggests:
     testthat (>= 2.1.0)
-Remotes: 
-    jeroen/curl
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
