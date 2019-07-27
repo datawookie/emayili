@@ -20,13 +20,7 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-At the moment you need to install the development version the `{curl}` package.
-
-```{r eval=FALSE}
-remotes::install_github("jeroen/curl")
-```
-
-Then install `{emayili}`.
+Simply install from GitHub.
 
 ```{r eval=FALSE}
 remotes::install_github("datawookie/emayili")

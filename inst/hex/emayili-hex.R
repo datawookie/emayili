@@ -18,7 +18,7 @@ sticker(here::here("inst/hex/envelope-regular.png"),
         p_y = 0.45,
         p_color = "#ffffff",
         p_family = "roboto_slab",
-        # Heck
+        # Hex
         h_fill = "#3498db",
         h_color = "#000000",
         # Spotlight
