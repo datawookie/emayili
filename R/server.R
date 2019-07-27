@@ -1,3 +1,6 @@
+# NOTE: There is now a send_mail() function in {curl} but it does not have the full range of functionality
+# below (like specifying port).
+
 #' Create a SMTP server object
 #'
 #' @param host DNS name or IP address of the SMTP server.
