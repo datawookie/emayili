@@ -9,7 +9,7 @@ attachment(msg, path)
 \arguments{
 \item{msg}{A message object.}
 
-\item{path}{Path to a file.}
+\item{path}{Paths to files.}
 }
 \value{
 A message object.
@@ -21,6 +21,6 @@ Add an attachment to a message object
 \dontrun{
 msg <- envelope()
 attachment(msg, "report.xlsx")
-attachment(msg, "visualisations.png")
+attachment(msg, c("visualisations.png", "report.pdf"))
 }
 }
