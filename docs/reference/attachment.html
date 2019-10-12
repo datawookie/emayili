@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add an attachment to a message object — attachment • emayili</title>
+<title>Add attachments to a message object — attachment • emayili</title>
+
 
 
 <!-- jquery -->
@@ -35,8 +36,8 @@
 
 
 
-<meta property="og:title" content="Add an attachment to a message object — attachment" />
-<meta property="og:description" content="Add an attachment to a message object" />
+<meta property="og:title" content="Add attachments to a message object — attachment" />
+<meta property="og:description" content="Add attachments to a message object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,13 +99,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add an attachment to a message object</h1>
+    <h1>Add attachments to a message object</h1>
     
     <div class="hidden name"><code>attachment.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add an attachment to a message object</p>
+    <p>Add attachments to a message object</p>
     </div>
 
     <pre class="usage"><span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='no'>path</span>)</pre>
@@ -118,7 +119,7 @@
     </tr>
     <tr>
       <th>path</th>
-      <td><p>Path to a file.</p></td>
+      <td><p>Paths to files.</p></td>
     </tr>
     </table>
 
@@ -130,7 +131,7 @@
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span>()
 <span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='st'>"report.xlsx"</span>)
-<span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='st'>"visualisations.png"</span>)
+<span class='fu'>attachment</span>(<span class='no'>msg</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"visualisations.png"</span>, <span class='st'>"report.pdf"</span>))
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

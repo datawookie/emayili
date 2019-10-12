@@ -1,30 +1,33 @@
-#' Add an attachment to a message object
+#' Add attachments to a message object
 #'
 #' @param msg A message object.
-#' @param path Path to a file.
+#' @param path Paths to files.
 #' @return A message object.
 #' @export
 #' @examples
 #' \dontrun{
 #' msg <- envelope()
 #' attachment(msg, "report.xlsx")
-#' attachment(msg, "visualisations.png")
+#' attachment(msg, c("visualisations.png", "report.pdf"))
 #' }
 attachment <- function(msg, path){
-  type <- guess_type(path, empty = NULL)
 
-  con <- file(path, "rb")
-  body <- readBin(con, "raw",  file.info(path)$size)
-  close(con)
+  types <- guess_type(path, empty = NULL)
 
-  mime <- mime(type, "base64", NULL, NULL,
-               name = basename(path),
-               filename = basename(path),
-               content_transfer_encoding = "base64")
+  for (i in seq_along(path)) {
+    con <- file(path[i], "rb")
+    body <- readBin(con, "raw",  file.info(path[i])$size)
+    close(con)
 
-  mime$body <- base64encode(body, 76L, "\r\n")
+    mime <- mime(types[i], "base64", NULL, NULL,
+                 name = basename(path[i]),
+                 filename = basename(path[i]),
+                 content_transfer_encoding = "base64")
 
-  msg$parts <- c(msg$parts, list(mime))
+    mime$body <- base64encode(body, 76L, "\r\n")
+
+    msg$parts <- c(msg$parts, list(mime))
+  }
 
   invisible(msg)
 }

@@ -2,25 +2,25 @@
 % Please edit documentation in R/attachment.R
 \name{attachment}
 \alias{attachment}
-\title{Add an attachment to a message object}
+\title{Add attachments to a message object}
 \usage{
 attachment(msg, path)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{path}{Path to a file.}
+\item{path}{Paths to files.}
 }
 \value{
 A message object.
 }
 \description{
-Add an attachment to a message object
+Add attachments to a message object
 }
 \examples{
 \dontrun{
 msg <- envelope()
 attachment(msg, "report.xlsx")
-attachment(msg, "visualisations.png")
+attachment(msg, c("visualisations.png", "report.pdf"))
 }
 }

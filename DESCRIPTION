@@ -15,7 +15,11 @@ Authors@R:
              family = "Bichat",
              role = "ctb",
              email = "a.bichat@yahoo.fr",
-             comment = c(ORCID = "0000-0001-6599-7081")))
+             comment = c(ORCID = "0000-0001-6599-7081")),
+      person(given = "Daniel",
+             family = "Fahey",
+             role = "ctb",
+             email = "dpfahey@gmail.com"))
 Description: A package for writing and sending emails.
     Minimal dependencies.
 License: GPL-3
