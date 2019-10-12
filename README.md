@@ -21,14 +21,7 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-At the moment you need to install the development version the `{curl}`
-package.
-
-``` r
-remotes::install_github("jeroen/curl")
-```
-
-Then install `{emayili}`.
+Simply install from GitHub.
 
 ``` r
 remotes::install_github("datawookie/emayili")
@@ -85,17 +78,18 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
-### Using STARTTLS security protocol
+### Using STARTTLS
 
-If you’re trying to send email with a host that uses a STARTTLS security
-protocol (like Google Mail or Yahoo\!), then it will most probably be
-blocked as it’s not enough secure. In order to circumvent this, you can
-grant access to less secure apps:
+If you’re trying to send email with a host that uses the STARTTLS
+security protocol (like Google Mail, Yahoo\! or AOL), then it will most
+probably be blocked due to insufficient security. In order to circumvent
+this, you can grant access to less secure apps. See the links below for
+specifics:
 
   - [Google](https://myaccount.google.com/security)
     ([details](https://support.google.com/accounts/answer/6010255))
-  - [Yahoo\!](https://login.yahoo.com/account/security)
-  - [AOL](https://login.aol.com/account/security)
+  - [Yahoo\!](https://login.yahoo.com/account/security) and
+  - [AOL](https://login.aol.com/account/security).
 
 ## Similar Packages
 
