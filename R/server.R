@@ -23,27 +23,34 @@
 #' \dontrun{
 #' smtp(msg, verbose = TRUE)
 #' }
-server <- function(host, port = 25, username, password) {
+server <- function(host, port = 25, username = NULL, password = NULL) {
   function(msg, verbose = FALSE){
     tmpfile = tempfile()
     #
     writeLines(message(msg), tmpfile)
 
+
+    h <- new_handle(
+      mail_from = msg$header$From,
+      mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc)
+    )
+
+    if (!is.null(username)) {
+      handle_setopt(h, username = username, password = password)
+    }
+
+    # See curl::curl_options() for available options.
+    #
     # If you get the "The certificate chain was issued by an authority that is not trusted." error then
     # can add in ssl_verifypeer = FALSE.
     #
-    h <- new_handle(username = username,
-                    password = password,
-                    mail_from = msg$header$From,
-                    mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc))
+    handle_setopt(h, verbose = verbose)
 
     con <- file(tmpfile, open = 'rb')
     #
     handle_setopt(h, readfunction = function(nbytes, ...) {
       readBin(con, raw(), nbytes)
     }, upload = TRUE)
-
-    handle_setopt(h, verbose = verbose)
 
     port <- as.integer(port)
     if (port %in% c(465, 587)) {
