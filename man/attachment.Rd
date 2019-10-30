@@ -4,12 +4,14 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(msg, path)
+attachment(msg, path, cid = round(runif(1, 0, 10000)))
 }
 \arguments{
 \item{msg}{A message object.}
 
 \item{path}{Paths to files.}
+
+\item{cid}{a content id.}
 }
 \value{
 A message object.

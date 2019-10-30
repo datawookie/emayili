@@ -2,6 +2,7 @@
 #'
 #' @param msg A message object.
 #' @param path Paths to files.
+#' @param cid a content id.
 #' @return A message object.
 #' @export
 #' @examples
@@ -10,7 +11,7 @@
 #' attachment(msg, "report.xlsx")
 #' attachment(msg, c("visualisations.png", "report.pdf"))
 #' }
-attachment <- function(msg, path){
+attachment <- function(msg, path, cid = round(runif(1,0,10000))){
 
   types <- guess_type(path, empty = NULL)
 
@@ -22,7 +23,7 @@ attachment <- function(msg, path){
     mime <- mime(types[i], "base64", NULL, NULL,
                  name = basename(path[i]),
                  filename = basename(path[i]),
-                 content_transfer_encoding = "base64")
+                 content_transfer_encoding = "base64", cid=cid)
 
     mime$body <- base64encode(body, 76L, "\r\n")
 
