@@ -27,6 +27,7 @@ Imports:
     base,
     base64enc,
     curl,
+    digest,
     glue,
     httr,
     magrittr,
