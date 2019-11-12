@@ -19,7 +19,11 @@ Authors@R:
       person(given = "Daniel",
              family = "Fahey",
              role = "ctb",
-             email = "dpfahey@gmail.com"))
+             email = "dpfahey@gmail.com"),
+      person(given = c("Johann",  "R."),
+             family = "Kleinbub",
+             role = "ctb",
+             email = "johann.kleinbub@gmail.com"))
 Description: A package for writing and sending emails.
     Minimal dependencies.
 License: GPL-3
