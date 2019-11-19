@@ -20,18 +20,26 @@ mime <- function(content_type, encoding, format, charset, ...) {
 #'
 #' @return A formatted header string.
 format.mime <- function(msg) {
-  with(msg$header,
-       c(
-         'Content-Type: {content_type}',
-         ifelse(exists("charset") && !is.null(charset), '; charset="{charset}"', ''),
-         ifelse(exists("name"), '; name="{name}"', ''),
-         '\nContent-Disposition: ',
-         ifelse(grepl("text|image", content_type), 'inline', 'attachment'),
-         ifelse(exists("filename"), '; filename="{filename}"', ''),
-         ifelse(exists("cid"), '\nContent-Id: <{cid}>', ''),
-         ifelse(exists("cid"), '\nX-Attachment-Id: {cid}', ''),
-         '\nContent-Transfer-Encoding: {encoding}'
-       ) %>% paste(collapse = "") %>% glue()
+  headers <-  with(msg$header, c(
+    'Content-Type: {content_type}',
+    ifelse(exists("charset") && !is.null(charset), '; charset="{charset}"', ''),
+    ifelse(exists("name"), '; name="{name}"', ''),
+    '\nContent-Disposition: ',
+    ifelse(
+      grepl("text", content_type),
+      'inline',
+      ifelse(
+        grepl("image", content_type),
+        ifelse(is.na(cid), 'attachment', 'inline'),
+        'attachment'
+      )
+    ),
+    ifelse(exists("filename"), '; filename="{filename}"', ''),
+    ifelse(is.na(cid), '', '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}'),
+    '\nContent-Transfer-Encoding: {encoding}'
   ) %>%
-    paste(msg$body, sep = "\n\n")
+    paste(collapse = "") %>%
+    glue())
+
+  paste(headers, msg$body, sep = "\n\n")
 }

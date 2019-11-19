@@ -4,7 +4,7 @@
 \alias{server}
 \title{Create a SMTP server object}
 \usage{
-server(host, port = 25, username, password)
+server(host, port = 25, username = NULL, password = NULL)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
