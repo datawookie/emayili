@@ -2,7 +2,7 @@
 % Please edit documentation in R/attachment.R
 \name{attachment}
 \alias{attachment}
-\title{Add a single attachment to a message object}
+\title{Add attachments to a message object}
 \usage{
 attachment(msg, path, cid = NULL)
 }
@@ -11,19 +11,18 @@ attachment(msg, path, cid = NULL)
 
 \item{path}{Paths to files.}
 
-\item{cid}{Associate a Content ID.}
+\item{cid}{A vector of the same length of path containing either NA or string values specifying a Content ID for each attachment.}
 }
 \value{
 A message object.
 }
 \description{
-Add a single attachment to a message object
+Add attachments to a message object
 }
 \examples{
 \dontrun{
 msg <- envelope()
 attachment(msg, "report.xlsx")
-attachment(msg, c("visualisations.png", "report.pdf"))
-attachment(msg, c("visualisations.png", "image.jpg"), cid = TRUE)
+attachment(msg, c("visualisations.png", "report.pdf"), c("visualizations_01", NA))
 }
 }

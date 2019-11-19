@@ -25,17 +25,15 @@ format.mime <- function(msg) {
     ifelse(exists("charset") && !is.null(charset), '; charset="{charset}"', ''),
     ifelse(exists("name"), '; name="{name}"', ''),
     '\nContent-Disposition: ',
-    ifelse(
-      grepl("text", content_type),
-      'inline',
-      ifelse(
-        grepl("image", content_type),
-        ifelse(is.na(cid), 'attachment', 'inline'),
-        'attachment'
-      )
-    ),
+    if(grepl("text", content_type)){
+      'inline'
+      } else if(grepl("image", content_type)){
+      if(exists("cid")) 'inline' else 'attachment'
+
+    } else {'attachment'},
+
     ifelse(exists("filename"), '; filename="{filename}"', ''),
-    ifelse(is.na(cid), '', '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}'),
+    ifelse(exists("cid"), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
     '\nContent-Transfer-Encoding: {encoding}'
   ) %>%
     paste(collapse = "") %>%
