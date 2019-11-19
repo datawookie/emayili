@@ -14,7 +14,7 @@ test_that("attachment: set", {
 test_that("attachment: set from vector", {
   csv <- "./mtcars.csv"
   png <- "./mtcars-disp-hist.png"
-  msg <- envelope() %>% attachment(c(csv, png))
+  msg <- envelope() %>% attachments(c(csv, png))
   expect_equal(msg$parts[[1]]$body, base64encode(csv, 76L, "\r\n"))
   expect_equal(msg$parts[[2]]$body, base64encode(png, 76L, "\r\n"))
 })
