@@ -1,4 +1,4 @@
-#' Add attachments to a message object
+#' Add a single attachment to a message object
 #'
 #' @param msg A message object.
 #' @param path Paths to files.
@@ -12,28 +12,45 @@
 #' attachment(msg, c("visualisations.png", "report.pdf"))
 #' attachment(msg, c("visualisations.png", "image.jpg"), cid = TRUE)
 #' }
-attachment <- function(msg, path, cid = FALSE) {
-  types <- guess_type(path, empty = NULL)
+attachment <- function(msg, path, cid = NULL) {
+  type <- guess_type(path, empty = NULL)
 
-  for (i in seq_along(path)) {
-    con <- file(path[i], "rb")
-    body <- readBin(con, "raw",  file.info(path[i])$size)
-    close(con)
+  if (length(path) != 1) stop("Can only add one attachment at a time!")
 
-    mime <- mime(
-      types[i],
-      "base64",
-      NULL,
-      NULL,
-      name = basename(path[i]),
-      filename = basename(path[i]),
-      content_transfer_encoding = "base64",
-      cid = ifelse(cid, rnorm(1) %>% digest(), NA)
-    )
+  con <- file(path, "rb")
+  body <- readBin(con, "raw",  file.info(path)$size)
+  close(con)
 
-    mime$body <- base64encode(body, 76L, "\r\n")
+  mime <- mime(
+    type,
+    "base64",
+    NULL,
+    NULL,
+    name = basename(path),
+    filename = basename(path),
+    content_transfer_encoding = "base64",
+    cid = ifelse(is.null(cid), NA, cid)
+  )
 
-    msg$parts <- c(msg$parts, list(mime))
+  mime$body <- base64encode(body, 76L, "\r\n")
+
+  msg$parts <- c(msg$parts, list(mime))
+
+  invisible(msg)
+}
+
+#' Add a multiple attachments to a message object
+#'
+#' @param msg
+#' @param paths
+#'
+#' @return
+#' @export
+#'
+#' @examples
+attachments <- function(msg, paths) {
+  for (path in paths) {
+    msg <- msg %>% attachment(path)
   }
 
   invisible(msg)

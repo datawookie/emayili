@@ -2,6 +2,7 @@
 
 S3method(print,envelope)
 export(attachment)
+export(attachments)
 export(bcc)
 export(body)
 export(cc)
