@@ -63,8 +63,10 @@ server <- function(host, port = 25, username = NULL, password = NULL) {
     #
     if (verbose) base::message("Sending email to ", url, ".")
 
-    curl_fetch_memory(url, handle = h)
+    result <- curl_fetch_memory(url, handle = h)
 
     close(con)
+
+    invisible(result)
   }
 }
