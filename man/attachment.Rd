@@ -11,7 +11,7 @@ attachment(msg, path, cid = NULL)
 
 \item{path}{Paths to files.}
 
-\item{cid}{A vector of the same length of path containing either NA or string values specifying a Content ID for each attachment.}
+\item{cid}{A vector of the same length as \code{path} containing either \code{NA} or string values specifying a Content ID for each attachment.}
 }
 \value{
 A message object.

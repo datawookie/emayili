@@ -28,12 +28,11 @@ format.mime <- function(msg) {
     if(grepl("text", content_type)){
       'inline'
       } else if(grepl("image", content_type)){
-      if(exists("cid")) 'inline' else 'attachment'
-
+      if(exists("cid") && !is.na(cid)) 'inline' else 'attachment'
     } else {'attachment'},
 
     ifelse(exists("filename"), '; filename="{filename}"', ''),
-    ifelse(exists("cid"), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
+    ifelse(exists("cid") && !is.na(cid), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
     '\nContent-Transfer-Encoding: {encoding}'
   ) %>%
     paste(collapse = "") %>%
