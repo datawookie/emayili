@@ -7,6 +7,7 @@
 #' @param port Port that the SMTP server is listening on.
 #' @param username Username for SMTP server.
 #' @param password Password for SMTP server.
+#' @param insecure Whether to ignore SSL issues.
 #'
 #' @return A function which is used to send messages to the server.
 #' @export
@@ -23,7 +24,7 @@
 #' \dontrun{
 #' smtp(msg, verbose = TRUE)
 #' }
-server <- function(host, port = 25, username = NULL, password = NULL) {
+server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE) {
   function(msg, verbose = FALSE){
     tmpfile = tempfile()
     #
@@ -41,8 +42,21 @@ server <- function(host, port = 25, username = NULL, password = NULL) {
 
     # See curl::curl_options() for available options.
     #
-    # If you get the "The certificate chain was issued by an authority that is not trusted." error then
-    # can add in ssl_verifypeer = FALSE.
+    # * SSL
+    #
+    # - If you get the "The certificate chain was issued by an authority that is not trusted." error then
+    #   can add in ssl_verifypeer = FALSE.
+    # - Other flags:
+    #
+    #   - ssl_verifyhost
+    #   - ssl_verifypeer
+    #   - ssl_verifystatus
+    #
+    #   Run curl_options('ssl') to see other options.
+    #
+    if (insecure) {
+      handle_setopt(h, ssl_verifypeer = FALSE)
+    }
     #
     handle_setopt(h, verbose = verbose)
 
