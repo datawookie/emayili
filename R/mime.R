@@ -1,11 +1,12 @@
 #' Create a MIME (Multipurpose Internet Mail Extensions) object
 #'
 #' @return A MIME object.
-mime <- function(content_type, encoding, format, charset, ...) {
+mime <- function(content_type, content_disposition, encoding, format, charset, ...) {
   structure(
     list(
       header = list(
         content_type = content_type,
+        content_disposition = content_disposition,
         encoding = encoding,
         format = format,
         charset = charset,

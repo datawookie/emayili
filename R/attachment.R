@@ -23,6 +23,7 @@ attachment <- function(msg, path, cid = NA){
 
   mime <- mime(
     type,
+    NULL,
     "base64",
     NULL,
     NULL,
