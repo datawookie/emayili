@@ -3,6 +3,7 @@
 #' @param msg A message object.
 #' @param path Path to file.
 #' @param cid Content-ID or \code{NA}.
+#' @param mime_type fixed mime type without guessing. Use \link[mime]{mimemap} to set.
 #' @return A message object.
 #' @export
 #' @examples
@@ -12,10 +13,11 @@
 #' attachment(msg, "cat.png")
 #' attachment(msg, "visualisations.png", "visuals")
 #' }
-attachment <- function(msg, path, cid = NA, disposition = NA){
+attachment <- function(msg, path, cid = NA, disposition = NA, mime_type){
   if (length(path) != 1) stop("Must be precisely one attachment.", call. = F)
 
   type <- guess_type(path, empty = NULL)
+  if (!missing(mime_type)) type <- mime_type
 
   if(is.na(disposition)) {
     disposition <- ifelse(

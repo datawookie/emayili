@@ -4,3 +4,5 @@
 ^docs$
 ^pkgdown$
 ^\.httr-oauth$
+^.travis.yml
+^README.Rmd

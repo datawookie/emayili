@@ -4,14 +4,16 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(msg, path, cid = NULL)
+attachment(msg, path, cid = NA, disposition = NA, mime_type)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{path}{Paths to files.}
+\item{path}{Path to file.}
 
-\item{cid}{A vector of the same length as \code{path} containing either \code{NA} or string values specifying a Content ID for each attachment.}
+\item{cid}{Content-ID or \code{NA}.}
+
+\item{mime_type}{fixed mime type without guessing. Use \link[mime]{mimemap} to set.}
 }
 \value{
 A message object.
@@ -23,6 +25,7 @@ Add attachments to a message object
 \dontrun{
 msg <- envelope()
 attachment(msg, "report.xlsx")
-attachment(msg, c("visualisations.png", "report.pdf"), c("visualizations_01", NA))
+attachment(msg, "cat.png")
+attachment(msg, "visualisations.png", "visuals")
 }
 }
