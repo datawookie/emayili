@@ -1,6 +1,6 @@
 #' @export
 render <- function(msg, path){
-  body <- mime("text/html", "quoted-printable", NULL, "utf-8")
+  body <- mime("text/html", NULL, "quoted-printable", NULL, "utf-8")
 
   html <- readChar("foo.html", file.info("foo.html")$size)
   html <- sub("^<!DOCTYPE html>\n", "", html)

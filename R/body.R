@@ -18,9 +18,9 @@ body <- function(msg, content = NULL, type = c("plain", "html")){
     type <- paste("text", type, sep = "/")
 
     if (type == "text/plain") {
-      body <- mime(type, "quoted-printable", "flowed", "utf-8")
+      body <- mime(type, NULL, "quoted-printable", "flowed", "utf-8")
     } else {
-      body <- mime(type, "quoted-printable", NULL, "utf-8")
+      body <- mime(type, NULL, "quoted-printable", NULL, "utf-8")
     }
     body$body <- content
 
