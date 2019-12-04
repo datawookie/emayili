@@ -12,10 +12,22 @@
 #' attachment(msg, "cat.png")
 #' attachment(msg, "visualisations.png", "visuals")
 #' }
-attachment <- function(msg, path, cid = NA){
+attachment <- function(msg, path, cid = NA, disposition = NA){
   if (length(path) != 1) stop("Must be precisely one attachment.", call. = F)
 
   type <- guess_type(path, empty = NULL)
+
+  if(is.na(disposition)) {
+    disposition <- ifelse(
+      grepl("text", type),
+      "inline",
+      ifelse(
+        grepl("image", type),
+        ifelse(!is.na(cid), "inline", "attachment"),
+        "attachment"
+      )
+    )
+  }
 
   con <- file(path, "rb")
   body <- readBin(con, "raw",  file.info(path)$size)
@@ -23,7 +35,7 @@ attachment <- function(msg, path, cid = NA){
 
   mime <- mime(
     type,
-    NULL,
+    disposition,
     "base64",
     NULL,
     NULL,
