@@ -20,10 +20,15 @@ attachment <- function(msg, path, cid = round(runif(1,0,10000))){
     body <- readBin(con, "raw",  file.info(path[i])$size)
     close(con)
 
-    mime <- mime(types[i], "base64", NULL, NULL,
-                 name = basename(path[i]),
-                 filename = basename(path[i]),
-                 content_transfer_encoding = "base64", cid=cid)
+    mime <- mime(
+      types[i],
+      "base64",
+      NULL,
+      NULL,
+      name = basename(path[i]),
+      filename = basename(path[i]),
+      cid=cid
+    )
 
     mime$body <- base64encode(body, 76L, "\r\n")
 
