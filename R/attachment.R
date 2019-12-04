@@ -30,7 +30,6 @@ attachment <- function(msg, path, cid = NULL){
       NULL,
       name = basename(path[i]),
       filename = basename(path[i]),
-      content_transfer_encoding = "base64",
       cid = as.character(cid[i])
     )
 
