@@ -7,14 +7,18 @@
 
 test_that("attachment: set", {
   csv <- "./mtcars.csv"
+
   msg <- envelope() %>% attachment(csv)
+
   expect_equal(msg$parts[[1]]$body, base64encode(csv, 76L, "\r\n"))
 })
 
-test_that("attachment: set from vector", {
-  csv <- "./mtcars.csv"
+test_that("attachment: specify CID", {
   png <- "./mtcars-disp-hist.png"
-  msg <- envelope() %>% attachment(c(csv, png))
-  expect_equal(msg$parts[[1]]$body, base64encode(csv, 76L, "\r\n"))
-  expect_equal(msg$parts[[2]]$body, base64encode(png, 76L, "\r\n"))
+  cid <- "histogram"
+
+  msg <- envelope() %>% attachment(png, cid = cid)
+
+  expect_equal(msg$parts[[1]]$body, base64encode(png, 76L, "\r\n"))
+  expect_equal(msg$parts[[1]]$header$cid, cid)
 })
