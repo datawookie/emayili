@@ -39,9 +39,9 @@ attachment <- function(msg, path, cid = NA, disposition = NA){
     "base64",
     NULL,
     NULL,
+    cid = as.character(cid),
     name = basename(path),
-    filename = basename(path),
-    cid = as.character(cid)
+    filename = basename(path)
   )
 
   mime$body <- base64encode(body, 76L, "\r\n")

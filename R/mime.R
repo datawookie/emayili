@@ -1,7 +1,7 @@
 #' Create a MIME (Multipurpose Internet Mail Extensions) object
 #'
 #' @return A MIME object.
-mime <- function(content_type, content_disposition, encoding, format, charset, ...) {
+mime <- function(content_type, content_disposition, encoding, format, charset, cid = NA, ...) {
   structure(
     list(
       header = list(
@@ -10,6 +10,7 @@ mime <- function(content_type, content_disposition, encoding, format, charset, .
         encoding = encoding,
         format = format,
         charset = charset,
+        cid = cid,
         ...
       ),
       body = NULL
@@ -27,7 +28,7 @@ format.mime <- function(msg) {
     ifelse(exists("name"), '; name="{name}"', ''),
     '\nContent-Disposition: {content_disposition}',
     ifelse(exists("filename"), '; filename="{filename}"', ''),
-    ifelse(exists("cid") && !is.na(cid), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
+    ifelse(!is.na(cid), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
     '\nContent-Transfer-Encoding: {encoding}'
   ) %>%
     paste(collapse = "") %>%
