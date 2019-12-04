@@ -13,8 +13,9 @@ email <- envelope() %>%
   to(SMTP_USERNAME) %>%
   subject("subject") %>%
   body("Hello!") %>%
-  # attachment(c("README.md", "README.Rmd"))
-  attachment(c("README.md", "README.Rmd", "attachment-image.jpg"), cid = c("readme", NA, "image"))
+  attachment("README.md", cid = "readme") %>%
+  attachment("attachment-spreadsheet.xlsx") %>%
+  attachment("attachment-image.jpg", cid = "image")
 
 smtp(email, verbose = TRUE)
 
