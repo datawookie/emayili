@@ -22,7 +22,7 @@ attachment <- function(msg, path, type = NA, cid = NA, disposition = NA){
     # attachment(..., type = "pdf")
     # attachment(..., type = "application/pdf")
   } else {
-    type <- guess_type(path, empty = NULL)
+    type <- guess_type(path, empty = "application/octet-stream")
   }
 
   if(is.na(disposition)) {
