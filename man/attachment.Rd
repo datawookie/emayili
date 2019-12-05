@@ -13,7 +13,7 @@ attachment(msg, path, cid = NA, disposition = NA, mime_type)
 
 \item{cid}{Content-ID or \code{NA}.}
 
-\item{mime_type}{fixed mime type without guessing. Use \link[mime]{mimemap} to set.}
+\item{mime_type}{fixed mime type without guessing. Use \link[mime]{mimemap} to set. (optional)}
 }
 \value{
 A message object.

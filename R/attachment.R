@@ -3,7 +3,7 @@
 #' @param msg A message object.
 #' @param path Path to file.
 #' @param cid Content-ID or \code{NA}.
-#' @param mime_type fixed mime type without guessing. Use \link[mime]{mimemap} to set.
+#' @param mime_type fixed mime type without guessing. Use \link[mime]{mimemap} to set. (optional)
 #' @return A message object.
 #' @export
 #' @examples
