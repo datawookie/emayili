@@ -35,7 +35,8 @@ Imports:
     glue,
     httr,
     magrittr,
-    mime
+    mime,
+    stringi
 Suggests:
     testthat (>= 2.1.0)
 Encoding: UTF-8

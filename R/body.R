@@ -18,11 +18,12 @@ body <- function(msg, content = NULL, type = c("plain", "html")){
     type <- paste("text", type, sep = "/")
 
     if (type == "text/plain") {
-      body <- mime(type, "inline", "quoted-printable", "flowed", "utf-8")
+      body <- mime(type, "inline", "7bit", "flowed", "utf-8")
+      body$body <- content
     } else {
       body <- mime(type, "inline", "quoted-printable", NULL, "utf-8")
+      body$body <- qp_encode(content)
     }
-    body$body <- content
 
     msg$parts <- c(msg$parts, list(body))
 
