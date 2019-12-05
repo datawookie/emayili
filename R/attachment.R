@@ -2,6 +2,7 @@
 #'
 #' @param msg A message object.
 #' @param path Path to file.
+#' @param type MIME type or \cite{NA}, which will result in a guess based on file extension.
 #' @param cid Content-ID or \code{NA}.
 #' @return A message object.
 #' @export
@@ -9,13 +10,20 @@
 #' \dontrun{
 #' msg <- envelope()
 #' attachment(msg, "report.xlsx")
-#' attachment(msg, "cat.png")
+#' attachment(msg, "cat.png", type = "image/png")
 #' attachment(msg, "visualisations.png", "visuals")
 #' }
-attachment <- function(msg, path, cid = NA, disposition = NA){
+attachment <- function(msg, path, type = NA, cid = NA, disposition = NA){
   if (length(path) != 1) stop("Must be precisely one attachment.", call. = F)
 
-  type <- guess_type(path, empty = NULL)
+  if (!is.na(type)) {
+    # Could use mime::mimemap to map from specific extensions to MIME types, so that the following would give the same result:
+    #
+    # attachment(..., type = "pdf")
+    # attachment(..., type = "application/pdf")
+  } else {
+    type <- guess_type(path, empty = NULL)
+  }
 
   if(is.na(disposition)) {
     disposition <- ifelse(

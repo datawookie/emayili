@@ -19,10 +19,10 @@ email <- envelope() %>%
 # body(paste0("LINK: ", LINK))
 body(
 paste0("LINK: ", LINK, "\n<a href='", LINK, "'>foo</a>"), type = "html"
-)
-  # attachment("README.md", cid = "readme") %>%
-  # attachment("attachment-spreadsheet.xlsx") %>%
-  # attachment("attachment-image.jpg", cid = "image")
+) %>%
+  attachment("README.md", cid = "readme") %>%
+  attachment("attachment-spreadsheet.xlsx") %>%
+  attachment("attachment-image.jpg", cid = "image", type = "image/jpeg")
 
 smtp(email, verbose = TRUE)
 
