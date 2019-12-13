@@ -23,11 +23,12 @@ message <- function(msg){
     sprintf('Content-type: multipart/mixed; boundary="%s"', msg$boundary)
   )
 
-  for (part in msg$parts) {
-    message <- c(message, paste0("\n--", msg$boundary, "\n", format(part)))
+  if (length(msg$parts)) {
+    for (part in msg$parts) {
+      message <- c(message, paste0("\n--", msg$boundary, "\n", format(part)))
+    }
+    message <- c(message, paste0("\n--", msg$boundary, "--\n"))
   }
-
-  message <- c(message, paste0("\n--", msg$boundary, "--\n"))
 
   do.call(paste0, c(list(message), collapse = "\n"))
 }
