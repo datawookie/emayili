@@ -17,10 +17,13 @@ header <- function(msg) {
 }
 
 message <- function(msg){
+  # CONTENT_TYPE = "multipart/mixed"
+  CONTENT_TYPE = "multipart/related"
+
   message <- list(
     header(msg),
     "MIME-Version: 1.0",
-    sprintf('Content-type: multipart/mixed; boundary="%s"', msg$boundary)
+    sprintf('Content-type: %s; boundary="%s"', CONTENT_TYPE, msg$boundary)
   )
 
   if (length(msg$parts)) {
