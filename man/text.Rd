@@ -4,12 +4,24 @@
 \alias{text}
 \title{Add a text body to a message object}
 \usage{
-text(msg, content = NULL)
+text(
+  msg,
+  content = NULL,
+  disposition = "inline",
+  charset = "utf-8",
+  encoding = "7bit"
+)
 }
 \arguments{
 \item{msg}{A message object.}
 
 \item{content}{A string of message content.}
+
+\item{disposition}{How content is presented (Content-Disposition).}
+
+\item{charset}{How content is encoded.}
+
+\item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
 }
 \value{
 A message object.

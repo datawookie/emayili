@@ -4,8 +4,15 @@
 \alias{mime}
 \title{Create a MIME (Multipurpose Internet Mail Extensions) object}
 \usage{
-mime(content_type, content_disposition, encoding, format, charset,
-  cid = NA, ...)
+mime(
+  content_type,
+  content_disposition,
+  encoding,
+  format,
+  charset,
+  cid = NA,
+  ...
+)
 }
 \value{
 A MIME object.

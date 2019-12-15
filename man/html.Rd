@@ -4,12 +4,24 @@
 \alias{html}
 \title{Add an HTML body to a message object}
 \usage{
-html(msg, content = NULL)
+html(
+  msg,
+  content = NULL,
+  disposition = "inline",
+  charset = "utf-8",
+  encoding = "quoted-printable"
+)
 }
 \arguments{
 \item{msg}{A message object.}
 
 \item{content}{A string of message content.}
+
+\item{disposition}{How content is presented (Content-Disposition).}
+
+\item{charset}{How content is encoded.}
+
+\item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
 }
 \value{
 A message object.

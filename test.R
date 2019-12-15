@@ -31,6 +31,18 @@ email <- envelope() %>%
   # attachment("attachment-spreadsheet.xlsx") %>%
   # attachment("attachment-image.jpg", cid = "image", type = "image/jpeg")
 
-smtp(email, verbose = TRUE)
+envelope() %>%
+  from(SMTP_USERNAME) %>%
+  to(SMTP_USERNAME) %>%
+  subject("Text body") %>%
+  text("Hello, World!") %>%
+  smtp(verbose = TRUE)
 
-cat(emayili:::message(email))
+envelope() %>%
+  from(SMTP_USERNAME) %>%
+  to(SMTP_USERNAME) %>%
+  subject("HTML body") %>%
+  html("<p><strong>Hello</strong>, <em>World</em>!</p>") %>%
+  smtp(verbose = TRUE)
+
+# cat(emayili:::message(email))
