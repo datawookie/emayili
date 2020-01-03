@@ -54,10 +54,10 @@ Add a subject.
 email <- email %>% subject("This is a plain text message!")
 ```
 
-Add a body.
+Add a text body. You can use `html()` to add an HTML body.
 
 ```{r eval=FALSE}
-email <- email %>% body("Hello!")
+email <- email %>% text("Hello!")
 ```
 
 Add an attachment.

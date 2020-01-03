@@ -20,7 +20,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -57,13 +57,9 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+      </header><div class="row">
+  <div class="contents col-md-9">
 <div id="emayili" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#emayili" class="anchor"></a>emayili <img src="reference/figures/emayili-hex.png" align="right" alt="" width="120">
@@ -97,8 +93,8 @@
 <p>There are also <code><a href="reference/bcc.html">bcc()</a></code> and <code><a href="reference/reply.html">reply()</a></code> functions for setting the <code>Bcc</code> and <code>Reply-To</code> fields.</p>
 <p>Add a subject.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/subject.html">subject</a></span>(<span class="st">"This is a plain text message!"</span>)</a></code></pre></div>
-<p>Add a body.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/body.html">body</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
+<p>Add a text body. You can use <code><a href="reference/html.html">html()</a></code> to add an HTML body.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/text.html">text</a></span>(<span class="st">"Hello!"</span>)</a></code></pre></div>
 <p>Add an attachment.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">email &lt;-<span class="st"> </span>email <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/attachment.html">attachment</a></span>(<span class="st">"image.jpg"</span>)</a></code></pre></div>
 <p>Create a SMTP server object and send the message.</p>
@@ -155,8 +151,7 @@
 </ul>
 </div>
 
-
-      <div class="dev-status">
+  <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/datawookie/emayili"><img src="https://travis-ci.org/datawookie/emayili.svg?branch=master" alt="Travis-CI build status"></a></li>
@@ -166,7 +161,6 @@
 </ul>
 </div>
 </div>
-
 </div>
 
 
@@ -175,12 +169,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
