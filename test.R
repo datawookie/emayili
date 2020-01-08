@@ -42,7 +42,7 @@ envelope() %>%
   from(SMTP_USERNAME) %>%
   to(SMTP_USERNAME) %>%
   subject("HTML body") %>%
-  html("<p><strong>Hello</strong>, <em>World</em>!</p>") %>%
+  html("<p><strong>Hello</strong>, <em>World</em>! You can also <u>underline</u> text.</p>") %>%
   smtp(verbose = TRUE)
 
 # cat(emayili:::message(email))
