@@ -1,6 +1,6 @@
 Type: Package
 Package: emayili
-Title: Send email messages
+Title: Send Email Messages
 Version: 0.2.2
 Authors@R: 
     c(person(given = c("Andrew", "B."),
@@ -24,8 +24,7 @@ Authors@R:
              family = "Kleinbub",
              role = "ctb",
              email = "johann.kleinbub@gmail.com"))
-Description: A package for writing and sending emails.
-    Minimal dependencies.
+Description: A light, simple package for sending emails with minimal dependencies.
 License: GPL-3
 Imports:
     base,
@@ -38,7 +37,8 @@ Imports:
     mime,
     stringi
 Suggests:
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    roxygen2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
