@@ -6,3 +6,7 @@
 #' @importFrom httr http_date
 #' @importFrom mime guess_type
 NULL
+
+# Deal with "no visible binding for global variable ‘.’".
+#
+globalVariables(c("."))

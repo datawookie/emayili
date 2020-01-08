@@ -6,6 +6,9 @@
 \usage{
 \method{format}{mime}(msg)
 }
+\arguments{
+\item{msg}{A message object.}
+}
 \value{
 A formatted header string.
 }

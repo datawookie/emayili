@@ -4,15 +4,20 @@
 \alias{mime}
 \title{Create a MIME (Multipurpose Internet Mail Extensions) object}
 \usage{
-mime(
-  content_type,
-  content_disposition,
-  encoding,
-  format,
-  charset,
-  cid = NA,
-  ...
-)
+mime(content_type, content_disposition, encoding, charset, cid = NA, ...)
+}
+\arguments{
+\item{content_type}{The MIME type of the content.}
+
+\item{content_disposition}{Should the content be displayed inline or as an attachment?}
+
+\item{encoding}{How to encode binary data to ASCII.}
+
+\item{charset}{How to interpret the characters in the content. Most often either UTF-8 or ISO-8859-1.}
+
+\item{cid}{An optional Content-Id.}
+
+\item{...}{Other arguments.}
 }
 \value{
 A MIME object.

@@ -9,7 +9,7 @@ from(msg, from = NULL)
 \arguments{
 \item{msg}{A message object.}
 
-\item{...}{Email address.}
+\item{from}{Email address.}
 }
 \value{
 A message object.

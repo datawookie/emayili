@@ -9,7 +9,7 @@ reply(msg, reply_to = NULL)
 \arguments{
 \item{msg}{A message object.}
 
-\item{...}{Email addresses.}
+\item{reply_to}{Email address.}
 }
 \value{
 A message object.

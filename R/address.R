@@ -21,7 +21,7 @@ to <- function(msg, ...){
 #' Add From field to message object header
 #'
 #' @param msg A message object.
-#' @param ... Email address.
+#' @param from Email address.
 #' @return A message object.
 #' @export
 #' @examples
@@ -79,7 +79,7 @@ bcc <- function(msg, ...){
 #' Add Reply-To field to message object header
 #'
 #' @param msg A message object.
-#' @param ... Email addresses.
+#' @param reply_to Email address.
 #' @return A message object.
 #' @export
 #' @examples
