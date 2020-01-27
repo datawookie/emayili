@@ -89,10 +89,10 @@ If you're trying to send email with a host that uses the STARTTLS security proto
 
 There is a selection of other R packages which also send emails:
 
-- [blastula](https://cran.r-project.org/web/packages/blastula/index.html)
-- [blatr](https://cran.r-project.org/web/packages/blatr/index.html) (Windows)
-- [gmailr](https://cran.r-project.org/web/packages/gmailr/index.html)
-- [mail](https://cran.r-project.org/web/packages/mail/index.html)
-- [mailR](https://cran.r-project.org/web/packages/mailR/index.html)
-- [sendmailR](https://cran.r-project.org/web/packages/sendmailR/index.html)
+- [blastula](https://cran.r-project.org/package=blastula)
+- [blatr](https://cran.r-project.org/package=blatr) (Windows)
+- [gmailr](https://cran.r-project.org/package=gmailr)
+- [mail](https://cran.r-project.org/package=mail)
+- [mailR](https://cran.r-project.org/package=mailR)
+- [sendmailR](https://cran.r-project.org/package=sendmailR)
 - [ponyexpress](https://github.com/ropenscilabs/ponyexpress)
