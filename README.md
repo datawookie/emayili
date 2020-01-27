@@ -9,7 +9,6 @@ status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://tra
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN](https://img.shields.io/cran/v/emayili.svg)](https://cran.r-project.org/web/packages/emayili/index.html)
 
 emayili is a package for sending emails from R. The design goals are:
 
