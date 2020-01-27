@@ -25,12 +25,13 @@ Authors@R:
              role = "ctb",
              email = "johann.kleinbub@gmail.com"))
 Description: A light, simple package for sending emails with minimal dependencies.
+URL: https://datawookie.github.io/emayili/
+BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
 Imports:
     base,
     base64enc,
     curl,
-    digest,
     glue,
     httr,
     magrittr,
