@@ -1,3 +1,9 @@
+check_message_body <- function(content) {
+  if (length(content) > 1) {
+    stop("Only a single message body allowed.", call. = FALSE)
+  }
+}
+
 #' Add a text body to a message object
 #'
 #' @param msg A message object.
@@ -14,6 +20,8 @@ text <- function(msg, content = NULL, disposition = "inline", charset = "utf-8",
   if (is.null(content)) {
     msg$body
   } else {
+    check_message_body(content)
+
     type <- "text/plain"
 
     body <- mime(type, disposition, encoding, "flowed", charset)
@@ -41,6 +49,8 @@ html <- function(msg, content = NULL, disposition = "inline", charset = "utf-8",
   if (is.null(content)) {
     msg$body
   } else {
+    check_message_body(content)
+
     type <- "text/html"
 
     body <- mime(type, disposition, encoding, NULL, charset)
