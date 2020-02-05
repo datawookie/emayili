@@ -1,7 +1,7 @@
 library(dplyr)
 library(emayili)
 
-SMTP_USERNAME = Sys.getenv("SMTP_USER")
+SMTP_USERNAME = Sys.getenv("SMTP_USERNAME")
 SMTP_PASSWORD = Sys.getenv("SMTP_PASSWORD")
 SMTP_SERVER = Sys.getenv("SMTP_SERVER")
 SMTP_PORT = Sys.getenv("SMTP_PORT")
