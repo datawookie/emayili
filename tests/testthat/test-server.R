@@ -14,5 +14,5 @@ test_that("server type", {
 })
 
 test_that("sends text message", {
-  expect_error(smtp(msg, verbose = TRUE), NA)
+  expect_error(smtp(msg), NA)
 })
