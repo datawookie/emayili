@@ -16,6 +16,7 @@ SMTP_SERVER   = "mail.smtpbucket.com"
 SMTP_PORT     = 8025
 
 smtp <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, password = SMTP_PASSWORD)
+smtp_insecure <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, password = SMTP_PASSWORD, insecure = TRUE)
 
 msg <- envelope() %>%
   from(SMTP_USERNAME) %>%
@@ -31,6 +32,10 @@ test_that("sends text message", {
     text("Hello, World!")
 
   expect_error(smtp(msg), NA)
+})
+
+test_that("sends message with insecure = TRUE", {
+  expect_error(smtp_insecure(msg), NA)
 })
 
 test_that("sends HTML message", {
