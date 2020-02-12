@@ -39,7 +39,7 @@ test_that("sends message with insecure = TRUE", {
 })
 
 test_that("sends with SSL", {
-  expect_error(smtp_gmail(msg), NA)
+  expect_error(smtp_gmail(msg %>% subject("{emayili} test")), NA)
 })
 
 test_that("sends HTML message", {
