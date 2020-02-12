@@ -1,29 +1,14 @@
-setup({
-  write.csv(mtcars, "mtcars.csv")
-
-  png("mtcars-disp-hist.png", width=600, height=350)
-  hist(mtcars$disp)
-  dev.off()
-})
-
 test_that("attachment: set", {
-  csv <- "./mtcars.csv"
+  msg <- envelope() %>% attachment(TXTPATH)
 
-  msg <- envelope() %>% attachment(csv)
-
-  expect_equal(msg$parts[[1]]$body, base64encode(csv, 76L, "\r\n"))
+  expect_equal(msg$parts[[1]]$body, base64encode(TXTPATH, 76L, "\r\n"))
 })
 
 test_that("attachment: specify CID", {
-  png <- "./mtcars-disp-hist.png"
   cid <- "histogram"
 
-  msg <- envelope() %>% attachment(png, cid = cid)
+  msg <- envelope() %>% attachment(PNGPATH, cid = cid)
 
-  expect_equal(msg$parts[[1]]$body, base64encode(png, 76L, "\r\n"))
+  expect_equal(msg$parts[[1]]$body, base64encode(PNGPATH, 76L, "\r\n"))
   expect_equal(msg$parts[[1]]$header$cid, cid)
-})
-
-teardown({
-  file.remove("mtcars.csv", "mtcars-disp-hist.png")
 })

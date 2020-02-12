@@ -21,17 +21,6 @@ msg <- envelope() %>%
   from(SMTP_USERNAME) %>%
   to(SMTP_USERNAME)
 
-txt_path <- tempfile(fileext = ".txt")
-png_path <- tempfile(fileext = ".png")
-
-setup({
-  writeLines("Some random text.", txt_path)
-  download.file("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png", png_path, quiet = TRUE)
-})
-teardown({
-  unlink(c(txt_path, png_path))
-})
-
 test_that("server type", {
   expect_type(smtp, "closure")
 })
@@ -54,14 +43,14 @@ test_that("sends HTML message", {
 
 test_that("sends message with text attachment", {
   msg <- msg %>%
-    attachment(txt_path)
+    attachment(TXTPATH)
 
   expect_error(smtp(msg), NA)
 })
 
 test_that("sends message with image attachment", {
   msg <- msg %>%
-    attachment(png_path)
+    attachment(PNGPATH)
 
   expect_error(smtp(msg), NA)
 })
@@ -69,7 +58,7 @@ test_that("sends message with image attachment", {
 test_that("sends message with image attachment (using CID)", {
   msg <- msg %>%
     html('<img src="cid:r-logo"/>') %>%
-    attachment(png_path, cid = "r-logo", type = "image/png")
+    attachment(PNGPATH, cid = "r-logo", type = "image/png")
 
   expect_error(smtp(msg), NA)
 })

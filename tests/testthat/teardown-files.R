@@ -1,0 +1,1 @@
+unlink(c(TXTPATH, PNGPATH))
