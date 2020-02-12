@@ -71,3 +71,10 @@ test_that("sends message with image attachment (using CID)", {
 
   expect_error(smtp(msg), NA)
 })
+
+test_that("sends with verbose output", {
+  output <- capture.output(smtp(msg, verbose = TRUE), type = "message") %>%
+    paste(collapse = "\n")
+
+  expect_match(output, "^Sending email to")
+})
