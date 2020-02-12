@@ -1,22 +1,22 @@
 SMTP_USERNAME = Sys.getenv("SMTP_USERNAME")
 
-# Using Gmail SMTP server.
-#
-# SMTP_PASSWORD = Sys.getenv("SMTP_PASSWORD")
-# SMTP_SERVER   = "smtp.gmail.com"
-# SMTP_PORT     = 587
-
 # Using fake SMTP server.
 #
 # - https://mailtrap.io/
 # - https://www.smtpbucket.com/
 #
-SMTP_PASSWORD = NULL
 SMTP_SERVER   = "mail.smtpbucket.com"
 SMTP_PORT     = 8025
 
-smtp <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, password = SMTP_PASSWORD)
-smtp_insecure <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, password = SMTP_PASSWORD, insecure = TRUE)
+smtp <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME)
+smtp_insecure <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, insecure = TRUE)
+
+smtp_gmail <- server(
+  host = "smtp.gmail.com",
+  port = 587,
+  username = SMTP_USERNAME,
+  password = Sys.getenv("SMTP_PASSWORD")
+)
 
 msg <- envelope() %>%
   from(SMTP_USERNAME) %>%
@@ -36,6 +36,10 @@ test_that("sends text message", {
 
 test_that("sends message with insecure = TRUE", {
   expect_error(smtp_insecure(msg), NA)
+})
+
+test_that("sends with SSL", {
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("sends HTML message", {

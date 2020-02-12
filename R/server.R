@@ -75,7 +75,9 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
 
     url = sprintf("%s://%s:%d", protocol, host, port)
     #
-    if (verbose) base::message("Sending email to ", url, ".")
+    if (verbose) {
+      cat("Sending email to ", url, ".", file = stderr())
+    }
 
     curl_fetch_memory(url, handle = h)
 
