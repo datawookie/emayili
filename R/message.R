@@ -1,3 +1,10 @@
+#' Create formatted header
+#'
+#' @param msg
+#'
+#' @return
+#'
+#' @examples
 header <- function(msg) {
   if (!is.null(msg$header$To)) {
     msg$header$To <- paste0(msg$header$To, collapse = ", ")
@@ -16,8 +23,14 @@ header <- function(msg) {
   )
 }
 
+#' create formatted message
+#'
+#' @param msg
+#'
+#' @return
+#'
+#' @examples
 message <- function(msg){
-  # CONTENT_TYPE = "multipart/mixed"
   CONTENT_TYPE = "multipart/related"
 
   message <- list(
