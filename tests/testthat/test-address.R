@@ -32,3 +32,8 @@ test_that("bcc: set from vector", {
   msg <- envelope() %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
   expect_equal(msg$header$Bcc, c("bob@gmail.com", "alice@yahoo.com"))
 })
+
+test_that("reply: set from individual arguments", {
+  msg <- envelope() %>% reply("craig@gmail.com")
+  expect_equal(msg$header$Reply, "craig@gmail.com")
+})
