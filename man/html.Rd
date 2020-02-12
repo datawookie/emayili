@@ -6,7 +6,7 @@
 \usage{
 html(
   msg,
-  content = NULL,
+  content,
   disposition = "inline",
   charset = "utf-8",
   encoding = "quoted-printable"

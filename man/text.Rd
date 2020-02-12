@@ -6,7 +6,7 @@
 \usage{
 text(
   msg,
-  content = NULL,
+  content,
   disposition = "inline",
   charset = "utf-8",
   encoding = "7bit"

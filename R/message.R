@@ -3,8 +3,6 @@
 #' @param msg
 #'
 #' @return
-#'
-#' @examples
 header <- function(msg) {
   if (!is.null(msg$header$To)) {
     msg$header$To <- paste0(msg$header$To, collapse = ", ")
@@ -28,8 +26,6 @@ header <- function(msg) {
 #' @param msg
 #'
 #' @return
-#'
-#' @examples
 message <- function(msg){
   CONTENT_TYPE = "multipart/related"
 
