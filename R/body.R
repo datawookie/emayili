@@ -16,21 +16,17 @@ check_message_body <- function(content) {
 #' @examples
 #' msg <- envelope()
 #' text(msg, "Hello!")
-text <- function(msg, content = NULL, disposition = "inline", charset = "utf-8", encoding = "7bit") {
-  if (is.null(content)) {
-    msg$body
-  } else {
-    check_message_body(content)
+text <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "7bit") {
+  check_message_body(content)
 
-    type <- "text/plain"
+  type <- "text/plain"
 
-    body <- mime(type, disposition, encoding, "flowed", charset)
-    body$body <- content
+  body <- mime(type, disposition, encoding, "flowed", charset)
+  body$body <- content
 
-    msg$parts <- c(msg$parts, list(body))
+  msg$parts <- c(msg$parts, list(body))
 
-    invisible(msg)
-  }
+  invisible(msg)
 }
 
 #' Add an HTML body to a message object
@@ -45,19 +41,15 @@ text <- function(msg, content = NULL, disposition = "inline", charset = "utf-8",
 #' @examples
 #' msg <- envelope()
 #' html(msg, "<b>Hello!</b>")
-html <- function(msg, content = NULL, disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
-  if (is.null(content)) {
-    msg$body
-  } else {
-    check_message_body(content)
+html <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
+  check_message_body(content)
 
-    type <- "text/html"
+  type <- "text/html"
 
-    body <- mime(type, disposition, encoding, NULL, charset)
-    body$body <- qp_encode(content)
+  body <- mime(type, disposition, encoding, NULL, charset)
+  body$body <- qp_encode(content)
 
-    msg$parts <- c(msg$parts, list(body))
+  msg$parts <- c(msg$parts, list(body))
 
-    invisible(msg)
-  }
+  invisible(msg)
 }
