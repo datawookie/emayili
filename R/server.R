@@ -57,8 +57,19 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     if (insecure) {
       handle_setopt(h, ssl_verifypeer = FALSE)
     }
+
+    # Setup to capture output from underlying command.
     #
-    handle_setopt(h, verbose = verbose)
+    # See https://github.com/jeroen/curl/issues/120.
+    #
+    log <- rawConnection(raw(), 'r+')
+    on.exit(close(log))
+    handle_setopt(h,
+                  debugfunction = function(type, data) {
+                    writeBin(data, log)
+                  },
+                  verbose = verbose
+    )
 
     con <- file(tmpfile, open = 'rb')
     #
@@ -76,10 +87,14 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     url = sprintf("%s://%s:%d", protocol, host, port)
     #
     if (verbose) {
-      cat("Sending email to ", url, ".", file = stderr())
+      cat("Sending email to ", url, ".\n", file = stderr())
     }
 
     curl_fetch_memory(url, handle = h)
+
+    if (verbose) {
+      cat(rawToChar(rawConnectionValue(log)), file = stderr())
+    }
 
     close(con)
   }
