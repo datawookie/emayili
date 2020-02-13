@@ -19,7 +19,7 @@ check_message_body <- function(content) {
 text <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "7bit") {
   check_message_body(content)
 
-  type <- "text/plain"
+  type <- "text/plain; charset=\"UTF-8\""
 
   body <- mime(type, disposition, encoding, "flowed", charset)
   body$body <- content
