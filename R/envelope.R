@@ -18,5 +18,5 @@ envelope <- function() {
 
 #' @export
 print.envelope <- function(x, ...) {
-  cat(paste0(header(x), "\n"))
+  cat(paste0(header(x), "\r\n"))
 }
