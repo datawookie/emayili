@@ -21,7 +21,8 @@ text <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
 
   type <- "text/plain"
 
-  body <- mime(type, disposition, encoding, "flowed", charset)
+  #body <- mime(type, disposition, encoding, "flowed", charset)
+  body <- mime(type, disposition, encoding, charset, NA)
   body$body <- content
 
   msg$parts <- c(msg$parts, list(body))
@@ -45,8 +46,9 @@ html <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
   check_message_body(content)
 
   type <- "text/html"
-
-  body <- mime(type, disposition, encoding, NULL, charset)
+  
+  #body <- mime(type, disposition, encoding, NULL, charset)
+  body <- mime(type, disposition, encoding, charset, NA)
   body$body <- qp_encode(content)
 
   msg$parts <- c(msg$parts, list(body))

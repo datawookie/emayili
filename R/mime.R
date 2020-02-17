@@ -31,7 +31,7 @@ mime <- function(content_type, content_disposition, encoding, charset, cid = NA,
 format.mime <- function(msg) {
   headers <-  with(msg$header, c(
     'Content-Type: {content_type}',
-    ifelse(exists("charset") && !is.null(charset), '; charset="{charset}"', ''),
+    ifelse(exists("charset") && !is.null(charset), '; charset={charset}', ''),
     ifelse(exists("name"), '; name="{name}"', ''),
     '\r\nContent-Disposition: {content_disposition}',
     ifelse(exists("filename"), '; filename="{filename}"', ''),
