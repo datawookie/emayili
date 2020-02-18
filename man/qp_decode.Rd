@@ -2,16 +2,16 @@
 % Please edit documentation in R/encoding.R
 \name{qp_decode}
 \alias{qp_decode}
-\title{Decode a quoted-printable string}
+\title{Decode a quoted-printable string.}
 \usage{
 qp_decode(x)
 }
 \arguments{
-\item{x}{A vector of strings}
+\item{x}{A vector of strings.}
 }
 \value{
-A vector of decoded strings
+A vector of decoded strings.
 }
 \description{
-Decode a quoted-printable string
+Decode a quoted-printable string.
 }

@@ -1,8 +1,10 @@
-#' Create a message object
+#' Create a message.
 #'
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
+#' # Create an (empty) message object.
 #' msg <- envelope()
 envelope <- function() {
   structure(

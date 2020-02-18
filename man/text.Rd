@@ -2,7 +2,7 @@
 % Please edit documentation in R/body.R
 \name{text}
 \alias{text}
-\title{Add a text body to a message object}
+\title{Add a text body to a message.}
 \usage{
 text(
   msg,
@@ -27,9 +27,13 @@ text(
 A message object.
 }
 \description{
-Add a text body to a message object
+Add a text body to a message.
 }
 \examples{
-msg <- envelope()
-text(msg, "Hello!")
+library(magrittr)
+
+msg <- envelope() \%>\% text("Hello!")
+}
+\seealso{
+\code{\link{html}}
 }

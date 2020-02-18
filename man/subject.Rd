@@ -2,7 +2,7 @@
 % Please edit documentation in R/subject.R
 \name{subject}
 \alias{subject}
-\title{Add or query subject of message}
+\title{Add or query subject of message.}
 \usage{
 subject(msg, subject = NULL)
 }
@@ -15,9 +15,16 @@ subject(msg, subject = NULL)
 A message object or the subject of the message object (if \code{subject} is \code{NULL}).
 }
 \description{
-Add or query subject of message
+Add or query subject of message.
 }
 \examples{
-msg <- envelope()
-subject(msg, "Updated report")
+library(magrittr)
+
+# Create a message and set the subject
+msg <- envelope() \%>\% subject("Updated report")
+# Retrieve the subject for a message
+subject(msg)
+}
+\seealso{
+\code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 }

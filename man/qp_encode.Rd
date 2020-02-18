@@ -2,16 +2,16 @@
 % Please edit documentation in R/encoding.R
 \name{qp_encode}
 \alias{qp_encode}
-\title{Encode a string to quoted-printable}
+\title{Encode a string to quoted-printable.}
 \usage{
 qp_encode(x)
 }
 \arguments{
-\item{x}{A vector of strings}
+\item{x}{A vector of strings.}
 }
 \value{
-A vector of encoded strings
+A vector of encoded strings.
 }
 \description{
-Encode a string to quoted-printable
+Encode a string to quoted-printable.
 }

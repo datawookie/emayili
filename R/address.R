@@ -1,8 +1,9 @@
-#' Add To field to message object header
+#' Add To field to message
 #'
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -18,11 +19,12 @@ to <- function(msg, ...){
   }
 }
 
-#' Add From field to message object header
+#' Add From field to message
 #'
 #' @param msg A message object.
 #' @param from Email address.
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -36,11 +38,12 @@ from <- function(msg, from = NULL){
   }
 }
 
-#' Add Cc field to message object header
+#' Add Cc field to message
 #'
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -56,11 +59,12 @@ cc <- function(msg, ...){
   }
 }
 
-#' Add Bcc field to message object header
+#' Add Bcc field to message
 #'
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -76,11 +80,12 @@ bcc <- function(msg, ...){
   }
 }
 
-#' Add Reply-To field to message object header
+#' Add Reply-To field to message
 #'
 #' @param msg A message object.
 #' @param reply_to Email address.
 #' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{bcc}}
 #' @export
 #' @examples
 #' msg <- envelope()

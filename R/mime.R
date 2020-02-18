@@ -1,4 +1,4 @@
-#' Create a MIME (Multipurpose Internet Mail Extensions) object
+#' Create a MIME (Multipurpose Internet Mail Extensions) object.
 #'
 #' @param content_type The MIME type of the content.
 #' @param content_disposition Should the content be displayed inline or as an attachment?
@@ -24,7 +24,7 @@ mime <- function(content_type, content_disposition, encoding, charset, cid = NA,
     class="mime")
 }
 
-#' Format the header of a MIME object
+#' Format the header of a MIME object.
 #'
 #' @param msg A message object.
 #' @return A formatted header string.

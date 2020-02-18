@@ -2,7 +2,7 @@
 % Please edit documentation in R/body.R
 \name{html}
 \alias{html}
-\title{Add an HTML body to a message object}
+\title{Add an HTML body to a message object.}
 \usage{
 html(
   msg,
@@ -27,9 +27,13 @@ html(
 A message object.
 }
 \description{
-Add an HTML body to a message object
+Add an HTML body to a message object.
 }
 \examples{
-msg <- envelope()
-html(msg, "<b>Hello!</b>")
+library(magrittr)
+
+msg <- envelope() \%>\% html("<b>Hello!</b>")
+}
+\seealso{
+\code{\link{text}}
 }

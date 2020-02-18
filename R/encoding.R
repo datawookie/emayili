@@ -51,19 +51,19 @@
 ascii_qp_encoded <- c("=3D")
 ascii_qp_decoded <- c("=")
 
-#' Encode a string to quoted-printable
+#' Encode a string to quoted-printable.
 #'
-#' @param x A vector of strings
-#' @return A vector of encoded strings
+#' @param x A vector of strings.
+#' @return A vector of encoded strings.
 #' @export
 qp_encode <- function(x) {
   stringi::stri_replace_all_fixed(x, ascii_qp_decoded, ascii_qp_encoded, vectorize_all=FALSE)
 }
 
-#' Decode a quoted-printable string
+#' Decode a quoted-printable string.
 #'
-#' @param x A vector of strings
-#' @return A vector of decoded strings
+#' @param x A vector of strings.
+#' @return A vector of decoded strings.
 #' @export
 qp_decode <- function(x) {
   stringi::stri_replace_all_fixed(x, ascii_qp_encoded, ascii_qp_decoded, vectorize_all=FALSE)

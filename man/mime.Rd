@@ -2,7 +2,7 @@
 % Please edit documentation in R/mime.R
 \name{mime}
 \alias{mime}
-\title{Create a MIME (Multipurpose Internet Mail Extensions) object}
+\title{Create a MIME (Multipurpose Internet Mail Extensions) object.}
 \usage{
 mime(content_type, content_disposition, encoding, charset, cid = NA, ...)
 }
@@ -23,5 +23,5 @@ mime(content_type, content_disposition, encoding, charset, cid = NA, ...)
 A MIME object.
 }
 \description{
-Create a MIME (Multipurpose Internet Mail Extensions) object
+Create a MIME (Multipurpose Internet Mail Extensions) object.
 }

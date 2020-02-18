@@ -24,10 +24,20 @@ A message object.
 Add attachments to a message object
 }
 \examples{
-\dontrun{
-msg <- envelope()
-attachment(msg, "report.xlsx")
-attachment(msg, "cat.png", type = "image/png")
-attachment(msg, "visualisations.png", "visuals")
-}
+library(magrittr)
+
+download.file("https://bit.ly/2P4LUO8", "cats.jpg")
+
+png("scatter.png")
+plot(1:10)
+dev.off()
+
+write.csv(mtcars, "mtcars.csv")
+
+msg <- envelope() \%>\%
+  attachment("mtcars.csv") \%>\%
+  attachment("cats.jpg", type = "image/jpeg") \%>\%
+  attachment("scatter.png", cid = "scatter")
+
+file.remove("mtcars.csv", "scatter.png", "cats.jpg")
 }

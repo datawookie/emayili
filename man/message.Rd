@@ -2,16 +2,16 @@
 % Please edit documentation in R/message.R
 \name{message}
 \alias{message}
-\title{create formatted message}
+\title{Create formatted message.}
 \usage{
 message(msg)
 }
 \arguments{
-\item{msg}{}
+\item{msg}{A message object.}
 }
 \value{
-
+A formatted message object.
 }
 \description{
-create formatted message
+Create formatted message.
 }

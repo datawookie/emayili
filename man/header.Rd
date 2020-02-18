@@ -2,16 +2,16 @@
 % Please edit documentation in R/message.R
 \name{header}
 \alias{header}
-\title{Create formatted header}
+\title{Create formatted header.}
 \usage{
 header(msg)
 }
 \arguments{
-\item{msg}{}
+\item{msg}{A message object.}
 }
 \value{
-
+A message header.
 }
 \description{
-Create formatted header
+Create formatted header.
 }

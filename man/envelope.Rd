@@ -2,7 +2,7 @@
 % Please edit documentation in R/envelope.R
 \name{envelope}
 \alias{envelope}
-\title{Create a message object}
+\title{Create a message.}
 \usage{
 envelope()
 }
@@ -10,8 +10,12 @@ envelope()
 A message object.
 }
 \description{
-Create a message object
+Create a message.
 }
 \examples{
+# Create an (empty) message object.
 msg <- envelope()
+}
+\seealso{
+\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 }

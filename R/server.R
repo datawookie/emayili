@@ -1,7 +1,4 @@
-# NOTE: There is now a send_mail() function in {curl} but it does not have the full range of functionality
-# below (like specifying port).
-
-#' Create a SMTP server object
+#' Create a SMTP server object.
 #'
 #' @param host DNS name or IP address of the SMTP server.
 #' @param port Port that the SMTP server is listening on.
@@ -14,22 +11,32 @@
 #' @examples
 #' library(magrittr)
 #'
+#' # Set parameters for SMTP server (with username and password)
 #' smtp <- server(host = "smtp.gmail.com",
 #'                port = 465,
 #'                username = "bob@gmail.com",
 #'                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+#'
+#' # Set parameters for testing SMTP server
+#' smtp <- server(host = "mail.smtpbucket.com",
+#'                port = 8025)
+#'
+#' # Create a message
 #' msg <- envelope() %>%
 #'   from("bob@gmail.com") %>%
 #'   to("alice@yahoo.com")
-#' \dontrun{
+#'
+#' # Send message (verbose output from interactions with server)
 #' smtp(msg, verbose = TRUE)
-#' }
 server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE) {
   function(msg, verbose = FALSE){
     tmpfile = tempfile()
     #
     writeLines(message(msg), tmpfile)
 
+
+    SMTP_SERVER   =
+    SMTP_PORT     =
 
     h <- new_handle(
       mail_from = msg$header$From,

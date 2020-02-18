@@ -4,7 +4,7 @@ check_message_body <- function(content) {
   }
 }
 
-#' Add a text body to a message object
+#' Add a text body to a message.
 #'
 #' @param msg A message object.
 #' @param content A string of message content.
@@ -12,10 +12,12 @@ check_message_body <- function(content) {
 #' @param charset How content is encoded.
 #' @param encoding How content is transformed to ASCII (Content-Transfer-Encoding).
 #' @return A message object.
+#' @seealso \code{\link{html}}
 #' @export
 #' @examples
-#' msg <- envelope()
-#' text(msg, "Hello!")
+#' library(magrittr)
+#'
+#' msg <- envelope() %>% text("Hello!")
 text <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "7bit") {
   check_message_body(content)
 
@@ -29,7 +31,7 @@ text <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
   invisible(msg)
 }
 
-#' Add an HTML body to a message object
+#' Add an HTML body to a message object.
 #'
 #' @param msg A message object.
 #' @param content A string of message content.
@@ -37,10 +39,12 @@ text <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
 #' @param charset How content is encoded.
 #' @param encoding How content is transformed to ASCII (Content-Transfer-Encoding).
 #' @return A message object.
+#' @seealso \code{\link{text}}
 #' @export
 #' @examples
-#' msg <- envelope()
-#' html(msg, "<b>Hello!</b>")
+#' library(magrittr)
+#'
+#' msg <- envelope() %>% html("<b>Hello!</b>")
 html <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
   check_message_body(content)
 
