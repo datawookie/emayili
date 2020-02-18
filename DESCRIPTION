@@ -29,7 +29,6 @@ URL: https://datawookie.github.io/emayili/
 BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
 Imports:
-    base,
     base64enc,
     curl,
     glue,
