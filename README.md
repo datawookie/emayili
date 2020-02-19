@@ -94,6 +94,13 @@ specifics:
   - [Yahoo\!](https://login.yahoo.com/account/security) and
   - [AOL](https://login.aol.com/account/security).
 
+## Debugging
+
+To see the guts of the message as passed to the SMTP server, do the
+following:
+
+    cat(emayili:::message(email))
+
 ## Similar Packages
 
 There is a selection of other R packages which also send emails:
