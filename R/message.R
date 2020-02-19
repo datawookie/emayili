@@ -14,6 +14,8 @@ header <- function(msg) {
     msg$header$Bcc <- paste0(msg$header$Bcc, collapse = ", ")
   }
 
+  msg$header$`X-Mailer` <- paste("{emayili}", packageVersion("emayili"), sep = "-")
+
   paste(
     msg$header %>% names() %>% sub("_", "-", .) %>% paste0(":") %>% sprintf("%-13s", .),
     msg$header,
