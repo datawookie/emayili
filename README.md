@@ -77,6 +77,10 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
+You can identify emails which have been sent using `{emayili}` by the
+presence of an `X-Mailer` header which includes both the package name
+and version.
+
 ### Using STARTTLS
 
 If you’re trying to send email with a host that uses the STARTTLS

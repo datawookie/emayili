@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a SMTP server object — server • emayili</title>
+<title>Create a SMTP server object. — server • emayili</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Create a SMTP server object — server" />
-<meta property="og:description" content="Create a SMTP server object" />
+<meta property="og:title" content="Create a SMTP server object. — server" />
+<meta property="og:description" content="Create a SMTP server object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -100,13 +100,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a SMTP server object</h1>
+    <h1>Create a SMTP server object.</h1>
     
     <div class="hidden name"><code>server.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a SMTP server object</p>
+    <p>Create a SMTP server object.</p>
     </div>
 
     <pre class="usage"><span class='fu'>server</span>(<span class='no'>host</span>, <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>username</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>password</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>insecure</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -143,16 +143,23 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
 
+<span class='co'># Set parameters for SMTP server (with username and password)</span>
 <span class='no'>smtp</span> <span class='kw'>&lt;-</span> <span class='fu'>server</span>(<span class='kw'>host</span> <span class='kw'>=</span> <span class='st'>"smtp.gmail.com"</span>,
                <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>465</span>,
                <span class='kw'>username</span> <span class='kw'>=</span> <span class='st'>"bob@gmail.com"</span>,
                <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)
+
+<span class='co'># Set parameters for testing SMTP server</span>
+<span class='no'>smtp</span> <span class='kw'>&lt;-</span> <span class='fu'>server</span>(<span class='kw'>host</span> <span class='kw'>=</span> <span class='st'>"mail.smtpbucket.com"</span>,
+               <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>8025</span>)
+
+<span class='co'># Create a message</span>
 <span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='from.html'>from</a></span>(<span class='st'>"bob@gmail.com"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='to.html'>to</a></span>(<span class='st'>"alice@yahoo.com"</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>smtp</span>(<span class='no'>msg</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div></pre>
+
+<span class='co'># Send message (verbose output from interactions with server)</span>
+<span class='fu'>smtp</span>(<span class='no'>msg</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
