@@ -34,10 +34,6 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     #
     writeLines(message(msg), tmpfile)
 
-
-    SMTP_SERVER   =
-    SMTP_PORT     =
-
     h <- new_handle(
       mail_from = msg$header$From,
       mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc)
