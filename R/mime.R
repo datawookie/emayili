@@ -31,12 +31,12 @@ mime <- function(content_type, content_disposition, encoding, charset, cid = NA,
 format.mime <- function(msg) {
   headers <-  with(msg$header, c(
     'Content-Type: {content_type}',
-    ifelse(exists("charset") && !is.null(charset), '; charset="{charset}"', ''),
+    ifelse(exists("charset") && !is.null(charset), '; charset={charset}', ''),
     ifelse(exists("name"), '; name="{name}"', ''),
-    '\nContent-Disposition: {content_disposition}',
+    '\r\nContent-Disposition: {content_disposition}',
     ifelse(exists("filename"), '; filename="{filename}"', ''),
-    ifelse(!is.na(cid), '\nContent-Id: <{cid}>\nX-Attachment-Id: {cid}', ''),
-    '\nContent-Transfer-Encoding: {encoding}'
+    ifelse(!is.na(cid), '\r\nContent-Id: <{cid}>\r\nX-Attachment-Id: {cid}', ''),
+    '\r\nContent-Transfer-Encoding: {encoding}'
   ) %>%
     paste(collapse = "") %>%
     glue())
