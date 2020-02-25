@@ -60,9 +60,8 @@ attachment <-
     mime <- mime(
       type,
       disposition,
+      NULL,
       "base64",
-      NULL,
-      NULL,
       cid = as.character(cid),
       name = basename(path),
       filename = basename(path)

@@ -7,7 +7,7 @@
 #' @param cid An optional Content-Id.
 #' @param ... Other arguments.
 #' @return A MIME object.
-mime <- function(content_type, content_disposition, encoding, charset, cid = NA, ...) {
+mime <- function(content_type, content_disposition, charset, encoding, cid = NA, ...) {
   structure(
     list(
       header = list(
