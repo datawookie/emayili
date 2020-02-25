@@ -2,22 +2,25 @@
 % Please edit documentation in R/address.R
 \name{from}
 \alias{from}
-\title{Add From field to message object header}
+\title{Add From field to message}
 \usage{
 from(msg, from = NULL)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{...}{Email address.}
+\item{from}{Email address.}
 }
 \value{
 A message object.
 }
 \description{
-Add From field to message object header
+Add From field to message
 }
 \examples{
 msg <- envelope()
 from(msg, "craig@gmail.com")
+}
+\seealso{
+\code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 }

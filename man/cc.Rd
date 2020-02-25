@@ -2,7 +2,7 @@
 % Please edit documentation in R/address.R
 \name{cc}
 \alias{cc}
-\title{Add Cc field to message object header}
+\title{Add Cc field to message}
 \usage{
 cc(msg, ...)
 }
@@ -15,10 +15,13 @@ cc(msg, ...)
 A message object.
 }
 \description{
-Add Cc field to message object header
+Add Cc field to message
 }
 \examples{
 msg <- envelope()
 cc(msg, "bob@gmail.com", "alice@yahoo.com")
 cc(msg, c("bob@gmail.com", "alice@yahoo.com"))
+}
+\seealso{
+\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{bcc}} and \code{\link{reply}}
 }

@@ -1,7 +1,7 @@
 Type: Package
 Package: emayili
-Title: Send email messages
-Version: 0.1.1
+Title: Send Email Messages
+Version: 0.3.4
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
@@ -19,21 +19,26 @@ Authors@R:
       person(given = "Daniel",
              family = "Fahey",
              role = "ctb",
-             email = "dpfahey@gmail.com"))
-Description: A package for writing and sending emails.
-    Minimal dependencies.
+             email = "dpfahey@gmail.com"),
+      person(given = c("Johann",  "R."),
+             family = "Kleinbub",
+             role = "ctb",
+             email = "johann.kleinbub@gmail.com"))
+Description: A light, simple tool for sending emails with minimal dependencies.
+URL: https://datawookie.github.io/emayili/
+BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
 Imports:
-    base,
     base64enc,
     curl,
-    digest,
     glue,
     httr,
     magrittr,
-    mime
+    mime,
+    stringi
 Suggests:
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    roxygen2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2.9000

@@ -4,3 +4,9 @@
 ^docs$
 ^pkgdown$
 ^\.httr-oauth$
+^emayili\.Rcheck$
+^emayili.*\.tar\.gz$
+^emayili.*\.tgz$
+.travis.yml
+README.Rmd
+test.R

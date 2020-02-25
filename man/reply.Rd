@@ -2,22 +2,25 @@
 % Please edit documentation in R/address.R
 \name{reply}
 \alias{reply}
-\title{Add Reply-To field to message object header}
+\title{Add Reply-To field to message}
 \usage{
 reply(msg, reply_to = NULL)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{...}{Email addresses.}
+\item{reply_to}{Email address.}
 }
 \value{
 A message object.
 }
 \description{
-Add Reply-To field to message object header
+Add Reply-To field to message
 }
 \examples{
 msg <- envelope()
 reply(msg, "gerry@gmail.com")
+}
+\seealso{
+\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{bcc}}
 }

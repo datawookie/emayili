@@ -2,7 +2,7 @@
 % Please edit documentation in R/address.R
 \name{bcc}
 \alias{bcc}
-\title{Add Bcc field to message object header}
+\title{Add Bcc field to message}
 \usage{
 bcc(msg, ...)
 }
@@ -15,10 +15,13 @@ bcc(msg, ...)
 A message object.
 }
 \description{
-Add Bcc field to message object header
+Add Bcc field to message
 }
 \examples{
 msg <- envelope()
 bcc(msg, "bob@gmail.com", "alice@yahoo.com")
 bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
+}
+\seealso{
+\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{reply}}
 }

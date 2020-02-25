@@ -4,14 +4,18 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(msg, path, cid = FALSE)
+attachment(msg, path, type = NA, cid = NA, disposition = NA)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{path}{Paths to files.}
+\item{path}{Path to file.}
 
-\item{cid}{Associate a Content ID.}
+\item{type}{MIME type or \cite{NA}, which will result in a guess based on file extension.}
+
+\item{cid}{Content-ID or \code{NA}.}
+
+\item{disposition}{Should the content be displayed inline or as an attachment?}
 }
 \value{
 A message object.
@@ -20,10 +24,20 @@ A message object.
 Add attachments to a message object
 }
 \examples{
-\dontrun{
-msg <- envelope()
-attachment(msg, "report.xlsx")
-attachment(msg, c("visualisations.png", "report.pdf"))
-attachment(msg, c("visualisations.png", "report.pdf"), cid = TRUE)
-}
+library(magrittr)
+
+download.file("https://bit.ly/2P4LUO8", "cats.jpg")
+
+png("scatter.png")
+plot(1:10)
+dev.off()
+
+write.csv(mtcars, "mtcars.csv")
+
+msg <- envelope() \%>\%
+  attachment("mtcars.csv") \%>\%
+  attachment("cats.jpg", type = "image/jpeg") \%>\%
+  attachment("scatter.png", cid = "scatter")
+
+file.remove("mtcars.csv", "scatter.png", "cats.jpg")
 }

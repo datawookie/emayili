@@ -2,7 +2,7 @@
 % Please edit documentation in R/address.R
 \name{to}
 \alias{to}
-\title{Add To field to message object header}
+\title{Add To field to message}
 \usage{
 to(msg, ...)
 }
@@ -15,10 +15,13 @@ to(msg, ...)
 A message object.
 }
 \description{
-Add To field to message object header
+Add To field to message
 }
 \examples{
 msg <- envelope()
 to(msg, "bob@gmail.com", "alice@yahoo.com")
 to(msg, c("bob@gmail.com", "alice@yahoo.com"))
+}
+\seealso{
+\code{\link{subject}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 }

@@ -5,5 +5,7 @@
 .Renviron
 .httr-oauth
 attachment-*
-test.R
 TODO
+emayili.Rcheck/
+emayili*.tar.gz
+emayili*.tgz

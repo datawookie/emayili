@@ -2,9 +2,9 @@
 % Please edit documentation in R/server.R
 \name{server}
 \alias{server}
-\title{Create a SMTP server object}
+\title{Create a SMTP server object.}
 \usage{
-server(host, port = 25, username = NULL, password = NULL)
+server(host, port = 25, username = NULL, password = NULL, insecure = FALSE)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -14,24 +14,33 @@ server(host, port = 25, username = NULL, password = NULL)
 \item{username}{Username for SMTP server.}
 
 \item{password}{Password for SMTP server.}
+
+\item{insecure}{Whether to ignore SSL issues.}
 }
 \value{
 A function which is used to send messages to the server.
 }
 \description{
-Create a SMTP server object
+Create a SMTP server object.
 }
 \examples{
 library(magrittr)
 
+# Set parameters for SMTP server (with username and password)
 smtp <- server(host = "smtp.gmail.com",
                port = 465,
                username = "bob@gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+
+# Set parameters for testing SMTP server
+smtp <- server(host = "mail.smtpbucket.com",
+               port = 8025)
+
+# Create a message
 msg <- envelope() \%>\%
   from("bob@gmail.com") \%>\%
   to("alice@yahoo.com")
-\dontrun{
+
+# Send message (verbose output from interactions with server)
 smtp(msg, verbose = TRUE)
-}
 }
