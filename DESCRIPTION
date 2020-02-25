@@ -23,7 +23,10 @@ Authors@R:
       person(given = c("Johann",  "R."),
              family = "Kleinbub",
              role = "ctb",
-             email = "johann.kleinbub@gmail.com"))
+             email = "johann.kleinbub@gmail.com"),
+      person(given = c("Panagiotis"),
+             family = "Moulos",
+             role = "ctb"))
 Description: A light, simple tool for sending emails with minimal dependencies.
 URL: https://datawookie.github.io/emayili/
 BugReports: https://github.com/datawookie/emayili/issues

@@ -13,5 +13,6 @@
 A formatted header string.
 }
 \description{
-Format the header of a MIME object.
+The header must conform to the SMTP Protocol (https://tools.ietf.org/html/rfc821). Specifically, lines should be
+terminated by CRLF (not just LF).
 }
