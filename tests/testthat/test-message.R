@@ -3,5 +3,5 @@ test_that("header fields", {
     subject("Test message") %>%
     cc("bob@gmail.com") %>%
     bcc("alice@yahoo.com")
-  expect_match(emayili:::header(msg), "Date: +.*\nSubject: +Test message\nCc: +bob@gmail.com\nBcc: +alice@yahoo.com")
+  expect_match(emayili:::header(msg), "Date: +.*\r\nSubject: +Test message\r\nCc: +bob@gmail.com\r\nBcc: +alice@yahoo.com")
 })
