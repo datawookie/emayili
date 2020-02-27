@@ -17,7 +17,10 @@
 #'                username = "bob@gmail.com",
 #'                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
 #'
-#' # Set parameters for testing SMTP server
+#' # Set parameters for a (fake) testing SMTP server.
+#' #
+#' # More information about this service can be found at https://www.smtpbucket.com/.
+#' #
 #' smtp <- server(host = "mail.smtpbucket.com",
 #'                port = 8025)
 #'
@@ -28,6 +31,12 @@
 #'
 #' # Send message (verbose output from interactions with server)
 #' smtp(msg, verbose = TRUE)
+#'
+#' # To confirm that the message was sent, go to https://www.smtpbucket.com/ then:
+#' #
+#' # - fill in "bob@gmail.com" for the Sender field and
+#' # - fill in "alice@yahoo.com" for the Recipient field then
+#' # - press the Search button.
 server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE) {
   function(msg, verbose = FALSE){
     tmpfile = tempfile()
