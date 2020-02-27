@@ -10,20 +10,24 @@
 #' @examples
 #' library(magrittr)
 #'
-#' download.file("https://bit.ly/2P4LUO8", "cats.jpg")
+#' path_mtcars  <- tempfile(fileext = ".csv")
+#' path_cats    <- tempfile(fileext = ".jpg")
+#' path_scatter <- tempfile(fileext = ".png")
 #'
-#' png("scatter.png")
+#' write.csv(mtcars, path_mtcars)
+#'
+#' download.file("https://bit.ly/2P4LUO8", path_cats, quiet = TRUE)
+#'
+#' png(path_scatter)
 #' plot(1:10)
 #' dev.off()
 #'
-#' write.csv(mtcars, "mtcars.csv")
-#'
 #' msg <- envelope() %>%
-#'   attachment("mtcars.csv") %>%
-#'   attachment("cats.jpg", type = "image/jpeg") %>%
-#'   attachment("scatter.png", cid = "scatter")
+#'   attachment(path_mtcars) %>%
+#'   attachment(path_cats, type = "image/jpeg") %>%
+#'   attachment(path_scatter, cid = "scatter")
 #'
-#' file.remove("mtcars.csv", "scatter.png", "cats.jpg")
+#' file.remove(path_cats, path_scatter, path_mtcars)
 attachment <-
   function(msg,
            path,
