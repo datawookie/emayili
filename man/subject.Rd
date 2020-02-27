@@ -22,6 +22,7 @@ library(magrittr)
 
 # Create a message and set the subject
 msg <- envelope() \%>\% subject("Updated report")
+
 # Retrieve the subject for a message
 subject(msg)
 }
