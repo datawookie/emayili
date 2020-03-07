@@ -30,7 +30,9 @@
 #'   to("alice@yahoo.com")
 #'
 #' # Send message (verbose output from interactions with server)
+#' \dontrun{
 #' smtp(msg, verbose = TRUE)
+#' }
 #'
 #' # To confirm that the message was sent, go to https://www.smtpbucket.com/ then:
 #' #
