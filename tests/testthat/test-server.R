@@ -31,10 +31,12 @@ test_that("sends text message", {
     subject("Text body") %>%
     text("Hello, World!")
 
+  skip_on_cran()
   expect_error(smtp(msg), NA)
 })
 
 test_that("sends message with insecure = TRUE", {
+  skip_on_cran()
   expect_error(smtp_insecure(msg), NA)
 })
 
@@ -48,6 +50,7 @@ test_that("sends HTML message", {
     subject("HTML body") %>%
     html("<p><strong>Hello</strong>, <em>World</em>! You can also <u>underline</u> text.</p>")
 
+  skip_on_cran()
   expect_error(smtp(msg), NA)
 })
 
@@ -55,6 +58,7 @@ test_that("sends message with text attachment", {
   msg <- msg %>%
     attachment(TXTPATH)
 
+  skip_on_cran()
   expect_error(smtp(msg), NA)
 })
 
@@ -62,6 +66,7 @@ test_that("sends message with image attachment", {
   msg <- msg %>%
     attachment(PNGPATH)
 
+  skip_on_cran()
   expect_error(smtp(msg), NA)
 })
 
@@ -70,10 +75,12 @@ test_that("sends message with image attachment (using CID)", {
     html('<img src="cid:r-logo"/>') %>%
     attachment(PNGPATH, cid = "r-logo", type = "image/png")
 
+  skip_on_cran()
   expect_error(smtp(msg), NA)
 })
 
 test_that("sends with verbose output", {
+  skip_on_cran()
   output <- capture.output(smtp(msg, verbose = TRUE), type = "message") %>%
     paste(collapse = "\n")
 
