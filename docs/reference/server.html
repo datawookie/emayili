@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.9</span>
       </span>
     </div>
 
@@ -149,7 +149,10 @@
                <span class='kw'>username</span> <span class='kw'>=</span> <span class='st'>"bob@gmail.com"</span>,
                <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)
 
-<span class='co'># Set parameters for testing SMTP server</span>
+<span class='co'># Set parameters for a (fake) testing SMTP server.</span>
+<span class='co'>#</span>
+<span class='co'># More information about this service can be found at https://www.smtpbucket.com/.</span>
+<span class='co'>#</span>
 <span class='no'>smtp</span> <span class='kw'>&lt;-</span> <span class='fu'>server</span>(<span class='kw'>host</span> <span class='kw'>=</span> <span class='st'>"mail.smtpbucket.com"</span>,
                <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>8025</span>)
 
@@ -159,7 +162,15 @@
   <span class='fu'><a href='to.html'>to</a></span>(<span class='st'>"alice@yahoo.com"</span>)
 
 <span class='co'># Send message (verbose output from interactions with server)</span>
-<span class='fu'>smtp</span>(<span class='no'>msg</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>smtp</span>(<span class='no'>msg</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+}
+
+<span class='co'># To confirm that the message was sent, go to https://www.smtpbucket.com/ then:</span>
+<span class='co'>#</span>
+<span class='co'># - fill in "bob@gmail.com" for the Sender field and</span>
+<span class='co'># - fill in "alice@yahoo.com" for the Recipient field then</span>
+<span class='co'># - press the Search button.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
