@@ -25,7 +25,14 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-Simply install from GitHub.
+Get the stable version from
+[CRAN](https://cran.r-project.org/web/packages/emayili/index.html).
+
+``` r
+install.packages("emayili")
+```
+
+Or grab the development version from GitHub.
 
 ``` r
 remotes::install_github("datawookie/emayili")
@@ -41,6 +48,14 @@ library(magrittr)
 
 email <- envelope()
 ```
+
+The message has class `envelope`.
+
+``` r
+class(email)
+```
+
+    [1] "envelope"
 
 Add addresses for the sender and recipient.
 
@@ -82,9 +97,28 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
+Simply printing a message displays the header information.
+
+``` r
+email
+```
+
+    Date:         Sun, 08 Mar 2020 03:30:45 GMT
+    From:         alice@yahoo.com
+    To:           bob@google.com
+    Cc:           craig@google.com
+    Subject:      This is a plain text message!
+    X-Mailer:     {emayili}-0.3.10
+
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
 and version.
+
+To see the guts of the message as passed to the SMTP server:
+
+``` r
+print(email, details = TRUE)
+```
 
 ### Using STARTTLS
 
@@ -98,13 +132,6 @@ specifics:
     ([details](https://support.google.com/accounts/answer/6010255))
   - [Yahoo\!](https://login.yahoo.com/account/security) and
   - [AOL](https://login.aol.com/account/security).
-
-## Debugging
-
-To see the guts of the message as passed to the SMTP server, do the
-following:
-
-    cat(emayili:::message(email))
 
 ## Similar Packages
 
