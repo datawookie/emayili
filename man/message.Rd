@@ -13,5 +13,20 @@ message(msg)
 A formatted message object.
 }
 \description{
-Create formatted message.
+Accepts a message object and formats it as a MIME document.
 }
+\section{MIME Multipart Types}{
+
+
+There are a number of options for multipart messages:
+
+\itemize{
+ \item{\code{multipart/mixed} — }{Used for sending content with different \code{Content-Type} either inline or as attachments.}
+ \item{\code{multipart/digest} — }{Used to send multiple text messages.}
+ \item{\code{multipart/alternative} — }{Used when each part of the message is an "alternative" version of the same content. The order of the parts is important: preferred formats should be found towards the end. \strong{Example:} A message with both plain text and HTML versions.}
+ \item{\code{multipart/related} — }{Used when each part of the the message represents a component of the complete message. \strong{Example:} A web page with images.}
+ \item{\code{multipart/signed} — }{Used when a message has a digital signature attached.}
+ \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
+}
+}
+

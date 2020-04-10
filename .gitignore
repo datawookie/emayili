@@ -6,6 +6,7 @@
 .httr-oauth
 attachment-*
 TODO
+test.R
 emayili.Rcheck/
 emayili*.tar.gz
 emayili*.tgz
