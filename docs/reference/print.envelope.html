@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create formatted header. — header • emayili</title>
+<title>Print a message object — print.envelope • emayili</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Create formatted header. — header" />
-<meta property="og:description" content="Create formatted header." />
+<meta property="og:title" content="Print a message object — print.envelope" />
+<meta property="og:description" content="Print a message object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,36 +100,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create formatted header.</h1>
+    <h1>Print a message object</h1>
     
-    <div class="hidden name"><code>header.Rd</code></div>
+    <div class="hidden name"><code>print.envelope.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create formatted header.</p>
+    <p>Print a message object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>header</span>(<span class='no'>msg</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for envelope</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>msg</th>
+      <th>x</th>
       <td><p>A message object.</p></td>
+    </tr>
+    <tr>
+      <th>details</th>
+      <td><p>Whether or not to display full message content.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Any other arguments (for consistency of generic function).</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A message header.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

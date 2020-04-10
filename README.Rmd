@@ -4,11 +4,18 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA)
+```
+
 # emayili <img src="man/figures/emayili-hex.png" align="right" alt="" width="120" />
 
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.org/package=emayili)
 [![Travis-CI build status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+<!-- badges: end -->
 
 emayili is a package for sending emails from R. The design goals are:
 
@@ -19,7 +26,13 @@ The package name is an adaption of the Zulu word for email, imeyili.
 
 ## Installation
 
-Simply install from GitHub.
+Get the stable version from [CRAN](https://cran.r-project.org/web/packages/emayili/index.html).
+
+```{r eval=FALSE}
+install.packages("emayili")
+```
+
+Or grab the development version from GitHub.
 
 ```{r eval=FALSE}
 remotes::install_github("datawookie/emayili")
@@ -29,16 +42,22 @@ remotes::install_github("datawookie/emayili")
 
 First create a message object.
 
-```{r eval=FALSE}
+```{r message=FALSE}
 library(emayili)
 library(magrittr)
 
 email <- envelope()
 ```
 
+The message has class `envelope`.
+
+```{r}
+class(email)
+```
+
 Add addresses for the sender and recipient.
 
-```{r eval=FALSE}
+```{r}
 email <- email %>%
   from("alice@yahoo.com") %>%
   to("bob@google.com") %>%
@@ -49,7 +68,7 @@ There are also `bcc()` and `reply()` functions for setting the `Bcc` and `Reply-
 
 Add a subject.
 
-```{r eval=FALSE}
+```{r}
 email <- email %>% subject("This is a plain text message!")
 ```
 
@@ -75,7 +94,19 @@ smtp <- server(host = "smtp.gmail.com",
 smtp(email, verbose = TRUE)
 ```
 
+Simply printing a message displays the header information.
+
+```{r}
+email
+```
+
 You can identify emails which have been sent using `{emayili}` by the presence of an `X-Mailer` header which includes both the package name and version.
+
+To see the guts of the message as passed to the SMTP server:
+
+```{r eval=FALSE}
+print(email, details = TRUE)
+```
 
 ### Using STARTTLS
 
@@ -84,14 +115,6 @@ If you're trying to send email with a host that uses the STARTTLS security proto
 * [Google](https://myaccount.google.com/security) ([details](https://support.google.com/accounts/answer/6010255))
 * [Yahoo!](https://login.yahoo.com/account/security) and
 * [AOL](https://login.aol.com/account/security).
-
-## Debugging
-
-To see the guts of the message as passed to the SMTP server, do the following:
-
-```
-cat(emayili:::message(email))
-```
 
 ## Similar Packages
 

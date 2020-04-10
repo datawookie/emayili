@@ -18,7 +18,14 @@ envelope <- function() {
     class="envelope")
 }
 
+
+#' Print a message object
+#'
+#' @param x A message object.
+#' @param details Whether or not to display full message content.
+#' @param ... Any other arguments (for consistency of generic function).
+#'
 #' @export
-print.envelope <- function(x, ...) {
-  cat(paste0(header(x), "\r\n"))
+print.envelope <- function(x, details=FALSE, ...) {
+  ifelse(details, message(x), header(x)) %>% cat()
 }
