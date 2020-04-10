@@ -59,7 +59,7 @@ test_that("sends message with text attachment", {
     attachment(TXTPATH)
 
   skip_on_cran()
-  expect_error(smtp(msg), NA)
+  expect_error(smtp(msg %>% subject("{emayili} test: Text attachment")), NA)
 })
 
 test_that("sends message with image attachment", {
@@ -67,7 +67,7 @@ test_that("sends message with image attachment", {
     attachment(PNGPATH)
 
   skip_on_cran()
-  expect_error(smtp(msg), NA)
+  expect_error(smtp(msg %>% subject("{emayili} test: Image attachment")), NA)
 })
 
 test_that("sends message with image attachment (using CID)", {
@@ -76,7 +76,7 @@ test_that("sends message with image attachment (using CID)", {
     attachment(PNGPATH, cid = "r-logo", type = "image/png")
 
   skip_on_cran()
-  expect_error(smtp(msg), NA)
+  expect_error(smtp(msg %>% subject("{emayili} test: Image attachment (using CID)")), NA)
 })
 
 test_that("sends with verbose output", {
