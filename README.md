@@ -32,10 +32,14 @@ Get the stable version from
 install.packages("emayili")
 ```
 
-Or grab the development version from GitHub.
+Or grab it directly from
+[GitHub](https://github.com/datawookie/emayili).
 
 ``` r
+# Install from the master branch.
 remotes::install_github("datawookie/emayili")
+# Install from the development branch.
+remotes::install_github("datawookie/emayili", ref = "dev")
 ```
 
 ## Usage
@@ -103,12 +107,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Sun, 08 Mar 2020 03:30:45 GMT
+    Date:         Fri, 10 Apr 2020 08:32:01 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.3.10
+    X-Mailer:     {emayili}-0.3.11
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name

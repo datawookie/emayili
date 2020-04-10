@@ -32,10 +32,13 @@ Get the stable version from [CRAN](https://cran.r-project.org/web/packages/emayi
 install.packages("emayili")
 ```
 
-Or grab the development version from GitHub.
+Or grab it directly from [GitHub](https://github.com/datawookie/emayili).
 
 ```{r eval=FALSE}
+# Install from the master branch.
 remotes::install_github("datawookie/emayili")
+# Install from the development branch.
+remotes::install_github("datawookie/emayili", ref = "dev")
 ```
 
 ## Usage
