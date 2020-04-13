@@ -32,17 +32,28 @@ mime <- function(content_type, content_disposition, charset, encoding, cid = NA,
 #' @param msg A message object.
 #' @return A formatted header string.
 format.mime <- function(msg) {
-  headers <-  with(msg$header, c(
+  # Unpack relevant variables here so that we can contain the environment which
+  # glue() searches.
+  #
+  content_type        <- msg$header$content_type
+  charset             <- msg$header$charset
+  name                <- msg$header$name
+  content_disposition <- msg$header$content_disposition
+  filename            <- msg$header$filename
+  cid                 <- msg$header$cid
+  encoding            <- msg$header$encoding
+
+  headers <-  c(
     'Content-Type: {content_type}',
-    ifelse(exists("charset") && !is.null(charset), '; charset={charset}', ''),
-    ifelse(exists("name"), '; name="{name}"', ''),
+    ifelse(!is.null(charset), '; charset={charset}', ''),
+    ifelse(!is.null(name), '; name="{name}"', ''),
     '\r\nContent-Disposition: {content_disposition}',
-    ifelse(exists("filename"), '; filename="{filename}"', ''),
+    ifelse(!is.null(filename), '; filename="{filename}"', ''),
     ifelse(!is.na(cid), '\r\nContent-Id: <{cid}>\r\nX-Attachment-Id: {cid}', ''),
     '\r\nContent-Transfer-Encoding: {encoding}'
   ) %>%
     paste(collapse = "") %>%
-    glue())
+    glue()
 
   paste(headers, msg$body, sep = "\n\n")
 }
