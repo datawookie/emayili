@@ -84,5 +84,5 @@ test_that("sends with verbose output", {
   output <- capture.output(smtp(msg, verbose = TRUE), type = "message") %>%
     paste(collapse = "\n")
 
-  expect_match(output, "^Sending email to")
+  expect_match(output, "250 Message accepted", fixed = TRUE)
 })
