@@ -5,7 +5,7 @@
 #' @param username Username for SMTP server.
 #' @param password Password for SMTP server.
 #' @param insecure Whether to ignore SSL issues.
-#' @param ... Additional curl options (run curl_options() for a list of supported options)
+#' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
 #' @export
@@ -42,8 +42,42 @@
 #' # - press the Search button.
 server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, ...) {
   function(msg, verbose = FALSE){
-    smtp_server <- paste(host, port, sep = ":")
     debugfunction <- if (verbose) function(type, data) write(rawToChar(data), stderr())
+
+    # See curl::curl_options() for available options.
+    #
+    # * SSL
+    #
+    # - If you get the "The certificate chain was issued by an authority that is not trusted." error then
+    #   can add in ssl_verifypeer = FALSE.
+    # - Other flags:
+    #
+    #   - ssl_verifyhost
+    #   - ssl_verifypeer
+    #   - ssl_verifystatus
+    #
+    #   Run curl_options('ssl') to see other options.
+    #
+    if (insecure) {
+      ssl_verifypeer = FALSE
+    } else {
+      ssl_verifypeer = TRUE
+    }
+
+    port <- as.integer(port)
+    if (port %in% c(465, 587)) {
+      use_ssl = 1
+    } else {
+      use_ssl = 0
+    }
+
+    protocol <- ifelse(port == 465, "smtps", "smtp")
+
+    smtp_server <- sprintf("%s://%s:%d/", protocol, host, port)
+    #
+    if (verbose) {
+      cat("Sending email to ", smtp_server, ".\n", file = stderr())
+    }
 
     result <- send_mail(
       mail_from = msg$header$From,
@@ -54,6 +88,8 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
       password = password,
       verbose = verbose,
       debugfunction = debugfunction,
+      ssl_verifypeer = ssl_verifypeer,
+      use_ssl = use_ssl,
       ...
     )
 
