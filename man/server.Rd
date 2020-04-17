@@ -10,6 +10,7 @@ server(
   username = NULL,
   password = NULL,
   insecure = FALSE,
+  reuse = TRUE,
   ...
 )
 }
@@ -23,6 +24,8 @@ server(
 \item{password}{Password for SMTP server.}
 
 \item{insecure}{Whether to ignore SSL issues.}
+
+\item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
 
 \item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
 }

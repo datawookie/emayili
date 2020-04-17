@@ -5,6 +5,7 @@
 #' @param username Username for SMTP server.
 #' @param password Password for SMTP server.
 #' @param insecure Whether to ignore SSL issues.
+#' @param reuse Whether the connection to the SMTP server should be left open for reuse.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
@@ -40,7 +41,7 @@
 #' # - fill in "bob@gmail.com" for the Sender field and
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
-server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, ...) {
+server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE,...) {
   function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
@@ -90,6 +91,7 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
       debugfunction = debugfunction,
       ssl_verifypeer = ssl_verifypeer,
       use_ssl = use_ssl,
+      forbid_reuse = !reuse,
       ...
     )
 
