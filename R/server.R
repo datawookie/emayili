@@ -41,8 +41,8 @@
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
 server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, ...) {
-  function(msg, verbose = FALSE){
-    debugfunction <- if (verbose) function(type, data) write(rawToChar(data), stderr())
+  function(msg, verbose = FALSE) {
+    debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
     # See curl::curl_options() for available options.
     #
