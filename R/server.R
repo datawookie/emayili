@@ -5,6 +5,8 @@
 #' @param username Username for SMTP server.
 #' @param password Password for SMTP server.
 #' @param insecure Whether to ignore SSL issues.
+#' @param reuse Whether the connection to the SMTP server should be left open for reuse.
+#' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
 #' @export
@@ -39,20 +41,9 @@
 #' # - fill in "bob@gmail.com" for the Sender field and
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
-server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE) {
-  function(msg, verbose = FALSE){
-    tmpfile = tempfile()
-    #
-    writeLines(message(msg), tmpfile)
-
-    h <- new_handle(
-      mail_from = msg$header$From,
-      mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc)
-    )
-
-    if (!is.null(username)) {
-      handle_setopt(h, username = username, password = password)
-    }
+server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE,...) {
+  function(msg, verbose = FALSE) {
+    debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
     # See curl::curl_options() for available options.
     #
@@ -69,48 +60,40 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     #   Run curl_options('ssl') to see other options.
     #
     if (insecure) {
-      handle_setopt(h, ssl_verifypeer = FALSE)
+      ssl_verifypeer = FALSE
+    } else {
+      ssl_verifypeer = TRUE
     }
-
-    # Setup to capture output from underlying command.
-    #
-    # See https://github.com/jeroen/curl/issues/120.
-    #
-    log <- rawConnection(raw(), 'r+')
-    on.exit(close(log))
-    handle_setopt(h,
-                  debugfunction = function(type, data) {
-                    writeBin(data, log)
-                  },
-                  verbose = verbose
-    )
-
-    con <- file(tmpfile, open = 'rb')
-    #
-    handle_setopt(h, readfunction = function(nbytes, ...) {
-      readBin(con, raw(), nbytes)
-    }, upload = TRUE)
 
     port <- as.integer(port)
     if (port %in% c(465, 587)) {
-      handle_setopt(h, use_ssl = 1)
+      use_ssl = 1
+    } else {
+      use_ssl = 0
     }
 
     protocol <- ifelse(port == 465, "smtps", "smtp")
 
-    url = sprintf("%s://%s:%d", protocol, host, port)
+    smtp_server <- sprintf("%s://%s:%d/", protocol, host, port)
     #
     if (verbose) {
-      cat("Sending email to ", url, ".\n", file = stderr())
+      cat("Sending email to ", smtp_server, ".\n", file = stderr())
     }
 
-    result <- curl_fetch_memory(url, handle = h)
-
-    if (verbose) {
-      cat(rawToChar(rawConnectionValue(log)), file = stderr())
-    }
-
-    close(con)
+    result <- send_mail(
+      mail_from = msg$header$From,
+      mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc),
+      message = message(msg),
+      smtp_server = smtp_server,
+      username = username,
+      password = password,
+      verbose = verbose,
+      debugfunction = debugfunction,
+      ssl_verifypeer = ssl_verifypeer,
+      use_ssl = use_ssl,
+      forbid_reuse = !reuse,
+      ...
+    )
 
     invisible(result)
   }

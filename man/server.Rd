@@ -4,7 +4,15 @@
 \alias{server}
 \title{Create a SMTP server object.}
 \usage{
-server(host, port = 25, username = NULL, password = NULL, insecure = FALSE)
+server(
+  host,
+  port = 25,
+  username = NULL,
+  password = NULL,
+  insecure = FALSE,
+  reuse = TRUE,
+  ...
+)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -16,6 +24,10 @@ server(host, port = 25, username = NULL, password = NULL, insecure = FALSE)
 \item{password}{Password for SMTP server.}
 
 \item{insecure}{Whether to ignore SSL issues.}
+
+\item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
+
+\item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
 }
 \value{
 A function which is used to send messages to the server.
