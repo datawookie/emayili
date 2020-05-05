@@ -10,3 +10,4 @@
 .travis.yml
 README.Rmd
 test.R
+examples/
