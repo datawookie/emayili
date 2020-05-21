@@ -45,6 +45,10 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
   function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
+    recipients <- c(msg$header$To, msg$header$Cc, msg$header$Bcc)
+    #
+    if (length(recipients) < 1) stop("Must specify at least one email recipient.", call. = FALSE)
+
     # See curl::curl_options() for available options.
     #
     # * SSL
@@ -82,7 +86,7 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
 
     result <- send_mail(
       mail_from = msg$header$From,
-      mail_rcpt = c(msg$header$To, msg$header$Cc, msg$header$Bcc),
+      mail_rcpt = recipients,
       message = message(msg),
       smtp_server = smtp_server,
       username = username,
