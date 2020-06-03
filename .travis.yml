@@ -1,4 +1,8 @@
-language: R
+language: r
+r:
+- 4.0
+- 3.6
+- 3.5
 sudo: false
 cache: packages
 warnings_are_errors: false
