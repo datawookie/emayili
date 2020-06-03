@@ -1,5 +1,3 @@
-SMTP_USERNAME = Sys.getenv("SMTP_USERNAME")
-
 # Using fake SMTP server.
 #
 # - https://mailtrap.io/
@@ -22,8 +20,16 @@ msg <- envelope() %>%
   from(SMTP_USERNAME) %>%
   to(SMTP_USERNAME)
 
+msg_no_recipient <- envelope() %>%
+  from(SMTP_USERNAME)
+
 test_that("server type", {
   expect_type(smtp, "closure")
+})
+
+test_that("error if recipient missing", {
+  skip_on_cran()
+  expect_error(smtp(msg_no_recipient), "Must specify at least one email recipient.")
 })
 
 test_that("sends text message", {
