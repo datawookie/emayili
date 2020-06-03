@@ -26,7 +26,7 @@ The package name is an adaption of the Zulu word for email, imeyili.
 ## Installation
 
 Get the stable version from
-[CRAN](https://cran.r-project.org/web/packages/emayili/index.html).
+[CRAN](https://CRAN.R-project.org/package=emayili).
 
 ``` r
 install.packages("emayili")
@@ -107,12 +107,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 10 Apr 2020 08:32:01 GMT
+    Date:         Wed, 03 Jun 2020 14:04:34 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.3.11
+    X-Mailer:     {emayili}-0.3.13
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name

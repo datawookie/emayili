@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -109,7 +109,15 @@
     <p>Create a SMTP server object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>server</span>(<span class='no'>host</span>, <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>username</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>password</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>insecure</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>server</span>(
+  <span class='no'>host</span>,
+  <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>25</span>,
+  <span class='kw'>username</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>password</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>insecure</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>reuse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +141,14 @@
     <tr>
       <th>insecure</th>
       <td><p>Whether to ignore SSL issues.</p></td>
+    </tr>
+    <tr>
+      <th>reuse</th>
+      <td><p>Whether the connection to the SMTP server should be left open for reuse.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional curl options. See <code><a href='https://jeroen.cran.dev/curl/reference/curl_options.html'>curl::curl_options()</a></code> for a list of supported options.</p></td>
     </tr>
     </table>
 
