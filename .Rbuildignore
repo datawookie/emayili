@@ -8,6 +8,7 @@
 ^emayili.*\.tar\.gz$
 ^emayili.*\.tgz$
 .travis.yml
+.bumpversion.cfg
 README.Rmd
 test.R
 examples/
