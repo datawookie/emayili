@@ -14,5 +14,7 @@ A formatted header string.
 }
 \description{
 The header must conform to the SMTP Protocol (https://tools.ietf.org/html/rfc821). Specifically, lines should be
-terminated by CRLF (not just LF).
+terminated by CRLF (not just LF). The \dQuote{name} and \dQuote{filename}
+fields can contain any possible UTF-8 characters as they are
+\link[=parameter_value_encode]{parameter value encoded}.
 }
