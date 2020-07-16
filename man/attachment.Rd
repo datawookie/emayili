@@ -4,12 +4,14 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(msg, path, type = NA, cid = NA, disposition = NA)
+attachment(msg, path, name = NA, type = NA, cid = NA, disposition = NA)
 }
 \arguments{
 \item{msg}{A message object.}
 
 \item{path}{Path to file.}
+
+\item{name}{Name to be used for attachment (defaults to base name of \code{path}).}
 
 \item{type}{MIME type or \cite{NA}, which will result in a guess based on file extension.}
 
@@ -40,7 +42,8 @@ dev.off()
 
 msg <- envelope() \%>\%
   attachment(path_mtcars) \%>\%
-  attachment(path_cats, type = "image/jpeg") \%>\%
+  # This attachment will have file name "cat.jpg".
+  attachment(path_cats, name = "cat.jpg", type = "image/jpeg") \%>\%
   attachment(path_scatter, cid = "scatter")
 
 file.remove(path_cats, path_scatter, path_mtcars)

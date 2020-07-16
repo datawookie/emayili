@@ -2,6 +2,7 @@
 #'
 #' @param msg A message object.
 #' @param path Path to file.
+#' @param name Name to be used for attachment (defaults to base name of \code{path}).
 #' @param type MIME type or \cite{NA}, which will result in a guess based on file extension.
 #' @param cid Content-ID or \code{NA}.
 #' @param disposition Should the content be displayed inline or as an attachment?
@@ -24,16 +25,12 @@
 #'
 #' msg <- envelope() %>%
 #'   attachment(path_mtcars) %>%
-#'   attachment(path_cats, type = "image/jpeg") %>%
+#'   # This attachment will have file name "cat.jpg".
+#'   attachment(path_cats, name = "cat.jpg", type = "image/jpeg") %>%
 #'   attachment(path_scatter, cid = "scatter")
 #'
 #' file.remove(path_cats, path_scatter, path_mtcars)
-attachment <-
-  function(msg,
-           path,
-           type = NA,
-           cid = NA,
-           disposition = NA) {
+attachment <- function(msg, path, name = NA, type = NA, cid = NA, disposition = NA) {
     if (length(path) != 1)
       stop("Must be precisely one attachment.", call. = F)
 
@@ -67,8 +64,7 @@ attachment <-
       NULL,
       "base64",
       cid = as.character(cid),
-      name = basename(path),
-      filename = basename(path)
+      filename = ifelse(is.na(name), basename(path), name)
     )
 
     mime$body <- base64encode(body, 76L, "\r\n")
