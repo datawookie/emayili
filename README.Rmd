@@ -52,6 +52,8 @@ library(magrittr)
 email <- envelope()
 ```
 
+### Creating a Message
+
 The message has class `envelope`.
 
 ```{r}
@@ -86,6 +88,19 @@ Add an attachment.
 ```{r eval=FALSE}
 email <- email %>% attachment("image.jpg")
 ```
+
+You can also create the message in a single command:
+
+```{r eval=FALSE}
+email <- envelope(
+  to = "bob@google.com",
+  from = "alice@yahoo.com",
+  subject = "This is a plain text message!",
+  text = "Hello!"
+)
+```
+
+### Sending a Message
 
 Create a SMTP server object and send the message.
 

@@ -54,6 +54,8 @@ library(magrittr)
 email <- envelope()
 ```
 
+### Creating a Message
+
 The message has class `envelope`.
 
 ``` r
@@ -92,6 +94,19 @@ Add an attachment.
 email <- email %>% attachment("image.jpg")
 ```
 
+You can also create the message in a single command:
+
+``` r
+email <- envelope(
+  to = "bob@google.com",
+  from = "alice@yahoo.com",
+  subject = "This is a plain text message!",
+  text = "Hello!"
+)
+```
+
+### Sending a Message
+
 Create a SMTP server object and send the message.
 
 ``` r
@@ -108,12 +123,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Wed, 03 Jun 2020 14:04:34 GMT
+    Date:         Tue, 01 Sep 2020 07:40:12 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.3.13
+    X-Mailer:     {emayili}-0.4.1
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
