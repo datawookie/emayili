@@ -5,7 +5,7 @@ test_that("envelope print() output", {
 
 test_that("class envelope", {
   object <- envelope()
-  expect_output(print(class(object)), "envelope")
+  expect_equal(class(object), "envelope")
 })
 
 test_that("recipient address", {
