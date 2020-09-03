@@ -4,12 +4,27 @@
 \alias{envelope}
 \title{Create a message.}
 \usage{
-envelope(to = NULL, from = NULL, subject = NULL, text = NULL, html = NULL)
+envelope(
+  to = NULL,
+  from = NULL,
+  cc = NULL,
+  bcc = NULL,
+  reply = NULL,
+  subject = NULL,
+  text = NULL,
+  html = NULL
+)
 }
 \arguments{
 \item{to}{See \code{to()}}
 
 \item{from}{See \code{from()}}
+
+\item{cc}{See \code{cc()}}
+
+\item{bcc}{See \code{bcc()}}
+
+\item{reply}{See \code{reply()}}
 
 \item{subject}{See \code{subject()}}
 
@@ -31,6 +46,9 @@ msg <- envelope()
 envelope(
   to = "bob@gmail.com",
   from = "craig@gmail.com",
+  cc = "alex@gmail.com",
+  bcc = "shannon@gmail.com",
+  reply = "craig@yahoo.com",
   subject = "Hiya!",
   text = "Hi Bob, how are you?"
 )
