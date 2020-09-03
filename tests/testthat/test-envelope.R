@@ -18,6 +18,21 @@ test_that("sender address", {
   expect_equal(sender$header$From, "bob@gmail.com")
 })
 
+test_that("cc", {
+  cc <- envelope(cc = "bob@gmail.com")
+  expect_equal(cc$header$Cc, "bob@gmail.com")
+})
+
+test_that("bcc", {
+  bcc <- envelope(bcc = "bob@gmail.com")
+  expect_equal(bcc$header$Bcc, "bob@gmail.com")
+})
+
+test_that("reply to", {
+  reply <- envelope(reply = "bob@gmail.com")
+  expect_equal(reply$header$Reply_To, "bob@gmail.com")
+})
+
 test_that("subject", {
   subject <- envelope(subject = "Email Subject")
   expect_equal(subject$header$Subject, "Email Subject")
