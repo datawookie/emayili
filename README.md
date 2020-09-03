@@ -11,6 +11,7 @@ status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.or
 status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fa1866f5872445c49f186108d63e8ad5)](https://www.codacy.com/manual/datawookie/emayili?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=datawookie/emayili&amp;utm_campaign=Badge_Grade)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
