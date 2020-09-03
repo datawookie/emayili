@@ -2,6 +2,9 @@
 #'
 #' @param to See \code{to()}
 #' @param from See \code{from()}
+#' @param cc See \code{cc()}
+#' @param bcc See \code{bcc()}
+#' @param reply See \code{reply()}
 #' @param subject See \code{subject()}
 #' @param text See \code{text()}
 #' @param html See \code{html()}
@@ -17,12 +20,18 @@
 #' envelope(
 #'   to = "bob@gmail.com",
 #'   from = "craig@gmail.com",
+#'   cc = "alex@gmail.com",
+#'   bcc = "shannon@gmail.com",
+#'   reply = "craig@yahoo.com",
 #'   subject = "Hiya!",
 #'   text = "Hi Bob, how are you?"
 #' )
 envelope <- function(
   to = NULL,
   from = NULL,
+  cc = NULL,
+  bcc = NULL,
+  reply = NULL,
   subject = NULL,
   text = NULL,
   html = NULL
@@ -39,6 +48,9 @@ envelope <- function(
 
   if (!is.null(to)) koevert <- to(koevert, to)
   if (!is.null(from)) koevert <- from(koevert, from)
+  if (!is.null(cc)) koevert <- cc(koevert, cc)
+  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
+  if (!is.null(reply)) koevert <- reply(koevert, reply)
   if (!is.null(subject)) koevert <- subject(koevert, subject)
   if (!is.null(text)) koevert <- text(koevert, text)
   if (!is.null(html)) koevert <- html(koevert, html)
