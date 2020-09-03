@@ -1,12 +1,16 @@
 Type: Package
 Package: emayili
 Title: Send Email Messages
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
              role = c("aut", "cre"),
              email = "andrew@exegetic.biz"),
+      person(given = "Matt",
+             family = "Dennis",
+             role = "ctb",
+             email = "matt@exegetic.biz"),
       person(given = "Gerard",
              family = "Walsh",
              role = "ctb",
