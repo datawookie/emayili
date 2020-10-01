@@ -49,7 +49,7 @@ header <- function(msg) {
 #' @param msg A message object.
 #'
 #' @return A formatted message object.
-message <- function(msg){
+message <- function(msg) {
   CONTENT_TYPE = "multipart/mixed"
 
   message <- list(
@@ -67,3 +67,12 @@ message <- function(msg){
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
 }
+
+
+#' Convert an email object to character
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.envelope <- message
