@@ -110,9 +110,10 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 02 Oct 2020 14:09:43 GMT
-    To:           bob@google.com
+    Date:         Fri, 02 Oct 2020 14:17:38 GMT
     From:         alice@yahoo.com
+    To:           bob@google.com
+    Cc:           craig@google.com
     Subject:      This is a plain text message!
     X-Mailer:     {emayili}-0.4.3
 

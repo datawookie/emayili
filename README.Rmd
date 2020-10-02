@@ -91,7 +91,7 @@ email <- email %>% attachment("image.jpg")
 
 You can also create the message in a single command:
 
-```{r}
+```{r eval=FALSE}
 email <- envelope(
   to = "bob@google.com",
   from = "alice@yahoo.com",
