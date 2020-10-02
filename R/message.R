@@ -46,24 +46,25 @@ header <- function(msg) {
 #'
 #' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
 #'
-#' @param msg A message object.
+#' @param x A message object.
+#' @param ... Further arguments passed to or from other methods.
 #' @export
 #'
 #' @return A formatted message object.
-as.character.envelope <- function(msg) {
+as.character.envelope <- function(x, ...) {
   CONTENT_TYPE = "multipart/mixed"
 
   message <- list(
-    header(msg),
+    header(x),
     "MIME-Version: 1.0",
-    sprintf('Content-type: %s; boundary="%s"', CONTENT_TYPE, msg$boundary)
+    sprintf('Content-type: %s; boundary="%s"', CONTENT_TYPE, x$boundary)
   )
 
-  if (length(msg$parts)) {
-    for (part in msg$parts) {
-      message <- c(message, paste0("\r\n--", msg$boundary, "\r\n", format(part)))
+  if (length(x$parts)) {
+    for (part in x$parts) {
+      message <- c(message, paste0("\r\n--", x$boundary, "\r\n", format(part)))
     }
-    message <- c(message, paste0("\r\n--", msg$boundary, "--\r\n"))
+    message <- c(message, paste0("\r\n--", x$boundary, "--\r\n"))
   }
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
