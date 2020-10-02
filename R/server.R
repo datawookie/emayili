@@ -87,7 +87,7 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     result <- send_mail(
       mail_from = msg$header$From,
       mail_rcpt = recipients,
-      message = message(msg),
+      message = as.character(msg),
       smtp_server = smtp_server,
       username = username,
       password = password,

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
       </span>
     </div>
 
@@ -109,7 +109,16 @@
     <p>Create a message.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>envelope</span>(<span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subject</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>envelope</span>(
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bcc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>reply</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subject</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>html</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -121,6 +130,18 @@
     <tr>
       <th>from</th>
       <td><p>See <code><a href='from.html'>from()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>cc</th>
+      <td><p>See <code><a href='cc.html'>cc()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>bcc</th>
+      <td><p>See <code><a href='bcc.html'>bcc()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>reply</th>
+      <td><p>See <code><a href='reply.html'>reply()</a></code></p></td>
     </tr>
     <tr>
       <th>subject</th>
@@ -151,13 +172,19 @@
 <span class='fu'>envelope</span>(
   <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"bob@gmail.com"</span>,
   <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"craig@gmail.com"</span>,
+  <span class='kw'>cc</span> <span class='kw'>=</span> <span class='st'>"alex@gmail.com"</span>,
+  <span class='kw'>bcc</span> <span class='kw'>=</span> <span class='st'>"shannon@gmail.com"</span>,
+  <span class='kw'>reply</span> <span class='kw'>=</span> <span class='st'>"craig@yahoo.com"</span>,
   <span class='kw'>subject</span> <span class='kw'>=</span> <span class='st'>"Hiya!"</span>,
   <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Hi Bob, how are you?"</span>
-)</div><div class='output co'>#&gt; Date:         Tue, 01 Sep 2020 07:40:33 GMT
+)</div><div class='output co'>#&gt; Date:         Fri, 02 Oct 2020 14:10:35 GMT
 #&gt; To:           bob@gmail.com
 #&gt; From:         craig@gmail.com
+#&gt; Cc:           alex@gmail.com
+#&gt; Bcc:          shannon@gmail.com
+#&gt; Reply-To:     craig@yahoo.com
 #&gt; Subject:      Hiya!
-#&gt; X-Mailer:     {emayili}-0.4.1</div></pre>
+#&gt; X-Mailer:     {emayili}-0.4.3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

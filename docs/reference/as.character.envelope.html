@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add or query subject of message. — subject • emayili</title>
+<title>Create formatted message. — as.character.envelope • emayili</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Add or query subject of message. — subject" />
-<meta property="og:description" content="Add or query subject of message." />
+<meta property="og:title" content="Create formatted message. — as.character.envelope" />
+<meta property="og:description" content="Accepts a message object and formats it as a MIME document." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,16 +100,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add or query subject of message.</h1>
+    <h1>Create formatted message.</h1>
     
-    <div class="hidden name"><code>subject.Rd</code></div>
+    <div class="hidden name"><code>as.character.envelope.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add or query subject of message.</p>
+    <p>Accepts a message object and formats it as a MIME document.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>subject</span>(<span class='no'>msg</span>, <span class='kw'>subject</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for envelope</span>
+<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>msg</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -118,35 +119,35 @@
       <th>msg</th>
       <td><p>A message object.</p></td>
     </tr>
-    <tr>
-      <th>subject</th>
-      <td><p>A subject for the message.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A message object or the subject of the message object (if <code>subject</code> is <code>NULL</code>).</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>A formatted message object.</p>
+    <h2 class="hasAnchor" id="mime-multipart-types"><a class="anchor" href="#mime-multipart-types"></a>MIME Multipart Types</h2>
 
-    <div class='dont-index'><p><code><a href='to.html'>to</a></code>, <code><a href='from.html'>from</a></code>, <code><a href='cc.html'>cc</a></code>, <code><a href='bcc.html'>bcc</a></code> and <code><a href='reply.html'>reply</a></code></p></div>
+    
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
 
-<span class='co'># Create a message and set the subject</span>
-<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>subject</span>(<span class='st'>"Updated report"</span>)
+<p>There are a number of options for multipart messages:</p>
+<ul>
+<li><p><code>multipart/mixed</code> — Used for sending content with multiple independent parts either inline or as attachments. Each part can have different <code>Content-Type</code>.</p></li>
+<li><p><code>multipart/alternative</code> — Used when each part of the message is an "alternative" version of the same content. The order of the parts is important: preferred and/or more complex formats should be found towards the end. <em>Example:</em> A message with both plain text and HTML versions.</p></li>
+<li><p><code>multipart/digest</code> — Used to send multiple plain text messages.</p></li>
+<li><p><code>multipart/related</code> — Used when each part of the the message represents a component of the complete message. <em>Example:</em> A web page with images.</p></li>
+<li><p><code>multipart/signed</code> — Used when a message has a digital signature attached.</p></li>
+<li><p><code>multipart/encrypted</code> — Used for a message with encrypted content.</p></li>
+</ul>
 
-<span class='co'># Retrieve the subject for a message</span>
-<span class='fu'>subject</span>(<span class='no'>msg</span>)</div><div class='output co'>#&gt; [1] "Updated report"</div></pre>
+<p>A nice illustration of how some of these relate can be found at <a href='http://stackoverflow.com/a/40420648/633961'>http://stackoverflow.com/a/40420648/633961</a>.</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#mime-multipart-types">MIME Multipart Types</a></li>
     </ul>
 
   </div>

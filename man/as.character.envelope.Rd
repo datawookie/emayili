@@ -2,13 +2,37 @@
 % Please edit documentation in R/message.R
 \name{as.character.envelope}
 \alias{as.character.envelope}
-\title{Title}
+\title{Create formatted message.}
 \usage{
 \method{as.character}{envelope}(msg)
 }
+\arguments{
+\item{msg}{A message object.}
+}
 \value{
-
+A formatted message object.
 }
 \description{
-Title
+Accepts a message object and formats it as a MIME document.
 }
+\section{MIME Multipart Types}{
+
+
+There are a number of options for multipart messages:
+
+\itemize{
+ \item{\code{multipart/mixed} — }{Used for sending content with multiple independent parts either inline or as attachments. Each part can have different \code{Content-Type}.}
+ \item{\code{multipart/alternative} — }{Used when each part of the message is an "alternative" version of the same content. The order of the parts is important: preferred and/or more complex formats should be found towards the end.
+
+ \emph{Example:} A message with both plain text and HTML versions.}
+ \item{\code{multipart/digest} — }{Used to send multiple plain text messages.}
+ \item{\code{multipart/related} — }{Used when each part of the the message represents a component of the complete message.
+
+ \emph{Example:} A web page with images.}
+ \item{\code{multipart/signed} — }{Used when a message has a digital signature attached.}
+ \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
+}
+
+A nice illustration of how some of these relate can be found at \url{http://stackoverflow.com/a/40420648/633961}.
+}
+

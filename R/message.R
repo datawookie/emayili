@@ -47,9 +47,10 @@ header <- function(msg) {
 #' A nice illustration of how some of these relate can be found at \url{http://stackoverflow.com/a/40420648/633961}.
 #'
 #' @param msg A message object.
+#' @export
 #'
 #' @return A formatted message object.
-message <- function(msg) {
+as.character.envelope <- function(msg) {
   CONTENT_TYPE = "multipart/mixed"
 
   message <- list(
@@ -67,12 +68,3 @@ message <- function(msg) {
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
 }
-
-
-#' Convert an email object to character
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.envelope <- message

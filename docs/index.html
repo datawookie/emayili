@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
       </span>
     </div>
 
@@ -115,27 +115,28 @@
 <span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">subject =</span> <span class="st">"This is a plain text message!"</span>,</span>
 <span id="cb10-5"><a href="#cb10-5"></a>  <span class="dt">text =</span> <span class="st">"Hello!"</span></span>
 <span id="cb10-6"><a href="#cb10-6"></a>)</span></code></pre></div>
+<p>Simply printing a message displays the header information.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>email</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Date<span class="op">:</span><span class="st">         </span>Fri, <span class="dv">02</span> Oct <span class="dv">2020</span> <span class="dv">14</span><span class="op">:</span><span class="dv">09</span><span class="op">:</span><span class="dv">43</span> GMT</span>
+<span id="cb12-2"><a href="#cb12-2"></a>To<span class="op">:</span><span class="st">           </span>bob<span class="op">@</span>google.com</span>
+<span id="cb12-3"><a href="#cb12-3"></a>From<span class="op">:</span><span class="st">         </span>alice<span class="op">@</span>yahoo.com</span>
+<span id="cb12-4"><a href="#cb12-4"></a>Subject<span class="op">:</span><span class="st">      </span>This is a plain text message<span class="op">!</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">     </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">4.3</span></span></code></pre></div>
+<p>You can identify emails which have been sent using <code>{emayili}</code> by the presence of an <code>X-Mailer</code> header which includes both the package name and version.</p>
+<p>If you want to see the complete MIME object, just convert to a string.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(email)</span></code></pre></div>
 </div>
 <div id="sending-a-message" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sending-a-message" class="anchor"></a>Sending a Message</h3>
 <p>Create a SMTP server object and send the message.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>smtp &lt;-<span class="st"> </span><span class="kw"><a href="reference/server.html">server</a></span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2"></a>               <span class="dt">port =</span> <span class="dv">465</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>               <span class="dt">username =</span> <span class="st">"bob@gmail.com"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>               <span class="dt">password =</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)</span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">smtp</span>(email, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>Simply printing a message displays the header information.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>email</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>Date<span class="op">:</span><span class="st">         </span>Tue, <span class="dv">01</span> Sep <span class="dv">2020</span> <span class="dv">07</span><span class="op">:</span><span class="dv">40</span><span class="op">:</span><span class="dv">12</span> GMT</span>
-<span id="cb13-2"><a href="#cb13-2"></a>From<span class="op">:</span><span class="st">         </span>alice<span class="op">@</span>yahoo.com</span>
-<span id="cb13-3"><a href="#cb13-3"></a>To<span class="op">:</span><span class="st">           </span>bob<span class="op">@</span>google.com</span>
-<span id="cb13-4"><a href="#cb13-4"></a>Cc<span class="op">:</span><span class="st">           </span>craig<span class="op">@</span>google.com</span>
-<span id="cb13-5"><a href="#cb13-5"></a>Subject<span class="op">:</span><span class="st">      </span>This is a plain text message<span class="op">!</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">     </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">4.1</span></span></code></pre></div>
-<p>You can identify emails which have been sent using <code>{emayili}</code> by the presence of an <code>X-Mailer</code> header which includes both the package name and version.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>smtp &lt;-<span class="st"> </span><span class="kw"><a href="reference/server.html">server</a></span>(<span class="dt">host =</span> <span class="st">"smtp.gmail.com"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2"></a>               <span class="dt">port =</span> <span class="dv">465</span>,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>               <span class="dt">username =</span> <span class="st">"bob@gmail.com"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>               <span class="dt">password =</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="kw">smtp</span>(email, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>To see the guts of the message as passed to the SMTP server:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(email, <span class="dt">details =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(email, <span class="dt">details =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="using-starttls" class="section level3">
 <h3 class="hasAnchor">
