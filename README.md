@@ -11,7 +11,6 @@ status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.or
 status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fa1866f5872445c49f186108d63e8ad5)](https://www.codacy.com/manual/datawookie/emayili?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=datawookie/emayili&amp;utm_campaign=Badge_Grade)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
@@ -105,6 +104,29 @@ email <- envelope(
 )
 ```
 
+Simply printing a message displays the header information.
+
+``` r
+email
+```
+
+    Date:         Fri, 02 Oct 2020 14:17:38 GMT
+    From:         alice@yahoo.com
+    To:           bob@google.com
+    Cc:           craig@google.com
+    Subject:      This is a plain text message!
+    X-Mailer:     {emayili}-0.4.3
+
+You can identify emails which have been sent using `{emayili}` by the
+presence of an `X-Mailer` header which includes both the package name
+and version.
+
+If you want to see the complete MIME object, just convert to a string.
+
+``` r
+as.character(email)
+```
+
 ### Sending a Message
 
 Create a SMTP server object and send the message.
@@ -116,23 +138,6 @@ smtp <- server(host = "smtp.gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
 smtp(email, verbose = TRUE)
 ```
-
-Simply printing a message displays the header information.
-
-``` r
-email
-```
-
-    Date:         Tue, 01 Sep 2020 07:40:12 GMT
-    From:         alice@yahoo.com
-    To:           bob@google.com
-    Cc:           craig@google.com
-    Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.1
-
-You can identify emails which have been sent using `{emayili}` by the
-presence of an `X-Mailer` header which includes both the package name
-and version.
 
 To see the guts of the message as passed to the SMTP server:
 

@@ -66,5 +66,5 @@ envelope <- function(
 #'
 #' @export
 print.envelope <- function(x, details=FALSE, ...) {
-  ifelse(details, message(x), header(x)) %>% cat()
+  ifelse(details, as.character(x), header(x)) %>% cat()
 }

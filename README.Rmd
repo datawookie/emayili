@@ -100,6 +100,20 @@ email <- envelope(
 )
 ```
 
+Simply printing a message displays the header information.
+
+```{r}
+email
+```
+
+You can identify emails which have been sent using `{emayili}` by the presence of an `X-Mailer` header which includes both the package name and version.
+
+If you want to see the complete MIME object, just convert to a string.
+
+```{r eval=FALSE}
+as.character(email)
+```
+
 ### Sending a Message
 
 Create a SMTP server object and send the message.
@@ -111,14 +125,6 @@ smtp <- server(host = "smtp.gmail.com",
                password = "bd40ef6d4a9413de9c1318a65cbae5d7")
 smtp(email, verbose = TRUE)
 ```
-
-Simply printing a message displays the header information.
-
-```{r}
-email
-```
-
-You can identify emails which have been sent using `{emayili}` by the presence of an `X-Mailer` header which includes both the package name and version.
 
 To see the guts of the message as passed to the SMTP server:
 
