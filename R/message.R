@@ -44,7 +44,7 @@ header <- function(msg) {
 #'  \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
 #' }
 #'
-#' A nice illustration of how some of these relate can be found at \url{http://stackoverflow.com/a/40420648/633961}.
+#' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
 #'
 #' @param msg A message object.
 #' @export
