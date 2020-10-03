@@ -25,7 +25,7 @@ notifications:
 
 before_deploy:
 # This will build the pkgdown site from README.md.
-- Rscript inst/hex/logo.R
+- Rscript inst/hex/emayili-hex.R
 - Rscript -e 'pkgdown::build_site()'
 
 deploy:
