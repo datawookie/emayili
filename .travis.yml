@@ -36,9 +36,11 @@ deploy:
   github_token: "$GITHUB_TOKEN"
   skip_cleanup: true
   on:
-    branch: dev
+    branch: master
   local_dir: docs
   target_branch: gh-pages
+
+# How to add environment variables: https://docs.travis-ci.com/user/environment-variables/.
 env:
   global:
   - secure: bB6tfEIerhu19sPKNfarF80VuTQ0vsesSFSEcrgIwW3h/u7tkCVFc0kTtnTw3zgt0bo6zIFDvwxXiEcztxMKttwAuOQivmO6t4Oh773QDI6upeKliFZtlVVAA8E3OJt+zWrbw3dCnmuLfdPKMic9EdSP63a1R6Z9deoHs5tmNFUQLTL2Mejp+dE0UTwBj7T1CIbIt0bFXnD4eJUlXTsOnNnGuOSFiUb9Fc/Enap3v7HSMZPyimwK2O6s/wIBXbSnNwrlSwaXKiEBSJ0eLriWJgGuP1C3BhLxUfkIAZmcld/DeXmGZlXgLR5jqok49jJ/wyiTiEPljXxxlWl7Ph7c104OwLLW+k2dNHbryrRSKd0xfdRoEKFAHlvQA2ORT9/C2sLGLbJclAwe68FdS+4LWGm7wVknQr7Djp56BSRfGFYPZs6veGaXF5xg54+koKOdbAK2Modk3RmbFHGrsbp538smmVgx3QtU7RvIBXBKWCiQvINFmA6a0r3ll5BKX4m+TcBGWlJDK9U1onteej7cJzb1pk9yw07gtBW30LDzhRl8VrZ8ggRCf37+SY74AkJZRmwGh5FcH2yZZ+PFqmTixIoqB8K4E2AgWoZetZq+Ja/lih8xM1GlJ34p3KqCOyA7jpHAgXQnpkyUCVLObuCm2H/Pyr5BSqyEvvtXsXs/S4o=
