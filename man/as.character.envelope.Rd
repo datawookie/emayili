@@ -4,10 +4,12 @@
 \alias{as.character.envelope}
 \title{Create formatted message.}
 \usage{
-\method{as.character}{envelope}(msg)
+\method{as.character}{envelope}(x, ...)
 }
 \arguments{
-\item{msg}{A message object.}
+\item{x}{A message object.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \value{
 A formatted message object.
@@ -33,6 +35,6 @@ There are a number of options for multipart messages:
  \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
 }
 
-A nice illustration of how some of these relate can be found at \url{http://stackoverflow.com/a/40420648/633961}.
+A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
 }
 
