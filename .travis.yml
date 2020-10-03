@@ -12,10 +12,16 @@ branches:
   - master
   - dev
 latex: false
+
+addons:
+  apt:
+    packages:
+    - libmagick++-dev
 r_packages:
 - pkgdown
 - hexSticker
 - covr
+
 after_success:
   - Rscript -e 'library(covr); codecov()'
 notifications:
