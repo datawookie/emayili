@@ -13,7 +13,9 @@ branches:
   - dev
 latex: false
 r_packages:
-  - covr
+- pkgdown
+- hexSticker
+- covr
 after_success:
   - Rscript -e 'library(covr); codecov()'
 notifications:
