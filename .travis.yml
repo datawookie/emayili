@@ -21,6 +21,7 @@ r_packages:
 - pkgdown
 - hexSticker
 - covr
+- here
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
