@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 02 Oct 2020 14:17:38 GMT
+    Date:         Fri, 23 Oct 2020 09:02:39 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -126,6 +126,30 @@ If you want to see the complete MIME object, just convert to a string.
 ``` r
 as.character(email)
 ```
+
+### Adding an Inline Image
+
+Adding an inline image to an HTML message is possible. First you’ll need
+to [Base64 encode](https://en.wikipedia.org/wiki/Base64) the image.
+
+``` r
+img_base64 <- base64enc::base64encode("image.jpg")
+```
+
+Then create the HTML message body.
+
+``` r
+html_body <- sprintf('<html><body><img src="data:image/jpeg;base64,%s"></body></html>', img_base64)
+```
+
+And finally add it to the email.
+
+``` r
+email <- envelope() %>% html(html_body)
+```
+
+*Note:* It’s important that you specify the appropriate media type
+(`image/jpeg` for JPEG and `image/png` for PNG).
 
 ### Sending a Message
 
