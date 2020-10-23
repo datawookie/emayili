@@ -90,7 +90,7 @@ email <- email %>% text("Hello!")
 Add an attachment.
 
 ``` r
-email <- email %>% attachment("image.jpg")
+email <- email %>% attachment(path = "image.jpg")
 ```
 
 You can also create the message in a single command:
@@ -150,6 +150,15 @@ email <- envelope() %>% html(html_body)
 
 *Note:* It’s important that you specify the appropriate media type
 (`image/jpeg` for JPEG and `image/png` for PNG).
+
+Alternative, useful for GMail web mail (which refuses to display base64-encoded images due to security concerns):
+
+Use src="cid:image_cid" for the img tag in the body, and add the image as an attachment, specifying the "cid" attribute:
+
+``` r
+html_body <- sprintf('<html><body><img src="cid:image_cid"></body></html>')
+email <- email %>% attachment(path = "image.jpg", cid = "image_cid")
+```
 
 ### Sending a Message
 
