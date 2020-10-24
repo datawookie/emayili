@@ -142,7 +142,7 @@ _Note:_ It's important that you specify the appropriate media type (`image/jpeg`
 
 _2. Using a CID_
 
-Unfortunately some mail clients will not display Base64 encoded images. This is an alternative.
+Unfortunately some mail clients (like Gmail) will not display Base64 encoded images. In this case using a CID is a working alternative.
 
 First create the message body which references an image by CID.
 

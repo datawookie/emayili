@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Sat, 24 Oct 2020 04:16:48 GMT
+    Date:         Sat, 24 Oct 2020 04:20:27 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -158,8 +158,8 @@ email <- envelope() %>% html(html_body)
 
 *2. Using a CID*
 
-Unfortunately some mail clients will not display Base64 encoded images.
-This is an alternative.
+Unfortunately some mail clients (like Gmail) will not display Base64
+encoded images. In this case using a CID is a working alternative.
 
 First create the message body which references an image by CID.
 
