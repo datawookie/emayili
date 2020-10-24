@@ -116,7 +116,11 @@ as.character(email)
 
 ### Adding an Inline Image
 
-Adding an inline image to an HTML message is possible. First you'll need to [Base64 encode](https://en.wikipedia.org/wiki/Base64) the image.
+Adding an inline image to an HTML message is possible. There are two ways to achieve this.
+
+_1. Base64 Encoding_
+
+First you'll need to [Base64 encode](https://en.wikipedia.org/wiki/Base64) the image.
 
 ```{r eval=FALSE}
 img_base64 <- base64enc::base64encode("image.jpg")
@@ -135,6 +139,24 @@ email <- envelope() %>% html(html_body)
 ```
 
 _Note:_ It's important that you specify the appropriate media type (`image/jpeg` for JPEG and `image/png` for PNG).
+
+_2. Using a CID_
+
+Unfortunately some mail clients will not display Base64 encoded images. This is an alternative.
+
+First create the message body which references an image by CID.
+
+```{r eval=FALSE}
+html_body <- '<html><body><img src="cid:image"></body></html>'
+```
+
+Then attach the image and specify the `cid` argument.
+
+```{r eval=FALSE}
+email <- envelope() %>%
+  html(html_body) %>%
+  attachment(path = "image.jpg", cid = "image")
+```
 
 ### Sending a Message
 
