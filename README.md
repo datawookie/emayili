@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 02 Oct 2020 14:17:38 GMT
+    Date:         Sat, 24 Oct 2020 04:20:27 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -125,6 +125,54 @@ If you want to see the complete MIME object, just convert to a string.
 
 ``` r
 as.character(email)
+```
+
+### Adding an Inline Image
+
+Adding an inline image to an HTML message is possible. There are two
+ways to achieve this.
+
+*1. Base64 Encoding*
+
+First you’ll need to [Base64
+encode](https://en.wikipedia.org/wiki/Base64) the image.
+
+``` r
+img_base64 <- base64enc::base64encode("image.jpg")
+```
+
+Then create the HTML message body.
+
+``` r
+html_body <- sprintf('<html><body><img src="data:image/jpeg;base64,%s"></body></html>', img_base64)
+```
+
+And finally add it to the email.
+
+``` r
+email <- envelope() %>% html(html_body)
+```
+
+*Note:* It’s important that you specify the appropriate media type
+(`image/jpeg` for JPEG and `image/png` for PNG).
+
+*2. Using a CID*
+
+Unfortunately some mail clients (like Gmail) will not display Base64
+encoded images. In this case using a CID is a working alternative.
+
+First create the message body which references an image by CID.
+
+``` r
+html_body <- '<html><body><img src="cid:image"></body></html>'
+```
+
+Then attach the image and specify the `cid` argument.
+
+``` r
+email <- envelope() %>%
+  html(html_body) %>%
+  attachment(path = "image.jpg", cid = "image")
 ```
 
 ### Sending a Message
