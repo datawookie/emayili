@@ -21,10 +21,6 @@ sticker(here::here("inst/hex/envelope-regular.png"),
         # Hex
         h_fill = "#3498db",
         h_color = "#000000",
-        # Spotlight
-        spotlight = TRUE,
-        l_y = 0.45,
-        l_alpha = 0.4,
         # Output
         filename = here::here("man/figures/emayili-hex.png"),
         dpi = 300
