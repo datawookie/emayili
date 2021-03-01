@@ -3,7 +3,7 @@
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{reply}}, and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -24,7 +24,7 @@ to <- function(msg, ...){
 #' @param msg A message object.
 #' @param from Email address.
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @seealso \code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{reply}}, and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -43,7 +43,7 @@ from <- function(msg, from = NULL){
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{bcc}}, \code{\link{reply}}, and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -64,7 +64,7 @@ cc <- function(msg, ...){
 #' @param msg A message object.
 #' @param ... Email addresses.
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{reply}}
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} \code{\link{reply}}, and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -85,7 +85,7 @@ bcc <- function(msg, ...){
 #' @param msg A message object.
 #' @param reply_to Email address.
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{bcc}}
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, and \code{\link{reply}}
 #' @export
 #' @examples
 #' msg <- envelope()
@@ -98,3 +98,23 @@ reply <- function(msg, reply_to = NULL){
     invisible(msg)
   }
 }
+
+#' Add Sender (on behalf of) field to message
+#'
+#' @param msg A message object.
+#' @param sender Email address.
+#' @return A message object.
+#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, and \code{\link{reply}}
+#' @export
+#' @examples
+#' msg <- envelope()
+#' sender(msg, "on_behalf_of@gmail.com")
+sender <- function(msg, sender = NULL){
+  if (is.null(sender)) {
+    msg$header$Sender
+  } else {
+    msg$header$Sender <- sender
+    invisible(msg)
+  }
+}
+

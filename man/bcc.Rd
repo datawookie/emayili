@@ -23,5 +23,5 @@ bcc(msg, "bob@gmail.com", "alice@yahoo.com")
 bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
 }
 \seealso{
-\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} and \code{\link{reply}}
+\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}} \code{\link{reply}}, and \code{\link{reply}}
 }

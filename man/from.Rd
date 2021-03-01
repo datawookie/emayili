@@ -22,5 +22,5 @@ msg <- envelope()
 from(msg, "craig@gmail.com")
 }
 \seealso{
-\code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+\code{\link{subject}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{reply}}, and \code{\link{reply}}
 }
