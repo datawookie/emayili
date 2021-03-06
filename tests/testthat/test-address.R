@@ -57,3 +57,9 @@ test_that("reply: set/get", {
   expect_equal(msg$header$Reply, "craig@gmail.com")
   expect_equal(reply(msg), c("craig@gmail.com"))
 })
+
+test_that("sender: set/get", {
+  msg <- envelope() %>% sender("craig@gmail.com")
+  expect_equal(msg$header$Sender, "craig@gmail.com")
+  expect_equal(sender(msg), c("craig@gmail.com"))
+})
