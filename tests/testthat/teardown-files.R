@@ -1,1 +1,1 @@
-unlink(c(TXTPATH, PNGPATH, JPGPATH))
+unlink(c(TXTPATH, PNGPATH))
