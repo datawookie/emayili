@@ -17,8 +17,8 @@ experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https:/
 
 emayili is a package for sending emails from R. The design goals are:
 
-  - works on all manner of SMTP servers and
-  - has minimal dependencies (or dependencies which are easily
+-   works on all manner of SMTP servers and
+-   has minimal dependencies (or dependencies which are easily
     satisfied).
 
 The package name is an adaption of the Zulu word for email, imeyili.
@@ -110,12 +110,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Sat, 24 Oct 2020 04:20:27 GMT
+    Date:         Sat, 06 Mar 2021 05:04:51 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.3
+    X-Mailer:     {emayili}-0.4.6
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -196,24 +196,24 @@ print(email, details = TRUE)
 ### Using STARTTLS
 
 If you’re trying to send email with a host that uses the STARTTLS
-security protocol (like Google Mail, Yahoo\! or AOL), then it will most
+security protocol (like Google Mail, Yahoo! or AOL), then it will most
 probably be blocked due to insufficient security. In order to circumvent
 this, you can grant access to less secure apps. See the links below for
 specifics:
 
-  - [Google](https://myaccount.google.com/security)
+-   [Google](https://myaccount.google.com/security)
     ([details](https://support.google.com/accounts/answer/6010255))
-  - [Yahoo\!](https://login.yahoo.com/account/security) and
-  - [AOL](https://login.aol.com/account/security).
+-   [Yahoo!](https://login.yahoo.com/account/security) and
+-   [AOL](https://login.aol.com/account/security).
 
 ## Similar Packages
 
 There is a selection of other R packages which also send emails:
 
-  - [blastula](https://cran.r-project.org/package=blastula)
-  - [blatr](https://cran.r-project.org/package=blatr) (Windows)
-  - [gmailr](https://cran.r-project.org/package=gmailr)
-  - [mail](https://cran.r-project.org/package=mail)
-  - [mailR](https://cran.r-project.org/package=mailR)
-  - [sendmailR](https://cran.r-project.org/package=sendmailR)
-  - [ponyexpress](https://github.com/ropenscilabs/ponyexpress)
+-   [blastula](https://cran.r-project.org/package=blastula)
+-   [blatr](https://cran.r-project.org/package=blatr) (Windows)
+-   [gmailr](https://cran.r-project.org/package=gmailr)
+-   [mail](https://cran.r-project.org/package=mail)
+-   [mailR](https://cran.r-project.org/package=mailR)
+-   [sendmailR](https://cran.r-project.org/package=sendmailR)
+-   [ponyexpress](https://github.com/ropenscilabs/ponyexpress)
