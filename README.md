@@ -12,7 +12,7 @@ status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://tra
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 emayili is a package for sending emails from R. The design goals are:
@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Sat, 06 Mar 2021 06:41:03 GMT
+    Date:         Sun, 28 Mar 2021 13:06:51 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -205,6 +205,15 @@ specifics:
     ([details](https://support.google.com/accounts/answer/6010255))
 -   [Yahoo!](https://login.yahoo.com/account/security) and
 -   [AOL](https://login.aol.com/account/security).
+
+## Standards Documents
+
+The following (draft) standards documents relate to emails:
+
+-   [RFC 2822](https://tools.ietf.org/html/rfc2822)
+-   [RFC 5322](https://tools.ietf.org/html/rfc5322)
+-   [RFC 6854](https://tools.ietf.org/html/rfc6854) (an update to RFC
+    5322).
 
 ## Similar Packages
 
