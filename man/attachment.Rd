@@ -29,12 +29,10 @@ Add attachments to a message object
 library(magrittr)
 
 path_mtcars  <- tempfile(fileext = ".csv")
-path_cats    <- tempfile(fileext = ".jpg")
 path_scatter <- tempfile(fileext = ".png")
+path_cats    <- system.file("cats.jpg", package = "emayili")
 
 write.csv(mtcars, path_mtcars)
-
-download.file("https://bit.ly/2P4LUO8", path_cats, quiet = TRUE)
 
 png(path_scatter)
 plot(1:10)
@@ -42,9 +40,9 @@ dev.off()
 
 msg <- envelope() \%>\%
   attachment(path_mtcars) \%>\%
-  # This attachment will have file name "cat.jpg".
-  attachment(path_cats, name = "cat.jpg", type = "image/jpeg") \%>\%
+  # This attachment will have file name "cats.jpg".
+  attachment(path_cats, name = "cats.jpg", type = "image/jpeg") \%>\%
   attachment(path_scatter, cid = "scatter")
 
-file.remove(path_cats, path_scatter, path_mtcars)
+file.remove(path_scatter, path_mtcars)
 }
