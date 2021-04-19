@@ -42,7 +42,7 @@
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
 server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE,...) {
-  function(msg, verbose = FALSE) {
+  sender <- function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
     recipients <- c(msg$header$To, msg$header$Cc, msg$header$Bcc)
@@ -81,8 +81,20 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     smtp_server <- sprintf("%s://%s:%d/", protocol, host, port)
     #
     if (verbose) {
-      cat("Sending email to ", smtp_server, ".\n", file = stderr())
+      cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
     }
+
+    # Create an insistent version of send_mail().
+    #
+    # This is to mitigate occasional curl_fetch_memory() errors.
+    #
+    send_mail <- insistently(
+      send_mail,
+      rate = rate_backoff(
+        max_times = 5,
+        jitter = FALSE
+      )
+    )
 
     result <- send_mail(
       mail_from = msg$header$From,

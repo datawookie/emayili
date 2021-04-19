@@ -43,6 +43,7 @@ Imports:
     httr,
     magrittr,
     mime,
+    purrr,
     stringi
 Suggests:
     here,

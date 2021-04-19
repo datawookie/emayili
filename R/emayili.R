@@ -1,6 +1,7 @@
 #' @import curl
 #' @import magrittr
 #' @import stringi
+#' @importFrom purrr insistently rate_backoff
 #' @importFrom base64enc base64encode
 #' @importFrom glue glue
 #' @importFrom httr http_date
