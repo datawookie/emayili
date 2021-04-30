@@ -13,3 +13,4 @@ dev.off()
 JPGPATH <- here::here("inst", "cats.jpg")
 
 SMTP_USERNAME = Sys.getenv("SMTP_USERNAME")
+SMTP_PASSWORD = Sys.getenv("SMTP_PASSWORD")

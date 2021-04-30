@@ -13,7 +13,7 @@ smtp_gmail <- server(
   host = "smtp.gmail.com",
   port = 587,
   username = SMTP_USERNAME,
-  password = Sys.getenv("SMTP_PASSWORD")
+  password = SMTP_PASSWORD
 )
 
 msg <- envelope() %>%
@@ -48,6 +48,7 @@ test_that("sends message with insecure = TRUE", {
 
 test_that("sends with SSL", {
   skip_on_cran()
+
   expect_error(smtp_gmail(msg %>% subject("{emayili} test")), NA)
 })
 
