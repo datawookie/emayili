@@ -38,7 +38,7 @@ BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
 Imports:
     base64enc,
-    curl,
+    curl (>= 4.0),
     glue,
     httr,
     magrittr,
