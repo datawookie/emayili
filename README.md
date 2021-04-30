@@ -110,12 +110,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Sun, 28 Mar 2021 13:06:51 GMT
+    Date:         Fri, 30 Apr 2021 07:58:28 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.7
+    X-Mailer:     {emayili}-0.4.10
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -225,4 +225,4 @@ There is a selection of other R packages which also send emails:
 -   [mail](https://cran.r-project.org/package=mail)
 -   [mailR](https://cran.r-project.org/package=mailR)
 -   [sendmailR](https://cran.r-project.org/package=sendmailR)
--   [ponyexpress](https://github.com/ropenscilabs/ponyexpress)
+-   [ponyexpress](https://github.com/ropensci-archive/ponyexpress)

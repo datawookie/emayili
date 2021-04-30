@@ -202,4 +202,4 @@ There is a selection of other R packages which also send emails:
 - [mail](https://cran.r-project.org/package=mail)
 - [mailR](https://cran.r-project.org/package=mailR)
 - [sendmailR](https://cran.r-project.org/package=sendmailR)
-- [ponyexpress](https://github.com/ropenscilabs/ponyexpress)
+- [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
