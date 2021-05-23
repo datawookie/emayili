@@ -33,7 +33,7 @@ after_success:
 notifications:
   email:
     recipients:
-    - andrew@exegetic.biz
+    - andrew.b.collier@gmail.com
     on_success: change
     on_failure: change
 before_deploy:
