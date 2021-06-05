@@ -96,9 +96,21 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
       )
     )
 
+    # Strip descriptive name.
+    #
+    # - Changes "Bart Simpson <bart@eatmyshorts.com>" → "bart@eatmyshorts.com".
+    # - Doesn't change "homer@doh.biz".
+    #
+    # The descriptive name is still retained in email header so that it appears
+    # in the email client.
+    #
+    strip_name <- function(address) {
+      str_replace_all(address, "(^.*<|>$)", "")
+    }
+
     result <- send_mail(
-      mail_from = msg$header$From,
-      mail_rcpt = recipients,
+      mail_from = strip_name(msg$header$From),
+      mail_rcpt = strip_name(recipients),
       message = as.character(msg),
       smtp_server = smtp_server,
       username = username,
