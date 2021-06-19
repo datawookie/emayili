@@ -1,6 +1,6 @@
 #' @import curl
 #' @import magrittr
-#' @import stringi
+#' @import stringr
 #' @importFrom purrr insistently rate_backoff
 #' @importFrom base64enc base64encode
 #' @importFrom glue glue

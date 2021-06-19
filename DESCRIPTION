@@ -44,7 +44,7 @@ Imports:
     magrittr,
     mime,
     purrr,
-    stringi
+    stringr
 Suggests:
     here,
     testthat (>= 2.1.0),
