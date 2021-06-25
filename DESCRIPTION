@@ -1,7 +1,7 @@
 Type: Package
 Package: emayili
 Title: Send Email Messages
-Version: 0.4.10
+Version: 0.4.11
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
@@ -44,12 +44,12 @@ Imports:
     magrittr,
     mime,
     purrr,
+    stringi,
     stringr
 Suggests:
     here,
     testthat (>= 2.1.0),
     roxygen2,
-    hexSticker,
     showtext
 Encoding: UTF-8
 RoxygenNote: 7.1.1
