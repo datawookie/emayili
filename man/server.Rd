@@ -11,6 +11,7 @@ server(
   password = NULL,
   insecure = FALSE,
   reuse = TRUE,
+  helo = NA,
   ...
 )
 }
@@ -26,6 +27,8 @@ server(
 \item{insecure}{Whether to ignore SSL issues.}
 
 \item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
+
+\item{helo}{The HELO domain name of the sending host. If left as \code{NA} then will use local host name.}
 
 \item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
 }
@@ -66,4 +69,9 @@ smtp(msg, verbose = TRUE)
 # - fill in "bob@gmail.com" for the Sender field and
 # - fill in "alice@yahoo.com" for the Recipient field then
 # - press the Search button.
+
+# With explicit HELO domain.
+#
+smtp <- server(host = "mail.example.com",
+               helo = "client.example.com")
 }

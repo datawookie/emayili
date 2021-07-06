@@ -6,6 +6,7 @@
 #' @param password Password for SMTP server.
 #' @param insecure Whether to ignore SSL issues.
 #' @param reuse Whether the connection to the SMTP server should be left open for reuse.
+#' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
@@ -41,7 +42,12 @@
 #' # - fill in "bob@gmail.com" for the Sender field and
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
-server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE,...) {
+#'
+#' # With explicit HELO domain.
+#' #
+#' smtp <- server(host = "mail.example.com",
+#'                helo = "client.example.com")
+server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE, helo = NA, ...) {
   sender <- function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
@@ -77,8 +83,9 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     }
 
     protocol <- ifelse(port == 465, "smtps", "smtp")
+    helo <- ifelse(is.na(helo), "", helo)
 
-    smtp_server <- sprintf("%s://%s:%d/", protocol, host, port)
+    smtp_server <- sprintf("%s://%s:%d/%s", protocol, host, port, helo)
     #
     if (verbose) {
       cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
