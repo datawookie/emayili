@@ -41,7 +41,7 @@
 #' # - fill in "bob@gmail.com" for the Sender field and
 #' # - fill in "alice@yahoo.com" for the Recipient field then
 #' # - press the Search button.
-server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE,...) {
+server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE, helo='',...) {
   sender <- function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
@@ -78,7 +78,7 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
 
     protocol <- ifelse(port == 465, "smtps", "smtp")
 
-    smtp_server <- sprintf("%s://%s:%d/", protocol, host, port)
+    smtp_server <- sprintf("%s://%s:%d/%s", protocol, host, port, helo)
     #
     if (verbose) {
       cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
