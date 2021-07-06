@@ -11,6 +11,7 @@ server(
   password = NULL,
   insecure = FALSE,
   reuse = TRUE,
+  helo = '',
   ...
 )
 }
@@ -26,6 +27,8 @@ server(
 \item{insecure}{Whether to ignore SSL issues.}
 
 \item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
+
+\item{helo}{HELO domain to use in SMTP. Details see https://everything.curl.dev/usingcurl/smtp#the-smtp-url}
 
 \item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
 }
