@@ -12,7 +12,7 @@ knitr::opts_chunk$set(comment=NA)
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.org/package=emayili)
-![GitHub Actions build status](https://github.com/datawookie/emayili/actions/workflows/pkgdown.yaml/badge.svg)
+![GitHub Actions build status](https://github.com/datawookie/emayili/actions/workflows/build.yaml/badge.svg)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->

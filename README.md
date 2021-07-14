@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.org/package=emayili)
 ![GitHub Actions build
-status](https://github.com/datawookie/emayili/actions/workflows/pkgdown.yaml/badge.svg)
+status](https://github.com/datawookie/emayili/actions/workflows/build.yaml/badge.svg)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle:
@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Wed, 14 Jul 2021 09:22:39 GMT
+    Date:         Wed, 14 Jul 2021 09:58:59 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
