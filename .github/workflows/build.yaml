@@ -37,7 +37,6 @@ jobs:
       - name: Install Ubuntu dependencies
         run: |
           sudo apt-get install libcurl4-openssl-dev
-        shell: Rscript {0}
 
       - name: Install R dependencies
         run: |
