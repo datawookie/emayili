@@ -7,8 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.org/package=emayili)
-[![Travis-CI build
-status](https://travis-ci.org/datawookie/emayili.svg?branch=master)](https://travis-ci.org/datawookie/emayili)
+![GitHub Actions build
+status](https://github.com/datawookie/emayili/actions/workflows/pkgdown.yaml/badge.svg)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle:
@@ -110,12 +110,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 30 Apr 2021 07:58:28 GMT
+    Date:         Wed, 14 Jul 2021 09:22:39 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.10
+    X-Mailer:     {emayili}-0.4.12
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
