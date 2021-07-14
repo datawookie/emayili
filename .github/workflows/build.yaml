@@ -6,10 +6,10 @@ on:
     tags:
       -'*'
 
-name: pkgdown
+name: build
 
 jobs:
-  pkgdown:
+  build:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
