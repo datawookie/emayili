@@ -112,7 +112,9 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     # in the email client.
     #
     strip_name <- function(address) {
-      str_replace_all(address, "(^.*<|>$)", "")
+      if (!is.null(address)) {
+        str_replace_all(address, "(^.*<|>$)", "")
+      }
     }
 
     result <- send_mail(
