@@ -34,7 +34,7 @@ text <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
 #' Add an HTML body to a message object.
 #'
 #' @param msg A message object.
-#' @param content A string of message content.
+#' @param content A string of message content or the path to a file containing HTML.
 #' @param disposition How content is presented (Content-Disposition).
 #' @param charset How content is encoded.
 #' @param encoding How content is transformed to ASCII (Content-Transfer-Encoding).
@@ -44,9 +44,19 @@ text <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
 #' @examples
 #' library(magrittr)
 #'
+#' # Inline HTML message.
 #' msg <- envelope() %>% html("<b>Hello!</b>")
+#'
+#' # Read HTML message from a file.
+#' msg <- envelope() %>% html("message.html")
 html <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
   check_message_body(content)
+
+  # Check if it's a file.
+  #
+  if (file.exists(content)) {
+    content <- paste(readLines(content), collapse = "\n")
+  }
 
   type <- "text/html"
 

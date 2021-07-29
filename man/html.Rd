@@ -15,7 +15,7 @@ html(
 \arguments{
 \item{msg}{A message object.}
 
-\item{content}{A string of message content.}
+\item{content}{A string of message content or the path to a file containing HTML.}
 
 \item{disposition}{How content is presented (Content-Disposition).}
 
@@ -32,7 +32,11 @@ Add an HTML body to a message object.
 \examples{
 library(magrittr)
 
+# Inline HTML message.
 msg <- envelope() \%>\% html("<b>Hello!</b>")
+
+# Read HTML message from a file.
+msg <- envelope() \%>\% html("message.html")
 }
 \seealso{
 \code{\link{text}}
