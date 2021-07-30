@@ -8,6 +8,11 @@ png(PNGPATH, width=600, height=350)
 hist(mtcars$disp)
 dev.off()
 
+HTMLPATH <- "hello.html"
+HTMLCONTENT <- "<p>Hello there, stranger!</p>"
+#
+writeLines(HTMLCONTENT, HTMLPATH)
+
 # This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
 #
 JPGPATH <- here::here("inst", "cats.jpg")
