@@ -1,3 +1,7 @@
+# {emayili} 0.4.15
+
+* Moved testing to GitHub actions
+
 # {emayili} 0.4.14
 
 * The html() function can now read HTML from a file (#70).
