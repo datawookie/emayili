@@ -48,7 +48,7 @@ test_that("sends message with insecure = TRUE", {
 
 test_that("sends with SSL", {
   skip_on_cran()
-
+  skip_on_ci()
   expect_error(smtp_gmail(msg %>% subject("{emayili} test")), NA)
 })
 
