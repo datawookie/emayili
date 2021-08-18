@@ -4,10 +4,12 @@
 \alias{print.address}
 \title{Print an address object}
 \usage{
-\method{print}{address}(address)
+\method{print}{address}(x, ...)
 }
 \arguments{
-\item{address}{An \code{address} object.}
+\item{x}{An \code{address} object.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
 Print an address object

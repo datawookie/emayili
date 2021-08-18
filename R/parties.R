@@ -14,6 +14,9 @@
 #'
 #' parties(email)
 parties <- function(msg) {
+  # Avoid "no visible binding for global variable" note.
+  address <- NULL
+
   map_dfr(c("From", "To", "Cc", "Bcc"), function(type) {
     tibble(
       type,

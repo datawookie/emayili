@@ -134,20 +134,16 @@ as.address <- function(address) {
 
 #' Print an address object
 #'
-#' @param address An \code{address} object.
+#' @param x An \code{address} object.
+#' @param ... Further arguments passed to or from other methods.
 #'
 #' @export
 #'
 #' @examples
 #' gerry <- as.address("gerry@gmail.com")
 #' print(gerry)
-print.address <- function(address) {
-  print(as.character(address))
-}
-
-#' @export
-raw <- function (x, ...) {
-  UseMethod("raw", x)
+print.address <- function(x, ...) {
+  print(as.character(x))
 }
 
 #' Extract raw email address
@@ -162,20 +158,15 @@ raw <- function (x, ...) {
 #' @examples
 #' gerry <- as.address("Gerald <gerry@gmail.com>")
 #' raw(gerry)
-raw.address <- function(address) {
+raw <- function(address) {
   if (length(address) > 1) {
-    map_chr(address, raw.address)
+    map_chr(address, raw)
   } else {
     address %>%
       str_remove("^.* <") %>%
       str_remove(">.*$") %>%
       str_trim()
   }
-}
-
-#' @export
-display <- function (x, ...) {
-  UseMethod("display", x)
 }
 
 #' Extract display name
@@ -190,9 +181,9 @@ display <- function (x, ...) {
 #' @examples
 #' gerry <- as.address("Gerald <gerry@gmail.com>")
 #' display(gerry)
-display.address <- function(address) {
+display <- function(address) {
   if (length(address) > 1) {
-    map_chr(address, display.address)
+    map_chr(address, display)
   } else {
     address <- as.address(address)
     # Check if address has display name.
@@ -206,26 +197,21 @@ display.address <- function(address) {
   }
 }
 
-#' @export
-normalise <- function (x, ...) {
-  UseMethod("normalise", x)
-}
-
 #' Normalise email address
 #'
 #' Makes an email address conform to RFC-5321.
 #'
 #' @param address An \code{address} object.
 #'
-#' @return
+#' @return An RFC-5321 email address.
 #' @export
 #'
 #' @examples
 #' gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
 #' normalise(gerry)
-normalise.address <- function(address) {
+normalise <- function(address) {
   if (length(address) > 1) {
-    map_chr(address, normalise.address)
+    map_chr(address, normalise)
   } else {
     address <- as.address(address)
     raw <- raw(address)

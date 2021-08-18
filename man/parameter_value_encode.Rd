@@ -11,10 +11,10 @@ parameter_value_encode(x)
 }
 \value{
 \code{character(1)}. String to put right after the parameter name in
-  a MIME header. The equal sign and possible quotation marks are included.
-  For example \code{"I'm not quoted.csv"} turns to
-  \code{"=\\"I'm not quoted.csv\\""} while \code{"\\"I'm quoted\\".csv"}
-  results in \code{"*=utf-8''\%22I'm\%20quoted\%22.csv"}.
+a MIME header. The equal sign and possible quotation marks are included.
+For example \code{"I'm not quoted.csv"} turns to
+\code{"=\\"I'm not quoted.csv\\""} while \code{"\\"I'm quoted\\".csv"}
+results in \code{"*=utf-8''\%22I'm\%20quoted\%22.csv"}.
 }
 \description{
 Formats UTF-8 parameter values for the use in MIME headers. Non-ASCII
