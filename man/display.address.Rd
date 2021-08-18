@@ -15,3 +15,7 @@ The display name or \code{NA}.
 \description{
 Extracts the display name from an email address.
 }
+\examples{
+gerry <- as.address("Gerald <gerry@gmail.com>")
+display(gerry)
+}

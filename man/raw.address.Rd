@@ -15,3 +15,7 @@ A raw email address.
 \description{
 Strips the display name off an email address (if present).
 }
+\examples{
+gerry <- as.address("Gerald <gerry@gmail.com>")
+raw(gerry)
+}

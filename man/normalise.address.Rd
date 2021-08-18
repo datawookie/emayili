@@ -15,3 +15,7 @@
 \description{
 Makes an email address conform to RFC-5321.
 }
+\examples{
+gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
+normalise(gerry)
+}

@@ -15,3 +15,12 @@ A tibble.
 \description{
 Extract sender and recipient(s)
 }
+\examples{
+email <- envelope() \%>\%
+  from("Gerald <gerald@gmail.com>") \%>\%
+  to(c("bob@gmail.com", "alice@yahoo.com")) \%>\%
+  cc("Craig     < craig@gmail.com>") \%>\%
+  bcc("  Erin   <erin@yahoo.co.uk    >")
+
+parties(email)
+}

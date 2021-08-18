@@ -160,6 +160,8 @@ raw <- function (x, ...) {
 #' @export
 #'
 #' @examples
+#' gerry <- as.address("Gerald <gerry@gmail.com>")
+#' raw(gerry)
 raw.address <- function(address) {
   if (length(address) > 1) {
     map_chr(address, raw.address)
@@ -186,6 +188,8 @@ display <- function (x, ...) {
 #' @export
 #'
 #' @examples
+#' gerry <- as.address("Gerald <gerry@gmail.com>")
+#' display(gerry)
 display.address <- function(address) {
   if (length(address) > 1) {
     map_chr(address, display.address)
@@ -217,6 +221,8 @@ normalise <- function (x, ...) {
 #' @export
 #'
 #' @examples
+#' gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
+#' normalise(gerry)
 normalise.address <- function(address) {
   if (length(address) > 1) {
     map_chr(address, normalise.address)
