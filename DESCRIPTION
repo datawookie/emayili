@@ -35,13 +35,16 @@ License: GPL-3
 Imports:
     base64enc,
     curl (>= 4.0),
+    dplyr,
     glue,
     httr,
     magrittr,
     mime,
     purrr,
     stringi,
-    stringr
+    stringr,
+    tibble,
+    tidyr
 Suggests:
     here,
     testthat (>= 2.1.0),
