@@ -1,3 +1,8 @@
+#' Helper function for creating address objects
+#'
+#' @inheritParams address
+#'
+#' @return An \code{address} object, representing an email address.
 new_address <- function(email = character(), display = character(), normalise = TRUE) {
   vec_assert(email, ptype = character())
   vec_assert(display, ptype = character())
@@ -12,10 +17,13 @@ new_address <- function(email = character(), display = character(), normalise = 
 
 #' Email Address
 #'
+#' Create an \code{address} object which represents an email address.
+#'
 #' Implemented as an \href{https://cran.r-project.org/web/packages/vctrs/vignettes/s3-vector.html}{S3 vector class}.
 #'
 #' @param email Email address.
 #' @param display Display name.
+#' @param normalise Whether to normalise address to RFC-5321 requirements.
 #'
 #' @return An \code{address} object, representing an email address.
 #' @export
@@ -162,30 +170,3 @@ raw <- function(address) {
 display <- function(address) {
   field(address, "display")
 }
-#'
-#' #' Normalise email address
-#' #'
-#' #' Makes an email address conform to RFC-5321.
-#' #'
-#' #' @param address An \code{address} object.
-#' #'
-#' #' @return An RFC-5321 email address.
-#' #' @export
-#' #'
-#' #' @examples
-#' #' gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
-#' #' normalise(gerry)
-#' normalise <- function(address) {
-#'   if (length(address) > 1) {
-#'     map_chr(address, normalise)
-#'   } else {
-#'     address <- as.address(address)
-#'     raw <- raw(address)
-#'     display <- display(address)
-#'     if (!is.na(display)) {
-#'       paste0(display, " <", raw, ">")
-#'     } else {
-#'       raw
-#'     }
-#'   }
-#' }

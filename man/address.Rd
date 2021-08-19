@@ -10,11 +10,16 @@ address(email, display = NA, normalise = TRUE)
 \item{email}{Email address.}
 
 \item{display}{Display name.}
+
+\item{normalise}{Whether to normalise address to RFC-5321 requirements.}
 }
 \value{
 An \code{address} object, representing an email address.
 }
 \description{
+Create an \code{address} object which represents an email address.
+}
+\details{
 Implemented as an \href{https://cran.r-project.org/web/packages/vctrs/vignettes/s3-vector.html}{S3 vector class}.
 }
 \examples{
