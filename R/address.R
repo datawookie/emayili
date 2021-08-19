@@ -1,121 +1,26 @@
-#' Add From field to message
+#' Email Address
 #'
-#' @param msg A message object.
-#' @param from Email address.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
-#' @export
-#' @examples
-#' msg <- envelope()
-#' from(msg, "craig@gmail.com")
-from <- function(msg, from = NULL) {
-  if (is.null(from)) {
-    msg$header$From
-  } else {
-    msg$header$From <- normalise(as.address(from))
-    invisible(msg)
-  }
-}
-
-#' Add To field to message
+#' @param email Email address.
+#' @param display Display name.
 #'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
+#' @return An \code{address} object, representing an email address.
 #' @export
-#' @examples
-#' msg <- envelope()
-#' to(msg, "bob@gmail.com", "alice@yahoo.com")
-#' to(msg, c("bob@gmail.com", "alice@yahoo.com"))
-to <- function(msg, ...) {
-  arguments <- c(...)
-  if (is.null(arguments)) {
-    msg$header$To
-  } else {
-    msg$header$To <- normalise(as.address(arguments))
-    invisible(msg)
-  }
-}
-
-#' Add Cc field to message
 #'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
-#' @export
 #' @examples
-#' msg <- envelope()
-#' cc(msg, "bob@gmail.com", "alice@yahoo.com")
-#' cc(msg, c("bob@gmail.com", "alice@yahoo.com"))
-cc <- function(msg, ...) {
-  arguments <- c(...)
-  if (is.null(arguments)) {
-    msg$header$Cc
-  } else {
-    msg$header$Cc <- normalise(as.address(arguments))
-    invisible(msg)
+#' address("gerry@gmail.com")
+#' address("gerry@gmail.com", "Gerald")
+address <- function(email, display = NA, normalise = TRUE) {
+  if (normalise) {
+    email = str_trim(email)
+    display = str_squish(display)
   }
-}
-
-#' Add Bcc field to message
-#'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
-#' @export
-#' @examples
-#' msg <- envelope()
-#' bcc(msg, "bob@gmail.com", "alice@yahoo.com")
-#' bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
-bcc <- function(msg, ...) {
-  arguments <- c(...)
-  if (is.null(arguments)) {
-    msg$header$Bcc
-  } else {
-    msg$header$Bcc <- normalise(as.address(arguments))
-    invisible(msg)
-  }
-}
-
-#' Add Reply-To field to message
-#'
-#' @param msg A message object.
-#' @param reply_to Email address.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}} and \code{\link{subject}}
-#' @export
-#' @examples
-#' msg <- envelope()
-#' reply(msg, "gerry@gmail.com")
-reply <- function(msg, reply_to = NULL) {
-  if (is.null(reply_to)) {
-    msg$header$Reply_To
-  } else {
-    msg$header$Reply_To <- reply_to
-    invisible(msg)
-  }
-}
-
-#' Add Sender (on behalf of) field to message
-#'
-#' @param msg A message object.
-#' @param sender Email address.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{reply}} and \code{\link{subject}}
-#' @export
-#' @examples
-#' msg <- envelope()
-#' sender(msg, "on_behalf_of@gmail.com")
-sender <- function(msg, sender = NULL) {
-  if (is.null(sender)) {
-    msg$header$Sender
-  } else {
-    msg$header$Sender <- sender
-    invisible(msg)
-  }
+  address <- structure(
+    list(
+      email = email,
+      display = display
+    ), class = c("address")
+  )
+  address
 }
 
 #' Create an address object
@@ -128,8 +33,29 @@ sender <- function(msg, sender = NULL) {
 #' @examples
 #' as.address("gerry@gmail.com")
 as.address <- function(address) {
-  class(address) <- "address"
-  address
+  if (class(address) == "address") {
+    address
+  } else {
+    if (str_detect(address, "[<>]")) {
+      display <- str_extract(address, ".*<") %>% str_remove("<")
+      email <- str_extract(address, "<.*>") %>% str_remove_all("[<>]")
+
+      if (is.na(email)) stop("Unable to parse email address.", call. = FALSE)
+    } else {
+      display <- NA
+      email <- address
+    }
+
+    address(email, display)
+  }
+}
+
+as.character.address <- function(x, ...) {
+  if (is.na(x$display)) {
+    x$email
+  } else {
+    glue("{x$display} <{x$email}>")
+  }
 }
 
 #' Print an address object
@@ -182,19 +108,21 @@ raw <- function(address) {
 #' gerry <- as.address("Gerald <gerry@gmail.com>")
 #' display(gerry)
 display <- function(address) {
-  if (length(address) > 1) {
-    map_chr(address, display)
-  } else {
-    address <- as.address(address)
-    # Check if address has display name.
-    if (str_detect(address, "[<>]")) {
-      address %>%
-        str_remove("<.*$") %>%
-        str_squish()
-    } else {
-      NA
-    }
-  }
+  # if (length(address) > 1) {
+  #   map_chr(address, display)
+  # } else {
+  #   address <- as.address(address)
+  #   # Check if address has display name.
+  #   # if (str_detect(address, "[<>]")) {
+  #   #   address %>%
+  #   #     str_remove("<.*$") %>%
+  #   #     str_squish()
+  #   address$display
+  #   # } else {
+  #   #   NA
+  #   # }
+  # }
+  as.address(address)$display
 }
 
 #' Normalise email address
