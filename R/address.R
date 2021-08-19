@@ -1,4 +1,18 @@
+new_address <- function(email = character(), display = character(), normalise = TRUE) {
+  vec_assert(email, ptype = character())
+  vec_assert(display, ptype = character())
+
+  if (normalise) {
+    email <- str_trim(email)
+    display <- str_squish(display)
+  }
+
+  new_rcrd(list(email = email, display = display), class = "vctrs_address")
+}
+
 #' Email Address
+#'
+#' Implemented as an \href{https://cran.r-project.org/web/packages/vctrs/vignettes/s3-vector.html}{S3 vector class}.
 #'
 #' @param email Email address.
 #' @param display Display name.
@@ -9,18 +23,72 @@
 #' @examples
 #' address("gerry@gmail.com")
 #' address("gerry@gmail.com", "Gerald")
+#' address(
+#'   c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com", NA),
+#'   c("Gerald", "Alice", NA, "Bob")
+#' )
 address <- function(email, display = NA, normalise = TRUE) {
-  if (normalise) {
-    email = str_trim(email)
-    display = str_squish(display)
-  }
-  address <- structure(
-    list(
-      email = email,
-      display = display
-    ), class = c("address")
+  # Cast email and display to character and recycle to same length.
+  #
+  # This operator could be done more cleanly using %<-% from {zeallot} but
+  # not doing that for the moment to avoid another dependency.
+  #
+  do.call(
+    vec_recycle_common,
+    vec_cast_common(email, display, .to = character())
+  ) %>%
+    setNames(c("email", "display")) %>%
+    set("normalise", normalise) %>%
+    do.call(new_address, .)
+}
+
+#' Encode email addresses in a common format
+#'
+#' @param x A vector of \code{address} objects.
+#' @param ... Further arguments passed to or from other methods.
+#'
+#' @return A character vector.
+#' @export
+format.vctrs_address <- function(x, ...) {
+  email <- field(x, "email")
+  display <- field(x, "display")
+
+  fmt <- ifelse(is.na(display), email, glue("{display} <{email}>"))
+  fmt[is.na(email)] <- NA
+
+  fmt
+}
+
+#' Display full type of vector
+#'
+#' @export
+vec_ptype_full.vctrs_address <- function(x, ...) "address"
+
+#' Display abbreviated type of vector
+#'
+#' @export
+vec_ptype_abbr.vctrs_address <- function(x, ...) "addr"
+
+#' Convert address object to character
+#'
+#' @param x  A vector of \code{address} objects.
+#' @param ...
+#'
+#' @return A character vector.
+#' @export
+as.character.vctrs_address <- function(x, ...) {
+  format(x, ...)
+}
+
+Ops.vctrs_address <- function(lhs, rhs)
+{
+  op = .Generic[[1]]
+  switch(op,
+         `==` = {
+           compare(raw(lhs), raw(rhs)) & compare(display(lhs), display(rhs))
+         },
+         stop("Undefined operation.", call. = FALSE)
   )
-  address
 }
 
 #' Create an address object
@@ -32,30 +100,21 @@ address <- function(email, display = NA, normalise = TRUE) {
 #'
 #' @examples
 #' as.address("gerry@gmail.com")
+#' as.address("Gerald <gerry@gmail.com>")
+#' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 as.address <- function(address) {
-  if (class(address) == "address") {
+  display <- ifelse(
+    str_detect(address, "[<>]"),
+    str_extract(address, ".*<") %>% str_remove("<"),
+    NA
+  )
+  email <- ifelse(
+    str_detect(address, "[<>]"),
+    str_extract(address, "<.*>") %>% str_remove_all("[<>]"),
     address
-  } else {
-    if (str_detect(address, "[<>]")) {
-      display <- str_extract(address, ".*<") %>% str_remove("<")
-      email <- str_extract(address, "<.*>") %>% str_remove_all("[<>]")
+  )
 
-      if (is.na(email)) stop("Unable to parse email address.", call. = FALSE)
-    } else {
-      display <- NA
-      email <- address
-    }
-
-    address(email, display)
-  }
-}
-
-as.character.address <- function(x, ...) {
-  if (is.na(x$display)) {
-    x$email
-  } else {
-    glue("{x$display} <{x$email}>")
-  }
+  address(email, display)
 }
 
 #' Print an address object
@@ -68,8 +127,8 @@ as.character.address <- function(x, ...) {
 #' @examples
 #' gerry <- as.address("gerry@gmail.com")
 #' print(gerry)
-print.address <- function(x, ...) {
-  print(as.character(x))
+print.vctrs_address <- function(x, ...) {
+  print(format(x))
 }
 
 #' Extract raw email address
@@ -85,14 +144,7 @@ print.address <- function(x, ...) {
 #' gerry <- as.address("Gerald <gerry@gmail.com>")
 #' raw(gerry)
 raw <- function(address) {
-  if (length(address) > 1) {
-    map_chr(address, raw)
-  } else {
-    address %>%
-      str_remove("^.* <") %>%
-      str_remove(">.*$") %>%
-      str_trim()
-  }
+  field(address, "email")
 }
 
 #' Extract display name
@@ -108,46 +160,32 @@ raw <- function(address) {
 #' gerry <- as.address("Gerald <gerry@gmail.com>")
 #' display(gerry)
 display <- function(address) {
-  # if (length(address) > 1) {
-  #   map_chr(address, display)
-  # } else {
-  #   address <- as.address(address)
-  #   # Check if address has display name.
-  #   # if (str_detect(address, "[<>]")) {
-  #   #   address %>%
-  #   #     str_remove("<.*$") %>%
-  #   #     str_squish()
-  #   address$display
-  #   # } else {
-  #   #   NA
-  #   # }
-  # }
-  as.address(address)$display
+  field(address, "display")
 }
-
-#' Normalise email address
 #'
-#' Makes an email address conform to RFC-5321.
-#'
-#' @param address An \code{address} object.
-#'
-#' @return An RFC-5321 email address.
-#' @export
-#'
-#' @examples
-#' gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
-#' normalise(gerry)
-normalise <- function(address) {
-  if (length(address) > 1) {
-    map_chr(address, normalise)
-  } else {
-    address <- as.address(address)
-    raw <- raw(address)
-    display <- display(address)
-    if (!is.na(display)) {
-      paste0(display, " <", raw, ">")
-    } else {
-      raw
-    }
-  }
-}
+#' #' Normalise email address
+#' #'
+#' #' Makes an email address conform to RFC-5321.
+#' #'
+#' #' @param address An \code{address} object.
+#' #'
+#' #' @return An RFC-5321 email address.
+#' #' @export
+#' #'
+#' #' @examples
+#' #' gerry <- as.address("     Gerald   Durrell   <   gerry@gmail.com  >   ")
+#' #' normalise(gerry)
+#' normalise <- function(address) {
+#'   if (length(address) > 1) {
+#'     map_chr(address, normalise)
+#'   } else {
+#'     address <- as.address(address)
+#'     raw <- raw(address)
+#'     display <- display(address)
+#'     if (!is.na(display)) {
+#'       paste0(display, " <", raw, ">")
+#'     } else {
+#'       raw
+#'     }
+#'   }
+#' }

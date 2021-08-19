@@ -44,7 +44,8 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    vctrs
 Suggests:
     here,
     testthat (>= 2.1.0),

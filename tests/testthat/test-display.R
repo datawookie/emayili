@@ -3,5 +3,5 @@ test_that("returns display name", {
 })
 
 test_that("returns NA when no display name present", {
-  expect_equal(display(as.address("gerry@gmail.com")), NA)
+  expect_equal(display(as.address("gerry@gmail.com")), NA_character_)
 })

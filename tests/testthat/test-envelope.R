@@ -10,27 +10,27 @@ test_that("class envelope", {
 
 test_that("recipient address", {
   recipient <- envelope(to = "bob@gmail.com")
-  expect_equal(recipient$header$To, "bob@gmail.com")
+  expect_equal(recipient$header$To, address("bob@gmail.com"))
 })
 
 test_that("sender address", {
   sender <- envelope(from = "bob@gmail.com")
-  expect_equal(sender$header$From, "bob@gmail.com")
+  expect_equal(sender$header$From, address("bob@gmail.com"))
 })
 
 test_that("cc", {
   cc <- envelope(cc = "bob@gmail.com")
-  expect_equal(cc$header$Cc, "bob@gmail.com")
+  expect_equal(cc$header$Cc, address("bob@gmail.com"))
 })
 
 test_that("bcc", {
   bcc <- envelope(bcc = "bob@gmail.com")
-  expect_equal(bcc$header$Bcc, "bob@gmail.com")
+  expect_equal(bcc$header$Bcc, address("bob@gmail.com"))
 })
 
 test_that("reply to", {
   reply <- envelope(reply = "bob@gmail.com")
-  expect_equal(reply$header$Reply_To, "bob@gmail.com")
+  expect_equal(reply$header$Reply_To, address("bob@gmail.com"))
 })
 
 test_that("subject", {

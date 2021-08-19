@@ -17,4 +17,6 @@ Create an address object
 }
 \examples{
 as.address("gerry@gmail.com")
+as.address("Gerald <gerry@gmail.com>")
+as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 }
