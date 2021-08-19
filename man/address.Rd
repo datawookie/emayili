@@ -20,7 +20,7 @@ An \code{address} object, representing an email address.
 Create an \code{address} object which represents an email address.
 }
 \details{
-Implemented as an \href{https://cran.r-project.org/web/packages/vctrs/vignettes/s3-vector.html}{S3 vector class}.
+Implemented as an \href{https://CRAN.R-project.org/package=vctrs/vignettes/s3-vector.html}{S3 vector class}.
 }
 \examples{
 address("gerry@gmail.com")

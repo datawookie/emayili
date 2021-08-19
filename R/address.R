@@ -19,7 +19,7 @@ new_address <- function(email = character(), display = character(), normalise = 
 #'
 #' Create an \code{address} object which represents an email address.
 #'
-#' Implemented as an \href{https://cran.r-project.org/web/packages/vctrs/vignettes/s3-vector.html}{S3 vector class}.
+#' Implemented as an \href{https://cran.r-project.org/package=vctrs/vignettes/s3-vector.html}{S3 vector class}.
 #'
 #' @param email Email address.
 #' @param display Display name.
