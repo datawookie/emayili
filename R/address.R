@@ -68,19 +68,19 @@ format.vctrs_address <- function(x, ...) {
 }
 
 #' Display full type of vector
-#'
+#' @inheritParams vctrs::vec_ptype_full
 #' @export
 vec_ptype_full.vctrs_address <- function(x, ...) "address"
 
 #' Display abbreviated type of vector
-#'
+#' @inheritParams vctrs::vec_ptype_abbr
 #' @export
 vec_ptype_abbr.vctrs_address <- function(x, ...) "addr"
 
 #' Convert address object to character
 #'
 #' @param x  A vector of \code{address} objects.
-#' @param ...
+#' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A character vector.
 #' @export

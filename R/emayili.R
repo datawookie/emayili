@@ -11,6 +11,7 @@
 #' @importFrom httr http_date
 #' @importFrom mime guess_type
 #' @importFrom utils packageVersion
+#' @importFrom stats setNames
 NULL
 
 # Deal with "no visible binding for global variable ‘.’".

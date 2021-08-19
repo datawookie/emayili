@@ -6,6 +6,11 @@
 \usage{
 vec_ptype_abbr.vctrs_address(x, ...)
 }
+\arguments{
+\item{x}{A vector.}
+
+\item{...}{These dots are for future extensions and must be empty.}
+}
 \description{
 Display abbreviated type of vector
 }

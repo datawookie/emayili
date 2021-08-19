@@ -22,7 +22,7 @@ set <- .Primitive("[[<-")
 #' @param lhs LHS of operation.
 #' @param rhs RHS of operation.
 #'
-#' @return
+#' @return A Boolean value.
 compare <- function(lhs, rhs) {
   same <- (lhs == rhs) | (is.na(lhs) & is.na(rhs))
   same[is.na(same)] <- FALSE

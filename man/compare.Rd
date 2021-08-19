@@ -12,7 +12,7 @@ compare(lhs, rhs)
 \item{rhs}{RHS of operation.}
 }
 \value{
-
+A Boolean value.
 }
 \description{
 Returns \code{TRUE} wherever elements are the same (including \code{NA}),

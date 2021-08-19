@@ -17,15 +17,18 @@ parties <- function(msg) {
   # Avoid "no visible binding for global variable" note.
   address <- NULL
 
+  # TODO: This might be useful for sorting out data type in address column:
+  #
+  # https://vctrs.r-lib.org/articles/pillar.html
+
   map_dfr(c("From", "To", "Cc", "Bcc"), function(type) {
     tibble(
       type,
-      address = as.list(msg$header[type])
+      address = msg$header[type]
     )
   }) %>%
     unnest(cols = c(address)) %>%
     mutate(
-      address = as.address(address),
       display = display(address),
       raw = raw(address)
     )

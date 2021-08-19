@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{A vector of \code{address} objects.}
 
-\item{...}{}
+\item{...}{Further arguments passed to or from other methods.}
 }
 \value{
 A character vector.
