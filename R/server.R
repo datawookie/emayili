@@ -7,6 +7,8 @@
 #' @param insecure Whether to ignore SSL issues.
 #' @param reuse Whether the connection to the SMTP server should be left open for reuse.
 #' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
+#' @param max_times Maximum number of times to retry.
+#' @param pause_base Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
@@ -47,7 +49,17 @@
 #' #
 #' smtp <- server(host = "mail.example.com",
 #'                helo = "client.example.com")
-server <- function(host, port = 25, username = NULL, password = NULL, insecure = FALSE, reuse = TRUE, helo = NA, ...) {
+server <- function(
+  host,
+  port = 25,
+  username = NULL,
+  password = NULL,
+  insecure = FALSE,
+  reuse = TRUE,
+  helo = NA,
+  pause_base = 1,
+  max_times = 5,
+  ...) {
   sender <- function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr())
 
@@ -98,7 +110,9 @@ server <- function(host, port = 25, username = NULL, password = NULL, insecure =
     send_mail <- insistently(
       send_mail,
       rate = rate_backoff(
-        max_times = 5,
+        max_times = max_times,
+        pause_base = pause_base,
+        pause_cap = pause_base * 2**max_times,
         jitter = FALSE
       )
     )

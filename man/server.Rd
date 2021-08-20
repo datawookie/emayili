@@ -12,6 +12,8 @@ server(
   insecure = FALSE,
   reuse = TRUE,
   helo = NA,
+  pause_base = 1,
+  max_times = 5,
   ...
 )
 }
@@ -29,6 +31,10 @@ server(
 \item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
 
 \item{helo}{The HELO domain name of the sending host. If left as \code{NA} then will use local host name.}
+
+\item{pause_base}{Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.}
+
+\item{max_times}{Maximum number of times to retry.}
 
 \item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
 }
