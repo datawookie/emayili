@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.16</span>
       </span>
     </div>
 
@@ -128,6 +128,8 @@
   insecure <span class='op'>=</span> <span class='cn'>FALSE</span>,
   reuse <span class='op'>=</span> <span class='cn'>TRUE</span>,
   helo <span class='op'>=</span> <span class='cn'>NA</span>,
+  pause_base <span class='op'>=</span> <span class='fl'>1</span>,
+  max_times <span class='op'>=</span> <span class='fl'>5</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -161,6 +163,14 @@
     <tr>
       <th>helo</th>
       <td><p>The HELO domain name of the sending host. If left as <code>NA</code> then will use local host name.</p></td>
+    </tr>
+    <tr>
+      <th>pause_base</th>
+      <td><p>Base delay (in seconds) for exponential backoff. See <a href='https://purrr.tidyverse.org/reference/rate-helpers.html'>rate_backoff</a>.</p></td>
+    </tr>
+    <tr>
+      <th>max_times</th>
+      <td><p>Maximum number of times to retry.</p></td>
     </tr>
     <tr>
       <th>...</th>

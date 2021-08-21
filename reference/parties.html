@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add To field to message — to • emayili</title>
+<title>Extract sender and recipient(s) — parties • emayili</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add To field to message — to" />
-<meta property="og:description" content="Add To field to message" />
+<meta property="og:title" content="Extract sender and recipient(s) — parties" />
+<meta property="og:description" content="Extract sender and recipient(s)" />
 
 
 
@@ -111,16 +111,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add To field to message</h1>
+    <h1>Extract sender and recipient(s)</h1>
     <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/parties.R'><code>R/parties.R</code></a></small>
-    <div class="hidden name"><code>to.Rd</code></div>
+    <div class="hidden name"><code>parties.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add To field to message</p>
+    <p>Extract sender and recipient(s)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>to</span><span class='op'>(</span><span class='va'>msg</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>parties</span><span class='op'>(</span><span class='va'>msg</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,24 +129,28 @@
       <th>msg</th>
       <td><p>A message object.</p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Email addresses.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A message object.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='cc.html'>cc</a></code>, <code><a href='bcc.html'>bcc</a></code>, <code><a href='from.html'>from</a></code>, <code><a href='sender.html'>sender</a></code>, <code><a href='reply.html'>reply</a></code> and <code><a href='subject.html'>subject</a></code></p></div>
+    <p>A tibble.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>to</span><span class='op'>(</span><span class='va'>msg</span>, <span class='st'>"bob@gmail.com"</span>, <span class='st'>"alice@yahoo.com"</span><span class='op'>)</span>
-<span class='fu'>to</span><span class='op'>(</span><span class='va'>msg</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span>, <span class='st'>"alice@yahoo.com"</span><span class='op'>)</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>email</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='from.html'>from</a></span><span class='op'>(</span><span class='st'>"Gerald &lt;gerald@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='to.html'>to</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span>, <span class='st'>"alice@yahoo.com"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='cc.html'>cc</a></span><span class='op'>(</span><span class='st'>"Craig     &lt; craig@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='bcc.html'>bcc</a></span><span class='op'>(</span><span class='st'>"  Erin   &lt;erin@yahoo.co.uk    &gt;"</span><span class='op'>)</span>
+
+<span class='fu'>parties</span><span class='op'>(</span><span class='va'>email</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 × 6</span>
+#&gt;   type                    address display raw              local  domain     
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;vctrs_dd&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
+#&gt; <span style='color: #BCBCBC;'>1</span> From  Gerald &lt;gerald@gmail.com&gt; Gerald  gerald@gmail.com gerald gmail.com  
+#&gt; <span style='color: #BCBCBC;'>2</span> To                bob@gmail.com <span style='color: #BB0000;'>NA</span>      bob@gmail.com    bob    gmail.com  
+#&gt; <span style='color: #BCBCBC;'>3</span> To              alice@yahoo.com <span style='color: #BB0000;'>NA</span>      alice@yahoo.com  alice  yahoo.com  
+#&gt; <span style='color: #BCBCBC;'>4</span> Cc      Craig &lt;craig@gmail.com&gt; Craig   craig@gmail.com  craig  gmail.com  
+#&gt; <span style='color: #BCBCBC;'>5</span> Bcc     Erin &lt;erin@yahoo.co.uk&gt; Erin    erin@yahoo.co.uk erin   yahoo.co.uk</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
