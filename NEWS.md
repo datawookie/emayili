@@ -1,3 +1,13 @@
+# {emayili} 0.4.16
+
+* Add `address` class with the following methods:
+
+  - `compliant()`
+  - `raw()`
+  - `display()`
+  - `local()` and
+  - `domain()`.
+
 # {emayili} 0.4.15
 
 * Moved testing to GitHub actions

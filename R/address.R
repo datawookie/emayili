@@ -1,8 +1,13 @@
 sanitise <- function(email, strip_comments = TRUE) {
   email %>%
     str_trim() %>%
-    str_replace("[:blank:]+@[:blank:]+", "@") %>%
-    str_remove_all("\\([^)]*\\)")
+    str_replace("[:blank:]+@[:blank:]+", "@") %>% {
+      if (strip_comments) {
+        str_remove_all(., "\\([^)]*\\)")
+      } else {
+        .
+      }
+    }
 }
 
 #' Tests whether an email address is syntactically correct
