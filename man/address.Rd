@@ -4,12 +4,16 @@
 \alias{address}
 \title{Email Address}
 \usage{
-address(email, display = NA, normalise = TRUE)
+address(email = NA, display = NA, local = NA, domain = NA, normalise = TRUE)
 }
 \arguments{
 \item{email}{Email address.}
 
 \item{display}{Display name.}
+
+\item{local}{Local part of email address.}
+
+\item{domain}{Domain part of email address.}
 
 \item{normalise}{Whether to normalise address to RFC-5321 requirements.}
 }
@@ -26,7 +30,7 @@ Implemented as an \href{https://cran.r-project.org/package=vctrs/vignettes/s3-ve
 address("gerry@gmail.com")
 address("gerry@gmail.com", "Gerald")
 address(
-  c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com", NA),
-  c("Gerald", "Alice", NA, "Bob")
+  c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
+  c("Gerald", "Alice", NA)
 )
 }

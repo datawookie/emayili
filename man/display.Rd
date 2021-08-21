@@ -4,10 +4,10 @@
 \alias{display}
 \title{Extract display name}
 \usage{
-display(address)
+display(addr)
 }
 \arguments{
-\item{address}{An \code{address} object.}
+\item{addr}{An \code{address} object.}
 }
 \value{
 The display name or \code{NA}.

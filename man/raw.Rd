@@ -4,10 +4,10 @@
 \alias{raw}
 \title{Extract raw email address}
 \usage{
-raw(address)
+raw(addr)
 }
 \arguments{
-\item{address}{An \code{address} object.}
+\item{addr}{An \code{address} object.}
 }
 \value{
 A raw email address.

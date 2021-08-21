@@ -30,7 +30,9 @@ parties <- function(msg) {
     unnest(cols = c(address)) %>%
     mutate(
       display = display(address),
-      raw = raw(address)
+      raw = raw(address),
+      local = local(address),
+      domain = domain(address)
     )
 }
 

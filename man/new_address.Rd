@@ -4,12 +4,22 @@
 \alias{new_address}
 \title{Helper function for creating address objects}
 \usage{
-new_address(email = character(), display = character(), normalise = TRUE)
+new_address(
+  email = character(),
+  display = character(),
+  local = character(),
+  domain = character(),
+  normalise = TRUE
+)
 }
 \arguments{
 \item{email}{Email address.}
 
 \item{display}{Display name.}
+
+\item{local}{Local part of email address.}
+
+\item{domain}{Domain part of email address.}
 
 \item{normalise}{Whether to normalise address to RFC-5321 requirements.}
 }

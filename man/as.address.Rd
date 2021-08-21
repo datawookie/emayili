@@ -4,10 +4,10 @@
 \alias{as.address}
 \title{Create an address object}
 \usage{
-as.address(address)
+as.address(addr)
 }
 \arguments{
-\item{address}{An email address.}
+\item{addr}{An email address.}
 }
 \value{
 An \code{address} object.
