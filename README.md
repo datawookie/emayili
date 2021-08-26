@@ -110,12 +110,13 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 30 Jul 2021 04:31:31 GMT
+    Date:         Thu, 26 Aug 2021 16:47:19 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.15
+    Sender:       character(0)
+    X-Mailer:     {emayili}-0.4.16
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name

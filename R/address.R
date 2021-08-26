@@ -12,6 +12,13 @@ sanitise <- function(email, strip_comments = TRUE) {
 
 #' Tests whether an email address is syntactically correct
 #'
+#' Checks whether an email address conforms to the [syntax rules](https://en.wikipedia.org/wiki/Email_address#Syntax).
+#'
+#' An email address may take either of the following forms:
+#'
+#' - `local@domain` or
+#' - `Display Name <local@domain>`.
+#'
 #' @param addr An email address.
 #'
 #' @return A Boolean.

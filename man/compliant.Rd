@@ -13,7 +13,14 @@ compliant(addr)
 A Boolean.
 }
 \description{
-Tests whether an email address is syntactically correct
+Checks whether an email address conforms to the \href{https://en.wikipedia.org/wiki/Email_address#Syntax}{syntax rules}.
+}
+\details{
+An email address may take either of the following forms:
+\itemize{
+\item \code{local@domain} or
+\item \verb{Display Name <local@domain>}.
+}
 }
 \examples{
 compliant("alice@example.com")
