@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.17</span>
       </span>
     </div>
 
@@ -137,12 +137,13 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Date<span class="op">:</span><span class="st">         </span>Fri, <span class="dv">30</span> Jul <span class="dv">2021</span> <span class="dv">04</span><span class="op">:</span><span class="dv">31</span><span class="op">:</span><span class="dv">31</span> GMT</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Date<span class="op">:</span><span class="st">         </span>Thu, <span class="dv">26</span> Aug <span class="dv">2021</span> <span class="dv">16</span><span class="op">:</span><span class="dv">48</span><span class="op">:</span><span class="dv">25</span> GMT</span>
 <span id="cb12-2"><a href="#cb12-2"></a>From<span class="op">:</span><span class="st">         </span>alice<span class="op">@</span>yahoo.com</span>
 <span id="cb12-3"><a href="#cb12-3"></a>To<span class="op">:</span><span class="st">           </span>bob<span class="op">@</span>google.com</span>
 <span id="cb12-4"><a href="#cb12-4"></a>Cc<span class="op">:</span><span class="st">           </span>craig<span class="op">@</span>google.com</span>
 <span id="cb12-5"><a href="#cb12-5"></a>Subject<span class="op">:</span><span class="st">      </span>This is a plain text message<span class="op">!</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">     </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">4.15</span></span></code></pre></div>
+<span id="cb12-6"><a href="#cb12-6"></a>Sender<span class="op">:</span><span class="st">       </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">     </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">4.17</span></span></code></pre></div>
 <p>You can identify emails which have been sent using <a href="https://datawookie.github.io/emayili/">emayili</a> by the presence of an <code>X-Mailer</code> header which includes both the package name and version.</p>
 <p>If you want to see the complete MIME object, just convert to a string.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
