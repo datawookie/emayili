@@ -1,3 +1,8 @@
+# {emayili} 0.4.17
+
+* Fix regression in From and Sender header fields.
+* Improve test for formatting of header fields.
+
 # {emayili} 0.4.16
 
 * Add `address` class with the following methods:
