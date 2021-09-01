@@ -104,7 +104,7 @@ new_address <- function(
 #' @param display Display name.
 #' @param local Local part of email address.
 #' @param domain Domain part of email address.
-#' @param normalise Whether to normalise address to RFC-5321 requirements.
+#' @param normalise Whether to try to normalise address to RFC-5321 requirements.
 #'
 #' @return An \code{address} object, representing an email address.
 #' @export

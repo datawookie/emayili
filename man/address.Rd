@@ -15,7 +15,7 @@ address(email = NA, display = NA, local = NA, domain = NA, normalise = TRUE)
 
 \item{domain}{Domain part of email address.}
 
-\item{normalise}{Whether to normalise address to RFC-5321 requirements.}
+\item{normalise}{Whether to try to normalise address to RFC-5321 requirements.}
 }
 \value{
 An \code{address} object, representing an email address.
