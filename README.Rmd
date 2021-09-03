@@ -114,6 +114,23 @@ If you want to see the complete MIME object, just convert to a string.
 as.character(email)
 ```
 
+You can also call the `print()` method and specify `details = TRUE`.
+
+```{r eval=FALSE}
+print(email, details = TRUE)
+```
+
+### Interpolating Text
+
+You can use `{glue}` syntax to interpolate content into the body of a message.
+
+```{r}
+name = "Alice"
+
+envelope() %>%
+  text("Hello {name}!")
+```
+
 ### Adding an Inline Image
 
 Adding an inline image to an HTML message is possible. There are two ways to achieve this.
