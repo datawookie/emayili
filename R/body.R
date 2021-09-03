@@ -6,20 +6,46 @@ check_message_body <- function(content) {
 
 #' Add a text body to a message.
 #'
+#' Uses \code{glue::glue()} to evaluate expressions enclosed in brackets as R code.
+#'
 #' @param msg A message object.
 #' @param content A string of message content.
 #' @param disposition How content is presented (Content-Disposition).
 #' @param charset How content is encoded.
 #' @param encoding How content is transformed to ASCII (Content-Transfer-Encoding).
+#' @param interpolate Whether to interpolate using \code{glue}.
+#' @param .envir Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.
+#'
 #' @return A message object.
 #' @seealso \code{\link{html}}
+#'
 #' @export
 #' @examples
 #' library(magrittr)
 #'
 #' msg <- envelope() %>% text("Hello!")
-text <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "7bit") {
+#'
+#' # Using {glue} interpolation.
+#' #
+#' name <- "Alice"
+#' msg <- envelope() %>% text("Hello {name}.")
+#'
+#' print(msg, details = TRUE)
+text <- function(
+  msg,
+  content,
+  disposition = "inline",
+  charset = "utf-8",
+  encoding = "7bit",
+  interpolate = TRUE,
+  .envir = NULL
+) {
+  if (is.null(.envir)) .envir = parent.frame()
+  else .envir = list2env(.envir)
+
   check_message_body(content)
+
+  if (glue) content <- glue(content, .envir = .envir)
 
   type <- "text/plain"
 
