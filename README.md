@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 03 Sep 2021 05:48:47 GMT
+    Date:         Fri, 03 Sep 2021 06:17:59 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -132,6 +132,15 @@ You can also call the `print()` method and specify `details = TRUE`.
 
 ``` r
 print(email, details = TRUE)
+```
+
+You can set the `envelope_details` option to assert that these details
+should always be printed.
+
+``` r
+# Always print envelope details.
+#
+options(envelope_details = TRUE)
 ```
 
 ### Interpolating Text

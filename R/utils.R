@@ -28,3 +28,7 @@ compare <- function(lhs, rhs) {
   same[is.na(same)] <- FALSE
   same
 }
+
+get_option_invisible <- function() {
+  getOption("envelope_invisible", default = TRUE)
+}

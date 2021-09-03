@@ -120,6 +120,14 @@ You can also call the `print()` method and specify `details = TRUE`.
 print(email, details = TRUE)
 ```
 
+You can set the `envelope_details` option to assert that these details should always be printed.
+
+```{r eval = FALSE}
+# Always print envelope details.
+#
+options(envelope_details = TRUE)
+```
+
 ### Interpolating Text
 
 You can use `{glue}` syntax to interpolate content into the body of a message.
