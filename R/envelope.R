@@ -60,11 +60,30 @@ envelope <- function(
 
 #' Print a message object
 #'
+#' The message body will be printed if `details` is `TRUE` or if the `envelope_details`
+#' option is `TRUE`.
+#'
 #' @param x A message object.
 #' @param details Whether or not to display full message content.
 #' @param ... Any other arguments (for consistency of generic function).
 #'
 #' @export
-print.envelope <- function(x, details=FALSE, ...) {
+#' @examples
+#' msg <- envelope() %>% text("Hello, World!")
+#'
+#' print(msg)
+#' print(msg, details = TRUE)
+#'
+#' options(envelope_details = TRUE)
+#' print(msg)
+print.envelope <- function(x, details = NA, ...) {
+  if (is.na(details)) {
+    details = getOption("envelope_details", default = NA)
+  }
+  if (is.na(details)) {
+    details = FALSE
+  }
+  if (!is.logical(details)) stop("details must be Boolean.", call. = FALSE)
+
   ifelse(details, as.character(x), header(x)) %>% cat()
 }

@@ -4,7 +4,7 @@
 \alias{print.envelope}
 \title{Print a message object}
 \usage{
-\method{print}{envelope}(x, details = FALSE, ...)
+\method{print}{envelope}(x, details = NA, ...)
 }
 \arguments{
 \item{x}{A message object.}
@@ -14,5 +14,15 @@
 \item{...}{Any other arguments (for consistency of generic function).}
 }
 \description{
-Print a message object
+The message body will be printed if \code{details} is \code{TRUE} or if the \code{envelope_details}
+option is \code{TRUE}.
+}
+\examples{
+msg <- envelope() \%>\% text("Hello, World!")
+
+print(msg)
+print(msg, details = TRUE)
+
+options(envelope_details = TRUE)
+print(msg)
 }

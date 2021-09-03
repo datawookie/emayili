@@ -58,7 +58,7 @@ text <- function(
 
   msg$parts <- c(msg$parts, list(body))
 
-  invisible(msg)
+  if (get_option_invisible()) invisible(msg) else msg
 }
 
 #' Add an HTML body to a message object.
