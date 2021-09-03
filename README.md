@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 27 Aug 2021 03:49:33 GMT
+    Date:         Fri, 03 Sep 2021 05:48:47 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -126,6 +126,24 @@ If you want to see the complete MIME object, just convert to a string.
 
 ``` r
 as.character(email)
+```
+
+You can also call the `print()` method and specify `details = TRUE`.
+
+``` r
+print(email, details = TRUE)
+```
+
+### Interpolating Text
+
+You can use `{glue}` syntax to interpolate content into the body of a
+message.
+
+``` r
+name = "Alice"
+
+envelope() %>%
+  text("Hello {name}!")
 ```
 
 ### Adding an Inline Image
