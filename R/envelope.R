@@ -78,7 +78,7 @@ envelope <- function(
 #' print(msg)
 print.envelope <- function(x, details = NA, ...) {
   if (is.na(details)) {
-    details = getOption("envelope_details", default = NA)
+    details = get_option_details(default = NA)
   }
   if (is.na(details)) {
     details = FALSE
