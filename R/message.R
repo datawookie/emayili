@@ -13,8 +13,8 @@ header <- function(msg) {
   if (!is.null(msg$header$Bcc)) {
     msg$header$Bcc <- paste0(msg$header$Bcc, collapse = ", ")
   }
-  msg$header$From <- as.character(msg$header$From)
-  msg$header$Sender <- as.character(msg$header$Sender)
+  if (!is.null(msg$header$From)) msg$header$From <- as.character(msg$header$From)
+  if (!is.null(msg$header$Sender)) msg$header$Sender <- as.character(msg$header$Sender)
 
   msg$header$`X-Mailer` <- paste("{emayili}", packageVersion("emayili"), sep = "-")
 
