@@ -1,3 +1,7 @@
+# {emayili} 0.4.18
+
+* Enable {glue} interpolation in text().
+
 # {emayili} 0.4.17
 
 * Fix regression in From and Sender header fields.

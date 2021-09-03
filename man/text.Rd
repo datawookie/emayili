@@ -9,7 +9,9 @@ text(
   content,
   disposition = "inline",
   charset = "utf-8",
-  encoding = "7bit"
+  encoding = "7bit",
+  interpolate = TRUE,
+  .envir = NULL
 )
 }
 \arguments{
@@ -22,17 +24,32 @@ text(
 \item{charset}{How content is encoded.}
 
 \item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
+
+\item{interpolate}{Whether to interpolate using \code{glue}.}
+
+\item{.envir}{Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.}
 }
 \value{
 A message object.
 }
 \description{
-Add a text body to a message.
+Uses \code{glue::glue()} to evaluate expressions enclosed in brackets as R code.
 }
 \examples{
 library(magrittr)
 
 msg <- envelope() \%>\% text("Hello!")
+
+# Using {glue} interpolation.
+#
+name <- "Alice"
+msg <- envelope() \%>\% text("Hello {name}.")
+
+print(msg, details = TRUE)
+
+# Disable {glue} interpolation.
+#
+msg <- envelope() \%>\% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
 }
 \seealso{
 \code{\link{html}}
