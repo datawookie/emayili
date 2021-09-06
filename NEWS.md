@@ -1,6 +1,6 @@
 # {emayili} 0.4.18
 
-* Add envelope_details option.
+* Add envelope_details and envelope_invisible options.
 * Enable {glue} interpolation in text().
 
 # {emayili} 0.4.17
