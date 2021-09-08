@@ -181,19 +181,19 @@
 <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>text</span><span class='op'>(</span><span class='st'>"Hello {name}."</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>msg</span>, details <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Date:         Mon, 06 Sep 2021 10:39:24 GMT
+</div><div class='output co'>#&gt; Date:         Wed, 08 Sep 2021 14:37:22 GMT
 #&gt; X-Mailer:     {emayili}-0.4.18
 #&gt; MIME-Version: 1.0
-#&gt; Content-type: multipart/mixed; boundary="331c28c3108c3827121a403c21"
+#&gt; Content-type: multipart/mixed; boundary="3c39193da2b1f34362f3c323f3a3f3e"
 #&gt; 
-#&gt; --331c28c3108c3827121a403c21
+#&gt; --3c39193da2b1f34362f3c323f3a3f3e
 #&gt; Content-Type: text/plain; charset=utf-8
 #&gt; Content-Disposition: inline
 #&gt; Content-Transfer-Encoding: 7bit
 #&gt; 
 #&gt; Hello Alice.
 #&gt; 
-#&gt; --331c28c3108c3827121a403c21--</div><div class='input'>
+#&gt; --3c39193da2b1f34362f3c323f3a3f3e--</div><div class='input'>
 <span class='co'># Disable {glue} interpolation.</span>
 <span class='co'>#</span>
 <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>text</span><span class='op'>(</span><span class='st'>"This is a set: {1, 2, 3}."</span>, interpolate <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
