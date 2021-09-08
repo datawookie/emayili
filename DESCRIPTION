@@ -34,10 +34,12 @@ BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
 Imports:
     base64enc,
+    commonmark,
     curl (>= 4.0),
     dplyr,
     glue,
     httr,
+    logger,
     magrittr,
     mime,
     purrr,
@@ -45,7 +47,8 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    vctrs
+    vctrs,
+    xfun
 Suggests:
     here,
     testthat (>= 2.1.0),
