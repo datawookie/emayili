@@ -1,3 +1,7 @@
+# {emayili} 0.4.19
+
+* Render plain markdown into HTML body.
+
 # {emayili} 0.4.18
 
 * Add envelope_details and envelope_invisible options.
