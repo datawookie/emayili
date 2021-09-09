@@ -51,12 +51,9 @@ text <- function(
 
   if (interpolate) content <- glue(content, .envir = .envir)
 
-  type <- "text/plain"
+  body <- text_plain(content, disposition, charset, encoding)
 
-  body <- mime(type, disposition, charset, encoding, NA)
-  body$body <- content
-
-  msg$parts <- c(msg$parts, list(body))
+  msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg
 }
@@ -88,12 +85,12 @@ html <- function(msg, content, disposition = "inline", charset = "utf-8", encodi
     content <- paste(readLines(content), collapse = "\n")
   }
 
-  type <- "text/html"
+  body <- text_html(content, disposition, charset, encoding)
 
-  body <- mime(type, disposition, charset, encoding, NA)
-  body$body <- qp_encode(content)
+  # related <- multipart_related()
+  # related <- append(related, body)
 
-  msg$parts <- c(msg$parts, list(body))
+  msg <- append(msg, body)
 
   invisible(msg)
 }

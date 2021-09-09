@@ -33,7 +33,7 @@ md <- function(
   .close = "}}"
 ) {
   if (is_filepath(input)) {
-    markdown <- read_file(input)
+    markdown <- read_text(input)
   } else {
     log_warn("Interpreting input as character vector.")
     markdown <- input
@@ -83,7 +83,7 @@ rmd <- function(
   .close = "}}"
 ) {
   if (is_filepath(input)) {
-    markdown <- read_file(input)
+    markdown <- read_text(input)
   } else {
     log_warn("Interpreting input as character vector.")
     markdown <- input
@@ -93,32 +93,65 @@ rmd <- function(
     markdown <- glue(markdown, .open = .open, .close = .close)
   }
 
+  if (markdown == "") stop("Input is empty!", call. = FALSE)
+
   input <- tempfile(fileext = ".Rmd")
   output <- tempfile(fileext = ".html")
-
-  if (markdown == "") stop("Input is empty!", call. = FALSE)
+  image_path <- file.path(sub(".html", "_files", output), "figure-html")
 
   cat(markdown, file = input)
 
   rmarkdown::render(
     input,
     output_file = output,
-    quiet = TRUE
+    quiet = TRUE,
+    # Inline images don't work with GMail web client.
+    output_options = list(self_contained = FALSE)
   )
-  output = read_file(output)
+  output = read_text(output)
 
   # Strip out <script> tags. These don't work in email, right?
   #
   xml <- read_html(output)
-
   xml_find_all(xml, "//script") %>% xml_remove()
   #
   # Don't actually want to strip out all <link> tags because one of them has
   # important CSS, but this is just to get things working in GMail web client.
   #
+  css <- xml_find_all(xml, "//link[starts-with(@href,'data:text/css')]") %>%
+    xml_attr("href") %>%
+    unlist() %>%
+    url_decode() %>%
+    sub("data:text/css,", "", .) %>%
+    paste(collapse = "")
   xml_find_all(xml, "//link") %>% xml_remove()
 
-  msg <- msg %>% html(as.character(xml))
+  xml_add_child(
+    xml_find_first(xml, "//head"),
+    "style",
+    css,
+    type = "text/css"
+  )
+
+  # Convert image links into CID references.
+  #
+  for (img in xml_find_all(xml, "//img")) {
+    src <- xml_attr(img, "src")
+    src <- paste0('cid:', hexkey(basename(src)))
+    xml_attr(img, "src") <- src
+  }
+
+  body <- multipart_related(
+    children = list(
+      text_html(as.character(xml))
+    )
+  )
+
+  for (image in list.files(image_path, full.names = TRUE)) {
+    body <- append(body, other(filename = image, cid = hexkey(basename(image))))
+  }
+
+  msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg
 }

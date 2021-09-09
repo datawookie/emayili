@@ -110,12 +110,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
-    From:         alice@yahoo.com
-    To:           bob@google.com
-    Cc:           craig@google.com
-    Subject:      This is a plain text message!
-    X-Mailer:     {emayili}-0.4.19
+    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    From:                      alice@yahoo.com
+    To:                        bob@google.com
+    Cc:                        craig@google.com
+    Subject:                   This is a plain text message!
+    X-Mailer:                  {emayili}-0.4.19
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -156,19 +156,14 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
-    X-Mailer:     {emayili}-0.4.19
-    MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="3d1a1b1d23cd313d2f2e3e2d2d3f30"
-
-    --3d1a1b1d23cd313d2f2e3e2d2d3f30
-    Content-Type: text/plain; charset=utf-8
-    Content-Disposition: inline
+    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    X-Mailer:                  {emayili}-0.4.19
+    MIME-Version:              1.0
+    Content-Type:              text/plain; charset=utf-8
+    Content-Disposition:       inline
     Content-Transfer-Encoding: 7bit
 
     Hello Alice!
-
-    --3d1a1b1d23cd313d2f2e3e2d2d3f30--
 
 ### Rendering Markdown
 
@@ -182,20 +177,14 @@ envelope() %>%
   md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
-    X-Mailer:     {emayili}-0.4.19
-    MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="361c38151b8353f3b191915103534"
-
-    --361c38151b8353f3b191915103534
-    Content-Type: text/html; charset=utf-8
-    Content-Disposition: inline
+    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    X-Mailer:                  {emayili}-0.4.19
+    MIME-Version:              1.0
+    Content-Type:              text/html; charset=utf-8
+    Content-Disposition:       inline
     Content-Transfer-Encoding: quoted-printable
 
-    <p>Check out <code>{emayili}</code> on <a href=3D"https://cran.r-project.org/package=3Demayili">CRAN</a>.</p>
-
-
-    --361c38151b8353f3b191915103534--
+    <p>Check out <code>{emayili}</code> on <a href="https://cran.r-project.org/package=emayili">CRAN</a>.</p>
 
 Or R Markdown.
 
@@ -207,6 +196,8 @@ envelope() %>%
 
 In both cases the function will accept either a file path or a character
 vector containing Markdown text.
+
+<img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
 🚨 **Note:** Inline images embedded in the rendered HTML will not appear
 in the GMail (and potentially other) web client.

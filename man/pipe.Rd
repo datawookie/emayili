@@ -7,6 +7,6 @@
 lhs \%>\% rhs
 }
 \description{
-FOO \link[magrittr]{\%>\%}
+\link[magrittr]{\%>\%}
 }
 \keyword{internal}

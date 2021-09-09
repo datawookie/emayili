@@ -1,3 +1,7 @@
+# {emayili} 0.5.0
+
+* Require {rlang}-0.4.3.
+
 # {emayili} 0.4.19
 
 * Render plain Markdown into HTML body.

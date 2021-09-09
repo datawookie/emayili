@@ -28,46 +28,13 @@
 #'   attachment(path_scatter, cid = "scatter")
 #'
 #' file.remove(path_scatter, path_mtcars)
-attachment <- function(msg, path, name = NA, type = NA, cid = NA, disposition = "attachment") {
-    if (length(path) != 1)
-      stop("Must be precisely one attachment.", call. = F)
+attachment <- function(msg, path, name = NA, type = NA, cid = NA) {
+  if (length(path) != 1)
+    stop("Must be precisely one attachment.", call. = F)
 
-    if (!is.na(type)) {
-      # Could use mime::mimemap to map from specific extensions to MIME types,
-      # so that the following would give the same result:
-      #
-      # attachment(..., type = "pdf")
-      # attachment(..., type = "application/pdf")
-    } else {
-      type <- guess_type(path, empty = "application/octet-stream")
-    }
+  body <- other(path, name, type, cid)
 
-    if (is.na(disposition)) {
-      disposition <- ifelse(grepl("text", type),
-                            "inline",
-                            ifelse(
-                              grepl("image", type),
-                              ifelse(!is.na(cid), "inline", "attachment"),
-                              "attachment"
-                            ))
-    }
+  msg$parts <- c(msg$parts, list(body))
 
-    con <- file(path, "rb")
-    body <- readBin(con, "raw",  file.info(path)$size)
-    close(con)
-
-    mime <- mime(
-      type,
-      disposition,
-      NULL,
-      "base64",
-      cid = as.character(cid),
-      filename = ifelse(is.na(name), basename(path), name)
-    )
-
-    mime$body <- base64encode(body, 76L, "\r\n")
-
-    msg$parts <- c(msg$parts, list(mime))
-
-    invisible(msg)
-  }
+  invisible(msg)
+}

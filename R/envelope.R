@@ -41,8 +41,7 @@ envelope <- function(
       header = list(
         Date = http_date(Sys.time())
       ),
-      boundary = paste(sprintf("%x", sample(64, size = 16, replace = TRUE)), collapse = ""),
-      parts = list()
+      parts = NULL
     ),
     class="envelope")
 
@@ -78,12 +77,70 @@ envelope <- function(
 #' print(msg)
 print.envelope <- function(x, details = NA, ...) {
   if (is.na(details)) {
-    details = get_option_details(default = NA)
-  }
-  if (is.na(details)) {
-    details = FALSE
+    details = get_option_details(default = FALSE)
   }
   if (!is.logical(details)) stop("details must be Boolean.", call. = FALSE)
-
+  #
   ifelse(details, as.character(x), header(x)) %>% cat()
+}
+
+#' Create formatted message.
+#'
+#' Accepts a message object and formats it as a MIME document.
+#'
+#' @section MIME Multipart Types:
+#'
+#' There are a number of options for multipart messages:
+#'
+#' \itemize{
+#'  \item{\code{multipart/mixed} — }{Used for sending content with multiple independent parts either inline or as attachments. Each part can have different \code{Content-Type}.}
+#'  \item{\code{multipart/alternative} — }{Used when each part of the message is an "alternative" version of the same content. The order of the parts is important: preferred and/or more complex formats should be found towards the end.
+#'
+#'  \emph{Example:} A message with both plain text and HTML versions.}
+#'  \item{\code{multipart/digest} — }{Used to send multiple plain text messages.}
+#'  \item{\code{multipart/related} — }{Used when each part of the the message represents a component of the complete message.
+#'
+#'  \emph{Example:} A web page with images.}
+#'  \item{\code{multipart/signed} — }{Used when a message has a digital signature attached.}
+#'  \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
+#' }
+#'
+#' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
+#'
+#' @param x A message object.
+#' @param ... Further arguments passed to or from other methods.
+#' @export
+#'
+#' @return A formatted message object.
+as.character.envelope <- function(x, ...) {
+  CONTENT_TYPE = "multipart/related"
+
+  message <- list(
+    header(x),
+    "MIME-Version:              1.0"
+  )
+
+  if (length(x$parts) > 1) {
+    body <- multipart_mixed(children = x$parts)
+  } else {
+    body <- x$parts[[1]]
+  }
+
+  message <- c(message, as.character(body))
+
+  do.call(paste0, c(list(message), collapse = "\r\n"))
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+append.envelope <- function(x, child) {
+  if(is.null(x$parts)) {
+    x$parts <- list(child)
+  } else {
+    x$parts <- c(list(msg$parts), list(child))
+  }
+
+  x
 }
