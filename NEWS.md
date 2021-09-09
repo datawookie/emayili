@@ -1,6 +1,7 @@
 # {emayili} 0.4.19
 
-* Render plain markdown into HTML body.
+* Render plain Markdown into HTML body.
+* Render R Markdown into HTML body.
 
 # {emayili} 0.4.18
 
