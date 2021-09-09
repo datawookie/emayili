@@ -110,13 +110,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Fri, 03 Sep 2021 06:17:59 GMT
+    Date:         Thu, 09 Sep 2021 08:06:28 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
     Subject:      This is a plain text message!
-    Sender:       character(0)
-    X-Mailer:     {emayili}-0.4.17
+    X-Mailer:     {emayili}-0.4.19
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -124,23 +123,25 @@ and version.
 
 If you want to see the complete MIME object, just convert to a string.
 
-``` r
-as.character(email)
-```
-
 You can also call the `print()` method and specify `details = TRUE`.
 
-``` r
-print(email, details = TRUE)
-```
-
-You can set the `envelope_details` option to assert that these details
+You can set the `envelope_details` option to assert that the details
 should always be printed.
 
 ``` r
 # Always print envelope details.
 #
 options(envelope_details = TRUE)
+```
+
+By default the results returned by most of the methods are invisible.
+You can make them visible via the `envelope_invisible` (default:
+`TRUE`).
+
+``` r
+# Always show envelope.
+#
+options(envelope_invisible = FALSE)
 ```
 
 ### Interpolating Text
@@ -154,6 +155,58 @@ name = "Alice"
 envelope() %>%
   text("Hello {name}!")
 ```
+
+    Date:         Thu, 09 Sep 2021 08:06:28 GMT
+    X-Mailer:     {emayili}-0.4.19
+    MIME-Version: 1.0
+    Content-type: multipart/mixed; boundary="a2b3f361fc293a111161434863c"
+
+    --a2b3f361fc293a111161434863c
+    Content-Type: text/plain; charset=utf-8
+    Content-Disposition: inline
+    Content-Transfer-Encoding: 7bit
+
+    Hello Alice!
+
+    --a2b3f361fc293a111161434863c--
+
+### Rendering Markdown
+
+You can render Markdown straight into a message.
+
+Use either plain Markdown.
+
+``` r
+envelope() %>%
+  # Render plain Markdown from a character vector.
+  md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
+```
+
+    Date:         Thu, 09 Sep 2021 08:06:28 GMT
+    X-Mailer:     {emayili}-0.4.19
+    MIME-Version: 1.0
+    Content-type: multipart/mixed; boundary="383631f2d31d1340819792fd17"
+
+    --383631f2d31d1340819792fd17
+    Content-Type: text/html; charset=utf-8
+    Content-Disposition: inline
+    Content-Transfer-Encoding: quoted-printable
+
+    <p>Check out <code>{emayili}</code> on <a href=3D"https://cran.r-project.org/package=3Demayili">CRAN</a>.</p>
+
+
+    --383631f2d31d1340819792fd17--
+
+Or R Markdown.
+
+``` r
+envelope() %>%
+  # Render R Markdown from a file.
+  rmd("message.Rmd")
+```
+
+In both cases the function will accept either a file path or a character
+vector containing Markdown text.
 
 ### Adding an Inline Image
 

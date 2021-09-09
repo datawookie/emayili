@@ -37,11 +37,20 @@ get_option_details <- function(default = TRUE) {
   getOption("envelope_details", default = default)
 }
 
+#' Read entire text file into character vector
+#'
+#' @noRd
+#'
+#' @param path Relative or absolute file path
+#'
+#' @return A character vector
 read_file <- function(path) {
   readChar(path, file.info(path)$size)
 }
 
 #' Normalise file path
+#'
+#' @noRd
 #'
 #' @param path Relative or absolute file path
 #'
@@ -51,6 +60,8 @@ normalise_filepath <- function(path) {
 }
 
 #' Check if character vector is a file name or file path
+#'
+#' @noRd
 #'
 #' @param path A character vector (which might also be a file path)
 #'
