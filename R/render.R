@@ -96,6 +96,8 @@ rmd <- function(
   input <- tempfile(fileext = ".Rmd")
   output <- tempfile(fileext = ".html")
 
+  if (markdown == "") stop("Input is empty!", call. = FALSE)
+
   cat(markdown, file = input)
 
   rmarkdown::render(
@@ -105,7 +107,7 @@ rmd <- function(
   )
   output = read_file(output)
 
-  # Strip out <script> tags.
+  # Strip out <script> tags. These don't work in email, right?
   #
   xml <- read_html(output)
 
