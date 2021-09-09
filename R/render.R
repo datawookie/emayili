@@ -1,113 +1,110 @@
-# render <- function(msg, rmd_filepath, quiet = TRUE){
-#   output_path = tempfile(fileext = ".html")
-#   #
-#   rmarkdown::render(rmd_filepath, output_file = output_path, quiet = quiet)
-#
-#   # OPTION 1
-#   #
-#   # msg <- msg %>% attachment(output_path)
-#
-#   # OPTION 2
-#   #
-#   content <- readChar(output_path, file.info(output_path)$size)
-#   content <- sub("^<!DOCTYPE html>\n", "", content)
-#   msg <- msg %>% html(content)
-#
-#  if (is.null(environment))
-# environment <- parent.frame()
-# content <- knitr::knit2html(
-#   text = markdown,
-#   options = c("use_xhtml", "smartypants", "mathjax", "highlight_code"),
-#   stylesheet = GetMarkDownCss(),
-#   envir = environment
-# )
-#
-#   print(output_path)
-#
-#   invisible(msg)
-# }
-
-#' Render markdown into email
+#' Render plain markdown into email
+#'
+#' @inheritParams text
 #'
 #' @param msg A message object.
 #' @param input The input markdown file to be rendered or a character vector of markdown text.
+#' @param .open The opening delimiter.
+#' @param .close The closing delimiter.
 #'
 #' @return A message object.
 #' @export
 #'
 #' @examples
-#' md <- "[This](https://www.google.com) is a link."
+#' markdown <- "[This](https://www.google.com) is a link."
 #' filename <- "message.md"
 #'
 #' # Render from markdown in character vector.
-#' msg <- envelope() %>% render(md)
+#' msg <- envelope() %>% md(markdown)
 #'
 #' # Create a file containing markdown.
-#' cat(md, file = filename)
+#' cat(markdown, file = filename)
 #'
 #' # Render from markdown in file.
-#' msg <- envelope() %>% render(filename)
+#' msg <- envelope() %>% md(filename)
 #'
 #' # Cleanup.
 #' file.remove(filename)
-render <- function(msg, input) {
-  path <- try(normalizePath(input, mustWork = TRUE), silent = TRUE)
-  #
-  if (class(path) == "try-error") {
-    log_debug("Input doesn't seem to be a file.")
-    md <- input
+md <- function(
+  msg,
+  input,
+  interpolate = TRUE,
+  .open = "{{",
+  .close = "}}"
+) {
+  if (is_filepath(input)) {
+    markdown <- read_file(input)
   } else {
-    md <- xfun::read_utf8(path)
+    log_warn("Interpreting input as character vector.")
+    markdown <- input
   }
 
-  content <- markdown_html(
-    paste(
-      as.character(md),
-      collapse = "\n"
-    )
-  )
+  if (interpolate) {
+    markdown <- glue(markdown, .open = .open, .close = .close)
+  }
 
-  invisible(msg %>% html(content))
+  msg <- msg %>% html(markdown_html(markdown))
+
+  if (get_option_invisible()) invisible(msg) else msg
 }
 
-#' Title
+#' Render R markdown into email
 #'
-#' @param msg
-#' @param input
+#' @inheritParams text
+#' @inheritParams md
 #'
-#' @return
+#' @param msg A message object.
+#' @param input The input R markdown file to be rendered or a character vector of R markdown text.
+#'
+#' @return A message object.
 #' @export
 #'
 #' @examples
-render_rmd <- function(msg, input) {
-  input <- try(normalizePath(input, mustWork = TRUE), silent = TRUE)
-  #
-  if (class(input) == "try-error") {
-    log_debug("Input doesn't seem to be a file.")
-    stop("STOP")
+#' filename <- "gh-doc.Rmd"
+#'
+#' # Create an Rmd document from template.
+#' rmarkdown::draft(
+#'   filename,
+#'   template = "github_document",
+#'   package = "rmarkdown",
+#'   edit = FALSE
+#' )
+#'
+#' # Render from Rmd file.
+#' msg <- envelope() %>% rmd(filename)
+#'
+#' # Cleanup.
+#' file.remove(filename)
+rmd <- function(
+  msg,
+  input,
+  interpolate = TRUE,
+  .open = "{{",
+  .close = "}}"
+) {
+  if (is_filepath(input)) {
+    markdown <- read_file(input)
   } else {
+    log_warn("Interpreting input as character vector.")
+    markdown <- input
   }
 
+  if (interpolate) {
+    markdown <- glue(markdown, .open = .open, .close = .close)
+  }
+
+  input <- tempfile(tmpdir = TMPDIR, fileext = ".Rmd")
   output <- tempfile(tmpdir = TMPDIR, fileext = ".html")
 
-  print(glue("input: {input}"))
-  print(glue("output: {output}"))
+  cat(markdown, file = input)
 
   rmarkdown::render(
     input,
-    output_file = output
+    output_file = output,
+    quiet = TRUE
   )
 
-  content <- read_file(output)
+  msg <- msg %>% html(read_file(output))
 
-  invisible(msg %>% html(content))
+  if (get_option_invisible()) invisible(msg) else msg
 }
-
-email <- email %>%
-  from("andrew@fathomdata.dev") %>%
-  to("collierab@gmail.com") %>%
-  subject("Test render") %>%
-  render_rmd("untitled.Rmd") %>%
-  smtp(verbose = TRUE)
-
-  # print(details = TRUE)

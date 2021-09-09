@@ -110,22 +110,30 @@ You can identify emails which have been sent using `{emayili}` by the presence o
 
 If you want to see the complete MIME object, just convert to a string.
 
-```{r eval=FALSE}
+```{r include = FALSE}
 as.character(email)
 ```
 
 You can also call the `print()` method and specify `details = TRUE`.
 
-```{r eval=FALSE}
+```{r include = FALSE}
 print(email, details = TRUE)
 ```
 
-You can set the `envelope_details` option to assert that these details should always be printed.
+You can set the `envelope_details` option to assert that the details should always be printed.
 
-```{r eval = FALSE}
+```{r}
 # Always print envelope details.
 #
 options(envelope_details = TRUE)
+```
+
+By default the results returned by most of the methods are invisible. You can make them visible via the `envelope_invisible` (default: `TRUE`).
+
+```{r}
+# Always show envelope.
+#
+options(envelope_invisible = FALSE)
 ```
 
 ### Interpolating Text
@@ -138,6 +146,28 @@ name = "Alice"
 envelope() %>%
   text("Hello {name}!")
 ```
+
+### Rendering Markdown
+
+You can render Markdown straight into a message.
+
+Use either plain Markdown.
+
+```{r}
+envelope() %>%
+  # Render plain Markdown from a character vector.
+  md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
+```
+
+Or R Markdown.
+
+```{r eval = FALSE}
+envelope() %>%
+  # Render R Markdown from a file.
+  rmd("message.Rmd")
+```
+
+In both cases the function will accept either a file path or a character vector containing Markdown text.
 
 ### Adding an Inline Image
 
