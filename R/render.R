@@ -93,8 +93,8 @@ rmd <- function(
     markdown <- glue(markdown, .open = .open, .close = .close)
   }
 
-  input <- tempfile(tmpdir = TMPDIR, fileext = ".Rmd")
-  output <- tempfile(tmpdir = TMPDIR, fileext = ".html")
+  input <- tempfile(fileext = ".Rmd")
+  output <- tempfile(fileext = ".html")
 
   cat(markdown, file = input)
 
