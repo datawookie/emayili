@@ -21,3 +21,5 @@ NULL
 # Deal with "no visible binding for global variable ‘.’".
 #
 globalVariables(c("."))
+
+TMPDIR <- "/tmp"
