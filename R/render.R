@@ -103,8 +103,20 @@ rmd <- function(
     output_file = output,
     quiet = TRUE
   )
+  output = read_file(output)
 
-  msg <- msg %>% html(read_file(output))
+  # Strip out <script> tags.
+  #
+  xml <- read_html(output)
+
+  xml_find_all(xml, "//script") %>% xml_remove()
+  #
+  # Don't actually want to strip out all <link> tags because one of them has
+  # important CSS, but this is just to get things working in GMail web client.
+  #
+  xml_find_all(xml, "//link") %>% xml_remove()
+
+  msg <- msg %>% html(as.character(xml))
 
   if (get_option_invisible()) invisible(msg) else msg
 }

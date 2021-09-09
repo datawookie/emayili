@@ -49,7 +49,8 @@ Imports:
     tibble,
     tidyr,
     vctrs,
-    xfun
+    xfun,
+    xml2
 Suggests:
     here,
     testthat (>= 2.1.0),

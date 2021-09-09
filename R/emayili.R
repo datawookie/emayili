@@ -4,6 +4,7 @@
 #' @import magrittr
 #' @import stringr
 #' @import tibble
+#' @import xml2
 #' @importFrom base64enc base64encode
 #' @importFrom commonmark markdown_html
 #' @importFrom glue glue
@@ -18,6 +19,4 @@
 #' @importFrom xfun read_utf8
 NULL
 
-# Deal with "no visible binding for global variable ‘.’".
-#
 globalVariables(c("."))
