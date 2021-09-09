@@ -9,7 +9,7 @@
 #' @importFrom glue glue
 #' @importFrom httr http_date
 #' @importFrom mime guess_type
-#' @importFrom purrr insistently rate_backoff map map_dfr map_chr
+#' @importFrom purrr possibly insistently rate_backoff map map_dfr map_chr
 #' @importFrom rmarkdown render
 #' @importFrom stats setNames
 #' @importFrom tidyr unnest
