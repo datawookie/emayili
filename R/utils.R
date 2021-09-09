@@ -69,3 +69,7 @@ normalise_filepath <- function(path) {
 is_filepath <- function(path) {
   !is.na(normalise_filepath(path))
 }
+
+hexkey <- function(object = runif(1)) {
+  digest(object)
+}

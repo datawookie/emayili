@@ -36,6 +36,7 @@ Imports:
     base64enc,
     commonmark,
     curl (>= 4.0),
+    digest,
     dplyr,
     glue,
     httr,

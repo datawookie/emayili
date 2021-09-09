@@ -41,7 +41,7 @@ envelope <- function(
       header = list(
         Date = http_date(Sys.time())
       ),
-      boundary = paste(sprintf("%x", sample(64, size = 16, replace = TRUE)), collapse = ""),
+      boundary = hexkey(),
       parts = list()
     ),
     class="envelope")
