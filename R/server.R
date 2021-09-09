@@ -107,15 +107,17 @@ server <- function(
     #
     # This is to mitigate occasional curl_fetch_memory() errors.
     #
-    send_mail <- insistently(
-      send_mail,
-      rate = rate_backoff(
-        max_times = max_times,
-        pause_base = pause_base,
-        pause_cap = pause_base * 2**max_times,
-        jitter = FALSE
+    if (max_times > 1) {
+      send_mail <- insistently(
+        send_mail,
+        rate = rate_backoff(
+          max_times = max_times,
+          pause_base = pause_base,
+          pause_cap = pause_base * 2**max_times,
+          jitter = FALSE
+        )
       )
-    )
+    }
 
     # Strip descriptive name.
     #
@@ -127,7 +129,7 @@ server <- function(
     #
     strip_name <- function(address) {
       if (!is.null(address)) {
-        str_replace_all(address, "(^.*<|>$)", "")
+        str_replace_all(as.character(address), "(^.*<|>$)", "")
       }
     }
 
