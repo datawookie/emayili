@@ -38,5 +38,23 @@ get_option_details <- function(default = TRUE) {
 }
 
 read_file <- function(path) {
-  from_rmd <- readChar(path, file.info(path)$size)
+  readChar(path, file.info(path)$size)
+}
+
+#' Normalise file path
+#'
+#' @param path Relative or absolute file path
+#'
+#' @return An absolute file path (if the file exists) or \code{NA}.
+normalise_filepath <- function(path) {
+  possibly(normalizePath, NA_character_)(path, mustWork = TRUE)
+}
+
+#' Check if character vector is a file name or file path
+#'
+#' @param path A character vector (which might also be a file path)
+#'
+#' @return If it is a file path, then return \code{TRUE}, otherwise return \code{FALSE}.
+is_filepath <- function(path) {
+  !is.na(normalise_filepath(path))
 }
