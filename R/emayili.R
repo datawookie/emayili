@@ -22,4 +22,4 @@ NULL
 #
 globalVariables(c("."))
 
-TMPDIR <- "/tmp"
+TMPDIR <- tempdir()
