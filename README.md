@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Thu, 09 Sep 2021 08:06:28 GMT
+    Date:         Thu, 09 Sep 2021 14:22:18 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -156,19 +156,19 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:         Thu, 09 Sep 2021 08:06:28 GMT
+    Date:         Thu, 09 Sep 2021 14:22:18 GMT
     X-Mailer:     {emayili}-0.4.19
     MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="a2b3f361fc293a111161434863c"
+    Content-type: multipart/mixed; boundary="3d1a1b1d23cd313d2f2e3e2d2d3f30"
 
-    --a2b3f361fc293a111161434863c
+    --3d1a1b1d23cd313d2f2e3e2d2d3f30
     Content-Type: text/plain; charset=utf-8
     Content-Disposition: inline
     Content-Transfer-Encoding: 7bit
 
     Hello Alice!
 
-    --a2b3f361fc293a111161434863c--
+    --3d1a1b1d23cd313d2f2e3e2d2d3f30--
 
 ### Rendering Markdown
 
@@ -182,12 +182,12 @@ envelope() %>%
   md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
 ```
 
-    Date:         Thu, 09 Sep 2021 08:06:28 GMT
+    Date:         Thu, 09 Sep 2021 14:22:18 GMT
     X-Mailer:     {emayili}-0.4.19
     MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="383631f2d31d1340819792fd17"
+    Content-type: multipart/mixed; boundary="361c38151b8353f3b191915103534"
 
-    --383631f2d31d1340819792fd17
+    --361c38151b8353f3b191915103534
     Content-Type: text/html; charset=utf-8
     Content-Disposition: inline
     Content-Transfer-Encoding: quoted-printable
@@ -195,7 +195,7 @@ envelope() %>%
     <p>Check out <code>{emayili}</code> on <a href=3D"https://cran.r-project.org/package=3Demayili">CRAN</a>.</p>
 
 
-    --383631f2d31d1340819792fd17--
+    --361c38151b8353f3b191915103534--
 
 Or R Markdown.
 
@@ -207,6 +207,9 @@ envelope() %>%
 
 In both cases the function will accept either a file path or a character
 vector containing Markdown text.
+
+🚨 **Note:** Inline images embedded in the rendered HTML will not appear
+in the GMail (and potentially other) web client.
 
 ### Adding an Inline Image
 
