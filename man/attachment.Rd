@@ -4,14 +4,7 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(
-  msg,
-  path,
-  name = NA,
-  type = NA,
-  cid = NA,
-  disposition = "attachment"
-)
+attachment(msg, path, name = NA, type = NA, cid = NA)
 }
 \arguments{
 \item{msg}{A message object.}

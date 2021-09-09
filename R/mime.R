@@ -1,99 +1,303 @@
-#' Create a MIME (Multipurpose Internet Mail Extensions) object.
+# CONSTRUCTOR -----------------------------------------------------------------
+
+is.mime <- function(x) {
+  "MIME" %in% class(x)
+}
+
+#' Create a MIME object
 #'
-#' @param content_type The MIME type of the content.
-#' @param content_disposition Should the content be displayed inline or as an attachment?
-#' @param encoding How to encode binary data to ASCII.
+#' ```
+#' MIME
+#'  ├── multipart/mixed
+#'  ├── multipart/related
+#'  ├── text/plain
+#'  ├── text/html
+#'  └── other
+#' ```
+#'
+#' @param content Content.
+#' @param disposition Should the content be displayed inline or as an attachment?
 #' @param charset How to interpret the characters in the content. Most often either UTF-8 or ISO-8859-1.
-#' @param cid An optional Content-Id.
-#' @param ... Other arguments.
+#' @param encoding How to encode binary data to ASCII.
+#' @param boundary Boundary string.
+#' @param type The MIME type of the content.
+#' @param children
+#'
 #' @return A MIME object.
-mime <- function(content_type, content_disposition, charset, encoding, cid = NA, ...) {
+#' @export
+#'
+#' @examples
+MIME <- function(
+  content = NULL,
+  disposition = NA,
+  charset = NA,
+  encoding = NA,
+  boundary = emayili:::hexkey(),
+  type = NA,
+  children = list()
+) {
+  # If just a single child, convert to list.
+  if (!all(class(children) == c("list"))) children <- list(children)
+  # Check that all children are MIME.
+  for (child in children) {
+    if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
+  }
+
   structure(
     list(
-      header = list(
-        content_type = content_type,
-        content_disposition = content_disposition,
-        encoding = encoding,
-        format = format,
-        charset = charset,
-        cid = cid,
+      content = content,
+      disposition = disposition,
+      charset = charset,
+      encoding = encoding,
+      boundary = boundary,
+      children = children,
+      type = type
+    ),
+    class = "MIME"
+  )
+}
+
+multipart_related <- function(...) {
+  structure(
+    c(
+      MIME(...),
+      list()
+    ),
+    class = c("multipart_related", "MIME")
+  )
+}
+
+multipart_mixed <- function(...) {
+  structure(
+    c(
+      MIME(...),
+      list()
+    ),
+    class = c("multipart_mixed", "MIME")
+  )
+}
+
+text_plain <- function(
+  content,
+  disposition = "inline",
+  charset = "utf-8",
+  encoding = "7bit",
+  ...
+) {
+  structure(
+    c(
+      MIME(content, disposition, charset, encoding, boundary = NA, ...),
+      list()
+    ),
+    class = c("text_plain", "MIME")
+  )
+}
+
+#' Create \code{text/html} MIME object
+#'
+#' @inheritParams MIME
+#'
+#' @param ... Further arguments passed to or from other methods.
+#'
+#' @return A \code{}text_html object derived from \code{MIME}.
+#' @export
+#'
+#' @examples
+text_html <- function(
+  content,
+  disposition = "inline",
+  charset = "utf-8",
+  encoding = NA,
+  # encoding = "quoted-printable",
+  ...
+) {
+  structure(
+    c(
+      MIME(
+        # qp_encode(content),
+        content,
+        disposition,
+        charset,
+        encoding,
+        boundary = NA,
         ...
       ),
-      body = NULL
+      list()
     ),
-    class="mime")
+    class = c("text_html", "MIME")
+  )
 }
 
-#' Encode parameter values for MIME headers
+#' Title
 #'
-#' Formats UTF-8 parameter values for the use in MIME headers. Non-ASCII
-#' characters, control characters, and some special characters have to be
-#' specially encoded according to the
-#' \href{https://tools.ietf.org/html/rfc2231}{RFC2231} specification.
+#' @param filename
+#' @param name
+#' @param type
+#' @param cid An optional Content-Id.
+#' @param disposition
+#' @param charset
+#' @param encoding
+#' @param ...
 #'
-#' @param x \code{character(1)}. UTF-8 string to format.
-#' @return \code{character(1)}. String to put right after the parameter name in
-#'   a MIME header. The equal sign and possible quotation marks are included.
-#'   For example \code{"I'm not quoted.csv"} turns to
-#'   \code{"=\\"I'm not quoted.csv\\""} while \code{"\\"I'm quoted\\".csv"}
-#'   results in \code{"*=utf-8''\%22I'm\%20quoted\%22.csv"}.
-#' @examples
-#' emayili:::parameter_value_encode("I'm not quoted.csv")
-#' emayili:::parameter_value_encode("\"I'm quoted\".csv")
-parameter_value_encode <- function(x){
-  x_raw <- charToRaw(x)
-  ascii_to_encode <- as.raw(c(0x00:0x1F, 0x22, 0x5C, 0x7F))
-  # testing showed that control characters, "\"" and sometimes "\\" also must be
-  # encoded
-  ascii <- x_raw <= as.raw(0x7F) & !(x_raw %in% ascii_to_encode)
-  if (all(ascii)) {
-    return(paste0("=\"", x, "\""))
+#' @export
+other <- function(
+  filename,
+  name = NA,
+  type = NA,
+  cid = NA,
+  disposition = "attachment",
+  encoding = "base64",
+  ...
+) {
+  charset <- NA
+  basename <- basename(filename)
+  name <- ifelse(is.na(name), basename, name)
+
+  if (!is.na(type)) {
+    # Could use mime::mimemap to map from specific extensions to MIME types,
+    # so that the following would give the same result:
+    #
+    # attachment(..., type = "pdf")
+    # attachment(..., type = "application/pdf")
   } else {
-    syntax_ascii <- as.raw(c(0x20, 0x25, 0x3B))
-    # in case of encoding, " ", "%" and ";" must be encoded as well
-    ascii <- ascii & !(x_raw %in% syntax_ascii)
-    encoded <- character(length(x_raw))
-    encoded[ascii] <- rawToChar(x_raw[ascii], multiple = TRUE)
-    encoded[!ascii] <- paste0("%", toupper(as.character(x_raw[!ascii])))
-    return(paste0("*=utf-8''", paste(encoded, collapse = "")))
+    type <- guess_type(filename, empty = "application/octet-stream")
   }
+  type <- glue('{type}; name="{name}"')
+
+  if (is.na(disposition)) {
+    disposition <- ifelse(
+      grepl("text", type),
+      # If it's text...
+      "inline",
+      # ... otherwise:
+      "attachment"
+    )
+  }
+  disposition <- glue('{disposition}; filename="{basename}"')
+
+  content <- base64encode(
+    read_bin(filename),
+    76L,
+    "\r\n"
+  )
+
+  structure(
+    c(
+      MIME(content, disposition, charset, encoding, boundary = NA, type = type, ...),
+      list(
+        cid = ifelse(is.na(cid), hexkey(), cid)
+      )
+    ),
+    class = c("attachment", "MIME")
+  )
 }
 
-#' Format the header of a MIME object.
+# APPEND ----------------------------------------------------------------------
+
+#' Title
 #'
-#' The header must conform to the SMTP Protocol (https://tools.ietf.org/html/rfc821). Specifically, lines should be
-#' terminated by CRLF (not just LF). The \dQuote{name} and \dQuote{filename}
-#' fields can contain any possible UTF-8 characters as they are
-#' \link[=parameter_value_encode]{parameter value encoded}.
+#' @param x
+#' @param child
+append <- function(x, child) {
+  UseMethod("append", x)
+}
+
+#' Title
 #'
-#' @param msg A message object.
-#' @return A formatted header string.
-format.mime <- function(msg) {
-  # Unpack relevant variables here so that we can contain the environment which
-  # glue() searches.
+#' @param x
+#' @param child
+append.MIME <- function(x, child) {
+  if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
+  x$children <- c(x$children, list(child))
+  x
+}
+
+#' Title
+#'
+#' @param x
+#' @param child
+append.multipart_related <- function(x, child) NextMethod(x, child)
+
+#' Title
+#'
+#' @param x
+#' @param child
+append.multipart_mixed <- function(x, child) NextMethod(x, child)
+
+# CHARACTER -------------------------------------------------------------------
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @export
+as.character.MIME <- function(x, ...) {
+  children <- sapply(x$children, function(child) {
+    paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
+  })
+  type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
-  content_type        <- msg$header$content_type
-  charset             <- msg$header$charset
-  name                <- msg$header$name
-  content_disposition <- msg$header$content_disposition
-  filename            <- msg$header$filename
-  cid                 <- msg$header$cid
-  encoding            <- msg$header$encoding
+  body <- c(
+    # Head.
+    paste(
+      c(
+        glue('Content-Type:              {type}'),
+        if (!is.na(x$charset)) glue('charset={x$charset}') else NULL,
+        if (!is.na(x$boundary)) glue('boundary="{x$boundary}"') else NULL
+      ),
+      collapse = "; "
+    ),
+    if (!is.na(x$disposition)) {
+      glue('Content-Disposition:       {x$disposition}')
+    } else NULL,
+    if (!is.na(x$encoding)) {
+      glue('Content-Transfer-Encoding: {x$encoding}')
+    } else NULL,
+    if (!is.null(x$cid)) {
+      paste(
+        glue('X-Attachment-Id:           {x$cid}'),
+        glue('Content-ID:                <{x$cid}>'),
+        sep = "\n"
+      )
+    } else NULL,
+    "",
+    # Content (if any).
+    x$content,
+    # Children (if any).
+    if(length(children)) children else NULL,
+    # Foot.
+    if (!is.na(x$boundary)) glue('--{x$boundary}--') else NULL
+  )
 
-  if (!is.null(name))     name     <- parameter_value_encode(name)
-  if (!is.null(filename)) filename <- parameter_value_encode(filename)
-
-  headers <-  c(
-    'Content-Type: {content_type}',
-    ifelse(!is.null(charset), '; charset={charset}', ''),
-    ifelse(!is.null(name), '; name{name}', ''),
-    '\r\nContent-Disposition: {content_disposition}',
-    ifelse(!is.null(filename), '; filename{filename}', ''),
-    ifelse(!is.na(cid), '\r\nContent-Id: <{cid}>\r\nX-Attachment-Id: {cid}', ''),
-    '\r\nContent-Transfer-Encoding: {encoding}'
-  ) %>%
-    paste(collapse = "") %>%
-    glue()
-
-  paste(headers, msg$body, sep = "\n\n")
+  paste(body, collapse = "\n")
 }
+
+# PRINT -----------------------------------------------------------------------
+
+#' Title
+#'
+#' @param x
+#'
+#' @export
+print.MIME <- function(x) {
+  cat(as.character(x))
+}
+
+#' #' Title
+#' #'
+#' #' @param x
+#' #'
+#' #' @export
+#' print.multipart_related <- function(x) {
+#'   NextMethod()
+#' }
+
+#' #' Title
+#' #'
+#' #' @param x
+#' #'
+#' #' @export
+#' print.multipart_mixed <- function(x) {
+#'   NextMethod()
+#' }

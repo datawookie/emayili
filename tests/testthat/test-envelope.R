@@ -1,6 +1,6 @@
 test_that("envelope print() output", {
   msg <- envelope() %>% subject("Test message")
-  expect_output(print(msg), "Date:         .*\nSubject:      Test message")
+  expect_output(print(msg), "Date:         .*\nSubject:                   Test message")
 })
 
 test_that("class envelope", {
@@ -40,12 +40,12 @@ test_that("subject", {
 
 test_that("body text", {
   email_text <- envelope(text = "foo")
-  expect_equal(email_text$parts[[1]]$body, "foo")
+  expect_equal(email_text$parts[[1]]$content, "foo")
 })
 
 test_that("body html", {
   html <- envelope(html = "foo")
-  expect_equal(html$parts[[1]]$body, "foo")
+  expect_equal(html$parts[[1]]$content, "foo")
 })
 
 
