@@ -36,3 +36,7 @@ get_option_invisible <- function(default = TRUE) {
 get_option_details <- function(default = TRUE) {
   getOption("envelope_details", default = default)
 }
+
+read_file <- function(path) {
+  from_rmd <- readChar(path, file.info(path)$size)
+}
