@@ -69,3 +69,45 @@ render <- function(msg, input) {
 
   invisible(msg %>% html(content))
 }
+
+#' Title
+#'
+#' @param msg
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+render_rmd <- function(msg, input) {
+  input <- try(normalizePath(input, mustWork = TRUE), silent = TRUE)
+  #
+  if (class(input) == "try-error") {
+    log_debug("Input doesn't seem to be a file.")
+    stop("STOP")
+  } else {
+  }
+
+  output <- tempfile(tmpdir = TMPDIR, fileext = ".html")
+
+  print(glue("input: {input}"))
+  print(glue("output: {output}"))
+
+  rmarkdown::render(
+    input,
+    output_file = output
+  )
+
+  content <- read_file(output)
+
+  invisible(msg %>% html(content))
+}
+
+email <- email %>%
+  from("andrew@fathomdata.dev") %>%
+  to("collierab@gmail.com") %>%
+  subject("Test render") %>%
+  render_rmd("untitled.Rmd") %>%
+  smtp(verbose = TRUE)
+
+  # print(details = TRUE)
