@@ -53,7 +53,7 @@ text <- function(
 
   body <- text_plain(content, disposition, charset, encoding)
 
-  msg$parts <- c(msg$parts, list(body))
+  msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg
 }
@@ -87,12 +87,15 @@ html <- function(msg, content, images = c(), disposition = "inline", charset = "
 
   body <- text_html(content, disposition, charset, encoding)
 
-  msg$parts <- c(msg$parts, list(body))
+  # related <- multipart_related()
+  # related <- append(related, body)
 
-  for (image in images) {
-    msg <- msg %>%
-      attachment(path = image, cid = hexkey(basename(image)))
-  }
+  msg <- append(msg, body)
+  #
+  # for (image in images) {
+  #   msg <- msg %>%
+  #     attachment(path = image, cid = hexkey(basename(image)))
+  # }
 
   invisible(msg)
 }

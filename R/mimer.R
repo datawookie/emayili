@@ -80,13 +80,15 @@ text_html <- function(
   content,
   disposition = "inline",
   charset = "utf-8",
-  encoding = "quoted-printable",
+  encoding = NA,
+  # encoding = "quoted-printable",
   ...
 ) {
   structure(
     c(
       MIME(
-        qp_encode(content),
+        # qp_encode(content),
+        content,
         disposition,
         charset,
         encoding,
@@ -152,7 +154,7 @@ other <- function(
       # )
     )
   }
-  # disposition <- glue('{disposition}; filename="{basename}"')
+  disposition <- glue('{disposition}; filename="{basename}"')
 
   body <- read_bin(filename)
   #
@@ -180,15 +182,54 @@ other <- function(
 
 # APPEND ----------------------------------------------------------------------
 
+#' Title
+#'
+#' @param x
+#' @param child
+#'
+#' @return
+#' @export
+#'
+#' @examples
 append <- function(x, child) {
   UseMethod("append", x)
 }
+
+#' Title
+#'
+#' @param x
+#' @param child
+#'
+#' @return
+#' @export
+#'
+#' @examples
 append.MIME <- function(x, child) {
   if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
   x$children <- c(x$children, list(child))
   x
 }
+
+#' Title
+#'
+#' @param x
+#' @param child
+#'
+#' @return
+#' @export
+#'
+#' @examples
 append.multipart_related <- function(x, child) NextMethod(x, child)
+
+#' Title
+#'
+#' @param x
+#' @param child
+#'
+#' @return
+#' @export
+#'
+#' @examples
 append.multipart_mixed <- function(x, child) NextMethod(x, child)
 
 # CHARACTER -------------------------------------------------------------------
@@ -241,71 +282,6 @@ as.character.MIME <- function(x, ...) {
   )
 
   paste(body, collapse = "\n")
-}
-
-#' Title
-#'
-#' @param x
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.multipart_related <- function(x, ...) {
-  NextMethod()
-}
-
-#' Title
-#'
-#' @param x
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.multipart_mixed <- function(x, ...) {
-  NextMethod()
-}
-
-#' Title
-#'
-#' @param x
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.text_plain <- function(x, ...) {
-  paste(NextMethod(), x$content, sep = "\n")
-}
-
-#' Title
-#'
-#' @param x
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.text_html <- function(x, ...) {
-  paste(NextMethod(), x$content, sep = "\n")
-}
-
-#' Title
-#'
-#' @param x
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as.character.attachment <- function(x, ...) {
-  NextMethod()
 }
 
 # PRINT -----------------------------------------------------------------------

@@ -9,6 +9,13 @@ y4 <- emayili:::multipart_related()
 z0 <- emayili:::multipart_mixed(children = y0)
 z2 <- emayili:::multipart_mixed(children = list(y0, y1))
 
+smtp <- server(
+  host = Sys.getenv("SMTP_SERVER"),
+  port = Sys.getenv("SMTP_PORT"),
+  username = Sys.getenv("SMTP_USERNAME"),
+  password = Sys.getenv("SMTP_PASSWORD"),
+  max_times = 1
+)
 
 # print(x)
 # print(y0)
@@ -31,26 +38,35 @@ z2 <- emayili:::multipart_mixed(children = list(y0, y1))
 msg <- envelope() %>%
   to("andrew@fathomdata.dev") %>%
   from("andrew@fathomdata.dev")
-#
-# print(msg, details = TRUE)
-#
-# msg <- envelope() %>%
+
+# msg %>%
 #   to("andrew@fathomdata.dev") %>%
 #   from("andrew@fathomdata.dev") %>%
-#   subject("TEST MIXED") %>%
-#   text("Hello, World!") %>%
-#   html("<p>Hello, World! <strong>BOOM</strong></p>")
-#   # attachment("/home/wookie/Downloads/unnamed-chunk-7-1.png")
+#   subject("TEST TEXT") %>%
+#   text("Hello, World!") %T>%
+#   print(details = TRUE) %>%
+#   smtp(verbose = TRUE)
+#
+# msg %>%
+#   to("andrew@fathomdata.dev") %>%
+#   from("andrew@fathomdata.dev") %>%
+#   subject("TEST HTML") %>%
+#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
+#   print(details = TRUE) %>%
+#   smtp(verbose = TRUE)
+
+msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST ATTACHMENT") %>%
+  html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
+  attachment("/home/wookie/Downloads/testfile.jpg") %>%
+  print(details = TRUE)
+
+  # html("<p>Hello, World! <strong>BOOM</strong></p>")
 #
 # print(msg, details = TRUE)
 #
-smtp <- server(
-  host = Sys.getenv("SMTP_SERVER"),
-  port = Sys.getenv("SMTP_PORT"),
-  username = Sys.getenv("SMTP_USERNAME"),
-  password = Sys.getenv("SMTP_PASSWORD"),
-  max_times = 1
-)
 
 # emayili::other("/etc/passwd")
 #
@@ -61,7 +77,19 @@ smtp <- server(
 #   attachment("/etc/passwd", type = "text/plain") %>%
 #   attachment("/home/wookie/Downloads/Untitled.png")
 
-msg <- msg %>%
+msg1 <- msg %>%
+  text("untitled.Rmd")
+print(msg1, details = TRUE)
+
+msg2 <- msg %>%
   rmd("untitled.Rmd")
+print(msg2, details = TRUE)
 
 smtp(msg, verbose = TRUE)
+
+
+related <- emayili:::multipart_related()
+related <- append(related,  emayili:::text_html("<p>BAR</p>"))
+
+mixed <- emayili:::multipart_mixed()
+mixed <- append(mixed,  emayili:::text_html("<p>BAR</p>"))

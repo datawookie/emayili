@@ -41,7 +41,7 @@ envelope <- function(
       header = list(
         Date = http_date(Sys.time())
       ),
-      parts = list()
+      parts = NULL
     ),
     class="envelope")
 
@@ -120,10 +120,25 @@ as.character.envelope <- function(x, ...) {
     "MIME-Version:              1.0"
   )
 
-  if (length(x$parts)) {
-    if (length(x$parts) > 1) x$parts <- multipart_mixed(children = x$parts)
-    message <- c(message, as.character(x$parts))
-  }
+  message <- c(message, sapply(x$parts, as.character))
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#'
+#' @examples
+append.envelope <- function(x, child) {
+  if(is.null(x$parts)) {
+    x$parts <- list(child)
+  } else {
+    x$parts <- c(list(msg$parts), list(child))
+  }
+
+  x
 }
