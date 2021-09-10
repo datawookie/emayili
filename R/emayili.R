@@ -15,9 +15,16 @@
 #' @importFrom rmarkdown render
 #' @importFrom stats setNames
 #' @importFrom tidyr unnest
+#' @importFrom urltools url_decode
 #' @importFrom utils packageVersion
 #' @importFrom vctrs new_rcrd vec_recycle_common vec_cast_common vec_assert field
 #' @importFrom xfun read_utf8
 NULL
 
-globalVariables(c("."))
+globalVariables(
+  c(
+    ".",
+    "msg",
+    "runif"
+    )
+  )

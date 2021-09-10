@@ -46,10 +46,10 @@ Imports:
     purrr,
     rlang (>= 0.4.3),
     rmarkdown,
-    stringi,
     stringr,
     tibble,
     tidyr,
+    urltools,
     vctrs,
     xfun,
     xml2

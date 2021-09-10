@@ -111,10 +111,7 @@ text_html <- function(
 #' @param encoding
 #' @param ...
 #'
-#' @return
 #' @export
-#'
-#' @examples
 other <- function(
   filename,
   name = NA,
@@ -186,10 +183,6 @@ other <- function(
 #'
 #' @param x
 #' @param child
-#'
-#' @return
-#'
-#' @examples
 append <- function(x, child) {
   UseMethod("append", x)
 }
@@ -198,10 +191,6 @@ append <- function(x, child) {
 #'
 #' @param x
 #' @param child
-#'
-#' @return
-#'
-#' @examples
 append.MIME <- function(x, child) {
   if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
   x$children <- c(x$children, list(child))
@@ -212,20 +201,12 @@ append.MIME <- function(x, child) {
 #'
 #' @param x
 #' @param child
-#'
-#' @return
-#'
-#' @examples
 append.multipart_related <- function(x, child) NextMethod(x, child)
 
 #' Title
 #'
 #' @param x
 #' @param child
-#'
-#' @return
-#'
-#' @examples
 append.multipart_mixed <- function(x, child) NextMethod(x, child)
 
 # CHARACTER -------------------------------------------------------------------
@@ -235,10 +216,7 @@ append.multipart_mixed <- function(x, child) NextMethod(x, child)
 #' @param x
 #' @param ...
 #'
-#' @return
 #' @export
-#'
-#' @examples
 as.character.MIME <- function(x, ...) {
   children <- sapply(x$children, function(child) {
     paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
@@ -286,34 +264,25 @@ as.character.MIME <- function(x, ...) {
 #'
 #' @param x
 #'
-#' @return
 #' @export
-#'
-#' @examples
 print.MIME <- function(x) {
   cat(as.character(x))
 }
 
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-print.multipart_related <- function(x) {
-  NextMethod()
-}
+#' #' Title
+#' #'
+#' #' @param x
+#' #'
+#' #' @export
+#' print.multipart_related <- function(x) {
+#'   NextMethod()
+#' }
 
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-print.multipart_mixed <- function(x) {
-  NextMethod()
-}
+#' #' Title
+#' #'
+#' #' @param x
+#' #'
+#' #' @export
+#' print.multipart_mixed <- function(x) {
+#'   NextMethod()
+#' }

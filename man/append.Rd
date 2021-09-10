@@ -6,12 +6,6 @@
 \usage{
 append(x, child)
 }
-\arguments{
-\item{child}{}
-}
-\value{
-
-}
 \description{
 Title
 }

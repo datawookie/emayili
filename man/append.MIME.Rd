@@ -6,12 +6,6 @@
 \usage{
 \method{append}{MIME}(x, child)
 }
-\arguments{
-\item{child}{}
-}
-\value{
-
-}
 \description{
 Title
 }

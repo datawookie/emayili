@@ -135,10 +135,6 @@ as.character.envelope <- function(x, ...) {
 #'
 #' @param x
 #' @param ...
-#'
-#' @return
-#'
-#' @examples
 append.envelope <- function(x, child) {
   if(is.null(x$parts)) {
     x$parts <- list(child)

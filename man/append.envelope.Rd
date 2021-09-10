@@ -6,12 +6,6 @@
 \usage{
 \method{append}{envelope}(x, child)
 }
-\arguments{
-\item{...}{}
-}
-\value{
-
-}
 \description{
 Title
 }

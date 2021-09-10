@@ -6,12 +6,6 @@
 \usage{
 \method{append}{multipart_related}(x, child)
 }
-\arguments{
-\item{child}{}
-}
-\value{
-
-}
 \description{
 Title
 }

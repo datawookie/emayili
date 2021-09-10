@@ -118,7 +118,20 @@ rmd <- function(
   # Don't actually want to strip out all <link> tags because one of them has
   # important CSS, but this is just to get things working in GMail web client.
   #
+  css <- xml_find_all(xml, "//link[starts-with(@href,'data:text/css')]") %>%
+    xml_attr("href") %>%
+    unlist() %>%
+    url_decode() %>%
+    sub("data:text/css,", "", .) %>%
+    paste(collapse = "")
   xml_find_all(xml, "//link") %>% xml_remove()
+
+  xml_add_child(
+    xml_find_first(xml, "//head"),
+    "style",
+    css,
+    type = "text/css"
+  )
 
   # Convert image links into CID references.
   #
