@@ -7,7 +7,6 @@
 html(
   msg,
   content,
-  images = c(),
   disposition = "inline",
   charset = "utf-8",
   encoding = "quoted-printable"

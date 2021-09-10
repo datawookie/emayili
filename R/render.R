@@ -126,10 +126,24 @@ rmd <- function(
     xml_attr(img, "src") <- src
   }
 
-  msg <- msg %>% html(
-    as.character(xml),
-    images = list.files(images, full.names = TRUE)
+  # msg <- msg %>% html(
+  #   as.character(xml),
+  #   images = list.files(images, full.names = TRUE)
+  # )
+
+  body <- multipart_related(
+    children = list(
+      text_html(as.character(xml))
+    )
   )
+
+  msg <- append(msg, body)
+
+  #
+  # for (image in images) {
+  #   msg <- msg %>%
+  #     attachment(path = image, cid = hexkey(basename(image)))
+  # }
 
   if (get_option_invisible()) invisible(msg) else msg
 }

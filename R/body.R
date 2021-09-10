@@ -76,7 +76,7 @@ text <- function(
 #'
 #' # Read HTML message from a file.
 #' msg <- envelope() %>% html("message.html")
-html <- function(msg, content, images = c(), disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
+html <- function(msg, content, disposition = "inline", charset = "utf-8", encoding = "quoted-printable") {
   check_message_body(content)
 
   # Check if it's a file.
@@ -91,11 +91,6 @@ html <- function(msg, content, images = c(), disposition = "inline", charset = "
   # related <- append(related, body)
 
   msg <- append(msg, body)
-  #
-  # for (image in images) {
-  #   msg <- msg %>%
-  #     attachment(path = image, cid = hexkey(basename(image)))
-  # }
 
   invisible(msg)
 }

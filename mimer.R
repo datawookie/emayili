@@ -41,53 +41,44 @@ msg <- envelope() %>%
   to("andrew@fathomdata.dev") %>%
   from("andrew@fathomdata.dev")
 
-msg %>%
-  to("andrew@fathomdata.dev") %>%
-  from("andrew@fathomdata.dev") %>%
-  subject("TEST TEXT") %>%
-  text("Hello, World!") %T>%
-  print() %>%
-  smtp(verbose = TRUE)
+# msg %>%
+#   to("andrew@fathomdata.dev") %>%
+#   from("andrew@fathomdata.dev") %>%
+#   subject("TEST TEXT") %>%
+#   text("Hello, World!") %T>%
+#   print() %>%
+#   smtp(verbose = TRUE)
+#
+# msg %>%
+#   to("andrew@fathomdata.dev") %>%
+#   from("andrew@fathomdata.dev") %>%
+#   subject("TEST HTML") %>%
+#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
+#   print(details = TRUE) %>%
+#   smtp(verbose = TRUE)
+#
+# msg %>%
+#   to("andrew@fathomdata.dev") %>%
+#   from("andrew@fathomdata.dev") %>%
+#   subject("TEST ATTACHMENT") %>%
+#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
+#   attachment("/home/wookie/Downloads/testfile.jpg") %T>%
+#   print() %>%
+#   smtp(verbose = TRUE)
 
-msg %>%
-  to("andrew@fathomdata.dev") %>%
-  from("andrew@fathomdata.dev") %>%
-  subject("TEST HTML") %>%
-  html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
-  print(details = TRUE) %>%
-  smtp(verbose = TRUE)
-
-xxx <- msg %>%
-  to("andrew@fathomdata.dev") %>%
-  from("andrew@fathomdata.dev") %>%
-  subject("TEST ATTACHMENT") %>%
-  html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
-  attachment("/home/wookie/Downloads/testfile.jpg")
-  # print(details = TRUE)
-
-  # html("<p>Hello, World! <strong>BOOM</strong></p>")
+# html("<p>Hello, World! <strong>BOOM</strong></p>")
 #
 # print(msg, details = TRUE)
 #
 
-# emayili::other("/etc/passwd")
-#
-# emayili::other("/home/wookie/Downloads/Untitled.png")
-# emayili::other("/home/wookie/Downloads/maxresdefault.jpg")
+msg %>%
+  subject("TEST RENDER") %>%
+  rmd("untitled.Rmd") %T>%
+  print() %>%
+  smtp(verbose = TRUE)
 
-# msg <- msg %>%
-#   attachment("/etc/passwd", type = "text/plain") %>%
-#   attachment("/home/wookie/Downloads/Untitled.png")
+foo()
 
-msg1 <- msg %>%
-  text("untitled.Rmd")
-print(msg1, details = TRUE)
-
-msg2 <- msg %>%
-  rmd("untitled.Rmd")
-print(msg2, details = TRUE)
-
-smtp(msg, verbose = TRUE)
 
 
 related <- emayili:::multipart_related()
