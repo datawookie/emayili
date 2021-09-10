@@ -1,5 +1,7 @@
 library(emayili)
 
+options(envelope_details = TRUE)
+
 x <- emayili:::MIME()
 y0 <- emayili:::multipart_related()
 y1 <- emayili:::multipart_related()
@@ -39,29 +41,29 @@ msg <- envelope() %>%
   to("andrew@fathomdata.dev") %>%
   from("andrew@fathomdata.dev")
 
-# msg %>%
-#   to("andrew@fathomdata.dev") %>%
-#   from("andrew@fathomdata.dev") %>%
-#   subject("TEST TEXT") %>%
-#   text("Hello, World!") %T>%
-#   print(details = TRUE) %>%
-#   smtp(verbose = TRUE)
-#
-# msg %>%
-#   to("andrew@fathomdata.dev") %>%
-#   from("andrew@fathomdata.dev") %>%
-#   subject("TEST HTML") %>%
-#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
-#   print(details = TRUE) %>%
-#   smtp(verbose = TRUE)
+msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST TEXT") %>%
+  text("Hello, World!") %T>%
+  print() %>%
+  smtp(verbose = TRUE)
 
 msg %>%
   to("andrew@fathomdata.dev") %>%
   from("andrew@fathomdata.dev") %>%
+  subject("TEST HTML") %>%
+  html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
+  print(details = TRUE) %>%
+  smtp(verbose = TRUE)
+
+xxx <- msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
   subject("TEST ATTACHMENT") %>%
   html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
-  attachment("/home/wookie/Downloads/testfile.jpg") %>%
-  print(details = TRUE)
+  attachment("/home/wookie/Downloads/testfile.jpg")
+  # print(details = TRUE)
 
   # html("<p>Hello, World! <strong>BOOM</strong></p>")
 #

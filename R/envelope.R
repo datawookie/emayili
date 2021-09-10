@@ -120,7 +120,13 @@ as.character.envelope <- function(x, ...) {
     "MIME-Version:              1.0"
   )
 
-  message <- c(message, sapply(x$parts, as.character))
+  if (length(x$parts) > 1) {
+    body <- multipart_mixed(children = x$parts)
+  } else {
+    body <- x$parts[[1]]
+  }
+
+  message <- c(message, as.character(body))
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
 }
