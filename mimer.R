@@ -1,4 +1,6 @@
-x <- MIME()
+library(emayili)
+
+x <- emayili:::MIME()
 y0 <- emayili:::multipart_related()
 y1 <- emayili:::multipart_related()
 y2 <- emayili:::multipart_related()
@@ -27,6 +29,28 @@ t1
 h1
 
 msg <- envelope() %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
   text("Hello, World!")
 
 print(msg, details = TRUE)
+
+msg <- envelope() %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST MIXED") %>%
+  text("Hello, World!") %>%
+  html("<p>Hello, World! <strong>BOOM</strong></p>")
+  # attachment("/home/wookie/Downloads/unnamed-chunk-7-1.png")
+
+print(msg, details = TRUE)
+
+smtp <- server(
+  host = Sys.getenv("SMTP_SERVER"),
+  port = Sys.getenv("SMTP_PORT"),
+  username = Sys.getenv("SMTP_USERNAME"),
+  password = Sys.getenv("SMTP_PASSWORD"),
+  max_times = 1
+)
+
+smtp(msg, verbose = TRUE)

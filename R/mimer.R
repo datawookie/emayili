@@ -11,7 +11,7 @@ is.mime <- function(x) {
 #  └── text/html
 #
 MIME <- function(
-  content = NA,
+  content = NULL,
   disposition = NA,
   charset = NA,
   encoding = NA,
@@ -105,26 +105,40 @@ append.multipart_mixed <- function(x, child) NextMethod(x, child)
 
 # CHARACTER -------------------------------------------------------------------
 
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 as.character.MIME <- function(x, ...) {
-  children <- sapply(x$children, as.character.MIME)
+  children <- sapply(x$children, function(child) {
+    paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
+  })
+  type <- sub("_", "/", class(x)[1])
   #
   body <- c(
     # Head.
     paste(
       c(
-        glue('Content-Type: {class(x)[1]}'),
+        glue('Content-Type:              {type}'),
         if (!is.na(x$charset)) glue('charset={x$charset}') else NULL,
         if (!is.na(x$boundary)) glue('boundary="{x$boundary}"') else NULL
       ),
       collapse = "; "
     ),
     if (!is.na(x$disposition)) {
-      glue('Content-Disposition: {x$disposition}')
+      glue('Content-Disposition:       {x$disposition}')
     } else NULL,
     if (!is.na(x$encoding)) {
       glue('Content-Transfer-Encoding: {x$encoding}')
     } else NULL,
     "",
+    # Content (if any).
+    x$content,
     # Children (if any).
     if(length(children)) children else NULL,
     # Foot.
@@ -133,15 +147,93 @@ as.character.MIME <- function(x, ...) {
 
   paste(body, collapse = "\n")
 }
-# Keep calling up hierarchy until reach the top.
-as.character.text_plain <- function(x, ...) paste(NextMethod(), x$content, sep = "\n")
-as.character.text_html <- function(x, ...) paste(NextMethod(), x$content, sep = "\n")
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.multipart_related <- function(x, ...) {
+  NextMethod()
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.multipart_mixed <- function(x, ...) {
+  NextMethod()
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.text_plain <- function(x, ...) {
+  paste(NextMethod(), x$content, sep = "\n")
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.text_html <- function(x, ...) {
+  paste(NextMethod(), x$content, sep = "\n")
+}
 
 # PRINT -----------------------------------------------------------------------
 
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
 print.MIME <- function(x) {
   cat(as.character(x))
 }
-# Keep calling up hierarchy until reach the top.
-print.multipart_related <- function(x) NextMethod()
-print.multipart_mixed <- function(x) NextMethod()
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+print.multipart_related <- function(x) {
+  NextMethod()
+}
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+print.multipart_mixed <- function(x) {
+  NextMethod()
+}

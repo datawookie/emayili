@@ -51,13 +51,6 @@ text <- function(
 
   if (interpolate) content <- glue(content, .envir = .envir)
 
-  type <- "text/plain"
-
-  # body <- mime(type, disposition, charset, encoding, NA)
-  # body$body <- content
-  #
-  # msg$parts <- c(msg$parts, list(body))
-
   body <- text_plain(content, disposition, charset, encoding)
 
   msg$parts <- c(msg$parts, list(body))
@@ -92,10 +85,7 @@ html <- function(msg, content, images = c(), disposition = "inline", charset = "
     content <- paste(readLines(content), collapse = "\n")
   }
 
-  type <- "text/html"
-
-  body <- mime(type, disposition, charset, encoding, NA)
-  body$body <- qp_encode(content)
+  body <- text_html(content, disposition, charset, encoding)
 
   msg$parts <- c(msg$parts, list(body))
 
