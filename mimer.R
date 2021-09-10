@@ -41,48 +41,33 @@ msg <- envelope() %>%
   to("andrew@fathomdata.dev") %>%
   from("andrew@fathomdata.dev")
 
-# msg %>%
-#   to("andrew@fathomdata.dev") %>%
-#   from("andrew@fathomdata.dev") %>%
-#   subject("TEST TEXT") %>%
-#   text("Hello, World!") %T>%
-#   print() %>%
-#   smtp(verbose = TRUE)
-#
-# msg %>%
-#   to("andrew@fathomdata.dev") %>%
-#   from("andrew@fathomdata.dev") %>%
-#   subject("TEST HTML") %>%
-#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
-#   print(details = TRUE) %>%
-#   smtp(verbose = TRUE)
-#
-# msg %>%
-#   to("andrew@fathomdata.dev") %>%
-#   from("andrew@fathomdata.dev") %>%
-#   subject("TEST ATTACHMENT") %>%
-#   html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
-#   attachment("/home/wookie/Downloads/testfile.jpg") %T>%
-#   print() %>%
-#   smtp(verbose = TRUE)
+msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST TEXT") %>%
+  text("Hello, World!") %T>%
+  print() %>%
+  smtp(verbose = TRUE)
 
-# html("<p>Hello, World! <strong>BOOM</strong></p>")
-#
-# print(msg, details = TRUE)
-#
+msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST HTML") %>%
+  html("<p>Farewell, <strong>cruel</strong> World!</p>") %T>%
+  print(details = TRUE) %>%
+  smtp(verbose = TRUE)
+
+msg %>%
+  to("andrew@fathomdata.dev") %>%
+  from("andrew@fathomdata.dev") %>%
+  subject("TEST ATTACHMENT") %>%
+  html("<p>Farewell, <strong>cruel</strong> World!</p>") %>%
+  attachment("/home/wookie/Downloads/testfile.jpg") %T>%
+  print() %>%
+  smtp(verbose = TRUE)
 
 msg %>%
   subject("TEST RENDER") %>%
   rmd("untitled.Rmd") %T>%
   print() %>%
   smtp(verbose = TRUE)
-
-foo()
-
-
-
-related <- emayili:::multipart_related()
-related <- append(related,  emayili:::text_html("<p>BAR</p>"))
-
-mixed <- emayili:::multipart_mixed()
-mixed <- append(mixed,  emayili:::text_html("<p>BAR</p>"))

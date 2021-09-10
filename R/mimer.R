@@ -188,7 +188,6 @@ other <- function(
 #' @param child
 #'
 #' @return
-#' @export
 #'
 #' @examples
 append <- function(x, child) {
@@ -201,7 +200,6 @@ append <- function(x, child) {
 #' @param child
 #'
 #' @return
-#' @export
 #'
 #' @examples
 append.MIME <- function(x, child) {
@@ -216,7 +214,6 @@ append.MIME <- function(x, child) {
 #' @param child
 #'
 #' @return
-#' @export
 #'
 #' @examples
 append.multipart_related <- function(x, child) NextMethod(x, child)
@@ -227,7 +224,6 @@ append.multipart_related <- function(x, child) NextMethod(x, child)
 #' @param child
 #'
 #' @return
-#' @export
 #'
 #' @examples
 append.multipart_mixed <- function(x, child) NextMethod(x, child)

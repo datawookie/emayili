@@ -97,7 +97,7 @@ rmd <- function(
 
   input <- tempfile(fileext = ".Rmd")
   output <- tempfile(fileext = ".html")
-  images <- file.path(sub(".html", "_files", output), "figure-html")
+  image_path <- file.path(sub(".html", "_files", output), "figure-html")
 
   cat(markdown, file = input)
 
@@ -137,13 +137,14 @@ rmd <- function(
     )
   )
 
-  msg <- append(msg, body)
+  for (image in list.files(image_path, full.names = TRUE)) {
+    print(image)
+    body <- append(body, other(filename = image, cid = hexkey(basename(image))))
+      # attachment(path = image, cid = hexkey(basename(image)))
+  }
+  print(body)
 
-  #
-  # for (image in images) {
-  #   msg <- msg %>%
-  #     attachment(path = image, cid = hexkey(basename(image)))
-  # }
+  msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg
 }
