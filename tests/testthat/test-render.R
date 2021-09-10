@@ -1,4 +1,4 @@
-test_that("render plain markdown from string", {
+test_that("render plain Markdown from string", {
   expect_match(
     envelope() %>%
       md("[This](https://www.google.com) is a link.") %>%
@@ -7,13 +7,12 @@ test_that("render plain markdown from string", {
   )
 })
 
-test_that("render R markdown from file", {
+test_that("render R Markdown from file", {
   expect_match(
     envelope() %>%
       rmd(FILE_RMD) %>%
       as.character(),
-    "This is an R Markdown format used for publishing markdown documents to GitHub."
+    "<h2 id=\"github-documents\">GitHub Documents</h2>"
   )
 })
-
 
