@@ -25,3 +25,8 @@ h1 <- emayili:::text_html("<p>BAR</p>")
 
 t1
 h1
+
+msg <- envelope() %>%
+  text("Hello, World!")
+
+print(msg, details = TRUE)

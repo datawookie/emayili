@@ -53,8 +53,12 @@ text <- function(
 
   type <- "text/plain"
 
-  body <- mime(type, disposition, charset, encoding, NA)
-  body$body <- content
+  # body <- mime(type, disposition, charset, encoding, NA)
+  # body$body <- content
+  #
+  # msg$parts <- c(msg$parts, list(body))
+
+  body <- text_plain(content, disposition, charset, encoding)
 
   msg$parts <- c(msg$parts, list(body))
 

@@ -41,7 +41,6 @@ envelope <- function(
       header = list(
         Date = http_date(Sys.time())
       ),
-      boundary = hexkey(),
       parts = list()
     ),
     class="envelope")

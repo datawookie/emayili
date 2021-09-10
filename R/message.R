@@ -58,15 +58,13 @@ as.character.envelope <- function(x, ...) {
 
   message <- list(
     header(x),
-    "MIME-Version: 1.0",
-    sprintf('Content-type: %s; boundary="%s"', CONTENT_TYPE, x$boundary)
+    "MIME-Version: 1.0"
   )
 
   if (length(x$parts)) {
     for (part in x$parts) {
-      message <- c(message, paste0("\r\n--", x$boundary, "\r\n", format(part)))
+      message <- c(message, as.character(part))
     }
-    message <- c(message, paste0("\r\n--", x$boundary, "--\r\n"))
   }
 
   do.call(paste0, c(list(message), collapse = "\r\n"))

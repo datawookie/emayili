@@ -63,12 +63,11 @@ text_plain <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = "7bit",
-  boundary = NA,
   ...
 ) {
   structure(
     c(
-      MIME(content, disposition, charset, encoding, boundary, ...),
+      MIME(content, disposition, charset, encoding, boundary = NA, ...),
       list()
     ),
     class = c("text_plain", "MIME")
@@ -80,12 +79,11 @@ text_html <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = "quoted-printable",
-  boundary = NA,
   ...
 ) {
   structure(
     c(
-      MIME(content, disposition, charset, encoding, boundary, ...),
+      MIME(content, disposition, charset, encoding, boundary = NA, ...),
       list()
     ),
     class = c("text_html", "MIME")
