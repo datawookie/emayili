@@ -48,8 +48,8 @@
 #                       "\xef", "\xf0", "\xf1", "\xf2", "\xf3", "\xf4", "\xf5", "\xf6", "\xf7",
 #                       "\xf8", "\xf9", "\xfa", "\xfb", "\xfc", "\xfd", "\xfe", "\xff", "")
 
-ascii_qp_encoded <- c("=3D")
-ascii_qp_decoded <- c("=")
+ascii_qp_encoded <- "=3D"
+ascii_qp_decoded <- "="
 
 #' Encode a string to quoted-printable.
 #'
@@ -57,7 +57,7 @@ ascii_qp_decoded <- c("=")
 #' @return A vector of encoded strings.
 #' @export
 qp_encode <- function(x) {
-  stringi::stri_replace_all_fixed(x, ascii_qp_decoded, ascii_qp_encoded, vectorize_all=FALSE)
+  gsub(ascii_qp_decoded, ascii_qp_encoded, x, fixed = TRUE)
 }
 
 #' Decode a quoted-printable string.
@@ -66,5 +66,5 @@ qp_encode <- function(x) {
 #' @return A vector of decoded strings.
 #' @export
 qp_decode <- function(x) {
-  stringi::stri_replace_all_fixed(x, ascii_qp_encoded, ascii_qp_decoded, vectorize_all=FALSE)
+  gsub(ascii_qp_encoded, ascii_qp_decoded, x, fixed = TRUE)
 }
