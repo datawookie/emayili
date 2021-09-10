@@ -95,12 +95,6 @@ rmd <- function(
 
   if (markdown == "") stop("Input is empty!", call. = FALSE)
 
-
-
-
-
-
-
   input <- tempfile(fileext = ".Rmd")
   output <- tempfile(fileext = ".html")
   images <- file.path(sub(".html", "_files", output), "figure-html")
@@ -135,7 +129,7 @@ rmd <- function(
   msg <- msg %>% html(
     as.character(xml),
     images = list.files(images, full.names = TRUE)
-    )
+  )
 
   if (get_option_invisible()) invisible(msg) else msg
 }

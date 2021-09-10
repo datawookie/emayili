@@ -30,8 +30,7 @@ z2 <- emayili:::multipart_mixed(children = list(y0, y1))
 #
 msg <- envelope() %>%
   to("andrew@fathomdata.dev") %>%
-  from("andrew@fathomdata.dev") %>%
-  text("Hello, World!")
+  from("andrew@fathomdata.dev")
 #
 # print(msg, details = TRUE)
 #
@@ -53,13 +52,16 @@ smtp <- server(
   max_times = 1
 )
 
-emayili::other("/etc/passwd")
+# emayili::other("/etc/passwd")
+#
+# emayili::other("/home/wookie/Downloads/Untitled.png")
+# emayili::other("/home/wookie/Downloads/maxresdefault.jpg")
 
-emayili::other("/home/wookie/Downloads/Untitled.png")
-emayili::other("/home/wookie/Downloads/maxresdefault.jpg")
+# msg <- msg %>%
+#   attachment("/etc/passwd", type = "text/plain") %>%
+#   attachment("/home/wookie/Downloads/Untitled.png")
 
 msg <- msg %>%
-  attachment("/etc/passwd") %>%
-  attachment("/home/wookie/Downloads/Untitled.png")
+  rmd("untitled.Rmd")
 
 smtp(msg, verbose = TRUE)

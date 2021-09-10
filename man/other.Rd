@@ -6,7 +6,9 @@
 \usage{
 other(
   filename,
+  name = NA,
   type = NA,
+  cid = NA,
   disposition = "attachment",
   encoding = "base64",
   ...

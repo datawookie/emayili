@@ -85,7 +85,14 @@ text_html <- function(
 ) {
   structure(
     c(
-      MIME(content, disposition, charset, encoding, boundary = NA, ...),
+      MIME(
+        qp_encode(content),
+        disposition,
+        charset,
+        encoding,
+        boundary = NA,
+        ...
+      ),
       list()
     ),
     class = c("text_html", "MIME")
@@ -95,6 +102,7 @@ text_html <- function(
 #' Title
 #'
 #' @param filename
+#' @param name
 #' @param type
 #' @param disposition
 #' @param charset
@@ -107,13 +115,16 @@ text_html <- function(
 #' @examples
 other <- function(
   filename,
+  name = NA,
   type = NA,
+  cid = NA,
   disposition = "attachment",
   encoding = "base64",
   ...
 ) {
   charset <- NA
   basename <- basename(filename)
+  name <- ifelse(is.na(name), basename, name)
 
   if (!is.na(type)) {
     # Could use mime::mimemap to map from specific extensions to MIME types,
@@ -124,7 +135,7 @@ other <- function(
   } else {
     type <- guess_type(filename, empty = "application/octet-stream")
   }
-  type <- glue('{type}; name="{basename}"')
+  type <- glue('{type}; name="{name}"')
 
   if (is.na(disposition)) {
     disposition <- ifelse(
@@ -160,7 +171,7 @@ other <- function(
     c(
       MIME(content, disposition, charset, encoding, boundary = NA, type = type, ...),
       list(
-        cid = hexkey()
+        cid = ifelse(is.na(cid), hexkey(), cid)
       )
     ),
     class = c("attachment", "MIME")
