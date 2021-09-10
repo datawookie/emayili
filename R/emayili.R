@@ -1,4 +1,5 @@
 #' @import curl
+#' @import digest
 #' @import dplyr
 #' @import logger
 #' @import magrittr

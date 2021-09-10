@@ -54,7 +54,7 @@ header <- function(msg) {
 #'
 #' @return A formatted message object.
 as.character.envelope <- function(x, ...) {
-  CONTENT_TYPE = "multipart/mixed"
+  CONTENT_TYPE = "multipart/related"
 
   message <- list(
     header(x),

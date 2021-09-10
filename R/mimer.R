@@ -5,6 +5,7 @@
 MIME <- function() {
   structure(
     list(
+      boundary = emayili:::hexkey()
     ),
     class = "MIME"
   )

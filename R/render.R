@@ -93,24 +93,32 @@ rmd <- function(
     markdown <- glue(markdown, .open = .open, .close = .close)
   }
 
+  if (markdown == "") stop("Input is empty!", call. = FALSE)
+
+
+
+
+
+
+
   input <- tempfile(fileext = ".Rmd")
   output <- tempfile(fileext = ".html")
-
-  if (markdown == "") stop("Input is empty!", call. = FALSE)
+  images <- file.path(sub(".html", "_files", output), "figure-html")
 
   cat(markdown, file = input)
 
   rmarkdown::render(
     input,
     output_file = output,
-    quiet = TRUE
+    quiet = TRUE,
+    # Inline images don't work with GMail web client.
+    output_options = list(self_contained = FALSE)
   )
   output = read_file(output)
 
   # Strip out <script> tags. These don't work in email, right?
   #
   xml <- read_html(output)
-
   xml_find_all(xml, "//script") %>% xml_remove()
   #
   # Don't actually want to strip out all <link> tags because one of them has
@@ -118,7 +126,16 @@ rmd <- function(
   #
   xml_find_all(xml, "//link") %>% xml_remove()
 
-  msg <- msg %>% html(as.character(xml))
+  for (img in xml_find_all(xml, "//img")) {
+    src <- xml_attr(img, "src")
+    src <- paste0('cid:', hexkey(basename(src)))
+    xml_attr(img, "src") <- src
+  }
+
+  msg <- msg %>% html(
+    as.character(xml),
+    images = list.files(images, full.names = TRUE)
+    )
 
   if (get_option_invisible()) invisible(msg) else msg
 }

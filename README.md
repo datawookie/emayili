@@ -110,7 +110,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
+    Date:         Thu, 09 Sep 2021 18:15:22 GMT
     From:         alice@yahoo.com
     To:           bob@google.com
     Cc:           craig@google.com
@@ -156,19 +156,19 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
+    Date:         Thu, 09 Sep 2021 18:15:22 GMT
     X-Mailer:     {emayili}-0.4.19
     MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="3d1a1b1d23cd313d2f2e3e2d2d3f30"
+    Content-type: multipart/related; boundary="9b046d8e080ea354e308fbfedf5f4efd"
 
-    --3d1a1b1d23cd313d2f2e3e2d2d3f30
+    --9b046d8e080ea354e308fbfedf5f4efd
     Content-Type: text/plain; charset=utf-8
     Content-Disposition: inline
     Content-Transfer-Encoding: 7bit
 
     Hello Alice!
 
-    --3d1a1b1d23cd313d2f2e3e2d2d3f30--
+    --9b046d8e080ea354e308fbfedf5f4efd--
 
 ### Rendering Markdown
 
@@ -182,12 +182,12 @@ envelope() %>%
   md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
 ```
 
-    Date:         Thu, 09 Sep 2021 14:22:18 GMT
+    Date:         Thu, 09 Sep 2021 18:15:22 GMT
     X-Mailer:     {emayili}-0.4.19
     MIME-Version: 1.0
-    Content-type: multipart/mixed; boundary="361c38151b8353f3b191915103534"
+    Content-type: multipart/related; boundary="456749a25f1bf06007a349a65456415b"
 
-    --361c38151b8353f3b191915103534
+    --456749a25f1bf06007a349a65456415b
     Content-Type: text/html; charset=utf-8
     Content-Disposition: inline
     Content-Transfer-Encoding: quoted-printable
@@ -195,7 +195,7 @@ envelope() %>%
     <p>Check out <code>{emayili}</code> on <a href=3D"https://cran.r-project.org/package=3Demayili">CRAN</a>.</p>
 
 
-    --361c38151b8353f3b191915103534--
+    --456749a25f1bf06007a349a65456415b--
 
 Or R Markdown.
 
@@ -207,6 +207,8 @@ envelope() %>%
 
 In both cases the function will accept either a file path or a character
 vector containing Markdown text.
+
+<img src="screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
 🚨 **Note:** Inline images embedded in the rendered HTML will not appear
 in the GMail (and potentially other) web client.
