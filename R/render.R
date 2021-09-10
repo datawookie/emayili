@@ -120,16 +120,13 @@ rmd <- function(
   #
   xml_find_all(xml, "//link") %>% xml_remove()
 
+  # Convert image links into CID references.
+  #
   for (img in xml_find_all(xml, "//img")) {
     src <- xml_attr(img, "src")
     src <- paste0('cid:', hexkey(basename(src)))
     xml_attr(img, "src") <- src
   }
-
-  # msg <- msg %>% html(
-  #   as.character(xml),
-  #   images = list.files(images, full.names = TRUE)
-  # )
 
   body <- multipart_related(
     children = list(
@@ -138,11 +135,8 @@ rmd <- function(
   )
 
   for (image in list.files(image_path, full.names = TRUE)) {
-    print(image)
     body <- append(body, other(filename = image, cid = hexkey(basename(image))))
-      # attachment(path = image, cid = hexkey(basename(image)))
   }
-  print(body)
 
   msg <- append(msg, body)
 

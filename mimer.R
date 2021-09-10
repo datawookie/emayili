@@ -38,7 +38,7 @@ smtp <- server(
 # h1
 #
 msg <- envelope() %>%
-  to("andrew@fathomdata.dev") %>%
+  to(c("andrew@fathomdata.dev", "matt@fathomdata.dev")) %>%
   from("andrew@fathomdata.dev")
 
 msg %>%
