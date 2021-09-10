@@ -1,6 +1,6 @@
 #' Pipe operator
 #'
-#' FOO \link[magrittr]{%>%}
+#' \link[magrittr]{%>%}
 #'
 #' @name %>%
 #' @rdname pipe
@@ -44,8 +44,19 @@ get_option_details <- function(default = TRUE) {
 #' @param path Relative or absolute file path
 #'
 #' @return A character vector
-read_file <- function(path) {
+read_text <- function(path) {
   readChar(path, file.info(path)$size)
+}
+
+#' Read entire binary file into character vector
+#'
+#' @noRd
+#'
+#' @param path Relative or absolute file path
+#'
+#' @return A character vector
+read_bin <- function(path) {
+  readBin(path, "raw",  file.info(path)$size)
 }
 
 #' Normalise file path

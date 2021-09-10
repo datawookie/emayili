@@ -16,6 +16,7 @@ MIME <- function(
   charset = NA,
   encoding = NA,
   boundary = emayili:::hexkey(),
+  type = NA,
   children = list()
 ) {
   # If just a single child, convert to list.
@@ -32,7 +33,8 @@ MIME <- function(
       charset = charset,
       encoding = encoding,
       boundary = boundary,
-      children = children
+      children = children,
+      type = type
     ),
     class = "MIME"
   )
@@ -90,6 +92,81 @@ text_html <- function(
   )
 }
 
+#' Title
+#'
+#' @param filename
+#' @param type
+#' @param disposition
+#' @param charset
+#' @param encoding
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+other <- function(
+  filename,
+  type = NA,
+  disposition = "attachment",
+  encoding = "base64",
+  ...
+) {
+  charset <- NA
+  basename <- basename(filename)
+
+  if (!is.na(type)) {
+    # Could use mime::mimemap to map from specific extensions to MIME types,
+    # so that the following would give the same result:
+    #
+    # attachment(..., type = "pdf")
+    # attachment(..., type = "application/pdf")
+  } else {
+    type <- guess_type(filename, empty = "application/octet-stream")
+  }
+  type <- glue('{type}; name="{basename}"')
+
+  if (is.na(disposition)) {
+    disposition <- ifelse(
+      grepl("text", type),
+      # If it's text...
+      "inline",
+      # ... otherwise:
+      "attachment"
+      # ifelse(
+      #   # If it's an image...
+      #   grepl("image", type),
+      #   ifelse(!is.na(cid), "inline", "attachment"),
+      #   "attachment"
+      # )
+    )
+  }
+  # disposition <- glue('{disposition}; filename="{basename}"')
+
+  body <- read_bin(filename)
+  #
+  # mime <- mime(
+  #   type,
+  #   disposition,
+  #   NULL,
+  #   "base64",
+  #   cid = as.character(cid),
+  #   filename = ifelse(is.na(name), basename(path), name)
+  # )
+  #
+  content <- base64encode(body, 76L, "\r\n")
+
+  structure(
+    c(
+      MIME(content, disposition, charset, encoding, boundary = NA, type = type, ...),
+      list(
+        cid = hexkey()
+      )
+    ),
+    class = c("attachment", "MIME")
+  )
+}
+
 # APPEND ----------------------------------------------------------------------
 
 append <- function(x, child) {
@@ -118,7 +195,7 @@ as.character.MIME <- function(x, ...) {
   children <- sapply(x$children, function(child) {
     paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
   })
-  type <- sub("_", "/", class(x)[1])
+  type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
   body <- c(
     # Head.
@@ -135,6 +212,13 @@ as.character.MIME <- function(x, ...) {
     } else NULL,
     if (!is.na(x$encoding)) {
       glue('Content-Transfer-Encoding: {x$encoding}')
+    } else NULL,
+    if (!is.null(x$cid)) {
+      paste(
+        glue('X-Attachment-Id:           {x$cid}'),
+        glue('Content-ID:                <{x$cid}>'),
+        sep = "\n"
+      )
     } else NULL,
     "",
     # Content (if any).
@@ -198,6 +282,19 @@ as.character.text_plain <- function(x, ...) {
 #' @examples
 as.character.text_html <- function(x, ...) {
   paste(NextMethod(), x$content, sep = "\n")
+}
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.character.attachment <- function(x, ...) {
+  NextMethod()
 }
 
 # PRINT -----------------------------------------------------------------------

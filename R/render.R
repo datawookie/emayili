@@ -33,7 +33,7 @@ md <- function(
   .close = "}}"
 ) {
   if (is_filepath(input)) {
-    markdown <- read_file(input)
+    markdown <- read_text(input)
   } else {
     log_warn("Interpreting input as character vector.")
     markdown <- input
@@ -83,7 +83,7 @@ rmd <- function(
   .close = "}}"
 ) {
   if (is_filepath(input)) {
-    markdown <- read_file(input)
+    markdown <- read_text(input)
   } else {
     log_warn("Interpreting input as character vector.")
     markdown <- input
@@ -114,7 +114,7 @@ rmd <- function(
     # Inline images don't work with GMail web client.
     output_options = list(self_contained = FALSE)
   )
-  output = read_file(output)
+  output = read_text(output)
 
   # Strip out <script> tags. These don't work in email, right?
   #
