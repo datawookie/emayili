@@ -108,16 +108,15 @@ rmd <- function(
     # Inline images don't work with GMail web client.
     output_options = list(self_contained = FALSE)
   )
-  # output = read_text(output)
-  xml <- read_html(output)
+  output <- read_html(output)
 
   # Strip out <script> tags. These don't work in email, right?
   #
-  xml_find_all(xml, "//script") %>% xml_remove()
+  xml_find_all(output, "//script") %>% xml_remove()
 
   # Extract CSS from <link> tags.
   #
-  css <- xml_find_all(xml, "//link[starts-with(@href,'data:text/css')]") %>%
+  css <- xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
     xml_attr("href") %>%
     unlist() %>%
     url_decode() %>%
@@ -126,11 +125,11 @@ rmd <- function(
 
   # Delete <link> tags.
   #
-  xml_find_all(xml, "//link") %>% xml_remove()
+  xml_find_all(output, "//link") %>% xml_remove()
 
   # Add extracted CSS to CSS from <style> tags.
   #
-  style <- xml_find_all(xml, "//style")
+  style <- xml_find_all(output, "//style")
   css <- style %>%
     xml_contents() %>%
     as.character() %>%
@@ -145,7 +144,7 @@ rmd <- function(
   # Write consolidated CSS to single <style> tag.
   #
   xml_add_child(
-    xml_find_first(xml, "//head"),
+    xml_find_first(output, "//head"),
     "style",
     css,
     type = "text/css"
@@ -153,7 +152,7 @@ rmd <- function(
 
   # Convert image links into CID references.
   #
-  for (img in xml_find_all(xml, "//img")) {
+  for (img in xml_find_all(output, "//img")) {
     src <- xml_attr(img, "src")
     src <- paste0('cid:', hexkey(basename(src)))
     xml_attr(img, "src") <- src
@@ -161,7 +160,7 @@ rmd <- function(
 
   body <- multipart_related(
     children = list(
-      text_html(as.character(xml))
+      text_html(as.character(output))
     )
   )
 
