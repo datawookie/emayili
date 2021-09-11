@@ -114,6 +114,10 @@ rmd <- function(
   #
   xml_find_all(output, "//script") %>% xml_remove()
 
+  # Remove comments.
+  #
+  xml_find_all(output, "//comment()") %>% xml_remove()
+
   # Extract CSS from <link> tags.
   #
   css <- xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
