@@ -15,8 +15,10 @@ is.mime <- function(x) {
 #'  └── other
 #' ```
 #'
+#' @noRd
+#'
 #' @param content Content.
-#' @param disposition Should the content be displayed inline or as an attachment?
+#' @param disposition Should the content be displayed inline or as an attachment? Valid options are \code{"inline"} and \code{"attachment"}. If set to \code{NA} then will guess appropriate value.
 #' @param charset How to interpret the characters in the content. Most often either UTF-8 or ISO-8859-1.
 #' @param encoding How to encode binary data to ASCII.
 #' @param boundary Boundary string.
@@ -24,9 +26,6 @@ is.mime <- function(x) {
 #' @param children
 #'
 #' @return A MIME object.
-#' @export
-#'
-#' @examples
 MIME <- function(
   content = NULL,
   disposition = NA,
@@ -95,14 +94,13 @@ text_plain <- function(
 
 #' Create \code{text/html} MIME object
 #'
+#' @noRd
+#'
 #' @inheritParams MIME
 #'
 #' @param ... Further arguments passed to or from other methods.
 #'
-#' @return A \code{}text_html object derived from \code{MIME}.
-#' @export
-#'
-#' @examples
+#' @return A \code{text_html} object derived from \code{MIME}.
 text_html <- function(
   content,
   disposition = "inline",
@@ -134,18 +132,16 @@ text_html <- function(
   )
 }
 
-#' Title
+#' Other (not text or HTML) MIME content
 #'
-#' @param filename
-#' @param name
-#' @param type
+#' @noRd
+#'
+#' @inheritParams MIME
+#'
+#' @param filename Path to a file.
+#' @param name Name used when downloading file.
 #' @param cid An optional Content-Id.
-#' @param disposition
-#' @param charset
-#' @param encoding
-#' @param ...
-#'
-#' @export
+#' @param ... Further arguments passed to or from other methods.
 other <- function(
   filename,
   name = NA,
@@ -200,44 +196,27 @@ other <- function(
 
 # APPEND ----------------------------------------------------------------------
 
-#' Title
+#' Append child to a MIME element
 #'
-#' @param x
-#' @param child
+#' This is a generic function.
+#'
+#' @param x MIME element
+#' @param child Child MIME element
 append <- function(x, child) {
   UseMethod("append", x)
 }
-
-#' Title
-#'
-#' @param x
-#' @param child
 append.MIME <- function(x, child) {
   if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
   x$children <- c(x$children, list(child))
   x
 }
 
-#' Title
-#'
-#' @param x
-#' @param child
-append.multipart_related <- function(x, child) NextMethod(x, child)
-
-#' Title
-#'
-#' @param x
-#' @param child
-append.multipart_mixed <- function(x, child) NextMethod(x, child)
-
 # CHARACTER -------------------------------------------------------------------
 
-#' Title
+#' Convert MIME object to character vector
 #'
-#' @param x
-#' @param ...
-#'
-#' @export
+#' @param x MIME object
+#' @param ... Further arguments passed to or from other methods.
 as.character.MIME <- function(x, ...) {
   children <- sapply(x$children, function(child) {
     paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
@@ -281,29 +260,12 @@ as.character.MIME <- function(x, ...) {
 
 # PRINT -----------------------------------------------------------------------
 
-#' Title
+#' Print a MIME object
 #'
-#' @param x
+#' @noRd
 #'
-#' @export
-print.MIME <- function(x) {
+#' @param x MIME object
+#' @param ... Further arguments passed to or from other methods.
+print.MIME <- function(x, ...) {
   cat(as.character(x))
 }
-
-#' #' Title
-#' #'
-#' #' @param x
-#' #'
-#' #' @export
-#' print.multipart_related <- function(x) {
-#'   NextMethod()
-#' }
-
-#' #' Title
-#' #'
-#' #' @param x
-#' #'
-#' #' @export
-#' print.multipart_mixed <- function(x) {
-#'   NextMethod()
-#' }

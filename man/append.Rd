@@ -2,10 +2,15 @@
 % Please edit documentation in R/mime.R
 \name{append}
 \alias{append}
-\title{Title}
+\title{Append child to a MIME element}
 \usage{
 append(x, child)
 }
+\arguments{
+\item{x}{MIME element}
+
+\item{child}{Child MIME element}
+}
 \description{
-Title
+This is a generic function.
 }
