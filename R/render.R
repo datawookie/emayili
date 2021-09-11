@@ -157,9 +157,10 @@ rmd <- function(
   #
   for (img in xml_find_all(output, "//img")) {
     src <- xml_attr(img, "src")
-    print(src)
-    src <- paste0('cid:', hexkey(basename(src)))
-    xml_attr(img, "src") <- src
+    # Check for Base64 encoded inline image.
+    if (!str_detect(src, "^data:image")) {
+      xml_attr(img, "src") <- paste0('cid:', hexkey(basename(src)))
+    }
   }
 
   body <- multipart_related(
