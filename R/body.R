@@ -31,6 +31,10 @@ check_message_body <- function(content) {
 #' msg <- envelope() %>% text("Hello {name}.")
 #'
 #' print(msg, details = TRUE)
+#'
+#' # Disable {glue} interpolation.
+#' #
+#' msg <- envelope() %>% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
 text <- function(
   msg,
   content,
@@ -45,7 +49,7 @@ text <- function(
 
   check_message_body(content)
 
-  if (glue) content <- glue(content, .envir = .envir)
+  if (interpolate) content <- glue(content, .envir = .envir)
 
   type <- "text/plain"
 

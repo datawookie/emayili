@@ -46,6 +46,10 @@ name <- "Alice"
 msg <- envelope() \%>\% text("Hello {name}.")
 
 print(msg, details = TRUE)
+
+# Disable {glue} interpolation.
+#
+msg <- envelope() \%>\% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
 }
 \seealso{
 \code{\link{html}}
