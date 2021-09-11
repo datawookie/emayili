@@ -131,10 +131,10 @@ as.character.envelope <- function(x, ...) {
   do.call(paste0, c(list(message), collapse = "\r\n"))
 }
 
-#' Title
+#' Append children to message
 #'
-#' @param x
-#' @param ...
+#' @param x Message object
+#' @param child A child to be appended
 append.envelope <- function(x, child) {
   if(is.null(x$parts)) {
     x$parts <- list(child)

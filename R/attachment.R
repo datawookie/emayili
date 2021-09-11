@@ -5,7 +5,6 @@
 #' @param name Name to be used for attachment (defaults to base name of \code{path}).
 #' @param type MIME type or \cite{NA}, which will result in a guess based on file extension.
 #' @param cid Content-ID or \code{NA}.
-#' @param disposition Should the content be displayed inline or as an attachment? Valid options are \code{"inline"} and \code{"attachment"}. If set to \code{NA} then will guess appropriate value.
 #' @return A message object.
 #' @export
 #' @examples

@@ -16,8 +16,6 @@ attachment(msg, path, name = NA, type = NA, cid = NA)
 \item{type}{MIME type or \cite{NA}, which will result in a guess based on file extension.}
 
 \item{cid}{Content-ID or \code{NA}.}
-
-\item{disposition}{Should the content be displayed inline or as an attachment? Valid options are \code{"inline"} and \code{"attachment"}. If set to \code{NA} then will guess appropriate value.}
 }
 \value{
 A message object.
