@@ -108,24 +108,42 @@ rmd <- function(
     # Inline images don't work with GMail web client.
     output_options = list(self_contained = FALSE)
   )
-  output = read_text(output)
+  # output = read_text(output)
+  xml <- read_html(output)
 
   # Strip out <script> tags. These don't work in email, right?
   #
-  xml <- read_html(output)
   xml_find_all(xml, "//script") %>% xml_remove()
-  #
-  # Don't actually want to strip out all <link> tags because one of them has
-  # important CSS, but this is just to get things working in GMail web client.
+
+  # Extract CSS from <link> tags.
   #
   css <- xml_find_all(xml, "//link[starts-with(@href,'data:text/css')]") %>%
     xml_attr("href") %>%
     unlist() %>%
     url_decode() %>%
-    sub("data:text/css,", "", .) %>%
-    paste(collapse = "")
+    str_replace("data:text/css,", "") %>%
+    str_c(collapse = "")
+
+  # Delete <link> tags.
+  #
   xml_find_all(xml, "//link") %>% xml_remove()
 
+  # Add extracted CSS to CSS from <style> tags.
+  #
+  style <- xml_find_all(xml, "//style")
+  css <- style %>%
+    xml_contents() %>%
+    as.character() %>%
+    str_squish() %>%
+    c(css) %>%
+    str_c(collapse = "\n")
+
+  # Delete (multiple) existing <style> tags.
+  #
+  xml_remove(style)
+
+  # Write consolidated CSS to single <style> tag.
+  #
   xml_add_child(
     xml_find_first(xml, "//head"),
     "style",
