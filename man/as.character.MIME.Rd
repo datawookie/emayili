@@ -2,13 +2,15 @@
 % Please edit documentation in R/mime.R
 \name{as.character.MIME}
 \alias{as.character.MIME}
-\title{Title}
+\title{Convert MIME object to character vector}
 \usage{
 \method{as.character}{MIME}(x, ...)
 }
 \arguments{
-\item{...}{}
+\item{x}{MIME object}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
-Title
+Convert MIME object to character vector
 }

@@ -2,10 +2,15 @@
 % Please edit documentation in R/envelope.R
 \name{append.envelope}
 \alias{append.envelope}
-\title{Title}
+\title{Append children to message}
 \usage{
 \method{append}{envelope}(x, child)
 }
+\arguments{
+\item{x}{Message object}
+
+\item{child}{A child to be appended}
+}
 \description{
-Title
+Append children to message
 }
