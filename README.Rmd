@@ -17,12 +17,14 @@ knitr::opts_chunk$set(comment=NA)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
-emayili is a package for sending emails from R. The design goals are:
+`{emayili}` is a package for sending emails from R. The design goals are:
 
 - works on all manner of SMTP servers and
 - has minimal dependencies (or dependencies which are easily satisfied).
 
-The package name is an adaption of the Zulu word for email, imeyili.
+The package name is an adaption of the Zulu word for email, _imeyili_.
+
+The documentation for `{emayili}` can be found [here](https://datawookie.github.io/emayili/).
 
 ## Installation
 
