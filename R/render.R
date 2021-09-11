@@ -124,8 +124,7 @@ rmd <- function(
     xml_attr("href") %>%
     unlist() %>%
     url_decode() %>%
-    str_replace("data:text/css,", "") %>%
-    str_c(collapse = "")
+    str_replace("data:text/css,", "")
 
   # Delete <link> tags.
   #
@@ -137,9 +136,9 @@ rmd <- function(
   css <- style %>%
     xml_contents() %>%
     as.character() %>%
-    str_squish() %>%
     c(css) %>%
-    str_c(collapse = "\n")
+    str_c(collapse = "\n") %>%
+    str_squish()
 
   # Delete (multiple) existing <style> tags.
   #
