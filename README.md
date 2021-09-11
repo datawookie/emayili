@@ -15,13 +15,17 @@ coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
-emayili is a package for sending emails from R. The design goals are:
+`{emayili}` is a package for sending emails from R. The design goals
+are:
 
 -   works on all manner of SMTP servers and
 -   has minimal dependencies (or dependencies which are easily
     satisfied).
 
-The package name is an adaption of the Zulu word for email, imeyili.
+The package name is an adaption of the Zulu word for email, *imeyili*.
+
+The documentation for `{emayili}` can be found
+[here](https://datawookie.github.io/emayili/).
 
 ## Installation
 
@@ -110,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -156,7 +160,7 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
     X-Mailer:                  {emayili}-0.4.19
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -177,7 +181,7 @@ envelope() %>%
   md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
 ```
 
-    Date:                      Fri, 10 Sep 2021 16:44:21 GMT
+    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
     X-Mailer:                  {emayili}-0.4.19
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
