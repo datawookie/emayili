@@ -108,13 +108,19 @@ text_html <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = NA,
-  # encoding = "quoted-printable",
   ...
 ) {
+  # Clean up content.
+  #
+  content <- content %>%
+    #
+    # Remove whitespace outside of tags.
+    #
+    str_replace_all("(^|(?<=>))[:space:]+($|(?=<))", "")
+
   structure(
     c(
       MIME(
-        # qp_encode(content),
         content,
         disposition,
         charset,
