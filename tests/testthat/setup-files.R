@@ -5,7 +5,8 @@ log_threshold(ERROR)
 TXTPATH <- tempfile(fileext = ".txt")
 PNGPATH <- tempfile(fileext = ".png")
 HTMLPATH <- "hello.html"
-FILE_RMD <- "message.Rmd"
+RMD_TEMPLATE <- "message.Rmd"
+RMD_EXAMPLE <- "example.Rmd"
 
 # Start with a blank slate.
 #
@@ -29,10 +30,15 @@ JPGPATH <- here::here("inst", "cats.jpg")
 
 # Create an Rmd document from template.
 rmarkdown::draft(
-  FILE_RMD,
+  RMD_TEMPLATE,
   template = "github_document",
   package = "rmarkdown",
   edit = FALSE
+)
+
+file.copy(
+  system.file("examples/rmd", "example.Rmd", package = "servr"),
+  RMD_EXAMPLE
 )
 
 # ------------------------------------------------------------------------------
