@@ -1,5 +1,5 @@
 test_that("error with empty input", {
-  expect_error(envelope() %>% render())
+  expect_error(envelope() %>% render(""))
 })
 
 test_that("render plain Markdown from string", {

@@ -11,6 +11,8 @@ text(
   charset = "utf-8",
   encoding = "7bit",
   interpolate = TRUE,
+  .open = "{{",
+  .close = "}}",
   .envir = NULL
 )
 }
@@ -25,7 +27,11 @@ text(
 
 \item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
 
-\item{interpolate}{Whether to interpolate using \code{glue}.}
+\item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
+
+\item{.open}{The opening delimiter.}
+
+\item{.close}{The closing delimiter.}
 
 \item{.envir}{Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.}
 }

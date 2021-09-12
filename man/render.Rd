@@ -26,6 +26,8 @@ render(
 \item{.open}{The opening delimiter.}
 
 \item{.close}{The closing delimiter.}
+
+\item{.envir}{Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.}
 }
 \value{
 A message object.
