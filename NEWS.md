@@ -2,10 +2,13 @@
 
 * Require {rlang}-0.4.3.
 
+# {emayili} 0.4.20
+
+* Render R Markdown into HTML body (separate functions for plain & R Markdown).
+
 # {emayili} 0.4.19
 
 * Render plain Markdown into HTML body.
-* Render R Markdown into HTML body.
 
 # {emayili} 0.4.18
 
