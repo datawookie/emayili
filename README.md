@@ -114,12 +114,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
+    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.4.19
+    X-Mailer:                  {emayili}-0.4.20
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -160,14 +160,14 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
-    X-Mailer:                  {emayili}-0.4.19
+    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
+    X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
     Content-Transfer-Encoding: 7bit
 
-    Hello Alice!
+    Hello {name}!
 
 ### Rendering Markdown
 
@@ -178,15 +178,17 @@ Use either plain Markdown.
 ``` r
 envelope() %>%
   # Render plain Markdown from a character vector.
-  md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
+  render(
+    "Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).",
+    plain = TRUE
+  )
 ```
 
-    Date:                      Sat, 11 Sep 2021 09:44:40 GMT
-    X-Mailer:                  {emayili}-0.4.19
+    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
+    X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
-    Content-Transfer-Encoding: quoted-printable
 
     <p>Check out <code>{emayili}</code> on <a href="https://cran.r-project.org/package=emayili">CRAN</a>.</p>
 
@@ -195,7 +197,7 @@ Or R Markdown.
 ``` r
 envelope() %>%
   # Render R Markdown from a file.
-  rmd("message.Rmd")
+  render("message.Rmd")
 ```
 
 In both cases the function will accept either a file path or a character
@@ -305,3 +307,33 @@ There is a selection of other R packages which also send emails:
 -   [mailR](https://cran.r-project.org/package=mailR)
 -   [sendmailR](https://cran.r-project.org/package=sendmailR)
 -   [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
+
+## Developer Notes
+
+### Code Coverage
+
+Generate a coverage report.
+
+``` r
+library(covr)
+
+report()
+```
+
+Calculate test coverage.
+
+``` r
+coverage <- package_coverage()
+```
+
+Coverage statistics as a data frame.
+
+``` r
+as.data.frame(coverage)
+```
+
+Show lines without coverage.
+
+``` r
+zero_coverage(coverage)
+```

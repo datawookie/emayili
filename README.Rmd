@@ -158,7 +158,10 @@ Use either plain Markdown.
 ```{r}
 envelope() %>%
   # Render plain Markdown from a character vector.
-  md("Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).")
+  render(
+    "Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).",
+    plain = TRUE
+  )
 ```
 
 Or R Markdown.
@@ -166,7 +169,7 @@ Or R Markdown.
 ```{r eval = FALSE}
 envelope() %>%
   # Render R Markdown from a file.
-  rmd("message.Rmd")
+  render("message.Rmd")
 ```
 
 In both cases the function will accept either a file path or a character vector containing Markdown text.
@@ -264,3 +267,33 @@ There is a selection of other R packages which also send emails:
 - [mailR](https://cran.r-project.org/package=mailR)
 - [sendmailR](https://cran.r-project.org/package=sendmailR)
 - [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
+
+## Developer Notes
+
+### Code Coverage
+
+Generate a coverage report.
+
+```{r eval = FALSE}
+library(covr)
+
+report()
+```
+
+Calculate test coverage.
+
+```{r eval = FALSE}
+coverage <- package_coverage()
+```
+
+Coverage statistics as a data frame.
+
+```{r eval = FALSE}
+as.data.frame(coverage)
+```
+
+Show lines without coverage.
+
+```{r eval = FALSE}
+zero_coverage(coverage)
+```
