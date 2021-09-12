@@ -1,3 +1,7 @@
+is.envelope <- function(x) {
+  "envelope" %in% class(x)
+}
+
 #' Create a message.
 #'
 #' @param to See \code{to()}
