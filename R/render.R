@@ -4,12 +4,10 @@
 #'
 #' Render either Plain Markdown or R Markdown directly into the body of an email.
 #'
+#' @inheritParams text
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
 #' @param plain Whether to treat the input as plain or R Markdown.
-#' @param interpolate Whether or not to interpolate into input using \link[glue]{glue}.
-#' @param .open The opening delimiter.
-#' @param .close The closing delimiter.
 #'
 #' @return A message object.
 #' @export
@@ -80,7 +78,7 @@ render <- function(
     markdown <- glue(markdown, .open = .open, .close = .close, .envir = .envir)
   }
 
-  if (markdown == "") stop("Input is empty!", call. = FALSE)
+  if (markdown == "") stop("Input is empty!")
 
   output <- tempfile(fileext = ".html")
   image_path <- file.path(sub(".html", "_files", output), "figure-html")

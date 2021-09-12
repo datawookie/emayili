@@ -9,19 +9,31 @@ html(
   content,
   disposition = "inline",
   charset = "utf-8",
-  encoding = "quoted-printable"
+  encoding = "quoted-printable",
+  interpolate = TRUE,
+  .open = "{{",
+  .close = "}}",
+  .envir = NULL
 )
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{content}{A string of message content or the path to a file containing HTML.}
+\item{content}{A string of message content.}
 
 \item{disposition}{How content is presented (Content-Disposition).}
 
 \item{charset}{How content is encoded.}
 
 \item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
+
+\item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
+
+\item{.open}{The opening delimiter.}
+
+\item{.close}{The closing delimiter.}
+
+\item{.envir}{Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.}
 }
 \value{
 A message object.
