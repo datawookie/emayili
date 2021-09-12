@@ -14,9 +14,9 @@ test_that("render plain Markdown from string", {
 test_that("render R Markdown from file", {
   expect_match(
     envelope() %>%
-      render(RMD_EXAMPLE) %>%
+      render(RMD_TEMPLATE) %>%
       as.character(),
-    "<code>servr::rmdv1</code>"
+    "<strong>knitr</strong>"
   )
 })
 
