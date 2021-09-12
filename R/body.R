@@ -105,5 +105,5 @@ html <- function(
 
   msg <- append(msg, body)
 
-  invisible(msg)
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }

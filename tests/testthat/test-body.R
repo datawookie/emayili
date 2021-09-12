@@ -16,3 +16,39 @@ test_that("html: HTML from file", {
     )
   )
 })
+
+test_that("disable interpolation", {
+  expect_match(
+    envelope() %>%
+      text("Hello {{name}}!", interpolate = FALSE) %>%
+      as.character(),
+    "Hello \\{\\{name\\}\\}!"
+  )
+})
+
+test_that("interpolate from environment", {
+  variables <- list(name = "Alice")
+  expect_match(
+    envelope() %>%
+      text("Hello {{name}}!", .envir = variables) %>%
+      as.character(),
+    "Hello Alice!"
+  )
+})
+
+test_that("interpolation delimeters", {
+  name <- "Alice"
+  expect_match(
+    envelope() %>%
+      text("Hello <<name>>!", .open = "<<", .close = ">>") %>%
+      as.character(),
+    "Hello Alice!"
+  )
+})
+
+test_that("toggle visibility", {
+  options(envelope_invisible = FALSE)
+  expect_visible(envelope() %>% text("Hello!"))
+  options(envelope_invisible = TRUE)
+  expect_invisible(envelope() %>% text("Hello!"))
+})

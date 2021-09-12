@@ -29,38 +29,3 @@ test_that("interpolate into Markdown", {
     "Hello Alice!"
   )
 })
-
-test_that("interpolate from environment", {
-  variables <- list(name = "Alice")
-  expect_match(
-    envelope() %>%
-      render("Hello {{name}}!", plain = TRUE, .envir = variables) %>%
-      as.character(),
-    "Hello Alice!"
-  )
-})
-
-test_that("interpolation delimeters", {
-  name <- "Alice"
-  expect_match(
-    envelope() %>%
-      render(
-        "Hello <<name>>!",
-        plain = TRUE,
-        .open = "<<",
-        .close = ">>"
-        ) %>%
-      as.character(),
-    "Hello Alice!"
-  )
-})
-
-test_that("disable interpolation", {
-  expect_match(
-    envelope() %>%
-      render("Hello {{name}}!", plain = TRUE, interpolate = FALSE) %>%
-      as.character(),
-    "Hello \\{\\{name\\}\\}!"
-  )
-})
-

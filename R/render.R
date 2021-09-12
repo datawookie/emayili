@@ -64,7 +64,7 @@ render <- function(
   stopifnot(is.character(.close))
 
   if (is.null(.envir)) .envir = parent.frame()
-  else .envir = list2env(.envir)
+  else .envir = list2env(.envir) # nocov
 
   if (is_filepath(input)) {
     log_debug("Interpreting input as path to Markdown file.")
@@ -169,5 +169,5 @@ render <- function(
 
   msg <- append(msg, body)
 
-  if (get_option_invisible()) invisible(msg) else msg
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }

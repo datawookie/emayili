@@ -52,3 +52,11 @@ test_that("parse address", {
 test_that("normalise", {
   expect_equal(as.address("     Gerald    <   gerry@gmail.com    >"), address("gerry@gmail.com", "Gerald"))
 })
+
+test_that("full type of vector", {
+  expect_equal(vec_ptype_full(address("alice@yahoo.com", "Alice")), "address")
+})
+
+test_that("abbreviated type of vector", {
+  expect_equal(vec_ptype_abbr(address("alice@yahoo.com", "Alice")), "addr")
+})

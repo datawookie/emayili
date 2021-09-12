@@ -168,15 +168,26 @@ format.vctrs_address <- function(x, ...) {
   fmt
 }
 
+
 #' Display full type of vector
-#' @inheritParams vctrs::vec_ptype_full
+#'
+#' Need to import the vec_ptype_full() generic.
+#'
+#' @noRd
 #' @export
-vec_ptype_full.vctrs_address <- function(x, ...) "address"
+vec_ptype_full.vctrs_address <- function(x) {
+  "address"
+}
 
 #' Display abbreviated type of vector
-#' @inheritParams vctrs::vec_ptype_abbr
+#'
+#' Need to import the vec_ptype_abbr() generic.
+#'
+#' @noRd
 #' @export
-vec_ptype_abbr.vctrs_address <- function(x, ...) "addr"
+vec_ptype_abbr.vctrs_address <- function(x) {
+  "addr"
+}
 
 #' Convert address object to character
 #'
