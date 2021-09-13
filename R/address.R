@@ -202,12 +202,18 @@ as.character.vctrs_address <- function(x, ...) {
 
 Ops.vctrs_address <- function(lhs, rhs)
 {
+  if (!("address" %in% class(rhs))) rhs <- as.address(rhs)
+
   op = .Generic[[1]]
-  switch(op,
-         `==` = {
-           compare(raw(lhs), raw(rhs)) & compare(display(lhs), display(rhs))
-         },
-         stop("Undefined operation.", call. = FALSE)
+  switch(
+    op,
+    `==` = {
+      compare(raw(lhs), raw(rhs)) & compare(display(lhs), display(rhs))
+    },
+    `!=` = {
+      !compare(raw(lhs), raw(rhs)) | !compare(display(lhs), display(rhs))
+    },
+    stop("Undefined operation.", call. = FALSE)
   )
 }
 

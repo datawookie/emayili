@@ -1,21 +1,3 @@
-# Using fake SMTP server.
-#
-# - https://mailtrap.io/
-# - https://www.smtpbucket.com/
-#
-SMTP_SERVER   = "mail.smtpbucket.com"
-SMTP_PORT     = 8025
-
-smtp <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME)
-smtp_insecure <- server(host = SMTP_SERVER, port = SMTP_PORT, username = SMTP_USERNAME, insecure = TRUE)
-
-smtp_gmail <- server(
-  host = "smtp.gmail.com",
-  port = 587,
-  username = SMTP_USERNAME,
-  password = SMTP_PASSWORD
-)
-
 msg <- envelope() %>%
   from(SMTP_USERNAME) %>%
   to(SMTP_USERNAME)
@@ -86,10 +68,15 @@ test_that("sends message with image attachment (using CID)", {
   expect_error(smtp(msg %>% subject("{emayili} test: Image attachment (using CID)")), NA)
 })
 
-test_that("sends with verbose output", {
+test_that("verbose output", {
   skip_on_cran()
-  output <- capture.output(smtp(msg, verbose = TRUE), type = "message") %>%
-    paste(collapse = "\n")
 
-  expect_match(output, "250 Message accepted", fixed = TRUE)
+  expect_match(
+    capture.output(smtp(msg, verbose = TRUE), type = "message") %>%
+      paste(collapse = "\n"),
+    "250 Message accepted",
+    fixed = TRUE
+    )
+
+  expect_length(capture.output(smtp(msg), type = "message"), 0)
 })

@@ -60,3 +60,19 @@ test_that("full type of vector", {
 test_that("abbreviated type of vector", {
   expect_equal(vec_ptype_abbr(address("alice@yahoo.com", "Alice")), "addr")
 })
+
+test_that("print address", {
+  expect_output(print(address("alice@yahoo.com", "Alice")), "Alice <alice@yahoo.com>")
+})
+
+test_that("address operators", {
+  expect_true(address("alice@yahoo.com", "Alice") == address("alice@yahoo.com", "Alice"))
+  expect_true(address("alice@yahoo.com", "Alice") == "Alice <alice@yahoo.com>")
+  expect_true(address("alice@yahoo.com", "Alice") != address("bob@gmail.com", "Bob"))
+  expect_true(address("alice@yahoo.com", "Alice") != address("alice@yahoo.com", "Gerald"))
+  expect_true(address("alice@yahoo.com", "Alice") != address("gerry@gmail.com", "Alice"))
+  #
+  # Undefined operation.
+  #
+  expect_error(address("alice@yahoo.com", "Alice") / address("gerry@gmail.com", "Alice"))
+})

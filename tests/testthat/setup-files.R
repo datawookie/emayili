@@ -25,6 +25,40 @@ writeLines(HTMLCONTENT, HTMLPATH)
 #
 JPGPATH <- here::here("inst", "cats.jpg")
 
+# SERVER -----------------------------------------------------------------------
+
+# Using fake SMTP server.
+#
+# - https://mailtrap.io/
+# - https://www.smtpbucket.com/
+#
+SMTP_SERVER   = "mail.smtpbucket.com"
+SMTP_PORT     = 8025
+
+smtp <- server(
+  host = SMTP_SERVER,
+  port = SMTP_PORT,
+  username = SMTP_USERNAME
+)
+smtp_verbose <- server(
+  host = SMTP_SERVER,
+  port = SMTP_PORT,
+  username = SMTP_USERNAME
+)
+smtp_insecure <- server(
+  host = SMTP_SERVER,
+  port = SMTP_PORT,
+  username = SMTP_USERNAME,
+  insecure = TRUE
+)
+
+smtp_gmail <- server(
+  host = "smtp.gmail.com",
+  port = 587,
+  username = SMTP_USERNAME,
+  password = SMTP_PASSWORD
+)
+
 # R MARKDOWN FILE --------------------------------------------------------------
 
 # Create an Rmd document from template.
