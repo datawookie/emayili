@@ -1,3 +1,5 @@
+ERROR_NOT_MIME_OBJECT <- "Child is not a MIME object."
+
 # CONSTRUCTOR -----------------------------------------------------------------
 
 is.mime <- function(x) {
@@ -39,7 +41,7 @@ MIME <- function(
   if (!all(class(children) == c("list"))) children <- list(children)
   # Check that all children are MIME.
   for (child in children) {
-    if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
+    if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT, call. = FALSE)
   }
 
   structure(
@@ -206,7 +208,7 @@ append <- function(x, child) {
   UseMethod("append", x)
 }
 append.MIME <- function(x, child) {
-  if (!is.mime(child)) stop("Child is not a MIME object.", call. = FALSE)
+  if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT, call. = FALSE)
   x$children <- c(x$children, list(child))
   x
 }
