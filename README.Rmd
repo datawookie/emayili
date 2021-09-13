@@ -272,6 +272,8 @@ There is a selection of other R packages which also send emails:
 
 ### Code Coverage
 
+You can find the test coverage report at [Codecov](https://app.codecov.io/gh/datawookie/emayili). For developmnent purposes it's more convenient to use the [`{covr}`](https://cran.r-project.org/package=covr) package.
+
 Generate a coverage report.
 
 ```{r eval = FALSE}
