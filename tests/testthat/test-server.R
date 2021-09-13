@@ -76,7 +76,7 @@ test_that("verbose output", {
       paste(collapse = "\n"),
     "250 Message accepted",
     fixed = TRUE
-    )
+  )
 
   expect_length(capture.output(smtp(msg), type = "message"), 0)
 })

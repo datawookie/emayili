@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
+    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -160,7 +160,7 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
+    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
     X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -184,7 +184,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sun, 12 Sep 2021 13:12:51 GMT
+    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
     X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
@@ -311,6 +311,11 @@ There is a selection of other R packages which also send emails:
 ## Developer Notes
 
 ### Code Coverage
+
+You can find the test coverage report at
+[Codecov](https://app.codecov.io/gh/datawookie/emayili). For
+developmnent purposes it’s more convenient to use the
+[`{covr}`](https://cran.r-project.org/package=covr) package.
 
 Generate a coverage report.
 
