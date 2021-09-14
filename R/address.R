@@ -228,10 +228,16 @@ Ops.vctrs_address <- function(lhs, rhs)
 #' as.address("gerry@gmail.com")
 #' as.address("Gerald <gerry@gmail.com>")
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
+#' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
+#' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com"))
 as.address <- function(addr) {
   if ("vctrs_address" %in% class(addr)) {
     addr
   } else {
+    # Check if multiple comma-separated addresses.
+    #
+    addr <- str_split(addr, ", *") %>% unlist()
+    #
     display <- ifelse(
       str_detect(addr, "[<>]"),
       str_extract(addr, ".*<") %>% str_remove("<"),
