@@ -76,3 +76,23 @@ test_that("address operators", {
   #
   expect_error(address("alice@yahoo.com", "Alice") / address("gerry@gmail.com", "Alice"))
 })
+
+test_that("split address list", {
+  addr_list <- address(
+    c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
+    c("Gerald", NA, NA)
+  )
+
+  expect_equal(
+    as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com")),
+    addr_list
+  )
+  expect_equal(
+    as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com"),
+    addr_list
+  )
+  expect_equal(
+    as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com")),
+    addr_list
+  )
+})

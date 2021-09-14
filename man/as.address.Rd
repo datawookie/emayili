@@ -19,4 +19,6 @@ Create an address object
 as.address("gerry@gmail.com")
 as.address("Gerald <gerry@gmail.com>")
 as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
+as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
+as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com"))
 }
