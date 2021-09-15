@@ -48,10 +48,10 @@ text <- function(
   .close = "}}",
   .envir = NULL
 ) {
+  check_message_body(content)
+
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir)
-
-  check_message_body(content)
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 
@@ -65,7 +65,6 @@ text <- function(
 #' Add an HTML body to a message object.
 #'
 #' @inheritParams text
-#' @param msg A message object.
 #' @return A message object.
 #' @seealso \code{\link{text}}
 #' @export
@@ -95,6 +94,9 @@ html <- function(
   if (file.exists(content)) {
     content <- paste(readLines(content), collapse = "\n")
   }
+
+  if (is.null(.envir)) .envir = parent.frame()
+  else .envir = list2env(.envir)
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 

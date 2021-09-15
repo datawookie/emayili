@@ -4,12 +4,27 @@
 \alias{subject}
 \title{Add or query subject of message.}
 \usage{
-subject(msg, subject = NULL)
+subject(
+  msg,
+  subject = NULL,
+  interpolate = TRUE,
+  .open = "{{",
+  .close = "}}",
+  .envir = NULL
+)
 }
 \arguments{
 \item{msg}{A message object.}
 
 \item{subject}{A subject for the message.}
+
+\item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
+
+\item{.open}{The opening delimiter.}
+
+\item{.close}{The closing delimiter.}
+
+\item{.envir}{Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.}
 }
 \value{
 A message object or the subject of the message object (if \code{subject} is \code{NULL}).
