@@ -20,6 +20,7 @@ sanitise <- function(email, strip_comments = TRUE) {
 #' - `Display Name <local@domain>`.
 #'
 #' @param addr An email address.
+#' @param error Whether to create an error if not compliant.
 #'
 #' @return A Boolean.
 #' @export
@@ -27,7 +28,7 @@ sanitise <- function(email, strip_comments = TRUE) {
 #' @examples
 #' compliant("alice@example.com")
 #' compliant("alice?example.com")
-compliant <- function(addr) {
+compliant <- function(addr, error = FALSE) {
   addr <- as.address(addr)
 
   email <- addr %>% raw()
@@ -64,7 +65,12 @@ compliant <- function(addr) {
     # Not longer than 255 characters.
     !grepl(".{256,}", domain)
 
-  email & local
+  okay <- email & local
+  if (error && !okay) {
+    stop(paste0("Address '", addr, "' invalid."), call. = FALSE)
+  } else {
+    okay
+  }
 }
 
 #' Helper function for creating address objects

@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
+    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -160,7 +160,7 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
+    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
     X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -184,7 +184,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Tue, 14 Sep 2021 03:08:58 GMT
+    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
     X-Mailer:                  {emayili}-0.4.20
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
