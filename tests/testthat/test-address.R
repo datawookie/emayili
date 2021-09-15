@@ -40,7 +40,7 @@ test_that("normalise", {
   )
   expect_equal(as.character(address("    gerry  @ gmail.com    ")), "gerry@gmail.com")
   expect_equal(
-    as.character( address("    gerry  @ gmail.com    ", "      Gerald    ")),
+    as.character(address("    gerry  @ gmail.com    ", "      Gerald    ")),
     "Gerald <gerry@gmail.com>"
   )
 })

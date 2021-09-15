@@ -4,10 +4,12 @@
 \alias{compliant}
 \title{Tests whether an email address is syntactically correct}
 \usage{
-compliant(addr)
+compliant(addr, error = FALSE)
 }
 \arguments{
 \item{addr}{An email address.}
+
+\item{error}{Whether to create an error if not compliant.}
 }
 \value{
 A Boolean.
