@@ -81,6 +81,6 @@ is_filepath <- function(path) {
   !is.na(normalise_filepath(path))
 }
 
-hexkey <- function(object = runif(1)) {
-  digest(object)
+hexkey <- function(object = runif(1), algorithm="crc32") {
+  digest(object, algorithm)
 }
