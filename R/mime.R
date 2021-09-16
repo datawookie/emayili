@@ -118,7 +118,7 @@ text_plain <- function(
 #' @noRd
 #'
 #' @inheritParams MIME
-#'
+#' @param squish Whether to remove whitespace outside of tags.
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A \code{text_html} object derived from \code{MIME}.
@@ -127,15 +127,18 @@ text_html <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = NA,
+  squish = FALSE,
   ...
 ) {
   # Clean up content.
   #
-  content <- content %>%
-    #
-    # Remove whitespace outside of tags.
-    #
-    str_replace_all("(^|(?<=>))[:space:]+($|(?=<))", "")
+  if (squish) {
+    content <- content %>%
+      str_replace_all("(^|(?<=>))[:space:]+($|(?=<))", "")
+  }
+
+  # Remove empty lines.
+  content <- content %>% str_replace_all("(\n)+", "\n")
 
   structure(
     c(
