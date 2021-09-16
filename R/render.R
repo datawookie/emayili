@@ -137,15 +137,18 @@ render <- function(
     #
     xml_find_all(output, "//comment()") %>% xml_remove()
 
-    # Write consolidated CSS to single <style> tag.
-    #
     if (include_css) {
+      # Remove all other tags in <head>
+      xml_find_all(output, "//head/*") %>% xml_remove()
+      # Write consolidated CSS to single <style> tag.
       xml_add_child(
         xml_find_first(output, "//head"),
         "style",
         css,
         type = "text/css"
       )
+    } else {
+      xml_find_first(output, "//head") %>% xml_remove()
     }
 
     # Convert image links into CID references.
@@ -158,9 +161,13 @@ render <- function(
       }
     }
 
+    output <- as.character(output) %>%
+      # Remove <!DOCTYPE> tag.
+      str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "")
+
     body <- multipart_related(
       children = list(
-        text_html(as.character(output))
+        text_html(output)
       )
     )
   }
