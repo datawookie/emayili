@@ -8,6 +8,7 @@
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
 #' @param plain Whether to treat the input as plain or R Markdown.
+#' @param include_css Whether to include rendered CSS.
 #'
 #' @return A message object.
 #' @export
@@ -52,6 +53,7 @@ render <- function(
   msg,
   input,
   plain = FALSE,
+  include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -59,6 +61,7 @@ render <- function(
 ) {
   stopifnot(is.envelope(msg))
   stopifnot(is.logical(plain))
+  stopifnot(is.logical(include_css))
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
   stopifnot(is.character(.close))
@@ -103,7 +106,30 @@ render <- function(
     # Read output from file.
     output <- read_html(output)
 
-    # Strip out <script> tags. These don't work in email, right?
+    # Extract CSS from <link> and <style> tags.
+    #
+    css <- list(
+      # Inline CSS in <link> tags.
+      xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
+        xml_attr("href") %>%
+        unlist() %>%
+        url_decode() %>%
+        str_replace("data:text/css,", ""),
+      # Inline CSS in <style> tags.
+      xml_find_all(output, "//style") %>%
+        xml_text() %>%
+        unlist()
+    ) %>%
+      unlist() %>%
+      str_c(collapse = "\n") %>%
+      str_squish()
+
+    # Delete <link> and <style> tags.
+    #
+    xml_find_all(output, "//link") %>% xml_remove()
+    xml_find_all(output, "//style") %>% xml_remove()
+
+    # Strip out <script> tags.
     #
     xml_find_all(output, "//script") %>% xml_remove()
 
@@ -111,40 +137,16 @@ render <- function(
     #
     xml_find_all(output, "//comment()") %>% xml_remove()
 
-    # Extract CSS from <link> tags.
-    #
-    css <- xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-      xml_attr("href") %>%
-      unlist() %>%
-      url_decode() %>%
-      str_replace("data:text/css,", "")
-
-    # Delete <link> tags.
-    #
-    xml_find_all(output, "//link") %>% xml_remove()
-
-    # Add extracted CSS to CSS from <style> tags.
-    #
-    style <- xml_find_all(output, "//style")
-    css <- style %>%
-      xml_contents() %>%
-      as.character() %>%
-      c(css) %>%
-      str_c(collapse = "\n") %>%
-      str_squish()
-
-    # Delete (multiple) existing <style> tags.
-    #
-    xml_remove(style)
-
     # Write consolidated CSS to single <style> tag.
     #
-    xml_add_child(
-      xml_find_first(output, "//head"),
-      "style",
-      css,
-      type = "text/css"
-    )
+    if (include_css) {
+      xml_add_child(
+        xml_find_first(output, "//head"),
+        "style",
+        css,
+        type = "text/css"
+      )
+    }
 
     # Convert image links into CID references.
     #

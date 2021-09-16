@@ -102,9 +102,6 @@ html <- function(
 
   body <- text_html(content, disposition, charset, encoding)
 
-  # related <- multipart_related()
-  # related <- append(related, body)
-
   msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
