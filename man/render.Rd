@@ -8,6 +8,7 @@ render(
   msg,
   input,
   plain = FALSE,
+  include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -20,6 +21,8 @@ render(
 \item{input}{The input Markdown file to be rendered or a character vector of Markdown text.}
 
 \item{plain}{Whether to treat the input as plain or R Markdown.}
+
+\item{include_css}{Whether to include rendered CSS.}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 
