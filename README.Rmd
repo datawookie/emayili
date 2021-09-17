@@ -303,3 +303,17 @@ Show lines without coverage.
 ```{r eval = FALSE}
 zero_coverage(coverage)
 ```
+
+### Testing
+
+Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
+
+```{r eval = FALSE}
+# Check for a specific platform.
+#
+rhub::check(platform = "debian-gcc-devel")
+
+# Check on a bunch of platforms.
+#
+rhub::check_for_cran()
+```
