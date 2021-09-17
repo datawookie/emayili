@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Fri, 17 Sep 2021 10:12:52 GMT
+    Date:                      Fri, 17 Sep 2021 13:54:33 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -160,7 +160,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Fri, 17 Sep 2021 10:12:52 GMT
+    Date:                      Fri, 17 Sep 2021 13:54:34 GMT
     X-Mailer:                  {emayili}-0.5.0
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -184,7 +184,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Fri, 17 Sep 2021 10:12:52 GMT
+    Date:                      Fri, 17 Sep 2021 13:54:34 GMT
     X-Mailer:                  {emayili}-0.5.0
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
@@ -345,4 +345,18 @@ Show lines without coverage.
 
 ``` r
 zero_coverage(coverage)
+```
+
+### Testing
+
+Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
+
+``` r
+# Check for a specific platform.
+#
+rhub::check(platform = "debian-gcc-devel")
+
+# Check on a bunch of platforms.
+#
+rhub::check_for_cran()
 ```

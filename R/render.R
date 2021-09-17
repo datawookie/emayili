@@ -48,7 +48,9 @@
 #' )
 #'
 #' # Render from Rmd file.
-#' msg <- envelope() %>% render(filename)
+#' if (!is.null(rmarkdown::find_pandoc()$dir)) {
+#'   msg <- envelope() %>% render(filename)
+#' }
 #'
 #' # Cleanup.
 #' file.remove(filename)
