@@ -5,7 +5,7 @@ sanitise <- function(email, strip_comments = TRUE) {
       if (strip_comments) {
         str_remove_all(., "\\([^)]*\\)")
       } else {
-        .
+        . # nocov
       }
     }
 }

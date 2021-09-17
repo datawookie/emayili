@@ -60,7 +60,7 @@ MIME <- function(
   if (!all(class(children) == c("list"))) children <- list(children)
   # Check that all children are MIME.
   for (child in children) {
-    if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT, call. = FALSE)
+    if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   }
 
   structure(
@@ -230,7 +230,7 @@ append <- function(x, child) {
   UseMethod("append", x)
 }
 append.MIME <- function(x, child) {
-  if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT, call. = FALSE)
+  if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(x$children, list(child))
   x
 }

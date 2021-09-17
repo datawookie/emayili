@@ -37,6 +37,9 @@ A message object.
 }
 \description{
 Render either Plain Markdown or R Markdown directly into the body of an email.
+
+Regardless of what is specified in the input file, \code{render()} will always
+use the \code{"html_document"} output format.
 }
 \examples{
 

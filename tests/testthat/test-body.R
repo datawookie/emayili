@@ -34,6 +34,12 @@ test_that("interpolate from environment", {
       as.character(),
     "Hello Alice!"
   )
+  expect_match(
+    envelope() %>%
+      html("<p>Hello {{name}}!</p>", .envir = variables) %>%
+      as.character(),
+    "Hello Alice!"
+  )
 })
 
 test_that("interpolation delimeters", {

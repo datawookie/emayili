@@ -4,6 +4,9 @@
 #'
 #' Render either Plain Markdown or R Markdown directly into the body of an email.
 #'
+#' Regardless of what is specified in the input file, \code{render()} will always
+#' use the \code{"html_document"} output format.
+#'
 #' @inheritParams text
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
