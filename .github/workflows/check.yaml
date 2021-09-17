@@ -15,17 +15,14 @@ jobs:
       - name: Install Ubuntu dependencies
         run: |
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-      - name: Install R packages
-        run: |
-          install.packages(c("covr", "remotes"))
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: covr
       - name: Install package
         run: |
           R CMD INSTALL .
       - name: Check test coverage
-        run: |
-          covr::codecov()
+        run: covr::codecov()
         shell: Rscript {0}
 
   check:
