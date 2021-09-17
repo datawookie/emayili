@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create formatted header. — header • emayili</title>
+<title>Append children to message — append.envelope • emayili</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create formatted header. — header" />
-<meta property="og:description" content="Create formatted header." />
+<meta property="og:title" content="Append children to message — append.envelope" />
+<meta property="og:description" content="Append children to message" />
 
 
 
@@ -111,29 +111,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create formatted header.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/message.R'><code>R/message.R</code></a></small>
-    <div class="hidden name"><code>header.Rd</code></div>
+    <h1>Append children to message</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/envelope.R'><code>R/envelope.R</code></a></small>
+    <div class="hidden name"><code>append.envelope.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create formatted header.</p>
+    <p>Append children to message</p>
     </div>
 
-    <pre class="usage"><span class='fu'>header</span><span class='op'>(</span><span class='va'>msg</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for envelope</span>
+<span class='fu'><a href='append.html'>append</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>child</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>msg</th>
-      <td><p>A message object.</p></td>
+      <th>x</th>
+      <td><p>Message object</p></td>
+    </tr>
+    <tr>
+      <th>child</th>
+      <td><p>A child to be appended</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A message header.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -120,14 +120,7 @@
     <p>Add attachments to a message object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>attachment</span><span class='op'>(</span>
-  <span class='va'>msg</span>,
-  <span class='va'>path</span>,
-  name <span class='op'>=</span> <span class='cn'>NA</span>,
-  type <span class='op'>=</span> <span class='cn'>NA</span>,
-  cid <span class='op'>=</span> <span class='cn'>NA</span>,
-  disposition <span class='op'>=</span> <span class='st'>"attachment"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>attachment</span><span class='op'>(</span><span class='va'>msg</span>, <span class='va'>path</span>, name <span class='op'>=</span> <span class='cn'>NA</span>, type <span class='op'>=</span> <span class='cn'>NA</span>, cid <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,10 +144,6 @@
     <tr>
       <th>cid</th>
       <td><p>Content-ID or <code>NA</code>.</p></td>
-    </tr>
-    <tr>
-      <th>disposition</th>
-      <td><p>Should the content be displayed inline or as an attachment? Valid options are <code>"inline"</code> and <code>"attachment"</code>. If set to <code>NA</code> then will guess appropriate value.</p></td>
     </tr>
     </table>
 

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -120,7 +120,14 @@
     <p>Add or query subject of message.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>subject</span><span class='op'>(</span><span class='va'>msg</span>, subject <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>subject</span><span class='op'>(</span>
+  <span class='va'>msg</span>,
+  subject <span class='op'>=</span> <span class='cn'>NULL</span>,
+  interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  .open <span class='op'>=</span> <span class='st'>"{{"</span>,
+  .close <span class='op'>=</span> <span class='st'>"}}"</span>,
+  .envir <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,6 +139,22 @@
     <tr>
       <th>subject</th>
       <td><p>A subject for the message.</p></td>
+    </tr>
+    <tr>
+      <th>interpolate</th>
+      <td><p>Whether or not to interpolate into input using <a href='https://glue.tidyverse.org/reference/glue.html'>glue</a>.</p></td>
+    </tr>
+    <tr>
+      <th>.open</th>
+      <td><p>The opening delimiter.</p></td>
+    </tr>
+    <tr>
+      <th>.close</th>
+      <td><p>The closing delimiter.</p></td>
+    </tr>
+    <tr>
+      <th>.envir</th>
+      <td><p>Environment used for <code>glue</code> interpolation. Defaults to <code><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -150,7 +173,7 @@
 
 <span class='co'># Retrieve the subject for a message</span>
 <span class='fu'>subject</span><span class='op'>(</span><span class='va'>msg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Updated report"</div></pre>
+</div><div class='output co'>#&gt; Updated report</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

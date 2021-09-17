@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -125,7 +125,11 @@
   <span class='va'>content</span>,
   disposition <span class='op'>=</span> <span class='st'>"inline"</span>,
   charset <span class='op'>=</span> <span class='st'>"utf-8"</span>,
-  encoding <span class='op'>=</span> <span class='st'>"quoted-printable"</span>
+  encoding <span class='op'>=</span> <span class='st'>"quoted-printable"</span>,
+  interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  .open <span class='op'>=</span> <span class='st'>"{{"</span>,
+  .close <span class='op'>=</span> <span class='st'>"}}"</span>,
+  .envir <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -137,7 +141,7 @@
     </tr>
     <tr>
       <th>content</th>
-      <td><p>A string of message content or the path to a file containing HTML.</p></td>
+      <td><p>A string of message content.</p></td>
     </tr>
     <tr>
       <th>disposition</th>
@@ -150,6 +154,22 @@
     <tr>
       <th>encoding</th>
       <td><p>How content is transformed to ASCII (Content-Transfer-Encoding).</p></td>
+    </tr>
+    <tr>
+      <th>interpolate</th>
+      <td><p>Whether or not to interpolate into input using <a href='https://glue.tidyverse.org/reference/glue.html'>glue</a>.</p></td>
+    </tr>
+    <tr>
+      <th>.open</th>
+      <td><p>The opening delimiter.</p></td>
+    </tr>
+    <tr>
+      <th>.close</th>
+      <td><p>The closing delimiter.</p></td>
+    </tr>
+    <tr>
+      <th>.envir</th>
+      <td><p>Environment used for <code>glue</code> interpolation. Defaults to <code><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame()</a></code>.</p></td>
     </tr>
     </table>
 
