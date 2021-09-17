@@ -15,7 +15,7 @@
 #' parties(email)
 parties <- function(msg) {
   # Avoid "no visible binding for global variable" note.
-  address <- NULL
+  address <- NULL # nocov
 
   # TODO: This might be useful for sorting out data type in address column:
   #

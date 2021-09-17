@@ -5,7 +5,18 @@ test_that("subject: set/get", {
 
 test_that("interpolate", {
   name <- "Alice"
-  msg <- envelope() %>% subject("Hello {{name}}!")
+  variables <- list(name = name)
 
-  expect_equal(subject(msg), "Hello Alice!")
+  expect_equal(
+    envelope() %>%
+      subject("Hello {{name}}!") %>%
+      subject(),
+    "Hello Alice!"
+  )
+  expect_equal(
+    envelope() %>%
+      subject("Hello {{name}}!", .envir = variables) %>%
+      subject(),
+    "Hello Alice!"
+  )
 })

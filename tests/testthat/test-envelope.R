@@ -48,4 +48,7 @@ test_that("body html", {
   expect_equal(html$parts[[1]]$content, "foo")
 })
 
-
+test_that("append another body", {
+  msg <- envelope() %>% text("Hello!") %>% html("Goodbye!")
+  expect_equal(length(msg$parts), 2)
+})

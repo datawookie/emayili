@@ -27,3 +27,13 @@ test_that("print", {
 
   expect_output(print(mime_txt), as.character(mime_txt))
 })
+
+test_that("squish", {
+  expect_equal(
+    emayili:::text_html(
+      "   <div>   <p>Hello!</p>   </div>   ",
+      squish = TRUE
+    )$content,
+    "<div><p>Hello!</p></div>"
+  )
+})
