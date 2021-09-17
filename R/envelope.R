@@ -83,7 +83,7 @@ print.envelope <- function(x, details = NA, ...) {
   if (is.na(details)) {
     details = get_option_details(default = FALSE)
   }
-  if (!is.logical(details)) stop("details must be Boolean.", call. = FALSE)
+  stopifnot(is.logical(details))
   #
   ifelse(details, as.character(x), header(x)) %>% cat()
 }
@@ -124,7 +124,7 @@ append.envelope <- function(x, child) {
   if(is.null(x$parts)) {
     x$parts <- list(child)
   } else {
-    x$parts <- c(list(msg$parts), list(child))
+    x$parts <- c(list(x$parts), list(child))
   }
 
   x
