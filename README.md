@@ -114,12 +114,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
+    Date:                      Fri, 17 Sep 2021 08:54:57 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.4.20
+    X-Mailer:                  {emayili}-0.5.0
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -160,8 +160,36 @@ envelope() %>%
   text("Hello {name}!")
 ```
 
-    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
-    X-Mailer:                  {emayili}-0.4.20
+    [1] "APPEND"
+    NULL
+    [1] "foo"
+    [[1]]
+    $content
+    Hello {name}!
+
+    $disposition
+    [1] "inline"
+
+    $charset
+    [1] "utf-8"
+
+    $encoding
+    [1] "7bit"
+
+    $boundary
+    [1] NA
+
+    $children
+    list()
+
+    $type
+    [1] NA
+
+    attr(,"class")
+    [1] "text_plain" "MIME"      
+
+    Date:                      Fri, 17 Sep 2021 08:54:57 GMT
+    X-Mailer:                  {emayili}-0.5.0
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
@@ -184,8 +212,36 @@ envelope() %>%
   )
 ```
 
-    Date:                      Wed, 15 Sep 2021 07:07:25 GMT
-    X-Mailer:                  {emayili}-0.4.20
+    [1] "APPEND"
+    NULL
+    [1] "foo"
+    [[1]]
+    $content
+    [1] "<p>Check out <code>{emayili}</code> on <a href=\"https://cran.r-project.org/package=emayili\">CRAN</a>.</p>\n"
+
+    $disposition
+    [1] "inline"
+
+    $charset
+    [1] "utf-8"
+
+    $encoding
+    [1] NA
+
+    $boundary
+    [1] NA
+
+    $children
+    list()
+
+    $type
+    [1] NA
+
+    attr(,"class")
+    [1] "text_html" "MIME"     
+
+    Date:                      Fri, 17 Sep 2021 08:54:57 GMT
+    X-Mailer:                  {emayili}-0.5.0
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
@@ -321,6 +377,10 @@ Generate a coverage report.
 
 ``` r
 library(covr)
+
+# Tests that are skipped on CRAN should still be included in coverage report.
+#
+Sys.setenv(NOT_CRAN = "true")
 
 report()
 ```
