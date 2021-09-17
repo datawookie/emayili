@@ -97,6 +97,7 @@ render <- function(
     # Render from file to file.
     rmarkdown::render(
       input,
+      output_format = "html_document",
       output_file = output,
       quiet = TRUE,
       # Inline images don't work with GMail web client.
