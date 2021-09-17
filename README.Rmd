@@ -146,7 +146,7 @@ You can use `{glue}` syntax to interpolate content into the body of a message.
 name = "Alice"
 
 envelope() %>%
-  text("Hello {name}!")
+  text("Hello {{name}}!")
 ```
 
 ### Rendering Markdown
