@@ -44,7 +44,6 @@ Imports:
     magrittr,
     mime,
     purrr,
-    rlang (>= 0.4.3),
     rmarkdown,
     stringr,
     tibble,
@@ -58,6 +57,7 @@ Suggests:
     testthat (>= 2.1.0),
     roxygen2,
     showtext
+SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
