@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sat, 18 Sep 2021 08:37:29 GMT
+    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -128,6 +128,8 @@ and version.
 If you want to see the complete MIME object, just convert to a string.
 
 You can also call the `print()` method and specify `details = TRUE`.
+
+### Options
 
 You can set the `envelope.details` option to assert that the details
 should always be printed.
@@ -160,6 +162,15 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
+    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
+    X-Mailer:                  {emayili}-0.5.1
+    MIME-Version:              1.0
+    Content-Type:              text/plain; charset=utf-8
+    Content-Disposition:       inline
+    Content-Transfer-Encoding: 7bit
+
+    Hello Alice!
+
 ### Rendering Markdown
 
 You can render Markdown straight into a message.
@@ -174,6 +185,14 @@ envelope() %>%
   )
 ```
 
+    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
+    X-Mailer:                  {emayili}-0.5.1
+    MIME-Version:              1.0
+    Content-Type:              text/html; charset=utf-8
+    Content-Disposition:       inline
+
+    <p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p>
+
 Or R Markdown.
 
 ``` r
@@ -186,9 +205,6 @@ In both cases the function will accept either a file path or a character
 vector containing Markdown text.
 
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
-
-🚨 **Note:** Inline images embedded in the rendered HTML will not appear
-in the GMail (and potentially other) web client.
 
 ### Adding an Inline Image
 
