@@ -25,7 +25,7 @@ test_that("missing disposition", {
 test_that("print", {
   mime_txt <- other(TXTPATH, disposition = NA)
 
-  expect_output(print(mime_txt), as.character(mime_txt))
+  expect_output(print(mime_txt), as.character(mime_txt) %>% str_replace_all("\r\n", "\n"))
 })
 
 test_that("squish", {

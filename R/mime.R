@@ -137,8 +137,8 @@ text_html <- function(
       str_replace_all("(^|(?<=>))[:space:]+($|(?=<))", "")
   }
 
-  # Remove empty lines.
-  content <- content %>% str_replace_all("(\n)+", "\n")
+  # Replace bare line-feeds.
+  content <- drape_linefeed(content)
 
   structure(
     c(
@@ -243,7 +243,7 @@ append.MIME <- function(x, child) {
 #' @param ... Further arguments passed to or from other methods.
 as.character.MIME <- function(x, ...) {
   children <- sapply(x$children, function(child) {
-    paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\n")
+    paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\r\n")
   })
   type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
@@ -279,7 +279,7 @@ as.character.MIME <- function(x, ...) {
     if (!is.na(x$boundary)) glue('--{x$boundary}--') else NULL
   )
 
-  paste(body, collapse = "\n")
+  paste(body, collapse = "\r\n")
 }
 
 # PRINT -----------------------------------------------------------------------

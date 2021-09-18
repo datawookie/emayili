@@ -80,3 +80,9 @@ test_that("verbose output", {
 
   expect_length(capture.output(smtp(msg), type = "message"), 0)
 })
+
+test_that("replace bare line feeds", {
+  msg <- envelope() %>% render("Hello!", plain = TRUE)
+
+  expect_false(as.character(msg) %>% str_detect(REGEX_BARE_LINEFEED))
+})

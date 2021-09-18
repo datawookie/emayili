@@ -1,3 +1,5 @@
+REGEX_BARE_LINEFEED = "(?<!\r)\n"
+
 #' Pipe operator
 #'
 #' \link[magrittr]{%>%}
@@ -83,4 +85,13 @@ is_filepath <- function(path) {
 
 hexkey <- function(object = runif(1), algorithm="crc32") {
   digest(object, algorithm)
+}
+
+#' Drape line feeds
+#'
+#' Replace empty line-feeds, "\n", with carriage-return and line-feed, "\r\n".
+#'
+#' @noRd
+drape_linefeed <- function(txt) {
+  str_replace_all(txt, REGEX_BARE_LINEFEED, "\r\n")
 }
