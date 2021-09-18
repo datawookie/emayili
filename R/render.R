@@ -142,14 +142,9 @@ render <- function(
       str_c(collapse = "\n") %>%
       str_squish()
 
-    # Delete <link> and <style> tags.
+    # Delete <script>, <link> and <style> tags.
     #
-    xml_find_all(output, "//link") %>% xml_remove()
-    xml_find_all(output, "//style") %>% xml_remove()
-
-    # Strip out <script> tags.
-    #
-    xml_find_all(output, "//script") %>% xml_remove()
+    xml_find_all(output, "//script | //link | //style") %>% xml_remove()
 
     # Remove comments.
     #

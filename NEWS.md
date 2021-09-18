@@ -1,14 +1,18 @@
 # {emayili} 0.5.1
 
-* 
+* Add SystemRequirements for pandoc.
+* Check for pandoc before calling render().
+* Complete test coverage.
 
 # {emayili} 0.5.0
 
-* 
+* Interpolate in subject() and html().
+* Improved test coverage.
 
 # {emayili} 0.4.20
 
 * Render R Markdown into HTML body (separate functions for plain & R Markdown).
+* Add MIME class.
 
 # {emayili} 0.4.19
 

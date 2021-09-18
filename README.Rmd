@@ -177,6 +177,8 @@ In both cases the function will accept either a file path or a character vector 
 
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
+Interpolation also works with `render()`.
+
 ### Adding an Inline Image
 
 Adding an inline image to an HTML message is possible. There are two ways to achieve this.

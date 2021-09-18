@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
+    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -162,7 +162,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
+    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -185,7 +185,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sat, 18 Sep 2021 09:11:31 GMT
+    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
@@ -205,6 +205,8 @@ In both cases the function will accept either a file path or a character
 vector containing Markdown text.
 
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
+
+Interpolation also works with `render()`.
 
 ### Adding an Inline Image
 
