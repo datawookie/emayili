@@ -31,14 +31,6 @@ compare <- function(lhs, rhs) {
   same
 }
 
-get_option_invisible <- function(default = TRUE) {
-  getOption("envelope_invisible", default = default)
-}
-
-get_option_details <- function(default = TRUE) {
-  getOption("envelope_details", default = default)
-}
-
 #' Read entire text file into character vector
 #'
 #' @noRd

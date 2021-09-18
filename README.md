@@ -114,12 +114,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Fri, 17 Sep 2021 13:54:33 GMT
+    Date:                      Sat, 18 Sep 2021 08:37:29 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.5.0
+    X-Mailer:                  {emayili}-0.5.1
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -129,23 +129,23 @@ If you want to see the complete MIME object, just convert to a string.
 
 You can also call the `print()` method and specify `details = TRUE`.
 
-You can set the `envelope_details` option to assert that the details
+You can set the `envelope.details` option to assert that the details
 should always be printed.
 
 ``` r
 # Always print envelope details.
 #
-options(envelope_details = TRUE)
+options(envelope.details = TRUE)
 ```
 
 By default the results returned by most of the methods are invisible.
-You can make them visible via the `envelope_invisible` (default:
+You can make them visible via the `envelope.invisible` (default:
 `TRUE`).
 
 ``` r
 # Always show envelope.
 #
-options(envelope_invisible = FALSE)
+options(envelope.invisible = FALSE)
 ```
 
 ### Interpolating Text
@@ -160,15 +160,6 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Fri, 17 Sep 2021 13:54:34 GMT
-    X-Mailer:                  {emayili}-0.5.0
-    MIME-Version:              1.0
-    Content-Type:              text/plain; charset=utf-8
-    Content-Disposition:       inline
-    Content-Transfer-Encoding: 7bit
-
-    Hello Alice!
-
 ### Rendering Markdown
 
 You can render Markdown straight into a message.
@@ -179,18 +170,9 @@ Use either plain Markdown.
 envelope() %>%
   # Render plain Markdown from a character vector.
   render(
-    "Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).",
-    plain = TRUE
+    "Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."
   )
 ```
-
-    Date:                      Fri, 17 Sep 2021 13:54:34 GMT
-    X-Mailer:                  {emayili}-0.5.0
-    MIME-Version:              1.0
-    Content-Type:              text/html; charset=utf-8
-    Content-Disposition:       inline
-
-    <p>Check out <code>{emayili}</code> on <a href="https://cran.r-project.org/package=emayili">CRAN</a>.</p>
 
 Or R Markdown.
 

@@ -122,20 +122,20 @@ You can also call the `print()` method and specify `details = TRUE`.
 print(email, details = TRUE)
 ```
 
-You can set the `envelope_details` option to assert that the details should always be printed.
+You can set the `envelope.details` option to assert that the details should always be printed.
 
 ```{r}
 # Always print envelope details.
 #
-options(envelope_details = TRUE)
+options(envelope.details = TRUE)
 ```
 
-By default the results returned by most of the methods are invisible. You can make them visible via the `envelope_invisible` (default: `TRUE`).
+By default the results returned by most of the methods are invisible. You can make them visible via the `envelope.invisible` (default: `TRUE`).
 
 ```{r}
 # Always show envelope.
 #
-options(envelope_invisible = FALSE)
+options(envelope.invisible = FALSE)
 ```
 
 ### Interpolating Text
@@ -159,8 +159,7 @@ Use either plain Markdown.
 envelope() %>%
   # Render plain Markdown from a character vector.
   render(
-    "Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili).",
-    plain = TRUE
+    "Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."
   )
 ```
 

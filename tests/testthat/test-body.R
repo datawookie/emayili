@@ -53,8 +53,8 @@ test_that("interpolation delimeters", {
 })
 
 test_that("toggle visibility", {
-  options(envelope_invisible = FALSE)
+  options(envelope.invisible = FALSE)
   expect_visible(envelope() %>% text("Hello!"))
-  options(envelope_invisible = TRUE)
+  options(envelope.invisible = TRUE)
   expect_invisible(envelope() %>% text("Hello!"))
 })
