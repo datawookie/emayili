@@ -48,17 +48,21 @@ Create a SMTP server object.
 library(magrittr)
 
 # Set parameters for SMTP server (with username and password)
-smtp <- server(host = "smtp.gmail.com",
-               port = 465,
-               username = "bob@gmail.com",
-               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
 
 # Set parameters for a (fake) testing SMTP server.
 #
 # More information about this service can be found at https://www.smtpbucket.com/.
 #
-smtp <- server(host = "mail.smtpbucket.com",
-               port = 8025)
+smtp <- server(
+  host = "mail.smtpbucket.com",
+  port = 8025
+)
 
 # Create a message
 msg <- envelope() \%>\%
