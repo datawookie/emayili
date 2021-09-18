@@ -7,7 +7,6 @@
 render(
   msg,
   input,
-  plain = FALSE,
   include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
@@ -19,8 +18,6 @@ render(
 \item{msg}{A message object.}
 
 \item{input}{The input Markdown file to be rendered or a character vector of Markdown text.}
-
-\item{plain}{Whether to treat the input as plain or R Markdown.}
 
 \item{include_css}{Whether to include rendered CSS.}
 
@@ -38,9 +35,25 @@ A message object.
 \description{
 Render either Plain Markdown or R Markdown directly into the body of an email.
 
-Regardless of what is specified in the input file, \code{render()} will always
-use the \code{"html_document"} output format.
+If \code{input} is a file then it will be interpreted as R Markdown it its
+extension is either \code{"Rmd"} or \code{"Rmarkdown"}. Otherwise it will be
+processed as Plain Markdown.
 }
+\section{Plain Markdown}{
+
+
+Plain Markdown is processed with \code{\link[commonmark:commonmark]{commonmark::markdown_html()}}.
+}
+
+\section{R Markdown}{
+
+
+R Markdown is processed with \code{\link[rmarkdown:render]{rmarkdown::render()}}.
+
+Regardless of what \code{output} type is specified in the input file,
+\code{render()} will always use the \code{"html_document"} output format.
+}
+
 \examples{
 
 # Plain Markdown
@@ -49,13 +62,13 @@ markdown <- "[This](https://www.google.com) is a link."
 filename <- "message.md"
 
 # Render from Markdown in character vector.
-msg <- envelope() \%>\% render(markdown, plain = TRUE)
+msg <- envelope() \%>\% render(markdown)
 
 # Create a file containing Markdown
 cat(markdown, file = filename)
 
 # Render from Markdown in file.
-msg <- envelope() \%>\% render(filename, plain = TRUE)
+msg <- envelope() \%>\% render(filename)
 
 # Cleanup.
 file.remove(filename)

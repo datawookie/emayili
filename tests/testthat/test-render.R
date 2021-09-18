@@ -5,7 +5,7 @@ test_that("error with empty input", {
 test_that("render plain Markdown from string", {
   expect_match(
     envelope() %>%
-      render("[This](https://www.google.com) is a link.", plain = TRUE) %>%
+      render("[This](https://www.google.com) is a link.") %>%
       as.character(),
     "<a href=\"https://www.google.com\">"
   )
@@ -24,7 +24,7 @@ test_that("interpolate into Markdown", {
   name <- "Alice"
   expect_match(
     envelope() %>%
-      render("Hello {{name}}!", plain = TRUE) %>%
+      render("Hello {{name}}!") %>%
       as.character(),
     "Hello Alice!"
   )

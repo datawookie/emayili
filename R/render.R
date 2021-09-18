@@ -4,13 +4,24 @@
 #'
 #' Render either Plain Markdown or R Markdown directly into the body of an email.
 #'
-#' Regardless of what is specified in the input file, \code{render()} will always
-#' use the \code{"html_document"} output format.
+#' If \code{input} is a file then it will be interpreted as R Markdown it its
+#' extension is either \code{"Rmd"} or \code{"Rmarkdown"}. Otherwise it will be
+#' processed as Plain Markdown.
+#'
+#' @section Plain Markdown:
+#'
+#' Plain Markdown is processed with [commonmark::markdown_html()].
+#'
+#' @section R Markdown:
+#'
+#' R Markdown is processed with [rmarkdown::render()].
+#'
+#' Regardless of what \code{output} type is specified in the input file,
+#' \code{render()} will always use the \code{"html_document"} output format.
 #'
 #' @inheritParams text
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
-#' @param plain Whether to treat the input as plain or R Markdown.
 #' @param include_css Whether to include rendered CSS.
 #'
 #' @return A message object.
@@ -24,13 +35,13 @@
 #' filename <- "message.md"
 #'
 #' # Render from Markdown in character vector.
-#' msg <- envelope() %>% render(markdown, plain = TRUE)
+#' msg <- envelope() %>% render(markdown)
 #'
 #' # Create a file containing Markdown
 #' cat(markdown, file = filename)
 #'
 #' # Render from Markdown in file.
-#' msg <- envelope() %>% render(filename, plain = TRUE)
+#' msg <- envelope() %>% render(filename)
 #'
 #' # Cleanup.
 #' file.remove(filename)
@@ -57,7 +68,6 @@
 render <- function(
   msg,
   input,
-  plain = FALSE,
   include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
@@ -65,7 +75,6 @@ render <- function(
   .envir = NULL
 ) {
   stopifnot(is.envelope(msg))
-  stopifnot(is.logical(plain))
   stopifnot(is.logical(include_css))
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
@@ -75,12 +84,15 @@ render <- function(
   else .envir = list2env(.envir) # nocov
 
   if (is_filepath(input)) {
-    log_debug("Interpreting input as path to Markdown file.")
+    log_debug("Interpreting input as path to file.")
+    plain <- !(file_ext(input) %in% c("Rmd", "Rmarkdown"))
     markdown <- read_text(input)
   } else {
-    log_debug("Interpreting input as character vector of Markdown.")
+    log_debug("Interpreting input as character vector.")
+    plain <- TRUE
     markdown <- input
   }
+  log_debug("Assuming input is ", ifelse(plain, "Plain", "R"), " Markdown.")
 
   if (interpolate) {
     markdown <- glue(markdown, .open = .open, .close = .close, .envir = .envir)
