@@ -41,8 +41,9 @@
 
 <meta property="og:title" content="Render Markdown into email — render" />
 <meta property="og:description" content="Render either Plain Markdown or R Markdown directly into the body of an email.
-Regardless of what is specified in the input file, render() will always
-use the &quot;html_document&quot; output format." />
+If input is a file then it will be interpreted as R Markdown it its
+extension is either &quot;Rmd&quot; or &quot;Rmarkdown&quot;. Otherwise it will be
+processed as Plain Markdown." />
 
 
 
@@ -74,7 +75,7 @@ use the &quot;html_document&quot; output format." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -120,14 +121,14 @@ use the &quot;html_document&quot; output format." />
 
     <div class="ref-description">
     <p>Render either Plain Markdown or R Markdown directly into the body of an email.</p>
-<p>Regardless of what is specified in the input file, <code>render()</code> will always
-use the <code>"html_document"</code> output format.</p>
+<p>If <code>input</code> is a file then it will be interpreted as R Markdown it its
+extension is either <code>"Rmd"</code> or <code>"Rmarkdown"</code>. Otherwise it will be
+processed as Plain Markdown.</p>
     </div>
 
     <pre class="usage"><span class='fu'>render</span><span class='op'>(</span>
   <span class='va'>msg</span>,
   <span class='va'>input</span>,
-  plain <span class='op'>=</span> <span class='cn'>FALSE</span>,
   include_css <span class='op'>=</span> <span class='cn'>TRUE</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
@@ -145,10 +146,6 @@ use the <code>"html_document"</code> output format.</p>
     <tr>
       <th>input</th>
       <td><p>The input Markdown file to be rendered or a character vector of Markdown text.</p></td>
-    </tr>
-    <tr>
-      <th>plain</th>
-      <td><p>Whether to treat the input as plain or R Markdown.</p></td>
     </tr>
     <tr>
       <th>include_css</th>
@@ -175,6 +172,20 @@ use the <code>"html_document"</code> output format.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A message object.</p>
+    <h2 class="hasAnchor" id="plain-markdown"><a class="anchor" href="#plain-markdown"></a>Plain Markdown</h2>
+
+    
+
+
+<p>Plain Markdown is processed with <code><a href='https://rdrr.io/pkg/commonmark/man/commonmark.html'>commonmark::markdown_html()</a></code>.</p>
+    <h2 class="hasAnchor" id="r-markdown"><a class="anchor" href="#r-markdown"></a>R Markdown</h2>
+
+    
+
+
+<p>R Markdown is processed with <code><a href='https://pkgs.rstudio.com/rmarkdown/reference/render.html'>rmarkdown::render()</a></code>.</p>
+<p>Regardless of what <code>output</code> type is specified in the input file,
+<code>render()</code> will always use the <code>"html_document"</code> output format.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -184,13 +195,13 @@ use the <code>"html_document"</code> output format.</p>
 <span class='va'>filename</span> <span class='op'>&lt;-</span> <span class='st'>"message.md"</span>
 
 <span class='co'># Render from Markdown in character vector.</span>
-<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>markdown</span>, plain <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>markdown</span><span class='op'>)</span>
 
 <span class='co'># Create a file containing Markdown</span>
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>markdown</span>, file <span class='op'>=</span> <span class='va'>filename</span><span class='op'>)</span>
 
 <span class='co'># Render from Markdown in file.</span>
-<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span>, plain <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>
 
 <span class='co'># Cleanup.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>
@@ -208,7 +219,9 @@ use the <code>"html_document"</code> output format.</p>
 <span class='op'>)</span>
 
 <span class='co'># Render from Rmd file.</span>
-<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://pkgs.rstudio.com/rmarkdown/reference/find_pandoc.html'>find_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>dir</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'># Cleanup.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>

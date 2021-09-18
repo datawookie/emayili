@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -138,25 +138,25 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">17</span> Sep <span class="dv">2021</span> <span class="dv">10</span><span class="op">:</span><span class="dv">12</span><span class="op">:</span><span class="dv">52</span> GMT</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Date<span class="op">:</span><span class="st">                      </span>Sat, <span class="dv">18</span> Sep <span class="dv">2021</span> <span class="dv">08</span><span class="op">:</span><span class="dv">37</span><span class="op">:</span><span class="dv">29</span> GMT</span>
 <span id="cb12-2"><a href="#cb12-2"></a>From<span class="op">:</span><span class="st">                      </span>alice<span class="op">@</span>yahoo.com</span>
 <span id="cb12-3"><a href="#cb12-3"></a>To<span class="op">:</span><span class="st">                        </span>bob<span class="op">@</span>google.com</span>
 <span id="cb12-4"><a href="#cb12-4"></a>Cc<span class="op">:</span><span class="st">                        </span>craig<span class="op">@</span>google.com</span>
 <span id="cb12-5"><a href="#cb12-5"></a>Subject<span class="op">:</span><span class="st">                   </span>This is a plain text message<span class="op">!</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">5.0</span></span></code></pre></div>
+<span id="cb12-6"><a href="#cb12-6"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">5.1</span></span></code></pre></div>
 <p>You can identify emails which have been sent using <a href="https://datawookie.github.io/emayili/">emayili</a> by the presence of an <code>X-Mailer</code> header which includes both the package name and version.</p>
 <p>If you want to see the complete MIME object, just convert to a string.</p>
 <p>You can also call the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> method and specify <code>details = TRUE</code>.</p>
-<p>You can set the <code>envelope_details</code> option to assert that the details should always be printed.</p>
+<p>You can set the <code>envelope.details</code> option to assert that the details should always be printed.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Always print envelope details.</span>
 <span class="co">#</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>envelope_details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p>By default the results returned by most of the methods are invisible. You can make them visible via the <code>envelope_invisible</code> (default: <code>TRUE</code>).</p>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>envelope.details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>By default the results returned by most of the methods are invisible. You can make them visible via the <code>envelope.invisible</code> (default: <code>TRUE</code>).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Always show envelope.</span>
 <span class="co">#</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>envelope_invisible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>envelope.invisible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="interpolating-text" class="section level3">
 <h3 class="hasAnchor">
@@ -167,36 +167,20 @@
 
 <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">17</span> Sep <span class="dv">2021</span> <span class="dv">10</span><span class="op">:</span><span class="dv">12</span><span class="op">:</span><span class="dv">52</span> GMT</span>
-<span id="cb16-2"><a href="#cb16-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">5.0</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">              </span><span class="fl">1.0</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">              </span>text<span class="op">/</span>plain; charset=utf<span class="dv">-8</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>Content<span class="op">-</span>Disposition<span class="op">:</span><span class="st">       </span>inline</span>
-<span id="cb16-6"><a href="#cb16-6"></a>Content<span class="op">-</span>Transfer<span class="op">-</span>Encoding<span class="op">:</span><span class="st"> </span>7bit</span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a>Hello Alice<span class="op">!</span></span></code></pre></div>
 </div>
 <div id="rendering-markdown" class="section level3">
 <h3 class="hasAnchor">
 <a href="#rendering-markdown" class="anchor"></a>Rendering Markdown</h3>
 <p>You can render Markdown straight into a message.</p>
 <p>Use either plain Markdown.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># Render plain Markdown from a character vector.</span>
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span>
-    <span class="st">"Check out `{emayili}` on [CRAN](https://cran.r-project.org/package=emayili)."</span>,
-    plain <span class="op">=</span> <span class="cn">TRUE</span>
+    <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span>
   <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">17</span> Sep <span class="dv">2021</span> <span class="dv">10</span><span class="op">:</span><span class="dv">12</span><span class="op">:</span><span class="dv">52</span> GMT</span>
-<span id="cb18-2"><a href="#cb18-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">5.0</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">              </span><span class="fl">1.0</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">              </span>text<span class="op">/</span>html; charset=utf<span class="dv">-8</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>Content<span class="op">-</span>Disposition<span class="op">:</span><span class="st">       </span>inline</span>
-<span id="cb18-6"><a href="#cb18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="op">&lt;</span>p<span class="op">&gt;</span>Check out <span class="op">&lt;</span>code<span class="op">&gt;</span>{emayili}<span class="op">&lt;</span><span class="er">/</span>code<span class="op">&gt;</span><span class="st"> </span>on <span class="op">&lt;</span>a href=<span class="st">"https://cran.r-project.org/package=emayili"</span><span class="op">&gt;</span>CRAN<span class="op">&lt;</span><span class="er">/</span>a<span class="op">&gt;</span>.<span class="op">&lt;</span><span class="er">/</span>p<span class="op">&gt;</span></span></code></pre></div>
 <p>Or R Markdown.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># Render R Markdown from a file.</span>
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"message.Rmd"</span><span class="op">)</span></code></pre></div>
@@ -210,22 +194,22 @@
 <p>Adding an inline image to an HTML message is possible. There are two ways to achieve this.</p>
 <p><em>1. Base64 Encoding</em></p>
 <p>First you’ll need to <a href="https://en.wikipedia.org/wiki/Base64">Base64 encode</a> the image.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">img_base64</span> <span class="op">&lt;-</span> <span class="fu">base64enc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/base64enc/man/base64.html">base64encode</a></span><span class="op">(</span><span class="st">"image.jpg"</span><span class="op">)</span></code></pre></div>
 <p>Then create the HTML message body.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">html_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">'&lt;html&gt;&lt;body&gt;&lt;img src="data:image/jpeg;base64,%s"&gt;&lt;/body&gt;&lt;/html&gt;'</span>, <span class="va">img_base64</span><span class="op">)</span></code></pre></div>
 <p>And finally add it to the email.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span></code></pre></div>
 <p><em>Note:</em> It’s important that you specify the appropriate media type (<code>image/jpeg</code> for JPEG and <code>image/png</code> for PNG).</p>
 <p><em>2. Using a CID</em></p>
 <p>Unfortunately some mail clients (like Gmail) will not display Base64 encoded images. In this case using a CID is a working alternative.</p>
 <p>First create the message body which references an image by CID.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">html_body</span> <span class="op">&lt;-</span> <span class="st">'&lt;html&gt;&lt;body&gt;&lt;img src="cid:image"&gt;&lt;/body&gt;&lt;/html&gt;'</span></code></pre></div>
 <p>Then attach the image and specify the <code>cid</code> argument.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/attachment.html">attachment</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"image.jpg"</span>, cid <span class="op">=</span> <span class="st">"image"</span><span class="op">)</span></code></pre></div>
@@ -234,14 +218,14 @@
 <h3 class="hasAnchor">
 <a href="#sending-a-message" class="anchor"></a>Sending a Message</h3>
 <p>Create a SMTP server object and send the message.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">smtp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/server.html">server</a></span><span class="op">(</span>host <span class="op">=</span> <span class="st">"smtp.gmail.com"</span>,
                port <span class="op">=</span> <span class="fl">465</span>,
                username <span class="op">=</span> <span class="st">"bob@gmail.com"</span>,
                password <span class="op">=</span> <span class="st">"bd40ef6d4a9413de9c1318a65cbae5d7"</span><span class="op">)</span>
 <span class="fu">smtp</span><span class="op">(</span><span class="va">email</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>To see the guts of the message as passed to the SMTP server:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">email</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="using-starttls" class="section level3">
@@ -292,7 +276,7 @@
 <a href="#code-coverage" class="anchor"></a>Code Coverage</h3>
 <p>You can find the test coverage report at <a href="https://app.codecov.io/gh/datawookie/emayili">Codecov</a>. For developmnent purposes it’s more convenient to use the <a href="https://cran.r-project.org/package=covr"><code>{covr}</code></a> package.</p>
 <p>Generate a coverage report.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">covr</span><span class="op">)</span>
 
 <span class="co"># Tests that are skipped on CRAN should still be included in coverage report.</span>
@@ -301,14 +285,27 @@
 
 <span class="fu">report</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Calculate test coverage.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coverage</span> <span class="op">&lt;-</span> <span class="fu">package_coverage</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Coverage statistics as a data frame.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">coverage</span><span class="op">)</span></code></pre></div>
 <p>Show lines without coverage.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">zero_coverage</span><span class="op">(</span><span class="va">coverage</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="testing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#testing" class="anchor"></a>Testing</h3>
+<p>Use <a href="https://r-hub.github.io/rhub/">rhub</a> to test on various platforms.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Check for a specific platform.</span>
+<span class="co">#</span>
+<span class="fu">rhub</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>platform <span class="op">=</span> <span class="st">"debian-gcc-devel"</span><span class="op">)</span>
+
+<span class="co"># Check on a bunch of platforms.</span>
+<span class="co">#</span>
+<span class="fu">rhub</span><span class="fu">::</span><span class="fu">check_for_cran</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
