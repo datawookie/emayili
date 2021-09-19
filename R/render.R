@@ -124,6 +124,9 @@ render <- function(
       output_file = output,
       params = params,
       quiet = TRUE,
+      # Pass a clean environment. This makes it possible to use params name in
+      # this scope.
+      envir = new.env(),
       # Inline images don't work with GMail web client.
       output_options = list(self_contained = FALSE)
     )
