@@ -7,6 +7,7 @@
 render(
   msg,
   input,
+  css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
@@ -18,6 +19,8 @@ render(
 \item{msg}{A message object.}
 
 \item{input}{The input Markdown file to be rendered or a character vector of Markdown text.}
+
+\item{css_files}{Extra CSS files.}
 
 \item{include_css}{Whether to include rendered CSS.}
 

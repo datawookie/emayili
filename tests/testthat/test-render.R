@@ -44,3 +44,14 @@ test_that("whether to include CSS", {
     '<style type="text/css">'
   )
 })
+
+test_that("extra CSS: unable to find file", {
+  expect_error(
+    envelope() %>% render(RMD_TEMPLATE, css_files = "missing.css"),
+    "Unable to find CSS file"
+  )
+})
+
+test_that("extra CSS: include file", {
+  expect_error(envelope() %>% render(RMD_TEMPLATE, css_files = CSSPATH), NA)
+})

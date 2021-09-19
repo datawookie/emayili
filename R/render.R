@@ -22,6 +22,7 @@
 #' @inheritParams text
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
+#' @param css_files Extra CSS files.
 #' @param include_css Whether to include rendered CSS.
 #'
 #' @return A message object.
@@ -68,6 +69,7 @@
 render <- function(
   msg,
   input,
+  css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
   .open = "{{",
@@ -75,6 +77,7 @@ render <- function(
   .envir = NULL
 ) {
   stopifnot(is.envelope(msg))
+  stopifnot(!length(css_files) || is.character(css_files))
   stopifnot(is.logical(include_css))
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
@@ -124,6 +127,12 @@ render <- function(
     # Read output from file.
     output <- read_html(output)
 
+    # Check that extra CSS files exist.
+    #
+    for (css in css_files) {
+      if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
+    }
+
     # Extract CSS from <link> and <style> tags.
     #
     css <- list(
@@ -141,7 +150,10 @@ render <- function(
       # Inline CSS in <style> tags.
       xml_find_all(output, "//style") %>%
         xml_text() %>%
-        unlist()
+        unlist(),
+      # Extra CSS.
+      css_files %>%
+        map_chr(read_text)
     ) %>%
       unlist() %>%
       str_c(collapse = "\n") %>%

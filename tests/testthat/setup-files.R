@@ -4,6 +4,7 @@ log_threshold(ERROR)
 
 TXTPATH <- tempfile(fileext = ".txt")
 PNGPATH <- tempfile(fileext = ".png")
+CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
 
@@ -12,6 +13,8 @@ RMD_TEMPLATE <- "vignette.Rmd"
 source("teardown-files.R", local = TRUE)
 
 writeLines("Some random text.", TXTPATH)
+
+writeLines("body {color: ref !important;}", CSSPATH)
 
 png(PNGPATH, width=600, height=350)
 hist(mtcars$disp)
