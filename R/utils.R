@@ -87,3 +87,15 @@ hexkey <- function(object = runif(1), algorithm="crc32") {
 drape_linefeed <- function(txt) {
   str_replace_all(txt, REGEX_BARE_LINEFEED, "\r\n")
 }
+
+#' Remove comments from CSS
+#'
+#' Will handle comments with the following form:
+#'
+#' - /* ... */
+#' - /*! ... */
+#'
+#' @noRd
+css_remove_comment <- function(css) {
+  str_replace_all(css, "/\\*!?(\\*(?!/)|[^\\*])*\\*/", "")
+}

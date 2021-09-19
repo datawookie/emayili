@@ -145,6 +145,7 @@ render <- function(
     ) %>%
       unlist() %>%
       str_c(collapse = "\n") %>%
+      css_remove_comment() %>%
       str_squish()
 
     # Delete <script>, <link> and <style> tags.
