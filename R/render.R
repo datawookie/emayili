@@ -133,6 +133,11 @@ render <- function(
         unlist() %>%
         url_decode() %>%
         str_replace("data:text/css,", ""),
+      # External CSS in <link> tags.
+      xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
+        xml_attr("href") %>%
+        file.path(dirname(input), .) %>%
+        map_chr(read_text),
       # Inline CSS in <style> tags.
       xml_find_all(output, "//style") %>%
         xml_text() %>%
