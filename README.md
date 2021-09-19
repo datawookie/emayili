@@ -79,6 +79,18 @@ email <- email %>%
 There are also `bcc()` and `reply()` functions for setting the `Bcc` and
 `Reply-To` fields.
 
+You can supply multiple addresses in a variety of formats:
+
+-   as a single comma-separated string
+-   as separate strings; or
+-   as a vector of strings.
+
+``` r
+envelope() %>% to("bob@google.com, craig@google.com, erin@gmail.com")
+envelope() %>% to("bob@google.com", "craig@google.com", "erin@gmail.com")
+envelope() %>% to(c("bob@google.com", "craig@google.com", "erin@gmail.com"))
+```
+
 Add a subject.
 
 ``` r
@@ -114,7 +126,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
+    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -162,7 +174,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
+    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -185,7 +197,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
+    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8

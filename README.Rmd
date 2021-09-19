@@ -73,6 +73,18 @@ email <- email %>%
 
 There are also `bcc()` and `reply()` functions for setting the `Bcc` and `Reply-To` fields.
 
+You can supply multiple addresses in a variety of formats:
+
+- as a single comma-separated string
+- as separate strings; or
+- as a vector of strings.
+
+```{r multiple-addresses, eval = FALSE}
+envelope() %>% to("bob@google.com, craig@google.com, erin@gmail.com")
+envelope() %>% to("bob@google.com", "craig@google.com", "erin@gmail.com")
+envelope() %>% to(c("bob@google.com", "craig@google.com", "erin@gmail.com"))
+```
+
 Add a subject.
 
 ```{r}

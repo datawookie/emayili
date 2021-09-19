@@ -5,13 +5,20 @@ test_that("to: set/get", {
 })
 
 test_that("to: set multiple recipients", {
-  msg <- envelope() %>% to("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$To, address(c("bob@gmail.com", "alice@yahoo.com")))
-})
+  recipients <- c(address("bob@gmail.com"), address("alice@yahoo.com"))
 
-test_that("to: set from vector", {
-  msg <- envelope() %>% to(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$To, address(c("bob@gmail.com", "alice@yahoo.com")))
+  expect_equal(
+    envelope() %>% to("bob@gmail.com, alice@yahoo.com") %>% to(),
+    recipients
+  )
+  expect_equal(
+    envelope() %>% to("bob@gmail.com", "alice@yahoo.com") %>% to(),
+    recipients
+  )
+  expect_equal(
+    envelope() %>% to(c("bob@gmail.com", "alice@yahoo.com")) %>% to(),
+    recipients
+  )
 })
 
 test_that("from: set/get", {
@@ -26,30 +33,10 @@ test_that("cc: set/get", {
   expect_equal(cc(msg), address("bob@gmail.com"))
 })
 
-test_that("cc: set multiple recipients", {
-  msg <- envelope() %>% cc("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$Cc, address(c("bob@gmail.com", "alice@yahoo.com")))
-})
-
-test_that("cc: set from vector", {
-  msg <- envelope() %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$Cc, address(c("bob@gmail.com", "alice@yahoo.com")))
-})
-
 test_that("bcc: set/get", {
   msg <- envelope() %>% bcc("bob@gmail.com")
   expect_equal(msg$header$Bcc, address(c("bob@gmail.com")))
   expect_equal(bcc(msg), address("bob@gmail.com"))
-})
-
-test_that("bcc: set  multiple recipients", {
-  msg <- envelope() %>% bcc("bob@gmail.com", "alice@yahoo.com")
-  expect_equal(msg$header$Bcc, address(c("bob@gmail.com", "alice@yahoo.com")))
-})
-
-test_that("bcc: set from vector", {
-  msg <- envelope() %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
-  expect_equal(msg$header$Bcc, address(c("bob@gmail.com", "alice@yahoo.com")))
 })
 
 test_that("reply: set/get", {
