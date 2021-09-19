@@ -114,7 +114,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
+    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -162,7 +162,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
+    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -185,7 +185,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sat, 18 Sep 2021 15:03:45 GMT
+    Date:                      Sun, 19 Sep 2021 04:40:44 GMT
     X-Mailer:                  {emayili}-0.5.1
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
@@ -207,6 +207,19 @@ vector containing Markdown text.
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
 Interpolation also works with `render()`.
+
+### Extra CSS
+
+You can insert extra CSS into your rendered messages.
+
+``` r
+envelope() %>%
+  render("message.Rmd", css_files = "extra.css")
+```
+
+If you are having trouble getting this to work with Gmail then it might
+be worthwhile taking a look at their [CSS
+support](https://developers.google.com/gmail/design/css).
 
 ### Adding an Inline Image
 

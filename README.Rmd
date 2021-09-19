@@ -179,6 +179,17 @@ In both cases the function will accept either a file path or a character vector 
 
 Interpolation also works with `render()`.
 
+### Extra CSS
+
+You can insert extra CSS into your rendered messages.
+
+```{r eval = FALSE}
+envelope() %>%
+  render("message.Rmd", css_files = "extra.css")
+```
+
+If you are having trouble getting this to work with Gmail then it might be worthwhile taking a look at their [CSS support](https://developers.google.com/gmail/design/css).
+
 ### Adding an Inline Image
 
 Adding an inline image to an HTML message is possible. There are two ways to achieve this.

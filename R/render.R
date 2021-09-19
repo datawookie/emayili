@@ -203,8 +203,17 @@ render <- function(
     )
   }
 
+  # Attach images with appropriate CID.
+  #
   for (image in list.files(image_path, full.names = TRUE)) {
-    body <- append(body, other(filename = image, cid = hexkey(basename(image))))
+    body <- append(
+      body,
+      other(
+        filename = image,
+        cid = hexkey(basename(image)),
+        disposition = "inline"
+      )
+    )
   }
 
   msg <- append(msg, body)
