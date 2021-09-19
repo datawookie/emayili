@@ -7,6 +7,7 @@
 render(
   msg,
   input,
+  params = NULL,
   css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
@@ -19,6 +20,8 @@ render(
 \item{msg}{A message object.}
 
 \item{input}{The input Markdown file to be rendered or a character vector of Markdown text.}
+
+\item{params}{A list of named parameters that override custom parameters specified in the YAML front-matter.}
 
 \item{css_files}{Extra CSS files.}
 

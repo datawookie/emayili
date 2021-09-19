@@ -22,6 +22,7 @@
 #' @inheritParams text
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
+#' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
 #' @param css_files Extra CSS files.
 #' @param include_css Whether to include rendered CSS.
 #'
@@ -69,6 +70,7 @@
 render <- function(
   msg,
   input,
+  params = NULL,
   css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
@@ -77,6 +79,7 @@ render <- function(
   .envir = NULL
 ) {
   stopifnot(is.envelope(msg))
+  stopifnot(is.null(params) || is.list(params))
   stopifnot(!length(css_files) || is.character(css_files))
   stopifnot(is.logical(include_css))
   stopifnot(is.logical(interpolate))
@@ -119,6 +122,7 @@ render <- function(
       input,
       output_format = "html_document",
       output_file = output,
+      params = params,
       quiet = TRUE,
       # Inline images don't work with GMail web client.
       output_options = list(self_contained = FALSE)
