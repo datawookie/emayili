@@ -36,122 +36,124 @@ parties <- function(msg) {
     )
 }
 
-#' Add From field to message
+#' Add address fields to message
+#'
+#' @name addresses
 #'
 #' @param msg A message object.
-#' @param from Email address.
+#' @param addr Single address.
 #' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
+NULL
+
+#' @rdname addresses
+#'
 #' @export
 #' @examples
 #' msg <- envelope()
-#' from(msg, "craig@gmail.com")
-from <- function(msg, from = NULL) {
-  if (is.null(from)) {
+#'
+#' # Populating the From field.
+#' msg %>% from("craig@gmail.com")
+#'
+from <- function(msg, addr = NULL) {
+  if (is.null(addr)) {
     msg$header$From
   } else {
-    msg$header$From <- as.address(from)
-    invisible(msg)
+    msg$header$From <- as.address(addr)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
 
-#' Add To field to message
+#' @rdname addresses
 #'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
+#' @param ... Addresses.
+#'
 #' @export
 #' @examples
+#' # Populating the To field.
 #' msg <- envelope()
-#' to(msg, "bob@gmail.com", "alice@yahoo.com")
-#' to(msg, c("bob@gmail.com", "alice@yahoo.com"))
+#' msg %>% to("bob@gmail.com, alice@yahoo.com")
+#' msg %>% to("bob@gmail.com", "alice@yahoo.com")
+#' msg %>% to(c("bob@gmail.com", "alice@yahoo.com"))
+#'
 to <- function(msg, ...) {
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$To
   } else {
     msg$header$To <- as.address(arguments)
-    invisible(msg)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
 
-#' Add Cc field to message
+#' @rdname addresses
 #'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
 #' @export
 #' @examples
+#' # Populating the Cc field.
 #' msg <- envelope()
-#' cc(msg, "bob@gmail.com", "alice@yahoo.com")
-#' cc(msg, c("bob@gmail.com", "alice@yahoo.com"))
+#' msg %>% cc("bob@gmail.com, alice@yahoo.com")
+#' msg %>% cc("bob@gmail.com", "alice@yahoo.com")
+#' msg %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
+#'
 cc <- function(msg, ...) {
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$Cc
   } else {
     msg$header$Cc <- as.address(arguments)
-    invisible(msg)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
 
-#' Add Bcc field to message
+#' @rdname addresses
 #'
-#' @param msg A message object.
-#' @param ... Email addresses.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{from}}, \code{\link{sender}}, \code{\link{reply}} and \code{\link{subject}}
 #' @export
 #' @examples
+#' # Populating the Bcc field.
 #' msg <- envelope()
-#' bcc(msg, "bob@gmail.com", "alice@yahoo.com")
-#' bcc(msg, c("bob@gmail.com", "alice@yahoo.com"))
+#' msg %>% bcc("bob@gmail.com, alice@yahoo.com")
+#' msg %>% bcc("bob@gmail.com", "alice@yahoo.com")
+#' msg %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
+#'
 bcc <- function(msg, ...) {
   arguments <- c(...)
   if (is.null(arguments)) {
     msg$header$Bcc
   } else {
     msg$header$Bcc <- as.address(arguments)
-    invisible(msg)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
 
-#' Add Reply-To field to message
+#' @rdname addresses
 #'
-#' @param msg A message object.
-#' @param reply_to Email address.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{sender}} and \code{\link{subject}}
 #' @export
 #' @examples
+#' # Populating the Reply-To field.
 #' msg <- envelope()
-#' reply(msg, "gerry@gmail.com")
-reply <- function(msg, reply_to = NULL) {
-  if (is.null(reply_to)) {
+#' msg %>% reply("gerry@gmail.com")
+#'
+reply <- function(msg, addr = NULL) {
+  if (is.null(addr)) {
     msg$header$Reply_To
   } else {
-    msg$header$Reply_To <- as.address(reply_to)
-    invisible(msg)
+    msg$header$Reply_To <- as.address(addr)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
 
-#' Add Sender (on behalf of) field to message
+#' @rdname addresses
 #'
-#' @param msg A message object.
-#' @param sender Email address.
-#' @return A message object.
-#' @seealso \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}}, \code{\link{from}}, \code{\link{reply}} and \code{\link{subject}}
 #' @export
 #' @examples
+#' # Populating the Sender field.
 #' msg <- envelope()
-#' sender(msg, "on_behalf_of@gmail.com")
-sender <- function(msg, sender = NULL) {
-  if (is.null(sender)) {
+#' msg %>% sender("on_behalf_of@gmail.com")
+sender <- function(msg, addr = NULL) {
+  if (is.null(addr)) {
     msg$header$Sender
   } else {
-    msg$header$Sender <- as.address(sender)
-    invisible(msg)
+    msg$header$Sender <- as.address(addr)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
