@@ -1,3 +1,10 @@
+# {emayili} 0.5.2
+
+* Pass params argument through to `rmarkdown::render()`.
+* Include extra CSS.
+* Include external CSS.
+* Replace bare `"\n"` with `"\r\n"`.
+
 # {emayili} 0.5.1
 
 * Add SystemRequirements for pandoc.
