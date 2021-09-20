@@ -75,7 +75,7 @@ processed as Plain Markdown." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -129,6 +129,9 @@ processed as Plain Markdown.</p>
     <pre class="usage"><span class='fu'>render</span><span class='op'>(</span>
   <span class='va'>msg</span>,
   <span class='va'>input</span>,
+  params <span class='op'>=</span> <span class='cn'>NULL</span>,
+  squish <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  css_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
   include_css <span class='op'>=</span> <span class='cn'>TRUE</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
@@ -146,6 +149,18 @@ processed as Plain Markdown.</p>
     <tr>
       <th>input</th>
       <td><p>The input Markdown file to be rendered or a character vector of Markdown text.</p></td>
+    </tr>
+    <tr>
+      <th>params</th>
+      <td><p>A list of named parameters that override custom parameters specified in the YAML front-matter.</p></td>
+    </tr>
+    <tr>
+      <th>squish</th>
+      <td><p>Whether to clean up whitespace in rendered document.</p></td>
+    </tr>
+    <tr>
+      <th>css_files</th>
+      <td><p>Extra CSS files.</p></td>
     </tr>
     <tr>
       <th>include_css</th>
