@@ -23,6 +23,7 @@
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
 #' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
+#' @param squish Whether to clean up whitespace in rendered document.
 #' @param css_files Extra CSS files.
 #' @param include_css Whether to include rendered CSS.
 #'
@@ -71,6 +72,7 @@ render <- function(
   msg,
   input,
   params = NULL,
+  squish = TRUE,
   css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
@@ -85,6 +87,12 @@ render <- function(
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
   stopifnot(is.character(.close))
+
+  # Check that extra CSS files exist.
+  #
+  for (css in css_files) {
+    if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
+  }
 
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir) # nocov
@@ -108,7 +116,7 @@ render <- function(
 
   if (plain) {
     output <- markdown_html(markdown)
-    body <- text_html(output)
+    body <- text_html(output, squish = squish)
   } else {
     # Create temporary Rmd file.
     #
@@ -138,12 +146,6 @@ render <- function(
 
     # Read output from file.
     output <- read_html(output)
-
-    # Check that extra CSS files exist.
-    #
-    for (css in css_files) {
-      if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
-    }
 
     # Extract CSS from <link> and <style> tags.
     #
@@ -210,7 +212,7 @@ render <- function(
 
     body <- multipart_related(
       children = list(
-        text_html(output)
+        text_html(output, squish = squish)
       )
     )
 

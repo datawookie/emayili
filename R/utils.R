@@ -99,3 +99,22 @@ drape_linefeed <- function(txt) {
 css_remove_comment <- function(css) {
   str_replace_all(css, "/\\*!?(\\*(?!/)|[^\\*])*\\*/", "")
 }
+
+#' Remove gratuitous whitespace from HTML
+#'
+#' @param html HTML content as character vector.
+#'
+#' @noRd
+html_squish <- function(html) {
+  html %>%
+    # Remove duplicate \n (when surrounded by whitespace and tags).
+    #
+    # <div>\n\n\n<p>foo \n\n bar</p>\n\n</div> -> <div>\n<p>foo \n\n bar</p>\n</div>
+    #
+    str_replace_all("(?<=>) *(\n)+ *(?=<)", "\n") %>%
+    # Remove just whitespace between tags.
+    #
+    # <div>  <p>foo    bar</p>  </div>         -> <div><p>foo    bar</p></div>
+    #
+    str_replace_all("(^|(?<=>)) +($|(?=<))", "")
+}

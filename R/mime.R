@@ -133,8 +133,7 @@ text_html <- function(
   # Clean up content.
   #
   if (squish) {
-    content <- content %>%
-      str_replace_all("(^|(?<=>))[:space:]+($|(?=<))", "")
+    content <- html_squish(content)
   }
 
   # Replace bare line-feeds.

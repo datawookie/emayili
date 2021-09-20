@@ -8,6 +8,7 @@ render(
   msg,
   input,
   params = NULL,
+  squish = TRUE,
   css_files = c(),
   include_css = TRUE,
   interpolate = TRUE,
