@@ -14,7 +14,7 @@ source("teardown-files.R", local = TRUE)
 
 writeLines("Some random text.", TXTPATH)
 
-writeLines("body {color: ref !important;}", CSSPATH)
+writeLines("body {color: red !important;}", CSSPATH)
 
 png(PNGPATH, width=600, height=350)
 hist(mtcars$disp)

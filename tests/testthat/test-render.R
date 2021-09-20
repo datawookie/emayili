@@ -53,5 +53,10 @@ test_that("extra CSS: unable to find file", {
 })
 
 test_that("extra CSS: include file", {
-  expect_error(envelope() %>% render(RMD_TEMPLATE, css_files = CSSPATH), NA)
+  expect_match(
+    envelope() %>%
+      render(RMD_TEMPLATE, css_files = CSSPATH, include_css = FALSE) %>%
+      as.character(),
+    '<style type="text/css">body \\{color: red !important;\\}</style>'
+    )
 })
