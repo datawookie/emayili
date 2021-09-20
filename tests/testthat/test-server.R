@@ -5,8 +5,16 @@ msg <- envelope() %>%
 msg_no_recipient <- envelope() %>%
   from(SMTP_USERNAME)
 
+msg_no_sender <- envelope() %>%
+  to(SMTP_USERNAME)
+
 test_that("server type", {
   expect_type(smtp, "closure")
+})
+
+test_that("error if sender missing", {
+  skip_on_cran()
+  expect_error(smtp(msg_no_sender), "Must specify who the email is from.")
 })
 
 test_that("error if recipient missing", {

@@ -67,9 +67,11 @@ server <- function(
   function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr()) # nocov
 
+    if (is.null(from(msg))) stop("Must specify who the email is from.")
+
     recipients <- c(msg$header$To, msg$header$Cc, msg$header$Bcc)
     #
-    if (length(recipients) < 1) stop("Must specify at least one email recipient.", call. = FALSE)
+    if (length(recipients) < 1) stop("Must specify at least one email recipient.")
 
     # See curl::curl_options() for available options.
     #
