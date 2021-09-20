@@ -217,20 +217,38 @@ other <- function(
   )
 }
 
-# APPEND ----------------------------------------------------------------------
+# APPEND & PREPEND ------------------------------------------------------------
 
-#' Append child to a MIME element
+#' Add children to MIME element
 #'
-#' This is a generic function.
+#' @name add_children
 #'
 #' @param x MIME element
 #' @param child Child MIME element
+#' @return A MIME element.
+#'
+#' @noRd
+NULL
+
+#' @rdname add_children
+#'
 append <- function(x, child) {
   UseMethod("append", x)
 }
 append.MIME <- function(x, child) {
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(x$children, list(child))
+  x
+}
+
+#' @rdname add_children
+#'
+prepend <- function(x, child) {
+  UseMethod("prepend", x)
+}
+prepend.MIME <- function(x, child) {
+  if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
+  x$children <- c(list(child), x$children)
   x
 }
 
