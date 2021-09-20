@@ -106,16 +106,21 @@ render <- function(
 
   if (markdown == "") stop("Input is empty!")
 
-  output <- tempfile(fileext = ".html")
-  image_path <- file.path(sub(".html", "_files", output), "figure-html")
-
   if (plain) {
     output <- markdown_html(markdown)
     body <- text_html(output)
   } else {
+    # Create temporary Rmd file.
+    #
+    # This needs to be in the current directory in case the Rmd is accessing
+    # files (like CSV) using a relative path.
+    #
+    input <- tempfile(fileext = ".Rmd", tmpdir = getwd())
     # Write input to file.
-    input <- tempfile(fileext = ".Rmd")
     cat(markdown, file = input)
+
+    output <- sub("\\.Rmd", ".html", input)
+    image_path <- file.path(sub("\\.Rmd", "_files", input), "figure-html")
 
     # Render from file to file.
     rmarkdown::render(
@@ -208,19 +213,23 @@ render <- function(
         text_html(output)
       )
     )
-  }
 
-  # Attach images with appropriate CID.
-  #
-  for (image in list.files(image_path, full.names = TRUE)) {
-    body <- append(
-      body,
-      other(
-        filename = image,
-        cid = hexkey(basename(image)),
-        disposition = "inline"
+    # Attach images with appropriate CID.
+    #
+    for (image in list.files(image_path, full.names = TRUE)) {
+      body <- append(
+        body,
+        other(
+          filename = image,
+          cid = hexkey(basename(image)),
+          disposition = "inline"
+        )
       )
-    )
+    }
+
+    # Clean up rendered artefacts.
+    #
+    unlink(sub("\\.Rmd", "*", input), recursive = TRUE)
   }
 
   msg <- append(msg, body)
