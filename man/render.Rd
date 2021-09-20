@@ -24,6 +24,8 @@ render(
 
 \item{params}{A list of named parameters that override custom parameters specified in the YAML front-matter.}
 
+\item{squish}{Whether to clean up whitespace in rendered document.}
+
 \item{css_files}{Extra CSS files.}
 
 \item{include_css}{Whether to include rendered CSS.}

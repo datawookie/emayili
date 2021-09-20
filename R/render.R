@@ -93,6 +93,7 @@ render <- function(
   for (css in css_files) {
     if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
   }
+  css <- list(extra = css_files %>% map_chr(read_text))
 
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir) # nocov
@@ -115,8 +116,7 @@ render <- function(
   if (markdown == "") stop("Input is empty!")
 
   if (plain) {
-    output <- markdown_html(markdown)
-    body <- text_html(output, squish = squish)
+    output <- markdown_html(markdown) %>% read_html()
   } else {
     # Create temporary Rmd file.
     #
@@ -147,54 +147,36 @@ render <- function(
     # Read output from file.
     output <- read_html(output)
 
-    # Extract CSS from <link> and <style> tags.
-    #
-    css <- list(
-      # Inline CSS in <link> tags.
-      xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-        xml_attr("href") %>%
-        unlist() %>%
-        url_decode() %>%
-        str_replace("data:text/css,", ""),
-      # External CSS in <link> tags.
-      xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
-        xml_attr("href") %>%
-        file.path(dirname(input), .) %>%
-        map_chr(read_text),
-      # Inline CSS in <style> tags.
-      xml_find_all(output, "//style") %>%
-        xml_text() %>%
-        unlist(),
-      # Extra CSS.
-      css_files %>%
-        map_chr(read_text)
-    ) %>%
-      unlist() %>%
-      str_c(collapse = "\n") %>%
-      css_remove_comment() %>%
-      str_squish()
+    if (include_css) {
+      # Extract CSS from <link> and <style> tags and append.
+      #
+      css <- c(
+        css,
+        # Inline CSS in <link> tags.
+        inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
+          xml_attr("href") %>%
+          unlist() %>%
+          url_decode() %>%
+          str_replace("data:text/css,", ""),
+        # External CSS in <link> tags.
+        external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
+          xml_attr("href") %>%
+          file.path(dirname(input), .) %>%
+          map_chr(read_text),
+        # Inline CSS in <style> tags.
+        style = xml_find_all(output, "//style") %>%
+          xml_text() %>%
+          unlist()
+      )
+    }
 
-    # Delete <script>, <link> and <style> tags.
+    # Delete <script>, <link>, <style> and <meta> tags.
     #
-    xml_find_all(output, "//script | //link | //style") %>% xml_remove()
+    xml_find_all(output, "//script | //link | //style | //meta") %>% xml_remove()
 
     # Remove comments.
     #
     xml_find_all(output, "//comment()") %>% xml_remove()
-
-    if (include_css) {
-      # Remove all other tags in <head>
-      xml_find_all(output, "//head/*") %>% xml_remove()
-      # Write consolidated CSS to single <style> tag.
-      xml_add_child(
-        xml_find_first(output, "//head"),
-        "style",
-        css,
-        type = "text/css"
-      )
-    } else {
-      xml_find_first(output, "//head") %>% xml_remove()
-    }
 
     # Convert image links into CID references.
     #
@@ -206,15 +188,7 @@ render <- function(
       }
     }
 
-    output <- as.character(output) %>%
-      # Remove <!DOCTYPE> tag.
-      str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "")
-
-    body <- multipart_related(
-      children = list(
-        text_html(output, squish = squish)
-      )
-    )
+    body <- multipart_related()
 
     # Attach images with appropriate CID.
     #
@@ -232,6 +206,41 @@ render <- function(
     # Clean up rendered artefacts.
     #
     unlink(sub("\\.Rmd", "*", input), recursive = TRUE)
+  }
+
+  # Remove all other tags in <head>
+  xml_find_all(output, "//head/*") %>% xml_remove()
+
+  # Consolidate CSS.
+  #
+  css <- css %>%
+    unlist() %>%
+    str_c(collapse = "\n") %>%
+    css_remove_comment() %>%
+    str_squish()
+
+  # Write consolidated CSS to single <style> tag.
+  if (nchar(css)) {
+    xml_add_child(
+      xml_find_first(output, "//head"),
+      "style",
+      css,
+      type = "text/css"
+    )
+  }
+
+  output <- as.character(output) %>%
+    # Remove <!DOCTYPE> tag.
+    str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "") %>%
+    # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
+    str_replace("<meta[^>]*>", "")
+
+  output <- text_html(output, squish = squish)
+
+  body <- if (plain) {
+    output
+  } else {
+    prepend(body, output)
   }
 
   msg <- append(msg, body)
