@@ -85,7 +85,7 @@ print.envelope <- function(x, details = NA, ...) {
   }
   stopifnot(is.logical(details))
   #
-  ifelse(details, as.character(x), header(x)) %>% cat()
+  ifelse(details, as.character(x), header(x)) %>% cat("\n", sep = "")
 }
 
 #' Create formatted message.
