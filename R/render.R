@@ -219,6 +219,15 @@ render <- function(
     css_remove_comment() %>%
     str_squish()
 
+  # Add <head> (can be missing if rendering Plain Markdown).
+  if (is.na(xml_find_first(output, "//head"))) {
+    xml_add_sibling(
+      xml_find_first(output, "//body"),
+      "head",
+      .where = "before"
+    )
+  }
+
   # Write consolidated CSS to single <style> tag.
   if (nchar(css)) {
     xml_add_child(
