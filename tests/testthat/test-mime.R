@@ -1,6 +1,7 @@
 test_that("children must be MIME", {
   expect_error(MIME(children = list(1)), ERROR_NOT_MIME_OBJECT)
   expect_error(append.MIME(emayili:::MIME(), 1), ERROR_NOT_MIME_OBJECT)
+  expect_error(prepend.MIME(emayili:::MIME(), 1), ERROR_NOT_MIME_OBJECT)
 })
 
 test_that("create multipart/mixed", {

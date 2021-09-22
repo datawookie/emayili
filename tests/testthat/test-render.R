@@ -30,7 +30,7 @@ test_that("interpolate into Markdown", {
   )
 })
 
-test_that("whether to include CSS", {
+test_that("whether to include rendered CSS", {
   expect_match(
     envelope() %>%
       render(RMD_TEMPLATE, include_css = TRUE) %>%
@@ -45,18 +45,24 @@ test_that("whether to include CSS", {
   )
 })
 
+test_that("include extra CSS", {
+  expect_match(
+    envelope() %>%
+      render(PLAIN_MARKDOWN, css_files = CSSPATH) %>%
+      as.character(),
+    COLOUR_GLAUCOUS
+  )
+  expect_match(
+    envelope() %>%
+      render(RMD_TEMPLATE, css_files = CSSPATH, include_css = FALSE) %>%
+      as.character(),
+    COLOUR_GLAUCOUS
+  )
+})
+
 test_that("extra CSS: unable to find file", {
   expect_error(
     envelope() %>% render(RMD_TEMPLATE, css_files = "missing.css"),
     "Unable to find CSS file"
   )
-})
-
-test_that("extra CSS: include file", {
-  expect_match(
-    envelope() %>%
-      render(RMD_TEMPLATE, css_files = CSSPATH, include_css = FALSE) %>%
-      as.character(),
-    '<style type="text/css">body \\{color: red !important;\\}</style>'
-    )
 })

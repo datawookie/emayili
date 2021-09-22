@@ -8,13 +8,20 @@ CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
 
+PLAIN_MARKDOWN <- "## Section\n[link](https://www.google.com)"
+
+COLOUR_GLAUCOUS = "#6082b6"
+
 # Start with a blank slate.
 #
 source("teardown-files.R", local = TRUE)
 
 writeLines("Some random text.", TXTPATH)
 
-writeLines("body {color: red !important;}", CSSPATH)
+writeLines(
+  paste0("body {color: ", COLOUR_GLAUCOUS," !important;}"),
+  CSSPATH
+)
 
 png(PNGPATH, width=600, height=350)
 hist(mtcars$disp)
