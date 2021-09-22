@@ -1,6 +1,5 @@
 manifest <- function(
   markdown,
-  plain,
   params = NULL,
   squish = TRUE,
   css_files = c(),
@@ -17,7 +16,7 @@ manifest <- function(
   }
   css <- list(extra = css_files %>% map_chr(read_text))
 
-  if (plain) {
+  if (plain <- attr(markdown, "plain")) {
     output <- markdown_html(markdown) %>% read_html()
   } else {
     # Create temporary Rmd file.
@@ -268,9 +267,10 @@ render <- function(
 
   if (markdown == "") stop("Input is empty!")
 
+  attr(markdown, "plain") <- plain
+
   body <- manifest(
     markdown,
-    plain,
     params,
     squish,
     css_files,
