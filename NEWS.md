@@ -1,3 +1,7 @@
+# {emayili} 0.5.3
+
+* Cache rendered Markdown.
+
 # {emayili} 0.5.2
 
 * Pass params argument through to `rmarkdown::render()`.
