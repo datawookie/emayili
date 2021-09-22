@@ -340,4 +340,14 @@ rhub::check(platform = "debian-gcc-devel")
 # Check on a bunch of platforms.
 #
 rhub::check_for_cran()
+
+# Check on important platforms.
+#
+rhub::check_for_cran(platforms = c(
+  "debian-gcc-release",
+  "ubuntu-gcc-release",
+  "macos-highsierra-release-cran",
+  "solaris-x86-patched",
+  "windows-x86_64-release"
+))
 ```

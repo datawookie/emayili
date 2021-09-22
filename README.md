@@ -52,6 +52,15 @@ First create a message object.
 
 ``` r
 library(emayili)
+```
+
+    Warning: replacing previous import 'lifecycle::last_warnings' by
+    'rlang::last_warnings' when loading 'pillar'
+
+    Warning: replacing previous import 'lifecycle::last_warnings' by
+    'rlang::last_warnings' when loading 'tibble'
+
+``` r
 library(magrittr)
 
 email <- envelope()
@@ -126,12 +135,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
+    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.5.1
+    X-Mailer:                  {emayili}-0.5.2
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -174,8 +183,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
-    X-Mailer:                  {emayili}-0.5.1
+    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
+    X-Mailer:                  {emayili}-0.5.2
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
@@ -197,13 +206,17 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sun, 19 Sep 2021 05:33:47 GMT
-    X-Mailer:                  {emayili}-0.5.1
+    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
+    X-Mailer:                  {emayili}-0.5.2
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
 
-    <p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+    <html>
+    <head></head>
+    <body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body>
+    </html>
 
 Or R Markdown.
 
@@ -384,4 +397,14 @@ rhub::check(platform = "debian-gcc-devel")
 # Check on a bunch of platforms.
 #
 rhub::check_for_cran()
+
+# Check on important platforms.
+#
+rhub::check_for_cran(platforms = c(
+  "debian-gcc-release",
+  "ubuntu-gcc-release",
+  "macos-highsierra-release-cran",
+  "solaris-x86-patched",
+  "windows-x86_64-release"
+))
 ```

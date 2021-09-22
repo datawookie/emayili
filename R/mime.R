@@ -231,6 +231,7 @@ other <- function(
 NULL
 
 #' @rdname add_children
+#' @noRd
 #'
 append <- function(x, child) {
   UseMethod("append", x)
@@ -242,6 +243,7 @@ append.MIME <- function(x, child) {
 }
 
 #' @rdname add_children
+#' @noRd
 #'
 prepend <- function(x, child) {
   UseMethod("prepend", x)

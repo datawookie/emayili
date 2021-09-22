@@ -1,75 +1,4 @@
-#' Render Markdown into email
-#'
-#' @description
-#'
-#' Render either Plain Markdown or R Markdown directly into the body of an email.
-#'
-#' If \code{input} is a file then it will be interpreted as R Markdown it its
-#' extension is either \code{"Rmd"} or \code{"Rmarkdown"}. Otherwise it will be
-#' processed as Plain Markdown.
-#'
-#' @section Plain Markdown:
-#'
-#' Plain Markdown is processed with [commonmark::markdown_html()].
-#'
-#' @section R Markdown:
-#'
-#' R Markdown is processed with [rmarkdown::render()].
-#'
-#' Regardless of what \code{output} type is specified in the input file,
-#' \code{render()} will always use the \code{"html_document"} output format.
-#'
-#' @inheritParams text
-#' @param msg A message object.
-#' @param input The input Markdown file to be rendered or a character vector of Markdown text.
-#' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
-#' @param squish Whether to clean up whitespace in rendered document.
-#' @param css_files Extra CSS files.
-#' @param include_css Whether to include rendered CSS.
-#'
-#' @return A message object.
-#' @export
-#'
-#' @examples
-#'
-#' # Plain Markdown
-#'
-#' markdown <- "[This](https://www.google.com) is a link."
-#' filename <- "message.md"
-#'
-#' # Render from Markdown in character vector.
-#' msg <- envelope() %>% render(markdown)
-#'
-#' # Create a file containing Markdown
-#' cat(markdown, file = filename)
-#'
-#' # Render from Markdown in file.
-#' msg <- envelope() %>% render(filename)
-#'
-#' # Cleanup.
-#' file.remove(filename)
-#'
-#' # R Markdown
-#'
-#' filename <- "gh-doc.Rmd"
-#'
-#' # Create an Rmd document from template.
-#' rmarkdown::draft(
-#'   filename,
-#'   template = "github_document",
-#'   package = "rmarkdown",
-#'   edit = FALSE
-#' )
-#'
-#' # Render from Rmd file.
-#' if (!is.null(rmarkdown::find_pandoc()$dir)) {
-#'   msg <- envelope() %>% render(filename)
-#' }
-#'
-#' # Cleanup.
-#' file.remove(filename)
-render <- function(
-  msg,
+manifest <- function(
   input,
   params = NULL,
   squish = TRUE,
@@ -78,9 +7,8 @@ render <- function(
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
-  .envir = NULL
+  .envir
 ) {
-  stopifnot(is.envelope(msg))
   stopifnot(is.null(params) || is.list(params))
   stopifnot(!length(css_files) || is.character(css_files))
   stopifnot(is.logical(include_css))
@@ -94,9 +22,6 @@ render <- function(
     if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
   }
   css <- list(extra = css_files %>% map_chr(read_text))
-
-  if (is.null(.envir)) .envir = parent.frame()
-  else .envir = list2env(.envir) # nocov
 
   if (is_filepath(input)) {
     log_debug("Interpreting input as path to file.")
@@ -246,11 +171,112 @@ render <- function(
 
   output <- text_html(output, squish = squish)
 
-  body <- if (plain) {
+  if (plain) {
     output
   } else {
     prepend(body, output)
   }
+}
+
+
+#' Render Markdown into email
+#'
+#' @description
+#'
+#' Render either Plain Markdown or R Markdown directly into the body of an email.
+#'
+#' If \code{input} is a file then it will be interpreted as R Markdown it its
+#' extension is either \code{"Rmd"} or \code{"Rmarkdown"}. Otherwise it will be
+#' processed as Plain Markdown.
+#'
+#' @section Plain Markdown:
+#'
+#' Plain Markdown is processed with [commonmark::markdown_html()].
+#'
+#' @section R Markdown:
+#'
+#' R Markdown is processed with [rmarkdown::render()].
+#'
+#' Regardless of what \code{output} type is specified in the input file,
+#' \code{render()} will always use the \code{"html_document"} output format.
+#'
+#' @inheritParams text
+#' @param msg A message object.
+#' @param input The input Markdown file to be rendered or a character vector of Markdown text.
+#' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
+#' @param squish Whether to clean up whitespace in rendered document.
+#' @param css_files Extra CSS files.
+#' @param include_css Whether to include rendered CSS.
+#'
+#' @return A message object.
+#' @export
+#'
+#' @examples
+#'
+#' # Plain Markdown
+#'
+#' markdown <- "[This](https://www.google.com) is a link."
+#' filename <- "message.md"
+#'
+#' # Render from Markdown in character vector.
+#' msg <- envelope() %>% render(markdown)
+#'
+#' # Create a file containing Markdown
+#' cat(markdown, file = filename)
+#'
+#' # Render from Markdown in file.
+#' msg <- envelope() %>% render(filename)
+#'
+#' # Cleanup.
+#' file.remove(filename)
+#'
+#' # R Markdown
+#'
+#' filename <- "gh-doc.Rmd"
+#'
+#' # Create an Rmd document from template.
+#' rmarkdown::draft(
+#'   filename,
+#'   template = "github_document",
+#'   package = "rmarkdown",
+#'   edit = FALSE
+#' )
+#'
+#' # Render from Rmd file.
+#' if (!is.null(rmarkdown::find_pandoc()$dir)) {
+#'   msg <- envelope() %>% render(filename)
+#' }
+#'
+#' # Cleanup.
+#' file.remove(filename)
+render <- function(
+  msg,
+  input,
+  params = NULL,
+  squish = TRUE,
+  css_files = c(),
+  include_css = TRUE,
+  interpolate = TRUE,
+  .open = "{{",
+  .close = "}}",
+  .envir = NULL
+) {
+  stopifnot(is.envelope(msg))
+
+  if (is.null(.envir)) .envir = parent.frame()
+  else .envir = list2env(.envir) # nocov
+
+  body <- manifest(
+    input,
+    params,
+    squish,
+    css_files,
+    include_css,
+    interpolate,
+    .open,
+    .close,
+    .envir
+  )
 
   msg <- append(msg, body)
 
