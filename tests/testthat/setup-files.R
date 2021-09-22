@@ -9,6 +9,7 @@ HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
 
 PLAIN_MARKDOWN <- "## Section\n[link](https://www.google.com)"
+PLAIN_MARKDOWN_INTERPOLATE <- "Hi {{name}}!"
 
 COLOUR_GLAUCOUS = "#6082b6"
 

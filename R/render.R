@@ -1,20 +1,14 @@
 manifest <- function(
-  input,
+  markdown,
+  plain,
   params = NULL,
   squish = TRUE,
   css_files = c(),
-  include_css = TRUE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir
+  include_css = TRUE
 ) {
   stopifnot(is.null(params) || is.list(params))
   stopifnot(!length(css_files) || is.character(css_files))
   stopifnot(is.logical(include_css))
-  stopifnot(is.logical(interpolate))
-  stopifnot(is.character(.open))
-  stopifnot(is.character(.close))
 
   # Check that extra CSS files exist.
   #
@@ -22,23 +16,6 @@ manifest <- function(
     if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
   }
   css <- list(extra = css_files %>% map_chr(read_text))
-
-  if (is_filepath(input)) {
-    log_debug("Interpreting input as path to file.")
-    plain <- !(file_ext(input) %in% c("Rmd", "Rmarkdown"))
-    markdown <- read_text(input)
-  } else {
-    log_debug("Interpreting input as character vector.")
-    plain <- TRUE
-    markdown <- input
-  }
-  log_debug("Assuming input is ", ifelse(plain, "Plain", "R"), " Markdown.")
-
-  if (interpolate) {
-    markdown <- glue(markdown, .open = .open, .close = .close, .envir = .envir)
-  }
-
-  if (markdown == "") stop("Input is empty!")
 
   if (plain) {
     output <- markdown_html(markdown) %>% read_html()
@@ -178,6 +155,11 @@ manifest <- function(
   }
 }
 
+# If {memoise} is installed then memoise manifest().
+#
+if (require(memoise, quietly = TRUE)) {
+  manifest <- memoise(manifest)
+}
 
 #' Render Markdown into email
 #'
@@ -262,20 +244,37 @@ render <- function(
   .envir = NULL
 ) {
   stopifnot(is.envelope(msg))
+  stopifnot(is.logical(interpolate))
+  stopifnot(is.character(.open))
+  stopifnot(is.character(.close))
 
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir) # nocov
 
+  if (is_filepath(input)) {
+    log_debug("Interpreting input as path to file.")
+    plain <- !(file_ext(input) %in% c("Rmd", "Rmarkdown"))
+    markdown <- read_text(input)
+  } else {
+    log_debug("Interpreting input as character vector.")
+    plain <- TRUE
+    markdown <- input
+  }
+  log_debug("Assuming input is ", ifelse(plain, "Plain", "R"), " Markdown.")
+
+  if (interpolate) {
+    markdown <- glue(markdown, .open = .open, .close = .close, .envir = .envir)
+  }
+
+  if (markdown == "") stop("Input is empty!")
+
   body <- manifest(
-    input,
+    markdown,
+    plain,
     params,
     squish,
     css_files,
-    include_css,
-    interpolate,
-    .open,
-    .close,
-    .envir
+    include_css
   )
 
   msg <- append(msg, body)

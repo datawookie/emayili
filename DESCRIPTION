@@ -54,6 +54,7 @@ Imports:
     xml2
 Suggests:
     here,
+    memoise,
     testthat (>= 2.1.0),
     roxygen2,
     showtext
