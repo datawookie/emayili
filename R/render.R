@@ -2,19 +2,11 @@ manifest <- function(
   markdown,
   params = NULL,
   squish = TRUE,
-  css_files = c(),
+  css,
   include_css = TRUE
 ) {
   stopifnot(is.null(params) || is.list(params))
-  stopifnot(!length(css_files) || is.character(css_files))
   stopifnot(is.logical(include_css))
-
-  # Check that extra CSS files exist.
-  #
-  for (css in css_files) {
-    if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
-  }
-  css <- list(extra = css_files %>% map_chr(read_text))
 
   if (plain <- attr(markdown, "plain")) {
     output <- markdown_html(markdown) %>% read_html()
@@ -25,6 +17,11 @@ manifest <- function(
     # files (like CSV) using a relative path.
     #
     input <- tempfile(fileext = ".Rmd", tmpdir = getwd())
+
+    # Clean up rendered artefacts.
+    #
+    on.exit(unlink(sub("\\.Rmd", "*", input), recursive = TRUE))
+
     # Write input to file.
     cat(markdown, file = input)
 
@@ -34,7 +31,10 @@ manifest <- function(
     # Render from file to file.
     rmarkdown::render(
       input,
-      output_format = "html_document",
+      output_format = html_document(
+        # Silence pandoc warnings (mostly due to missing document title).
+        pandoc_args = "--quiet"
+      ),
       output_file = output,
       params = params,
       quiet = TRUE,
@@ -103,10 +103,6 @@ manifest <- function(
         )
       )
     }
-
-    # Clean up rendered artefacts.
-    #
-    unlink(sub("\\.Rmd", "*", input), recursive = TRUE)
   }
 
   # Remove all other tags in <head>
@@ -246,6 +242,7 @@ render <- function(
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
   stopifnot(is.character(.close))
+  stopifnot(!length(css_files) || is.character(css_files))
 
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir) # nocov
@@ -269,11 +266,18 @@ render <- function(
 
   attr(markdown, "plain") <- plain
 
+  # Check that extra CSS files exist.
+  #
+  for (css in css_files) {
+    if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
+  }
+  css <- list(extra = css_files %>% map_chr(read_text))
+
   body <- manifest(
     markdown,
     params,
     squish,
-    css_files,
+    css,
     include_css
   )
 

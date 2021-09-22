@@ -12,7 +12,7 @@
 #' @importFrom httr http_date
 #' @importFrom mime guess_type
 #' @importFrom purrr possibly insistently rate_backoff map map_dfr map_chr
-#' @importFrom rmarkdown render
+#' @importFrom rmarkdown render html_document
 #' @importFrom stats setNames
 #' @importFrom tidyr unnest
 #' @importFrom tools file_ext
