@@ -1,3 +1,7 @@
+# {emayili} 0.5.4
+
+* Wrap <img> in <figure> and support fig.cap, fig.alt & fig.class.
+
 # {emayili} 0.5.3
 
 * Cache rendered Markdown.
