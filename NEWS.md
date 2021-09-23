@@ -1,3 +1,8 @@
+# {emayili} 0.5.5
+
+* Use include_css option to specify what rendered CSS is included. Can specify
+  a combination of "rmd", "bootstrap" and "highlight".
+
 # {emayili} 0.5.4
 
 * Wrap <img> in <figure> and support fig.cap, fig.alt & fig.class.
