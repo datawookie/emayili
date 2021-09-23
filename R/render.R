@@ -28,13 +28,37 @@ manifest <- function(
     output <- sub("\\.Rmd", ".html", input)
     image_path <- file.path(sub("\\.Rmd", "_files", input), "figure-html")
 
+    output_format <- html_document(
+      # Silence pandoc warnings (mostly due to missing document title).
+      pandoc_args = "--quiet"
+    )
+
+    output_format$knitr$knit_hooks <- list(
+      plot = function(x, options) {
+        caption <- options$fig.cap
+        alt <- options$fig.alt
+        if (is.null(alt)) alt <- caption
+        class <- options$fig.class
+        width <- options$out.width
+
+        as.character(
+          tags$figure(
+            tags$img(
+              src = x,
+              alt = alt,
+              width = width
+            ),
+            tags$figcaption(caption),
+            class = class
+          )
+        )
+      }
+    )
+
     # Render from file to file.
     rmarkdown::render(
       input,
-      output_format = html_document(
-        # Silence pandoc warnings (mostly due to missing document title).
-        pandoc_args = "--quiet"
-      ),
+      output_format = output_format,
       output_file = output,
       params = params,
       quiet = TRUE,
@@ -52,7 +76,6 @@ manifest <- function(
       # Extract CSS from <link> and <style> tags and append.
       #
       css <- c(
-        css,
         # Inline CSS in <link> tags.
         inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
           xml_attr("href") %>%
@@ -67,7 +90,9 @@ manifest <- function(
         # Inline CSS in <style> tags.
         style = xml_find_all(output, "//style") %>%
           xml_text() %>%
-          unlist()
+          unlist(),
+        # Add custom CSS last so that it overrides.
+        css
       )
     }
 
