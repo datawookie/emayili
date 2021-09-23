@@ -191,6 +191,18 @@ In both cases the function will accept either a file path or a character vector 
 
 Interpolation also works with `render()`.
 
+### Rendered CSS
+
+When you render an R Markdown document the resulting HTML includes CSS from three sources:
+
+- [Bootstrap](https://getbootstrap.com/)
+- [highlightjs](https://highlightjs.org/) and
+- `{rmarkdown}`.
+
+You can control which of these propagate to the message using the `include_css` parameter which, by default, is set to `c("rmd", "bootstrap", "highlight")`.
+
+**Note:** Gmail doesn't like the Bootstrap CSS. If you want your styling to work on Gmail you should set `include_css =  c("rmd", "highlight")`.
+
 ### Extra CSS
 
 You can insert extra CSS into your rendered messages.

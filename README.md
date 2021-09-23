@@ -135,12 +135,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
+    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.5.2
+    X-Mailer:                  {emayili}-0.5.4
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -183,8 +183,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
-    X-Mailer:                  {emayili}-0.5.2
+    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
+    X-Mailer:                  {emayili}-0.5.4
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
@@ -206,8 +206,8 @@ envelope() %>%
   )
 ```
 
-    Date:                      Wed, 22 Sep 2021 03:18:15 GMT
-    X-Mailer:                  {emayili}-0.5.2
+    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
+    X-Mailer:                  {emayili}-0.5.4
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
@@ -232,6 +232,22 @@ vector containing Markdown text.
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
 Interpolation also works with `render()`.
+
+### Rendered CSS
+
+When you render an R Markdown document the resulting HTML includes CSS
+from three sources:
+
+-   [Bootstrap](https://getbootstrap.com/)
+-   [highlightjs](https://highlightjs.org/) and
+-   `{rmarkdown}`.
+
+You can control which of these propagate to the message using the
+`include_css` parameter which, by default, is set to
+`c("rmd", "bootstrap", "highlight")`.
+
+🚨 Gmail doesn’t like the Bootstrap CSS. If you want your styling
+to work on Gmail you should set `include_css =  c("rmd", "highlight")`.
 
 ### Extra CSS
 

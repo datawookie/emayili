@@ -6,7 +6,8 @@ manifest <- function(
   include_css = TRUE
 ) {
   stopifnot(is.null(params) || is.list(params))
-  stopifnot(is.logical(include_css))
+
+  if (include_css == FALSE || is.na(include_css) || is.null(include_css)) include_css = c()
 
   if (plain <- attr(markdown, "plain")) {
     output <- markdown_html(markdown) %>% read_html()
@@ -72,29 +73,43 @@ manifest <- function(
     # Read output from file.
     output <- read_html(output)
 
-    if (include_css) {
-      # Extract CSS from <link> and <style> tags and append.
+    # Extract CSS from <link> and <style> tags and append.
+    #
+    css <- c(
+      # * Inline CSS in <link> tags.
+      if (any("rmd" == include_css)) {
+      inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
+        xml_attr("href") %>%
+        unlist() %>%
+        url_decode() %>%
+        str_replace("data:text/css,", "")
+      } else NULL,
+      # * External CSS in <link> tags.
       #
-      css <- c(
-        # Inline CSS in <link> tags.
-        inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-          xml_attr("href") %>%
-          unlist() %>%
-          url_decode() %>%
-          str_replace("data:text/css,", ""),
-        # External CSS in <link> tags.
-        external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
-          xml_attr("href") %>%
-          file.path(dirname(input), .) %>%
-          map_chr(read_text),
-        # Inline CSS in <style> tags.
-        style = xml_find_all(output, "//style") %>%
-          xml_text() %>%
-          unlist(),
-        # Add custom CSS last so that it overrides.
-        css
-      )
-    }
+      # This is CSS for:
+      #
+      # - Bootstrap and
+      # - highlight.js.
+      #
+      external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
+        xml_attr("href") %>%
+        map(function(path) {
+          include_css <- setdiff(include_css, "rmd")
+          # Check is CSS path matches one of the requested options.
+          if (length(include_css)) {
+            if (str_detect(path, paste0("/", include_css, collapse = "|"))) path else NULL
+          } else NULL
+        }) %>%
+        unlist() %>%
+        file.path(dirname(input), .) %>%
+        map_chr(read_text),
+      # * Inline CSS in <style> tags.
+      style = xml_find_all(output, "//style") %>%
+        xml_text() %>%
+        unlist(),
+      # * Add custom CSS last so that it overrides.
+      css
+    )
 
     # Delete <script>, <link>, <style> and <meta> tags.
     #
@@ -208,7 +223,7 @@ if (require(memoise, quietly = TRUE)) {
 #' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
 #' @param squish Whether to clean up whitespace in rendered document.
 #' @param css_files Extra CSS files.
-#' @param include_css Whether to include rendered CSS.
+#' @param include_css Whether to include rendered CSS from various sources (\code{"rmd"} → native R Markdown CSS; \code{"bootstrap"} → Bootstrap CSS; \code{"highlight"} → highlight.js CSS).
 #'
 #' @return A message object.
 #' @export
@@ -257,7 +272,7 @@ render <- function(
   params = NULL,
   squish = TRUE,
   css_files = c(),
-  include_css = TRUE,
+  include_css = c("rmd", "bootstrap", "highlight"),
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
