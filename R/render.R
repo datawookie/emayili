@@ -50,7 +50,7 @@ manifest <- function(
               alt = alt,
               width = width
             ),
-            tags$figcaption(caption),
+            if(is.null(caption)) NULL else tags$figcaption(caption),
             class = class
           )
         )
