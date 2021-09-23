@@ -135,7 +135,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
+    Date:                      Thu, 23 Sep 2021 18:56:58 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
@@ -183,7 +183,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
+    Date:                      Thu, 23 Sep 2021 18:56:59 GMT
     X-Mailer:                  {emayili}-0.5.4
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
@@ -206,7 +206,7 @@ envelope() %>%
   )
 ```
 
-    Date:                      Thu, 23 Sep 2021 16:45:24 GMT
+    Date:                      Thu, 23 Sep 2021 18:56:59 GMT
     X-Mailer:                  {emayili}-0.5.4
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
@@ -246,7 +246,7 @@ You can control which of these propagate to the message using the
 `include_css` parameter which, by default, is set to
 `c("rmd", "bootstrap", "highlight")`.
 
-🚨 Gmail doesn’t like the Bootstrap CSS. If you want your styling
+🚨 *Note:* Gmail doesn’t like the Bootstrap CSS. If you want your styling
 to work on Gmail you should set `include_css =  c("rmd", "highlight")`.
 
 ### Extra CSS

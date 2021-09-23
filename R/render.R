@@ -261,7 +261,8 @@ if (require(memoise, quietly = TRUE)) {
 #'
 #' # Render from Rmd file.
 #' if (!is.null(rmarkdown::find_pandoc()$dir)) {
-#'   msg <- envelope() %>% render(filename)
+#'   msg <- envelope() %>%
+#'     render(filename, include_css = c("rmd", "highlight"))
 #' }
 #'
 #' # Cleanup.
