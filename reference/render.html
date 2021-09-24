@@ -75,7 +75,7 @@ processed as Plain Markdown." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ processed as Plain Markdown.</p>
   params <span class='op'>=</span> <span class='cn'>NULL</span>,
   squish <span class='op'>=</span> <span class='cn'>TRUE</span>,
   css_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
-  include_css <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  include_css <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rmd"</span>, <span class='st'>"bootstrap"</span>, <span class='st'>"highlight"</span><span class='op'>)</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
   .close <span class='op'>=</span> <span class='st'>"}}"</span>,
@@ -164,7 +164,7 @@ processed as Plain Markdown.</p>
     </tr>
     <tr>
       <th>include_css</th>
-      <td><p>Whether to include rendered CSS.</p></td>
+      <td><p>Whether to include rendered CSS from various sources (<code>"rmd"</code> → native R Markdown CSS; <code>"bootstrap"</code> → Bootstrap CSS; <code>"highlight"</code> → highlight.js CSS).</p></td>
     </tr>
     <tr>
       <th>interpolate</th>
@@ -235,7 +235,8 @@ processed as Plain Markdown.</p>
 
 <span class='co'># Render from Rmd file.</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://pkgs.rstudio.com/rmarkdown/reference/find_pandoc.html'>find_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>dir</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>
+  <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>render</span><span class='op'>(</span><span class='va'>filename</span>, include_css <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rmd"</span>, <span class='st'>"highlight"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 <span class='co'># Cleanup.</span>
