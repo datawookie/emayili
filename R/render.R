@@ -3,7 +3,7 @@ manifest <- function(
   params = NULL,
   squish = TRUE,
   css,
-  include_css = TRUE
+  include_css
 ) {
   stopifnot(is.null(params) || is.list(params))
 
@@ -78,11 +78,11 @@ manifest <- function(
     css <- c(
       # * Inline CSS in <link> tags.
       if (any("rmd" == include_css)) {
-      inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-        xml_attr("href") %>%
-        unlist() %>%
-        url_decode() %>%
-        str_replace("data:text/css,", "")
+        inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
+          xml_attr("href") %>%
+          unlist() %>%
+          url_decode() %>%
+          str_replace("data:text/css,", "")
       } else NULL,
       # * External CSS in <link> tags.
       #
@@ -104,10 +104,12 @@ manifest <- function(
         file.path(dirname(input), .) %>%
         map_chr(read_text),
       # * Inline CSS in <style> tags.
-      style = xml_find_all(output, "//style") %>%
-        xml_text() %>%
-        unlist(),
-      # * Add custom CSS last so that it overrides.
+      if (any("rmd" == include_css)) {
+        style = xml_find_all(output, "//style") %>%
+          xml_text() %>%
+          unlist()
+      } else NULL,
+      # * Add custom CSS rules last so that it overrides preceding rules.
       css
     )
 

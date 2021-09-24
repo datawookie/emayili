@@ -31,17 +31,26 @@ test_that("interpolate into Markdown", {
 })
 
 test_that("whether to include rendered CSS", {
-  expect_match(
+  # No rendered CSS.
+  expect_no_match(
     envelope() %>%
-      render(RMD_TEMPLATE, include_css = TRUE) %>%
+      render(RMD_TEMPLATE, include_css = c()) %>%
       as.character(),
     '<style type="text/css">'
   )
-  expect_no_match(
+  # Only CSS from {rmarkdown}.
+  expect_match(
     envelope() %>%
-      render(RMD_TEMPLATE, include_css = FALSE) %>%
+      render(RMD_TEMPLATE, include_css = "rmd") %>%
       as.character(),
     '<style type="text/css">'
+  )
+  # Only CSS from highlightjs.
+  expect_match(
+    envelope() %>%
+      render(RMD_TEMPLATE, include_css = "highlight") %>%
+      as.character(),
+    '<style type="text/css">.*\\.hljs-literal'
   )
 })
 
