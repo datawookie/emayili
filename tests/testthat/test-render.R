@@ -38,6 +38,12 @@ test_that("whether to include rendered CSS", {
       as.character(),
     '<style type="text/css">'
   )
+  expect_no_match(
+    envelope() %>%
+      render(RMD_TEMPLATE, include_css = FALSE) %>%
+      as.character(),
+    '<style type="text/css">'
+  )
   # Only CSS from {rmarkdown}.
   expect_match(
     envelope() %>%
@@ -49,6 +55,13 @@ test_that("whether to include rendered CSS", {
   expect_match(
     envelope() %>%
       render(RMD_TEMPLATE, include_css = "highlight") %>%
+      as.character(),
+    '<style type="text/css">.*\\.hljs-literal'
+  )
+  # All CSS.
+  expect_match(
+    envelope() %>%
+      render(RMD_TEMPLATE, include_css = TRUE) %>%
       as.character(),
     '<style type="text/css">.*\\.hljs-literal'
   )

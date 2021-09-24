@@ -7,8 +7,6 @@ manifest <- function(
 ) {
   stopifnot(is.null(params) || is.list(params))
 
-  if (include_css == FALSE || is.na(include_css) || is.null(include_css)) include_css = c()
-
   if (plain <- attr(markdown, "plain")) {
     output <- markdown_html(markdown) %>% read_html()
   } else {
@@ -286,6 +284,25 @@ render <- function(
   stopifnot(is.character(.open))
   stopifnot(is.character(.close))
   stopifnot(!length(css_files) || is.character(css_files))
+
+  INCLUDE_CSS_OPTIONS <- eval(formals(render)$include_css)
+
+  # Translate Boolean include_css:
+  #
+  # TRUE  - all CSS
+  # FALSE - no CSS).
+  #
+  if (is.logical(include_css) && length(include_css) == 1) {
+    include_css <- if(include_css) INCLUDE_CSS_OPTIONS else NULL
+  }
+
+  if (length(setdiff(include_css, INCLUDE_CSS_OPTIONS)) > 0) {
+    stop(
+      "Valid options for include_css are: ",
+      paste(INCLUDE_CSS_OPTIONS, collapse = ", "),
+      "."
+      )
+  }
 
   if (is.null(.envir)) .envir = parent.frame()
   else .envir = list2env(.envir) # nocov
