@@ -218,11 +218,11 @@ if (require(memoise, quietly = TRUE)) {
 #' \code{render()} will always use the \code{"html_document"} output format.
 #'
 #' @inheritParams text
+#' @inheritParams html
 #' @param msg A message object.
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
 #' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
 #' @param squish Whether to clean up whitespace in rendered document.
-#' @param css_files Extra CSS files.
 #' @param include_css Whether to include rendered CSS from various sources (\code{"rmd"} → native R Markdown CSS; \code{"bootstrap"} → Bootstrap CSS; \code{"highlight"} → highlight.js CSS).
 #'
 #' @return A message object.

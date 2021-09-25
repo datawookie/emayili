@@ -10,6 +10,7 @@ html(
   disposition = "inline",
   charset = "utf-8",
   encoding = "quoted-printable",
+  css_files = c(),
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -26,6 +27,8 @@ html(
 \item{charset}{How content is encoded.}
 
 \item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
+
+\item{css_files}{Extra CSS files.}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 

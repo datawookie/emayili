@@ -1,11 +1,11 @@
 test_that("text: only single message body", {
-  expect_error(envelope() %>% text("foo"), NA)
-  expect_error(envelope() %>% text(c("foo", "bar")))
+  expect_error(envelope() %>% text("<p>foo</p>"), NA)
+  expect_error(envelope() %>% text(c("<p>foo</p>", "<p>bar</p>")))
 })
 
 test_that("html: only single message body", {
-  expect_error(envelope() %>% html("foo"), NA)
-  expect_error(envelope() %>% html(c("foo", "bar")))
+  expect_error(envelope() %>% html("<p>foo</p>"), NA)
+  expect_error(envelope() %>% html(c("<p>foo</p>", "<p>bar</p>")))
 })
 
 test_that("html: HTML from file", {
@@ -57,4 +57,14 @@ test_that("toggle visibility", {
   expect_visible(envelope() %>% text("Hello!"))
   options(envelope.invisible = TRUE)
   expect_invisible(envelope() %>% text("Hello!"))
+})
+
+test_that("html: inject CSS", {
+  expect_match(
+    envelope() %>%
+      html("<p>foo</p>", css_files = CSSPATH) %>%
+      as.character(),
+    COLOUR_GLAUCOUS
+  )
+
 })

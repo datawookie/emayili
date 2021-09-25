@@ -65,6 +65,7 @@ text <- function(
 #' Add an HTML body to a message object.
 #'
 #' @inheritParams text
+#' @param css_files Extra CSS files.
 #' @return A message object.
 #' @seealso \code{\link{text}}
 #' @export
@@ -82,6 +83,7 @@ html <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = "quoted-printable",
+  css_files = c(),
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -100,7 +102,14 @@ html <- function(
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 
-  body <- text_html(content, disposition, charset, encoding)
+  css <- css_files %>%
+    map_chr(read_text) %>%
+    unlist() %>%
+    str_c(collapse = "\n") %>%
+    css_remove_comment() %>%
+    str_squish()
+
+  body <- text_html(content, disposition, charset, encoding, css = css)
 
   msg <- append(msg, body)
 

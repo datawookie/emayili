@@ -30,7 +30,7 @@ test_that("print", {
 })
 
 test_that("squish", {
-  expect_equal(
+  expect_match(
     emayili:::text_html(
       "   <div>   <p>Hello!</p>   </div>   ",
       squish = TRUE

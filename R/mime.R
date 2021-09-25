@@ -128,6 +128,7 @@ text_html <- function(
   charset = "utf-8",
   encoding = NA,
   squish = FALSE,
+  css = NA,
   ...
 ) {
   # Clean up content.
@@ -135,9 +136,31 @@ text_html <- function(
   if (squish) {
     content <- html_squish(content)
   }
+  content <- read_html(content)
+
+  if (!is.na(css)) {
+    # Add <head> (can be missing if rendering Plain Markdown).
+    if (is.na(xml_find_first(content, "//head"))) {
+      xml_add_sibling(
+        xml_find_first(content, "//body"),
+        "head",
+        .where = "before"
+      )
+    }
+
+    # Write consolidated CSS to single <style> tag.
+    if (nchar(css)) {
+      xml_add_child(
+        xml_find_first(content, "//head"),
+        "style",
+        css,
+        type = "text/css"
+      )
+    }
+  }
 
   # Replace bare line-feeds.
-  content <- drape_linefeed(content)
+  content <- drape_linefeed(as.character(content))
 
   structure(
     c(

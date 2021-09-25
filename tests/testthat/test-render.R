@@ -67,6 +67,14 @@ test_that("whether to include rendered CSS", {
   )
 })
 
+test_that("invalid value for include_css", {
+  expect_error(
+    envelope() %>%
+      render(RMD_TEMPLATE, include_css = "css"),
+    'Valid options for include_css'
+  )
+})
+
 test_that("include extra CSS", {
   expect_match(
     envelope() %>%

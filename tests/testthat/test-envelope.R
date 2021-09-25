@@ -44,11 +44,11 @@ test_that("body text", {
 })
 
 test_that("body html", {
-  html <- envelope(html = "foo")
-  expect_equal(html$parts[[1]]$content, "foo")
+  html <- envelope(html = "<p>foo</p>")
+  expect_match(html$parts[[1]]$content, "<body><p>foo</p></body>")
 })
 
 test_that("append another body", {
-  msg <- envelope() %>% text("Hello!") %>% html("Goodbye!")
+  msg <- envelope() %>% text("Hello!") %>% html("<p>Goodbye!</p>")
   expect_equal(length(msg$parts), 2)
 })
