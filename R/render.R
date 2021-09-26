@@ -148,40 +148,13 @@ manifest <- function(
   # Remove all other tags in <head>
   xml_find_all(output, "//head/*") %>% xml_remove()
 
-  # Consolidate CSS.
-  #
-  css <- css %>%
-    unlist() %>%
-    str_c(collapse = "\n") %>%
-    css_remove_comment() %>%
-    str_squish()
-
-  # Add <head> (can be missing if rendering Plain Markdown).
-  if (is.na(xml_find_first(output, "//head"))) {
-    xml_add_sibling(
-      xml_find_first(output, "//body"),
-      "head",
-      .where = "before"
-    )
-  }
-
-  # Write consolidated CSS to single <style> tag.
-  if (nchar(css)) {
-    xml_add_child(
-      xml_find_first(output, "//head"),
-      "style",
-      css,
-      type = "text/css"
-    )
-  }
-
   output <- as.character(output) %>%
     # Remove <!DOCTYPE> tag.
     str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "") %>%
     # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
     str_replace("<meta[^>]*>", "")
 
-  output <- text_html(output, squish = squish)
+  output <- text_html(output, squish = squish, css = css)
 
   if (plain) {
     output
@@ -326,18 +299,11 @@ render <- function(
 
   attr(markdown, "plain") <- plain
 
-  # Check that extra CSS files exist.
-  #
-  for (css in css_files) {
-    if (!file.exists(css)) stop("Unable to find CSS file: ", css, ".")
-  }
-  css <- list(extra = css_files %>% map_chr(read_text))
-
   body <- manifest(
     markdown,
     params,
     squish,
-    css,
+    list(extra = read_text(css_files)),
     include_css
   )
 

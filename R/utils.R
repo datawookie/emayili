@@ -35,11 +35,17 @@ compare <- function(lhs, rhs) {
 #'
 #' @noRd
 #'
-#' @param path Relative or absolute file path
+#' @inheritParams stringr::str_c
+#' @param path Relative or absolute file path. This can also be a vector of
+#'             paths, in which case their content is concatenated.
 #'
 #' @return A character vector
-read_text <- function(path) {
-  readChar(path, file.info(path)$size)
+read_text <- function(path, collapse = "\n") {
+  map_chr(path, function(p) {
+    if (!file.exists(p)) stop("Unable to find file: ", p, ".")
+    readChar(p, file.info(p)$size)
+  }) %>%
+    str_c(collapse = collapse)
 }
 
 #' Read entire binary file into character vector
