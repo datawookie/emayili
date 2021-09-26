@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -126,6 +126,7 @@
   disposition <span class='op'>=</span> <span class='st'>"inline"</span>,
   charset <span class='op'>=</span> <span class='st'>"utf-8"</span>,
   encoding <span class='op'>=</span> <span class='st'>"quoted-printable"</span>,
+  css_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
   .close <span class='op'>=</span> <span class='st'>"}}"</span>,
@@ -154,6 +155,10 @@
     <tr>
       <th>encoding</th>
       <td><p>How content is transformed to ASCII (Content-Transfer-Encoding).</p></td>
+    </tr>
+    <tr>
+      <th>css_files</th>
+      <td><p>Extra CSS files.</p></td>
     </tr>
     <tr>
       <th>interpolate</th>
@@ -187,8 +192,10 @@
 <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>html</span><span class='op'>(</span><span class='st'>"&lt;b&gt;Hello!&lt;/b&gt;"</span><span class='op'>)</span>
 
 <span class='co'># Read HTML message from a file.</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"&lt;p&gt;Hello!&lt;/p&gt;"</span>, file <span class='op'>=</span> <span class='st'>"message.html"</span><span class='op'>)</span>
 <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>html</span><span class='op'>(</span><span class='st'>"message.html"</span><span class='op'>)</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: incomplete final line found on 'message.html'</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span><span class='op'>(</span><span class='st'>"message.html"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
