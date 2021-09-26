@@ -76,7 +76,9 @@ text <- function(
 #' msg <- envelope() %>% html("<b>Hello!</b>")
 #'
 #' # Read HTML message from a file.
+#' cat("<p>Hello!</p>", file = "message.html")
 #' msg <- envelope() %>% html("message.html")
+#' file.remove("message.html")
 html <- function(
   msg,
   content,
