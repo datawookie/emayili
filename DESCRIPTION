@@ -32,6 +32,7 @@ Description: A light, simple tool for sending emails with minimal dependencies.
 URL: https://datawookie.github.io/emayili/
 BugReports: https://github.com/datawookie/emayili/issues
 License: GPL-3
+Language: en-GB
 Imports:
     base64enc,
     commonmark,

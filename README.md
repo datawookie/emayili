@@ -52,15 +52,6 @@ First create a message object.
 
 ``` r
 library(emayili)
-```
-
-    Warning: replacing previous import 'lifecycle::last_warnings' by
-    'rlang::last_warnings' when loading 'pillar'
-
-    Warning: replacing previous import 'lifecycle::last_warnings' by
-    'rlang::last_warnings' when loading 'tibble'
-
-``` r
 library(magrittr)
 
 email <- envelope()
@@ -135,12 +126,12 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Thu, 23 Sep 2021 18:56:58 GMT
+    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.5.4
+    X-Mailer:                  {emayili}-0.5.6
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -183,8 +174,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Thu, 23 Sep 2021 18:56:59 GMT
-    X-Mailer:                  {emayili}-0.5.4
+    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
+    X-Mailer:                  {emayili}-0.5.6
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
@@ -206,15 +197,15 @@ envelope() %>%
   )
 ```
 
-    Date:                      Thu, 23 Sep 2021 18:56:59 GMT
-    X-Mailer:                  {emayili}-0.5.4
+    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
+    X-Mailer:                  {emayili}-0.5.6
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
     <html>
-    <head></head>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
     <body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body>
     </html>
 
@@ -367,8 +358,8 @@ There is a selection of other R packages which also send emails:
 ### Code Coverage
 
 You can find the test coverage report at
-[Codecov](https://app.codecov.io/gh/datawookie/emayili). For
-developmnent purposes it’s more convenient to use the
+[Codecov](https://app.codecov.io/gh/datawookie/emayili). For development
+purposes it’s more convenient to use the
 [`{covr}`](https://cran.r-project.org/package=covr) package.
 
 Generate a coverage report.
@@ -401,7 +392,13 @@ Show lines without coverage.
 zero_coverage(coverage)
 ```
 
-### Testing
+### Checks
+
+Check spelling.
+
+``` r
+spelling::spell_check_package()
+```
 
 Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
 
@@ -409,6 +406,8 @@ Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
 # Check for a specific platform.
 #
 rhub::check(platform = "debian-gcc-devel")
+rhub::check_on_windows(check_args = "--force-multiarch")
+rhub::check_on_solaris()
 
 # Check on a bunch of platforms.
 #
