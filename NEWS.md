@@ -1,3 +1,7 @@
+# {emayili} 0.5.6
+
+* Also support include_css in html().
+
 # {emayili} 0.5.5
 
 * Use include_css option to specify what rendered CSS is included. Can specify
