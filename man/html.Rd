@@ -48,12 +48,12 @@ Add an HTML body to a message object.
 library(magrittr)
 
 # Inline HTML message.
-msg <- envelope() \%>\% html("<b>Hello!</b>")
+envelope() \%>\% html("<b>Hello!</b>")
 
 # Read HTML message from a file.
-cat("<p>Hello!</p>", file = "message.html")
-msg <- envelope() \%>\% html("message.html")
-file.remove("message.html")
+htmlfile <- tempfile(fileext = ".html")
+cat("<p>Hello!</p>\n", file = htmlfile)
+envelope() \%>\% html(htmlfile)
 }
 \seealso{
 \code{\link{text}}
