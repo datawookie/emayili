@@ -138,7 +138,13 @@ text_html <- function(
   }
   content <- read_html(content)
 
-  if (!is.na(css)) {
+  if (length(css) && !all(is.na(css) | css == "")) {
+    css <- css %>%
+      unlist() %>%
+      str_c(collapse = "\n") %>%
+      css_remove_comment() %>%
+      str_squish()
+
     # Add <head> (can be missing if rendering Plain Markdown).
     if (is.na(xml_find_first(content, "//head"))) {
       xml_add_sibling(

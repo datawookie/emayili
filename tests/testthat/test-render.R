@@ -93,6 +93,6 @@ test_that("include extra CSS", {
 test_that("extra CSS: unable to find file", {
   expect_error(
     envelope() %>% render(RMD_TEMPLATE, css_files = "missing.css"),
-    "Unable to find CSS file"
+    "Unable to find"
   )
 })

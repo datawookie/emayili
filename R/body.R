@@ -102,14 +102,10 @@ html <- function(
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 
-  css <- css_files %>%
-    map_chr(read_text) %>%
-    unlist() %>%
-    str_c(collapse = "\n") %>%
-    css_remove_comment() %>%
-    str_squish()
-
-  body <- text_html(content, disposition, charset, encoding, css = css)
+  body <- text_html(
+    content, disposition, charset, encoding,
+    css = read_text(css_files)
+  )
 
   msg <- append(msg, body)
 
