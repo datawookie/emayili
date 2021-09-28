@@ -100,10 +100,9 @@ server <- function(
       use_ssl = 0
     }
 
-    protocol <- ifelse(port == 465, "smtps", "smtp")
     helo <- ifelse(is.na(helo), "", helo)
 
-    smtp_server <- sprintf("%s://%s:%d/%s", protocol, host, port, helo)
+    smtp_server <- sprintf("%s:%d/%s", host, port, helo)
     #
     if (verbose) {
       cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
