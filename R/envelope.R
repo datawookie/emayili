@@ -2,6 +2,38 @@ is.envelope <- function(x) {
   "envelope" %in% class(x)
 }
 
+new_envelope <- function(
+  to,
+  from,
+  cc,
+  bcc,
+  reply,
+  subject,
+  text,
+  html
+) {
+  koevert <- structure(
+    list(
+      header = list(
+        Date = http_date(Sys.time())
+      ),
+      parts = NULL
+    ),
+    class="envelope"
+  )
+
+  if (!is.null(to)) koevert <- to(koevert, to)
+  if (!is.null(from)) koevert <- from(koevert, from)
+  if (!is.null(cc)) koevert <- cc(koevert, cc)
+  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
+  if (!is.null(reply)) koevert <- reply(koevert, reply)
+  if (!is.null(subject)) koevert <- subject(koevert, subject)
+  if (!is.null(text)) koevert <- text(koevert, text)
+  if (!is.null(html)) koevert <- html(koevert, html)
+
+  koevert
+}
+
 #' Create a message.
 #'
 #' @param to See \code{to()}
@@ -40,25 +72,7 @@ envelope <- function(
   text = NULL,
   html = NULL
 ) {
-  koevert <- structure(
-    list(
-      header = list(
-        Date = http_date(Sys.time())
-      ),
-      parts = NULL
-    ),
-    class="envelope")
-
-  if (!is.null(to)) koevert <- to(koevert, to)
-  if (!is.null(from)) koevert <- from(koevert, from)
-  if (!is.null(cc)) koevert <- cc(koevert, cc)
-  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
-  if (!is.null(reply)) koevert <- reply(koevert, reply)
-  if (!is.null(subject)) koevert <- subject(koevert, subject)
-  if (!is.null(text)) koevert <- text(koevert, text)
-  if (!is.null(html)) koevert <- html(koevert, html)
-
-  koevert
+  new_envelope(to, from, cc, bcc, reply, subject, text, html)
 }
 
 #' Print a message object
