@@ -28,7 +28,7 @@ render(
 
 \item{css_files}{Extra CSS files.}
 
-\item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} → native R Markdown CSS; \code{"bootstrap"} → Bootstrap CSS; \code{"highlight"} → highlight.js CSS).}
+\item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS; \code{"highlight"} — highlight.js CSS).}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 
