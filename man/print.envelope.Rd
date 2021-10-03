@@ -11,7 +11,7 @@
 
 \item{details}{Whether or not to display full message content.}
 
-\item{...}{Any other arguments (for consistency of generic function).}
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
 The message body will be printed if \code{details} is \code{TRUE} or if the \code{envelope_details}

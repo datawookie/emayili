@@ -38,3 +38,9 @@ test_that("squish", {
     "<div><p>Hello!</p></div>"
   )
 })
+
+test_that("header fields", {
+  mime_txt <- emayili:::other(TXTPATH, disposition = NA)
+
+  expect_match(emayili:::as.character.MIME(mime_txt), "Content-Type:              text/plain; name=\"[^.]+\\.txt\"\r\nContent-Disposition:       inline; filename=\"[^.]+\\.txt\"\r\nContent-Transfer-Encoding: base64\r\nX-Attachment-Id:           .+\nContent-ID:                <[^>]+>\r\n")
+})

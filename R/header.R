@@ -33,8 +33,6 @@ as.character.header <- function(x, ...) {
   )
 }
 
-#' Print a header object
-#'
 print.header <- function(x, ... ) {
   as.character(x)
 }

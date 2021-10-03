@@ -87,7 +87,7 @@ headers <- function(x) {
 #'
 #' @param x A message object.
 #' @param details Whether or not to display full message content.
-#' @param ... Any other arguments (for consistency of generic function).
+#' @param ... Further arguments passed to or from other methods.
 #'
 #' @export
 #' @examples
@@ -111,8 +111,7 @@ print.envelope <- function(x, details = NA, ...) {
 #'
 #' Accepts a message object and formats it as a MIME document.
 #'
-#' @param x A message object.
-#' @param ... Further arguments passed to or from other methods.
+#' @inheritParams print.envelope
 #' @export
 #'
 #' @return A formatted message object.

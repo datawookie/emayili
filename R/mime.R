@@ -297,27 +297,13 @@ as.character.MIME <- function(x, ...) {
   #
   body <- c(
     # Head.
-    paste(
-      c(
-        glue('Content-Type:              {type}'),
-        if (!is.na(x$charset)) glue('charset={x$charset}') else NULL,
-        if (!is.na(x$boundary)) glue('boundary="{x$boundary}"') else NULL
-      ),
-      collapse = "; "
-    ),
-    if (!is.na(x$disposition)) {
-      glue('Content-Disposition:       {x$disposition}')
-    } else NULL,
-    if (!is.na(x$encoding)) {
-      glue('Content-Transfer-Encoding: {x$encoding}')
-    } else NULL,
-    if (!is.null(x$cid)) {
-      paste(
-        glue('X-Attachment-Id:           {x$cid}'),
-        glue('Content-ID:                <{x$cid}>'),
-        sep = "\n"
-      )
-    } else NULL,
+    list(
+      content_type(type, x$charset, x$boundary),
+      content_disposition(x$disposition),
+      content_transfer_encoding(x$encoding),
+      x_attachment_id(x$cid),
+      content_id(x$cid)
+    ) %>% compact() %>% sapply(as.character),
     "",
     # Content (if any).
     x$content,
