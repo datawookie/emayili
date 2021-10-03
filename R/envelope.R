@@ -14,13 +14,14 @@ new_envelope <- function(
 ) {
   koevert <- structure(
     list(
-      header = list(
-        Date = http_date(Sys.time())
-      ),
+      headers = list(),
       parts = NULL
     ),
     class="envelope"
-  )
+  ) %>%
+    header_set("Date", http_date(Sys.time()), append = FALSE) %>%
+    header_set("X-Mailer", paste("{emayili}", packageVersion("emayili"), sep = "-"), append = FALSE) %>%
+    header_set("MIME-Version", "1.0", append = FALSE)
 
   if (!is.null(to)) koevert <- to(koevert, to)
   if (!is.null(from)) koevert <- from(koevert, from)
@@ -75,6 +76,10 @@ envelope <- function(
   new_envelope(to, from, cc, bcc, reply, subject, text, html)
 }
 
+headers <- function(x) {
+  paste(sapply(x$headers, as.character), collapse = "\r\n")
+}
+
 #' Print a message object
 #'
 #' The message body will be printed if `details` is `TRUE` or if the `envelope_details`
@@ -99,7 +104,7 @@ print.envelope <- function(x, details = NA, ...) {
   }
   stopifnot(is.logical(details))
   #
-  ifelse(details, as.character(x), header(x)) %>% cat("\n", sep = "")
+  as.character(x, details = details) %>% cat("\n", sep = "")
 }
 
 #' Create formatted message.
@@ -111,12 +116,9 @@ print.envelope <- function(x, details = NA, ...) {
 #' @export
 #'
 #' @return A formatted message object.
-as.character.envelope <- function(x, ...) {
-  CONTENT_TYPE = "multipart/related"
-
+as.character.envelope <- function(x, ..., details = TRUE) {
   message <- list(
-    header(x),
-    "MIME-Version:              1.0"
+    headers(x)
   )
 
   if (length(x$parts) > 1) {
@@ -125,7 +127,9 @@ as.character.envelope <- function(x, ...) {
     body <- x$parts[[1]]
   }
 
-  message <- c(message, as.character(body))
+  if (details) {
+    message <- c(message, as.character(body))
+  }
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
 }

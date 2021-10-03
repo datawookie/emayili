@@ -2,7 +2,7 @@ test_that("generate parties table", {
   msg <- envelope() %>%
     to(address("gerry@gmail.com", "Gerald")) %>%
     from("jim@aol.com") %>%
-    cc("alice@yahoo.com") %>%
+    cc("alice@yahoo.com", "bob@yahoo.co.uk") %>%
     bcc("Erin <erin@yahoo.com>")
 
   addresses <- parties(msg)

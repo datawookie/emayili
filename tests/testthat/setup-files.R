@@ -45,6 +45,8 @@ JPGPATH <- here::here("inst", "cats.jpg")
 #
 SMTP_SERVER   = "mail.smtpbucket.com"
 SMTP_PORT     = 8025
+SMTP_USERNAME <- Sys.getenv("SMTP_USERNAME")
+SMTP_PASSWORD <- Sys.getenv("SMTP_PASSWORD")
 
 smtp <- server(
   host = SMTP_SERVER,
@@ -79,8 +81,3 @@ rmarkdown::draft(
   package = "rmarkdown",
   edit = FALSE
 )
-
-# ------------------------------------------------------------------------------
-
-SMTP_USERNAME <- Sys.getenv("SMTP_USERNAME")
-SMTP_PASSWORD <- Sys.getenv("SMTP_PASSWORD")

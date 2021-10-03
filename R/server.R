@@ -69,7 +69,7 @@ server <- function(
 
     if (is.null(from(msg))) stop("Must specify who the email is from.")
 
-    recipients <- c(msg$header$To, msg$header$Cc, msg$header$Bcc)
+    recipients <- c(to(msg), cc(msg), bcc(msg))
     #
     if (length(recipients) < 1) stop("Must specify at least one email recipient.")
 
@@ -127,7 +127,7 @@ server <- function(
     result <- send_mail(
       # Strip descriptive name (retained in email header so that it appears
       # in email client).
-      mail_from = raw(msg$header$From),
+      mail_from = raw(from(msg)),
       mail_rcpt = raw(recipients),
       #
       message = as.character(msg),
