@@ -1,7 +1,7 @@
 Type: Package
 Package: emayili
 Title: Send Email Messages
-Version: 0.5.6
+Version: 0.6.0
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",

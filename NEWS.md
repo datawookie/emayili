@@ -1,3 +1,7 @@
+# {emayili} 0.6.0
+
+* Refactor representation of Mail and MIME headers.
+
 # {emayili} 0.5.6
 
 * Also support include_css in html().
