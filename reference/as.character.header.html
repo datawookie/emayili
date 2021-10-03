@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tests whether an email address is syntactically correct — compliant • emayili</title>
+<title>Create formatted header. — as.character.header • emayili</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Tests whether an email address is syntactically correct — compliant" />
-<meta property="og:description" content="Checks whether an email address conforms to the syntax rules." />
+<meta property="og:title" content="Create formatted header. — as.character.header" />
+<meta property="og:description" content="Accepts a header object and formats it as a header field." />
 
 
 
@@ -111,45 +111,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tests whether an email address is syntactically correct</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/address.R'><code>R/address.R</code></a></small>
-    <div class="hidden name"><code>compliant.Rd</code></div>
+    <h1>Create formatted header.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/header.R'><code>R/header.R</code></a></small>
+    <div class="hidden name"><code>as.character.header.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Checks whether an email address conforms to the <a href='https://en.wikipedia.org/wiki/Email_address#Syntax'>syntax rules</a>.</p>
+    <p>Accepts a header object and formats it as a header field.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compliant</span><span class='op'>(</span><span class='va'>addr</span>, error <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for header</span>
+<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>addr</th>
-      <td><p>An email address.</p></td>
+      <th>x</th>
+      <td><p>A header object.</p></td>
     </tr>
     <tr>
-      <th>error</th>
-      <td><p>Whether to create an error if not compliant.</p></td>
+      <th>...</th>
+      <td><p>Further arguments passed to or from other methods.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A Boolean.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A formatted header field.</p>
 
-    <p>An email address may take either of the following forms:</p><ul>
-<li><p><code>local@domain</code> or</p></li>
-<li><p><code>Display Name &lt;local@domain&gt;</code>.</p></li>
-</ul>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>compliant</span><span class='op'>(</span><span class='st'>"alice@example.com"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>compliant</span><span class='op'>(</span><span class='st'>"alice?example.com"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
