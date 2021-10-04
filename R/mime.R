@@ -327,3 +327,22 @@ as.character.MIME <- function(x, ...) {
 print.MIME <- function(x, ...) {
   cat(as.character(x))
 }
+
+# LENGTH ----------------------------------------------------------------------
+
+#' Length of a MIME object
+#'
+#' The underlying object is a list, but we don't want the length of this
+#' object to be the length of the list.
+#'
+#' This is especially important for when we have a message that only consists
+#' of one MIME item. In that case we don't want it rendered as multipart/mixed.
+#'
+#' @noRd
+#'
+#' @param x A MIME object.
+#'
+#' @return The length of a MIME object (which is always one in units of MIME objects!).
+length.MIME <- function(x) {
+  1
+}

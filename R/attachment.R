@@ -33,7 +33,7 @@ attachment <- function(msg, path, name = NA, type = NA, cid = NA) {
 
   body <- other(path, name, type, cid)
 
-  msg$parts <- c(msg$parts, list(body))
+  msg <- append(msg, body)
 
-  invisible(msg)
+  if (get_option_invisible()) invisible(msg) else msg
 }

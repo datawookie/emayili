@@ -26,7 +26,11 @@ test_that("missing disposition", {
 test_that("print", {
   mime_txt <- other(TXTPATH, disposition = NA)
 
-  expect_output(print(mime_txt), as.character(mime_txt) %>% str_replace_all("\r\n", "\n"))
+  expect_output(
+    print.MIME(mime_txt),
+    as.character.MIME(mime_txt) %>% str_replace_all("\r\n", "\n"),
+    fixed = TRUE
+  )
 })
 
 test_that("squish", {
@@ -51,5 +55,26 @@ test_that("base64 encoding", {
   expect_match(
     as.character.MIME(mime_txt),
     TXTCONTENT_ENCODED
+  )
+})
+
+test_that("MD5 checksum", {
+  mime_png <- other(PNGPATH, disposition = NA)
+
+  expect_match(
+    as.character.MIME(mime_png),
+    "Content-MD5:               8SV0BThEP3geDkvudZFKEA==",
+    fixed = TRUE
+  )
+})
+
+test_that("order doesn't matter", {
+  expect_error(
+    envelope() %>% text("Hello!") %>% attachment(TXTPATH) %>% as.character(),
+    NA
+  )
+  expect_error(
+    envelope() %>% attachment(TXTPATH) %>% text("Hello!") %>% as.character(),
+    NA
   )
 })
