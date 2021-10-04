@@ -229,11 +229,9 @@ other <- function(
   }
   disposition <- glue('{disposition}; filename="{basename}"')
 
-  content <- mime_base64encode(read_bin(filename))
-
   structure(
     c(
-      MIME(content, disposition, charset, encoding, boundary = NA, type = type, ...),
+      MIME(read_bin(filename), disposition, charset, encoding, boundary = NA, type = type, ...),
       list(
         cid = ifelse(is.na(cid), hexkey(), cid)
       )
@@ -291,6 +289,12 @@ as.character.MIME <- function(x, ...) {
   })
   type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
+  if (!is.na(x$encoding) && x$encoding == "base64") {
+    content <- mime_base64encode(x$content)
+  } else {
+    content <- x$content
+  }
+  #
   body <- c(
     # Head.
     list(
@@ -302,7 +306,7 @@ as.character.MIME <- function(x, ...) {
     ) %>% compact() %>% sapply(as.character),
     "",
     # Content (if any).
-    x$content,
+    content,
     # Children (if any).
     if(length(children)) children else NULL,
     # Foot.

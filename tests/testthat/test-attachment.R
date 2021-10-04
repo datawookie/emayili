@@ -1,7 +1,7 @@
 test_that("attachment: set", {
   msg <- envelope() %>% attachment(TXTPATH)
 
-  expect_equal(msg$parts[[1]]$content, base64encode(TXTPATH, 76L, "\r\n"))
+  expect_match(as.character(msg), TXTCONTENT_ENCODED)
 })
 
 test_that("attachment: specify CID", {
@@ -9,7 +9,13 @@ test_that("attachment: specify CID", {
 
   msg <- envelope() %>% attachment(PNGPATH, cid = cid)
 
-  expect_equal(msg$parts[[1]]$content, base64encode(PNGPATH, 76L, "\r\n"))
+  expect_true(
+    grepl(
+      mime_base64encode(PNGPATH),
+      as.character(msg),
+      fixed = TRUE
+    )
+  )
   expect_equal(msg$parts[[1]]$cid, cid)
 })
 
