@@ -8,6 +8,8 @@ CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
 
+TXTCONTENT <- "Some random text."
+
 PLAIN_MARKDOWN <- "## Section\n[link](https://www.google.com)"
 PLAIN_MARKDOWN_INTERPOLATE <- "Hi {{name}}!"
 
@@ -17,7 +19,7 @@ COLOUR_GLAUCOUS = "#6082b6"
 #
 source("teardown-files.R", local = TRUE)
 
-writeLines("Some random text.", TXTPATH)
+writeLines(TXTCONTENT, TXTPATH)
 
 writeLines(
   paste0("body {color: ", COLOUR_GLAUCOUS," !important;}"),

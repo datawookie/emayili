@@ -44,3 +44,15 @@ test_that("header fields", {
 
   expect_match(emayili:::as.character.MIME(mime_txt), "Content-Type:              text/plain; name=\"[^.]+\\.txt\"\r\nContent-Disposition:       inline; filename=\"[^.]+\\.txt\"\r\nContent-Transfer-Encoding: base64\r\nX-Attachment-Id:           .+\nContent-ID:                <[^>]+>\r\n")
 })
+
+test_that("base64 encoding", {
+  mime_txt <- emayili:::other(TXTPATH, disposition = NA)
+
+  expect_match(
+    emayili:::as.character.MIME(mime_txt),
+    emayili:::mime_base64encode(
+      # Add "\n" because this gets added automatically to text in file.
+      charToRaw(paste0(TXTCONTENT, "\n"))
+    )
+  )
+})
