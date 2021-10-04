@@ -229,11 +229,7 @@ other <- function(
   }
   disposition <- glue('{disposition}; filename="{basename}"')
 
-  content <- base64encode(
-    read_bin(filename),
-    76L,
-    "\r\n"
-  )
+  content <- mime_base64encode(read_bin(filename))
 
   structure(
     c(

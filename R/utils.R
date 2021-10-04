@@ -124,3 +124,11 @@ html_squish <- function(html) {
     #
     str_replace_all("(^|(?<=>)) +($|(?=<))", "")
 }
+
+mime_base64encode <- function(raw, linewidth = 76L) {
+  base64encode(
+    raw,
+    linewidth,
+    "\r\n"
+  )
+}
