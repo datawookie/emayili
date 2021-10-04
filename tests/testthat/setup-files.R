@@ -19,10 +19,9 @@ COLOUR_GLAUCOUS = "#6082b6"
 #
 source("teardown-files.R", local = TRUE)
 
-writeLines(TXTCONTENT, TXTPATH)
-# Add "\n" because this gets added automatically to text in file.
-TXTCONTENT <- paste0(TXTCONTENT, "\n")
-TXTCONTENT_ENCODED <- mime_base64encode(charToRaw(TXTCONTENT))
+# The , sep = "" prevents it from writing an "\n" at the end of the line.
+writeLines(TXTCONTENT, TXTPATH, sep = "")
+TXTCONTENT_ENCODED <- emayili:::mime_base64encode(charToRaw(TXTCONTENT))
 
 writeLines(
   paste0("body {color: ", COLOUR_GLAUCOUS," !important;}"),

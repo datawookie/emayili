@@ -132,3 +132,22 @@ mime_base64encode <- function(raw, linewidth = 76L) {
     "\r\n"
   )
 }
+
+#' Generate MD5 checksum for Content-MD5 header field
+#'
+#' The MD5 checksum is a 128 bit digest. This corresponds to 16 bytes (octets)
+#' of binary data. These 16 bytes are then Base64 encoded.
+#'
+#' @noRd
+#'
+#' @param object An arbitrary R object.
+#'
+#' @return Base64 encoded MD5 checksum.
+#'
+#' @examples
+#' # Result should be "XrY7u+Ae7tCTyyK7j1rNww==".
+#' md5("hello world")
+md5 <- function(object) {
+  digest(object, algo = "md5", serialize = FALSE, raw = TRUE) %>%
+    mime_base64encode()
+}

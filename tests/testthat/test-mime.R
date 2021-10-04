@@ -24,7 +24,7 @@ test_that("missing disposition", {
 })
 
 test_that("print", {
-  mime_txt <- other(TXTPATH, disposition = NA)
+  mime_txt <- emayili:::other(TXTPATH, disposition = NA)
 
   expect_output(
     print.MIME(mime_txt),
@@ -49,12 +49,28 @@ test_that("header fields", {
   expect_match(as.character.MIME(mime_txt), "Content-Type:              text/plain; name=\"[^.]+\\.txt\"\r\nContent-Disposition:       inline; filename=\"[^.]+\\.txt\"\r\nContent-Transfer-Encoding: base64\r\nX-Attachment-Id:           .+\nContent-ID:                <[^>]+>\r\n")
 })
 
-test_that("base64 encoding", {
-  mime_txt <- other(TXTPATH, disposition = NA)
+test_that("base64 encoding & MD5 checksum", {
+  mime_txt <- emayili:::other(TXTPATH, disposition = NA)
 
   expect_match(
     as.character.MIME(mime_txt),
     TXTCONTENT_ENCODED
+  )
+  expect_match(
+    as.character.MIME(mime_txt),
+    "Content-MD5:               XrY7u+Ae7tCTyyK7j1rNww==",
+    fixed = TRUE
+  )
+})
+
+test_that("order doesn't matter", {
+  expect_error(
+    envelope() %>% text("Hello!") %>% attachment(TXTPATH) %>% as.character(),
+    NA
+  )
+  expect_error(
+    envelope() %>% attachment(TXTPATH) %>% text("Hello!") %>% as.character(),
+    NA
   )
 })
 

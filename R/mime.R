@@ -289,21 +289,24 @@ as.character.MIME <- function(x, ...) {
   })
   type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
+  headers <- list(
+    content_type(type, x$charset, x$boundary),
+    content_disposition(x$disposition),
+    content_transfer_encoding(x$encoding),
+    x_attachment_id(x$cid),
+    content_id(x$cid)
+  )
+  #
   if (!is.na(x$encoding) && x$encoding == "base64") {
     content <- mime_base64encode(x$content)
+    headers <- c(headers, list(content_md5(x$content)))
   } else {
     content <- x$content
   }
   #
   body <- c(
     # Head.
-    list(
-      content_type(type, x$charset, x$boundary),
-      content_disposition(x$disposition),
-      content_transfer_encoding(x$encoding),
-      x_attachment_id(x$cid),
-      content_id(x$cid)
-    ) %>% compact() %>% sapply(as.character),
+    headers %>% compact() %>% sapply(as.character),
     "",
     # Content (if any).
     content,

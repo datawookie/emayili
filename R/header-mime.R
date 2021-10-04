@@ -45,3 +45,7 @@ content_id <- function(cid = NULL) {
     new_header("Content-ID", paste0("<", cid, ">"))
   }
 }
+
+content_md5 <- function(content) {
+  new_header("Content-MD5", md5(content))
+}
