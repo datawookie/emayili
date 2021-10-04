@@ -297,11 +297,15 @@ as.character.MIME <- function(x, ...) {
     content_id(x$cid)
   )
   #
-  if (!is.na(x$encoding) && x$encoding == "base64") {
-    content <- mime_base64encode(x$content)
-    headers <- c(headers, list(content_md5(x$content)))
-  } else {
-    content <- x$content
+  content <- x$content
+  if (!is.na(x$encoding)) {
+    if (x$encoding == "base64") {
+      content <- mime_base64encode(content)
+    }
+
+    if (x$encoding %in% c("base64", "7bit")) {
+      headers <- c(headers, list(content_md5(x$content)))
+    }
   }
   #
   body <- c(

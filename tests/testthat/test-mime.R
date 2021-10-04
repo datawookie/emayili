@@ -58,7 +58,7 @@ test_that("base64 encoding & MD5 checksum", {
   )
   expect_match(
     as.character.MIME(mime_txt),
-    "Content-MD5:               XrY7u+Ae7tCTyyK7j1rNww==",
+    "Content-MD5:               7r/PnFfETLz0CFCESunVvA==",
     fixed = TRUE
   )
 })
