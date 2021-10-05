@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -127,6 +127,8 @@
   bcc <span class='op'>=</span> <span class='cn'>NULL</span>,
   reply <span class='op'>=</span> <span class='cn'>NULL</span>,
   subject <span class='op'>=</span> <span class='cn'>NULL</span>,
+  importance <span class='op'>=</span> <span class='cn'>NULL</span>,
+  priority <span class='op'>=</span> <span class='cn'>NULL</span>,
   text <span class='op'>=</span> <span class='cn'>NULL</span>,
   html <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
@@ -136,35 +138,43 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>to</th>
-      <td><p>See <code><a href='addresses.html'>to()</a></code></p></td>
+      <td><p>See <code><a href='addresses.html'>to()</a></code>.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>See <code><a href='addresses.html'>from()</a></code></p></td>
+      <td><p>See <code><a href='addresses.html'>from()</a></code>.</p></td>
     </tr>
     <tr>
       <th>cc</th>
-      <td><p>See <code><a href='addresses.html'>cc()</a></code></p></td>
+      <td><p>See <code><a href='addresses.html'>cc()</a></code>.</p></td>
     </tr>
     <tr>
       <th>bcc</th>
-      <td><p>See <code><a href='addresses.html'>bcc()</a></code></p></td>
+      <td><p>See <code><a href='addresses.html'>bcc()</a></code>.</p></td>
     </tr>
     <tr>
       <th>reply</th>
-      <td><p>See <code><a href='addresses.html'>reply()</a></code></p></td>
+      <td><p>See <code><a href='addresses.html'>reply()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subject</th>
-      <td><p>See <code><a href='subject.html'>subject()</a></code></p></td>
+      <td><p>See <code><a href='subject.html'>subject()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>importance</th>
+      <td><p>See <code><a href='precedence.html'>importance()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>priority</th>
+      <td><p>See <code><a href='precedence.html'>priority()</a></code>.</p></td>
     </tr>
     <tr>
       <th>text</th>
-      <td><p>See <code><a href='text.html'>text()</a></code></p></td>
+      <td><p>See <code><a href='text.html'>text()</a></code>.</p></td>
     </tr>
     <tr>
       <th>html</th>
-      <td><p>See <code><a href='html.html'>html()</a></code></p></td>
+      <td><p>See <code><a href='html.html'>html()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -173,31 +183,37 @@
     <p>A message object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='subject.html'>subject</a></code>, <code><a href='addresses.html'>from</a></code>, <code><a href='addresses.html'>to</a></code>, <code><a href='addresses.html'>cc</a></code>, <code><a href='addresses.html'>bcc</a></code> and <code><a href='addresses.html'>reply</a></code></p></div>
+    <div class='dont-index'><p><code><a href='subject.html'>subject()</a></code>, <code><a href='addresses.html'>from()</a></code>, <code><a href='addresses.html'>to()</a></code>, <code><a href='addresses.html'>cc()</a></code>, <code><a href='addresses.html'>bcc()</a></code> and <code><a href='addresses.html'>reply()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create an (empty) message object.</span>
+<span class='co'>#</span>
 <span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='co'># Create a complete message object.</span>
+<span class='co'># Create a complete message object, specifying all available fields.</span>
+<span class='co'>#</span>
 <span class='fu'>envelope</span><span class='op'>(</span>
   to <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
   from <span class='op'>=</span> <span class='st'>"craig@gmail.com"</span>,
   cc <span class='op'>=</span> <span class='st'>"alex@gmail.com"</span>,
   bcc <span class='op'>=</span> <span class='st'>"shannon@gmail.com"</span>,
   reply <span class='op'>=</span> <span class='st'>"craig@yahoo.com"</span>,
+  importance <span class='op'>=</span> <span class='st'>"high"</span>,
+  priority <span class='op'>=</span> <span class='st'>"urgent"</span>,
   subject <span class='op'>=</span> <span class='st'>"Hiya!"</span>,
   text <span class='op'>=</span> <span class='st'>"Hi Bob, how are you?"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; Date:                      Sun, 03 Oct 2021 19:38:22 GMT
-#&gt; X-Mailer:                  {emayili}-0.6.0
+</div><div class='output co'>#&gt; Date:                      Tue, 05 Oct 2021 06:33:09 GMT
+#&gt; X-Mailer:                  {emayili}-0.6.1
 #&gt; MIME-Version:              1.0
 #&gt; To:                        bob@gmail.com
 #&gt; From:                      craig@gmail.com
 #&gt; Cc:                        alex@gmail.com
 #&gt; Bcc:                       shannon@gmail.com
 #&gt; Reply-To:                  craig@yahoo.com
-#&gt; Subject:                   Hiya!</div></pre>
+#&gt; Subject:                   Hiya!
+#&gt; Importance:                high
+#&gt; Priority:                  urgent</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
