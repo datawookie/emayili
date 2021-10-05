@@ -9,6 +9,8 @@ new_envelope <- function(
   bcc,
   reply,
   subject,
+  importance,
+  priority,
   text,
   html
 ) {
@@ -29,6 +31,8 @@ new_envelope <- function(
   if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
   if (!is.null(reply)) koevert <- reply(koevert, reply)
   if (!is.null(subject)) koevert <- subject(koevert, subject)
+  if (!is.null(importance)) koevert <- importance(koevert, importance)
+  if (!is.null(priority)) koevert <- priority(koevert, priority)
   if (!is.null(text)) koevert <- text(koevert, text)
   if (!is.null(html)) koevert <- html(koevert, html)
 
@@ -37,29 +41,35 @@ new_envelope <- function(
 
 #' Create a message.
 #'
-#' @param to See \code{to()}
-#' @param from See \code{from()}
-#' @param cc See \code{cc()}
-#' @param bcc See \code{bcc()}
-#' @param reply See \code{reply()}
-#' @param subject See \code{subject()}
-#' @param text See \code{text()}
-#' @param html See \code{html()}
+#' @param to See [to()].
+#' @param from See [from()].
+#' @param cc See [cc()].
+#' @param bcc See [bcc()].
+#' @param reply See [reply()].
+#' @param subject See [subject()].
+#' @param importance See [importance()].
+#' @param priority See [priority()].
+#' @param text See [text()].
+#' @param html See [html()].
 #'
 #' @return A message object.
-#' @seealso \code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @seealso [subject()], [from()], [to()], [cc()], [bcc()] and [reply()].
 #' @export
 #' @examples
 #' # Create an (empty) message object.
+#' #
 #' msg <- envelope()
 #'
-#' # Create a complete message object.
+#' # Create a complete message object, specifying all available fields.
+#' #
 #' envelope(
 #'   to = "bob@gmail.com",
 #'   from = "craig@gmail.com",
 #'   cc = "alex@gmail.com",
 #'   bcc = "shannon@gmail.com",
 #'   reply = "craig@yahoo.com",
+#'   importance = "high",
+#'   priority = "urgent",
 #'   subject = "Hiya!",
 #'   text = "Hi Bob, how are you?"
 #' )
@@ -70,10 +80,12 @@ envelope <- function(
   bcc = NULL,
   reply = NULL,
   subject = NULL,
+  importance = NULL,
+  priority = NULL,
   text = NULL,
   html = NULL
 ) {
-  new_envelope(to, from, cc, bcc, reply, subject, text, html)
+  new_envelope(to, from, cc, bcc, reply, subject, importance, priority, text, html)
 }
 
 headers <- function(x) {

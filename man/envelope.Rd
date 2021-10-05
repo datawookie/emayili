@@ -11,26 +11,32 @@ envelope(
   bcc = NULL,
   reply = NULL,
   subject = NULL,
+  importance = NULL,
+  priority = NULL,
   text = NULL,
   html = NULL
 )
 }
 \arguments{
-\item{to}{See \code{to()}}
+\item{to}{See \code{\link[=to]{to()}}.}
 
-\item{from}{See \code{from()}}
+\item{from}{See \code{\link[=from]{from()}}.}
 
-\item{cc}{See \code{cc()}}
+\item{cc}{See \code{\link[=cc]{cc()}}.}
 
-\item{bcc}{See \code{bcc()}}
+\item{bcc}{See \code{\link[=bcc]{bcc()}}.}
 
-\item{reply}{See \code{reply()}}
+\item{reply}{See \code{\link[=reply]{reply()}}.}
 
-\item{subject}{See \code{subject()}}
+\item{subject}{See \code{\link[=subject]{subject()}}.}
 
-\item{text}{See \code{text()}}
+\item{importance}{See \code{\link[=importance]{importance()}}.}
 
-\item{html}{See \code{html()}}
+\item{priority}{See \code{\link[=priority]{priority()}}.}
+
+\item{text}{See \code{\link[=text]{text()}}.}
+
+\item{html}{See \code{\link[=html]{html()}}.}
 }
 \value{
 A message object.
@@ -40,19 +46,23 @@ Create a message.
 }
 \examples{
 # Create an (empty) message object.
+#
 msg <- envelope()
 
-# Create a complete message object.
+# Create a complete message object, specifying all available fields.
+#
 envelope(
   to = "bob@gmail.com",
   from = "craig@gmail.com",
   cc = "alex@gmail.com",
   bcc = "shannon@gmail.com",
   reply = "craig@yahoo.com",
+  importance = "high",
+  priority = "urgent",
   subject = "Hiya!",
   text = "Hi Bob, how are you?"
 )
 }
 \seealso{
-\code{\link{subject}}, \code{\link{from}}, \code{\link{to}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+\code{\link[=subject]{subject()}}, \code{\link[=from]{from()}}, \code{\link[=to]{to()}}, \code{\link[=cc]{cc()}}, \code{\link[=bcc]{bcc()}} and \code{\link[=reply]{reply()}}.
 }
