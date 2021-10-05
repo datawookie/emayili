@@ -1,3 +1,9 @@
+# {emayili} 0.6.1
+
+* Add importance() for Importance header field.
+* Add priority() for Priority header field.
+* Add Content-MD5 header field.
+
 # {emayili} 0.6.0
 
 * Refactor representation of Mail and MIME headers.
