@@ -14,13 +14,13 @@ test_that("convert single child to list", {
 
 test_that("missing disposition", {
   mime_txt <- other(TXTPATH, disposition = NA)
-  mime_png <- other(PNGPATH, disposition = NA)
+  mime_jpg <- other(JPGPATH, disposition = NA)
 
   expect_match(mime_txt$type, "^text/plain")
-  expect_match(mime_png$type, "^image/png")
+  expect_match(mime_jpg$type, "^image/jpeg")
 
   expect_match(mime_txt$disposition, "^inline")
-  expect_match(mime_png$disposition, "^attachment")
+  expect_match(mime_jpg$disposition, "^attachment")
 })
 
 test_that("print", {
@@ -75,11 +75,11 @@ test_that("order doesn't matter", {
 })
 
 test_that("MD5 checksum", {
-  mime_png <- other(PNGPATH, disposition = NA)
+  mime_jpg <- other(JPGPATH, disposition = NA)
 
   expect_match(
-    as.character.MIME(mime_png),
-    "Content-MD5:               8SV0BThEP3geDkvudZFKEA==",
+    as.character.MIME(mime_jpg),
+    "Content-MD5:               0KTj0bnhRWCUK4N7LnvNmA==",
     fixed = TRUE
   )
 })

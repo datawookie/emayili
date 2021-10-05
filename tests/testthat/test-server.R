@@ -61,7 +61,7 @@ test_that("sends message with text attachment", {
 
 test_that("sends message with image attachment", {
   msg <- msg %>%
-    attachment(PNGPATH)
+    attachment(JPGPATH)
 
   skip_on_cran()
   expect_error(smtp(msg %>% subject("{emayili} test: Image attachment")), NA)
@@ -70,7 +70,7 @@ test_that("sends message with image attachment", {
 test_that("sends message with image attachment (using CID)", {
   msg <- msg %>%
     html('<img src="cid:r-logo"/>') %>%
-    attachment(PNGPATH, cid = "r-logo", type = "image/png")
+    attachment(JPGPATH, cid = "r-logo", type = "image/jpg")
 
   skip_on_cran()
   expect_error(smtp(msg %>% subject("{emayili} test: Image attachment (using CID)")), NA)

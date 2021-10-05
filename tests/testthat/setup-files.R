@@ -1,9 +1,10 @@
+library(here)
 library(logger)
 
 log_threshold(ERROR)
 
 TXTPATH <- tempfile(fileext = ".txt")
-PNGPATH <- tempfile(fileext = ".png")
+JPGPATH <- here("inst", "cats.jpg")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
@@ -27,10 +28,6 @@ writeLines(
   paste0("body {color: ", COLOUR_GLAUCOUS," !important;}"),
   CSSPATH
 )
-
-png(PNGPATH, width=600, height=350)
-hist(mtcars$disp)
-dev.off()
 
 HTMLCONTENT <- "<p>Hello there, stranger!</p>"
 #
