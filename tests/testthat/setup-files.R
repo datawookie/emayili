@@ -4,10 +4,15 @@ library(logger)
 log_threshold(ERROR)
 
 TXTPATH <- tempfile(fileext = ".txt")
-JPGPATH <- here("inst", "cats.jpg")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
+
+# This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
+#
+JPGPATH <- system.file("cats.jpg", package = "emayili", mustWork = TRUE)
+# If have not installed yet.
+if (!file.exists(JPGPATH)) JPGPATH <- here("inst", "cats.jpg")
 
 TXTCONTENT <- "Some random text."
 
@@ -32,10 +37,6 @@ writeLines(
 HTMLCONTENT <- "<p>Hello there, stranger!</p>"
 #
 writeLines(HTMLCONTENT, HTMLPATH)
-
-# This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
-#
-JPGPATH <- here::here("inst", "cats.jpg")
 
 # SERVER -----------------------------------------------------------------------
 
