@@ -35,5 +35,5 @@ attachment <- function(msg, path, name = NA, type = NA, cid = NA) {
 
   msg <- append(msg, body)
 
-  if (get_option_invisible()) invisible(msg) else msg
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }

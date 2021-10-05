@@ -34,7 +34,7 @@ as.character.header <- function(x, ...) {
 }
 
 print.header <- function(x, ... ) {
-  as.character(x)
+  print(as.character(x))
 }
 
 header_get <- function(msg, name) {

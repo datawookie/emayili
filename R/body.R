@@ -59,7 +59,7 @@ text <- function(
 
   msg <- append(msg, body)
 
-  if (get_option_invisible()) invisible(msg) else msg
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }
 
 #' Add an HTML body to a message object.
