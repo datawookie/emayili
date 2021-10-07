@@ -126,12 +126,13 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
+    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
+    X-Mailer:                  {emayili}-0.6.1
+    MIME-Version:              1.0
     From:                      alice@yahoo.com
     To:                        bob@google.com
     Cc:                        craig@google.com
     Subject:                   This is a plain text message!
-    X-Mailer:                  {emayili}-0.5.6
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -174,12 +175,13 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
-    X-Mailer:                  {emayili}-0.5.6
+    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
+    X-Mailer:                  {emayili}-0.6.1
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8
     Content-Disposition:       inline
     Content-Transfer-Encoding: 7bit
+    Content-MD5:               nhjeY5ZYMzru+kSCGUzNKg==
 
     Hello Alice!
 
@@ -197,17 +199,14 @@ envelope() %>%
   )
 ```
 
-    Date:                      Sun, 26 Sep 2021 04:50:40 GMT
-    X-Mailer:                  {emayili}-0.5.6
+    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
+    X-Mailer:                  {emayili}-0.6.1
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-    <html>
-    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
-    <body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body>
-    </html>
+    <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
 
 Or R Markdown.
 
@@ -328,7 +327,6 @@ this, you can grant access to less secure apps. See the links below for
 specifics:
 
 -   [Google](https://myaccount.google.com/security)
-    ([details](https://support.google.com/accounts/answer/6010255))
 -   [Yahoo!](https://login.yahoo.com/account/security) and
 -   [AOL](https://login.aol.com/account/security).
 
@@ -418,8 +416,8 @@ rhub::check_for_cran()
 rhub::check_for_cran(platforms = c(
   "debian-gcc-release",
   "ubuntu-gcc-release",
-  "macos-highsierra-release-cran",
-  "solaris-x86-patched",
-  "windows-x86_64-release"
+  "macos-m1-bigsur-release",
+  "windows-x86_64-release",
+  NULL
 ))
 ```
