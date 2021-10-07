@@ -94,8 +94,15 @@ rmarkdown::draft(
   edit = FALSE
 )
 
+# Check for suitable version of Pandoc (https://pandoc.org/).
+#
+# Need to have version 2.0 or greater to support required --quiet option.
+#
+pandoc <- rmarkdown::find_pandoc()
+suitable_pandoc <- !is.null(pandoc$dir) && grepl("^2", pandoc$version)
+
 # Render from Rmd file.
-if (!is.null(rmarkdown::find_pandoc()$dir)) {
+if (suitable_pandoc) {
   msg <- envelope() \%>\%
     render(filename, include_css = c("rmd", "highlight"))
 }

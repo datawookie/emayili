@@ -9,6 +9,7 @@
 ^emayili.*\.tgz$
 .bumpversion.cfg
 README.Rmd
+README.html
 test.R
 examples/
 ^\.github$
