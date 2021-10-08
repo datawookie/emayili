@@ -52,6 +52,7 @@ MIME <- function(
   disposition = NA,
   charset = NA,
   encoding = NA,
+  format = NA,
   boundary = emayili:::hexkey(),
   type = NA,
   children = list()
@@ -69,6 +70,7 @@ MIME <- function(
       disposition = disposition,
       charset = charset,
       encoding = encoding,
+      format = format,
       boundary = boundary,
       children = children,
       type = type
@@ -106,7 +108,7 @@ text_plain <- function(
 ) {
   structure(
     c(
-      MIME(content, disposition, charset, encoding, boundary = NA, ...),
+      MIME(content, disposition, charset, encoding, format = "flowed", boundary = NA, ...),
       list()
     ),
     class = c("text_plain", "MIME")
@@ -290,7 +292,7 @@ as.character.MIME <- function(x, ...) {
   type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
   headers <- list(
-    content_type(type, x$charset, x$boundary),
+    content_type(type, x$charset, x$boundary, x$format),
     content_disposition(x$disposition),
     content_transfer_encoding(x$encoding),
     x_attachment_id(x$cid),

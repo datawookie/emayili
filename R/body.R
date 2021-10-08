@@ -6,6 +6,11 @@ check_message_body <- function(content) {
 
 #' Add a text body to a message.
 #'
+#' Add \code{text/plain} content to a message.
+#'
+#' The \code{text/plain} format is
+#' described in \href{https://www.ietf.org/rfc/rfc2646.txt}{RFC 2646}.
+#'
 #' Uses \code{glue::glue()} to evaluate expressions enclosed in brackets as R code.
 #'
 #' @param msg A message object.

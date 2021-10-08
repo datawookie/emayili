@@ -66,5 +66,11 @@ test_that("html: inject CSS", {
       as.character(),
     COLOUR_GLAUCOUS
   )
+})
 
+test_that("Content-Type header", {
+  expect_match(
+    envelope() %>% text("Hello!") %>% as.character(),
+    "Content-Type: +text/plain; charset=utf-8; format=flowed"
+  )
 })

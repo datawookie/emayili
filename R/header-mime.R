@@ -1,13 +1,14 @@
 # Headers for the MIME protocol.
 
-content_type <- function(type, charset, boundary) {
+content_type <- function(type, charset, boundary, format = NA) {
   new_header(
     "Content-Type",
     paste(
       c(
         type,
         if (!is.na(charset)) glue('charset={charset}') else NULL,
-        if (!is.na(boundary)) glue('boundary="{boundary}"') else NULL
+        if (!is.na(boundary)) glue('boundary="{boundary}"') else NULL,
+        if (!is.na(format)) glue('format={format}') else NULL
       ),
       collapse = "; "
     )
