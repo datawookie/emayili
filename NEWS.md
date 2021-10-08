@@ -1,3 +1,7 @@
+# {emayili} 0.6.2
+
+* Improved implementation of qp_encode() and qp_decode().
+
 # {emayili} 0.6.1
 
 * Add importance() for Importance header field.

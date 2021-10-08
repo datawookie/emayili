@@ -14,6 +14,7 @@
 #' @importFrom mime guess_type
 #' @importFrom rmarkdown render html_document
 #' @importFrom stats setNames
+#' @importFrom stringi stri_replace_all_fixed stri_replace_all_regex
 #' @importFrom tools file_ext
 #' @importFrom urltools url_decode
 #' @importFrom utils packageVersion
