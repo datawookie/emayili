@@ -2,6 +2,8 @@
 #
 # See https://stackoverflow.com/questions/40976213/decoding-quoted-printable-string-in-r.
 
+MAXLINESIZE = 76
+
 ASCII_QP_ENCODED <- c(
   "=00", "=01", "=02", "=03", "=04", "=05", "=06", "=07", "=08", "=09", "=0A",
   "=0B", "=0C", "=0D", "=0E", "=0F", "=10", "=11", "=12", "=13", "=14", "=15",
@@ -60,14 +62,21 @@ ASCII_QP_DECODED <- c(
 #
 PRINTABLE <- c(seq(33, 61), seq(63, 127))
 
+# Don't encode printable characters.
+ascii_qp_encoded <- ASCII_QP_ENCODED[-PRINTABLE]
+ascii_qp_decoded <- ASCII_QP_DECODED[-PRINTABLE]
+# Can't search for empty strings.
+ascii_qp_encoded <- ascii_qp_encoded[ascii_qp_decoded != ""]
+ascii_qp_decoded <- ascii_qp_decoded[ascii_qp_decoded != ""]
+
 #' Quoted-Printable encoding
 #'
 #' Encode to and decode from Quoted-Printable encoding.
 #'
 #' @name qp
 #'
-#' @param x A vector of strings.
-#' @return A vector of encoded strings for \code{qp_encode()} and a vector of decoded strings for \code{qp_decode()}.
+#' @param x A string for encoding or decoding.
+#' @return An encoded string for \code{qp_encode()} or a decoded string for \code{qp_decode()}.
 NULL
 
 #' @rdname qp
@@ -76,19 +85,30 @@ NULL
 #' @examples
 #' qp_encode("Mieux vaut être seul que mal accompagné.")
 qp_encode <- function(x) {
-  # Don't encode printable characters.
-  ascii_qp_encoded <- ASCII_QP_ENCODED[-PRINTABLE]
-  ascii_qp_decoded <- ASCII_QP_DECODED[-PRINTABLE]
-  # Can't search for empty strings.
-  ascii_qp_encoded <- ascii_qp_encoded[ascii_qp_decoded != ""]
-  ascii_qp_decoded <- ascii_qp_decoded[ascii_qp_decoded != ""]
+  stopifnot(length(x) == 1)
 
-  breaks <- seq(1, nchar(x)-1, 75)
+  x <- x %>%
+    stri_replace_all_fixed(ascii_qp_decoded, ascii_qp_encoded, vectorize_all = FALSE)
 
-  x %>%
-  stri_replace_all_fixed(ascii_qp_decoded, ascii_qp_encoded, vectorize_all = FALSE) %>%
-    substring(breaks, breaks + 74) %>%
-    paste0(collapse = "=\n")
+  xlen = nchar(x)
+
+  lhs <- 1
+  breaks <- c()
+  while (TRUE) {
+    rhs <- lhs + MAXLINESIZE - 2
+    # Check if line ends with in middle of encoded symbol.
+    offset <- regexpr("=", substr(x, rhs - 1, rhs))
+    offset <- ifelse(offset == -1, 0, 3 - offset)
+    rhs <- rhs - offset
+    breaks <- c(breaks, rhs)
+    if (rhs >= xlen) break
+    lhs <- rhs + 1
+  }
+
+  rhs <- breaks
+  lhs <- c(0, breaks[1:length(breaks) - 1]) + 1
+
+  paste(str_sub(x, lhs, rhs), collapse = "=\n")
 }
 
 #' @rdname qp
@@ -97,6 +117,8 @@ qp_encode <- function(x) {
 #' @examples
 #' qp_decode("Mieux vaut =C3=AAtre seul que mal accompagn=C3=A9.")
 qp_decode <- function(x) {
+  stopifnot(length(x) == 1)
+
   x %>%
     # Handle soft line breaks ()
     stri_replace_all_regex("=\\n", "", vectorize_all=FALSE) %>%

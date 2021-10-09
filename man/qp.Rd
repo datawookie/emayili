@@ -11,10 +11,10 @@ qp_encode(x)
 qp_decode(x)
 }
 \arguments{
-\item{x}{A vector of strings.}
+\item{x}{A string for encoding or decoding.}
 }
 \value{
-A vector of encoded strings for \code{qp_encode()} and a vector of decoded strings for \code{qp_decode()}.
+An encoded string for \code{qp_encode()} or a decoded string for \code{qp_decode()}.
 }
 \description{
 Encode to and decode from Quoted-Printable encoding.
