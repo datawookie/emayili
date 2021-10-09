@@ -6,6 +6,8 @@ decoded <- "J'interdis aux marchands de vanter trop leurs marchandises. Car ils 
 # Can generate other test text at https://www.webatic.com/quoted-printable-convertor.
 
 test_that("(en|de)code text", {
+  local_reproducible_output(unicode = TRUE)
+
   expect_equal(qp_encode(decoded), encoded)
   expect_equal(qp_decode(encoded), decoded)
 })
@@ -16,13 +18,16 @@ test_that("(en|de)code '='", {
 })
 
 test_that("don't break lines in token", {
-  expect_equal(qp_encode("êêêêêêêêêêêêê"), "=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=\n=AA")
-  expect_equal(qp_encode(" êêêêêêêêêêêêê"), " =C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=\n=C3=AA")
-  expect_equal(qp_encode("  êêêêêêêêêêêêê"), "  =C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=\n=C3=AA")
-  expect_equal(qp_encode("   êêêêêêêêêêêêê"), "   =C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=\n=C3=AA")
-  expect_equal(qp_encode("    êêêêêêêêêêêêê"), "    =C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=AA=C3=\n=AA=C3=AA")
+  expect_equal(qp_encode("========================="), "=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D")
+  expect_equal(qp_encode(" ========================="), " =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=\n=3D")
+  expect_equal(qp_encode("  ========================="), "  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=\n=3D")
+  expect_equal(qp_encode("   ========================="), "   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=\n=3D")
+  expect_equal(qp_encode("    ========================="), "    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=\n=3D=3D")
 })
 
 test_that("unicode", {
+  local_reproducible_output(unicode = TRUE)
+
+  expect_equal(Encoding(qp_decode("=E3=83=84")), Encoding("ツ"))
   expect_equal(qp_decode("=E3=83=84"), "ツ")
 })
