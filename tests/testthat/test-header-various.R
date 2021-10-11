@@ -19,13 +19,21 @@ test_that("set expires & reply-by", {
   )
 })
 
-test_that("in-reply-to", {
+test_that("in-reply-to & references", {
   expect_match(
     envelope() %>% inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>") %>% as.character(),
     "In-Reply-To: +<6163c08e.1c69fb81.65b78.183c@mx.google.com>"
   )
   expect_match(
-    envelope() %>% subject("Test") %>% inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW:") %>% as.character(),
+    envelope() %>% subject("Test") %>% inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>% as.character(),
+    "Subject: +AW: Test"
+  )
+  expect_match(
+    envelope() %>% references("<6163c08e.1c69fb81.65b78.183c@mx.google.com>") %>% as.character(),
+    "References: +<6163c08e.1c69fb81.65b78.183c@mx.google.com>"
+  )
+  expect_match(
+    envelope() %>% subject("Test") %>% references("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>% as.character(),
     "Subject: +AW: Test"
   )
 })

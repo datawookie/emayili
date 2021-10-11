@@ -147,7 +147,7 @@ subject <- function(
   .open = "{{",
   .close = "}}",
   .envir = NULL
-){
+) {
   if (is.null(subject)) {
     header_get(msg, "Subject")
   } else {
@@ -157,6 +157,47 @@ subject <- function(
     if (interpolate) subject <- glue(subject, .open = .open, .close = .close, .envir = .envir)
 
     msg <- header_set(msg, "Subject", subject, append = FALSE)
-    invisible(msg)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
   }
+}
+
+#' Add In-Reply-To and References header fields
+#'
+#' @name response
+#'
+#' @inheritParams addresses
+#' @param msgid A message ID. This would be the contents of the \code{Message-ID}
+#'   field from another message.
+#' @param subject_prefix Prefix to add to subject. If specified will be prepended
+#'   onto the \code{Subject} field. Set to `NULL` if not required.
+#' @return A message object.
+NULL
+
+#' @rdname response
+#'
+#' @export
+#' @examples
+#' envelope() %>% inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>")
+#' # Now for German.
+#' envelope() %>%
+#'   inreplyto("6163c08e.1c69fb81.65b78.183c@mx.google.com", "AW: ")
+inreplyto <- function(msg, msgid, subject_prefix = "Re: ") {
+  msg <- msg %>%
+    header_set("In-Reply-To", wrap_angle_brackets(msgid), append = FALSE) %>%
+    subject(paste0(subject_prefix, subject(msg)))
+  if (get_option_invisible()) invisible(msg) else msg # nocov
+}
+
+#' @rdname response
+#'
+#' @export
+#' @examples
+#' # And also for Danish, Norwegian and Swedish (but not Finnish!).
+#' envelope() %>%
+#'   references("6163c08e.1c69fb81.65b78.183c@mx.google.com", "SV: ")
+references <- function(msg, msgid, subject_prefix = "Re: ") {
+  msg <- msg %>%
+    header_set("References", wrap_angle_brackets(msgid), append = FALSE) %>%
+    subject(paste0(subject_prefix, subject(msg)))
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }
