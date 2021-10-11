@@ -4,7 +4,14 @@
 \alias{attachment}
 \title{Add attachments to a message object}
 \usage{
-attachment(msg, path, name = NA, type = NA, cid = NA)
+attachment(
+  msg,
+  path,
+  name = NA,
+  type = NA,
+  cid = NA,
+  disposition = "attachment"
+)
 }
 \arguments{
 \item{msg}{A message object.}
@@ -16,6 +23,8 @@ attachment(msg, path, name = NA, type = NA, cid = NA)
 \item{type}{MIME type or \cite{NA}, which will result in a guess based on file extension.}
 
 \item{cid}{Content-ID or \code{NA}.}
+
+\item{disposition}{How is attachment to be presented (\code{"inline"} or \code{"attachment"})?}
 }
 \value{
 A message object.
