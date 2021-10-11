@@ -166,6 +166,8 @@ format_datetime <- function(datetime) {
 }
 
 #' Enclose in angle brackets
+#'
+#' @noRd
 wrap_angle_brackets <- function(x) {
   if (!grepl("^<", x)) x <- paste0("<", x)
   if (!grepl(">$", x)) x <- paste0(x, ">")
