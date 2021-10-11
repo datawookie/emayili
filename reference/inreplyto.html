@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print a message object — print.envelope • emayili</title>
+<title>Add In-Reply-To header field — inreplyto • emayili</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Print a message object — print.envelope" />
-<meta property="og:description" content="The message body will be printed if details is TRUE or if the envelope_details
-option is TRUE." />
+<meta property="og:title" content="Add In-Reply-To header field — inreplyto" />
+<meta property="og:description" content="Add In-Reply-To header field" />
 
 
 
@@ -112,58 +111,44 @@ option is TRUE." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print a message object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/envelope.R'><code>R/envelope.R</code></a></small>
-    <div class="hidden name"><code>print.envelope.Rd</code></div>
+    <h1>Add In-Reply-To header field</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/header-mail.R'><code>R/header-mail.R</code></a></small>
+    <div class="hidden name"><code>inreplyto.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The message body will be printed if <code>details</code> is <code>TRUE</code> or if the <code>envelope_details</code>
-option is <code>TRUE</code>.</p>
+    <p>Add In-Reply-To header field</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for envelope</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, details <span class='op'>=</span> <span class='cn'>NA</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>inreplyto</span><span class='op'>(</span><span class='va'>msg</span>, <span class='va'>msgid</span>, subject_prefix <span class='op'>=</span> <span class='st'>"Re:"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>msg</th>
       <td><p>A message object.</p></td>
     </tr>
     <tr>
-      <th>details</th>
-      <td><p>Whether or not to display full message content.</p></td>
+      <th>msgid</th>
+      <td><p>A message ID.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Further arguments passed to or from other methods.</p></td>
+      <th>subject_prefix</th>
+      <td><p>Prefix to add to subject.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='text.html'>text</a></span><span class='op'>(</span><span class='st'>"Hello, World!"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>msg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Date:                      Mon, 11 Oct 2021 05:24:23 GMT
-#&gt; X-Mailer:                  {emayili}-0.6.2
-#&gt; MIME-Version:              1.0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>msg</span>, details <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Date:                      Mon, 11 Oct 2021 05:24:23 GMT
-#&gt; X-Mailer:                  {emayili}-0.6.2
-#&gt; MIME-Version:              1.0
-#&gt; Content-Type:              text/plain; charset=utf-8; format=flowed
-#&gt; Content-Disposition:       inline
-#&gt; Content-Transfer-Encoding: 7bit
-#&gt; Content-MD5:               ZajifYh5KDgxtmS9i38K1A==
-#&gt; 
-#&gt; Hello, World!</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>envelope_details <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>msg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Date:                      Mon, 11 Oct 2021 05:24:23 GMT
-#&gt; X-Mailer:                  {emayili}-0.6.2
-#&gt; MIME-Version:              1.0</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>inreplyto</span><span class='op'>(</span><span class='st'>"&lt;6163c08e.1c69fb81.65b78.183c@mx.google.com&gt;"</span><span class='op'>)</span>
+<span class='co'># Now for German.</span>
+<span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inreplyto</span><span class='op'>(</span><span class='st'>"6163c08e.1c69fb81.65b78.183c@mx.google.com"</span>, <span class='st'>"AW:"</span><span class='op'>)</span>
+<span class='co'># And also for Danish, Norwegian and Swedish (but not Finnish!).</span>
+<span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inreplyto</span><span class='op'>(</span><span class='st'>"6163c08e.1c69fb81.65b78.183c@mx.google.com"</span>, <span class='st'>"SV:"</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
