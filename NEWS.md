@@ -1,12 +1,15 @@
 # {emayili} 0.6.2
 
-* Improved implementation of qp_encode() and qp_decode().
+* Added `expires()`, `replyby()` and `sensitivity()`.
+* Added disposition argument to `attachment()`.
+* Merged `new_envelope()` into `envelope()`.
+* Improved implementation of `qp_encode()` and `qp_decode()`.
 
 # {emayili} 0.6.1
 
-* Add importance() for Importance header field.
-* Add priority() for Priority header field.
-* Add Content-MD5 header field.
+* Add `importance()` for `Importance` header field.
+* Add `priority()` for `Priority` header field.
+* Add `Content-MD5` header field.
 
 # {emayili} 0.6.0
 
@@ -14,16 +17,16 @@
 
 # {emayili} 0.5.6
 
-* Also support include_css in html().
+* Also support `include_css` in `html()`.
 
 # {emayili} 0.5.5
 
 * Use include_css option to specify what rendered CSS is included. Can specify
-  a combination of "rmd", "bootstrap" and "highlight".
+  a combination of `"rmd"`, `"bootstrap"` and `"highlight"`.
 
 # {emayili} 0.5.4
 
-* Wrap <img> in <figure> and support fig.cap, fig.alt & fig.class.
+* Wrap `<img>` in `<figure>` and support `fig.cap`, `fig.alt` & `fig.class`.
 
 # {emayili} 0.5.3
 
@@ -38,19 +41,19 @@
 
 # {emayili} 0.5.1
 
-* Add SystemRequirements for pandoc.
-* Check for pandoc before calling render().
+* Add `SystemRequirements` for Pandoc.
+* Check for Pandoc before calling `render()`.
 * Complete test coverage.
 
 # {emayili} 0.5.0
 
-* Interpolate in subject() and html().
+* Interpolate in `subject()` and `html()`.
 * Improved test coverage.
 
 # {emayili} 0.4.20
 
 * Render R Markdown into HTML body (separate functions for plain & R Markdown).
-* Add MIME class.
+* Add `MIME` class.
 
 # {emayili} 0.4.19
 
@@ -58,12 +61,12 @@
 
 # {emayili} 0.4.18
 
-* Add envelope_details and envelope_invisible options.
-* Enable {glue} interpolation in text().
+* Add `envelope_details` and `envelope_invisible` options.
+* Enable `{glue}` interpolation in `text()`.
 
 # {emayili} 0.4.17
 
-* Fix regression in From and Sender header fields.
+* Fix regression in `From` and `Sender` header fields.
 * Improve test for formatting of header fields.
 
 # {emayili} 0.4.16
@@ -82,12 +85,12 @@
 
 # {emayili} 0.4.14
 
-* The html() function can now read HTML from a file (#70).
+* The `html()` function can now read HTML from a file (#70).
   Thanks https://github.com/freuerde.
 
 # {emayili} 0.4.13
 
-* Fix from = NULL in envelope() (#69).
+* Fix `from = NULL` in `envelope()` (#69).
   Thanks https://github.com/stibu81.
 
 # {emayili} 0.4.12
@@ -97,6 +100,6 @@
 
 # {emayili} 0.4.11
 
-* Email addresses can include name. Both "Bart Simpson <bart@eatmyshorts.com>"
-  and "bart@eatmyshorts.com" are valid (#67).
+* Email addresses can include name. Both `"Bart Simpson <bart@eatmyshorts.com>"`
+  and `"bart@eatmyshorts.com"` are valid (#67).
 * Add `NEWS.md` (#66).
