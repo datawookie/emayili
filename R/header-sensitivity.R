@@ -13,7 +13,7 @@ LEVELS_SENSITIVITY <- c("personal", "private", "company-confidential")
 #' @examples
 #' # Not sensitive.
 #' envelope() %>%
-#'   subject("Your daily dose of spam)
+#'   subject("Your daily dose of spam")
 #'
 #' # Sensitive personal message.
 #' envelope() %>%
