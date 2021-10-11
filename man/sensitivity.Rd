@@ -17,3 +17,24 @@ A message object.
 \description{
 Manipulate the \code{Sensitivity} field as specified in \href{https://www.ietf.org/rfc/rfc2156.txt}{RFC 2156}.
 }
+\examples{
+# Not sensitive.
+envelope() \%>\%
+  subject("Your daily dose of spam")
+
+# Sensitive personal message.
+envelope() \%>\%
+  subject("The results from your test") \%>\%
+  sensitivity("personal")
+
+# Sensitive private message.
+envelope() \%>\%
+  subject("Your OTP (don't show this to anybody!") \%>\%
+  sensitivity("private")
+
+# Sensitive business message.
+envelope() \%>\%
+  subject("Top Secret Strategy Document") \%>\%
+  sensitivity("company-confidential")
+
+}
