@@ -2,43 +2,6 @@ is.envelope <- function(x) {
   "envelope" %in% class(x)
 }
 
-new_envelope <- function(
-  to,
-  from,
-  cc,
-  bcc,
-  reply,
-  subject,
-  importance,
-  priority,
-  text,
-  html
-) {
-  koevert <- structure(
-    list(
-      headers = list(),
-      parts = NULL
-    ),
-    class="envelope"
-  ) %>%
-    header_set("Date", http_date(Sys.time()), append = FALSE) %>%
-    header_set("X-Mailer", paste("{emayili}", packageVersion("emayili"), sep = "-"), append = FALSE) %>%
-    header_set("MIME-Version", "1.0", append = FALSE)
-
-  if (!is.null(to)) koevert <- to(koevert, to)
-  if (!is.null(from)) koevert <- from(koevert, from)
-  if (!is.null(cc)) koevert <- cc(koevert, cc)
-  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
-  if (!is.null(reply)) koevert <- reply(koevert, reply)
-  if (!is.null(subject)) koevert <- subject(koevert, subject)
-  if (!is.null(importance)) koevert <- importance(koevert, importance)
-  if (!is.null(priority)) koevert <- priority(koevert, priority)
-  if (!is.null(text)) koevert <- text(koevert, text)
-  if (!is.null(html)) koevert <- html(koevert, html)
-
-  koevert
-}
-
 #' Create a message.
 #'
 #' @param to See [to()].
@@ -85,7 +48,29 @@ envelope <- function(
   text = NULL,
   html = NULL
 ) {
-  new_envelope(to, from, cc, bcc, reply, subject, importance, priority, text, html)
+  koevert <- structure(
+    list(
+      headers = list(),
+      parts = NULL
+    ),
+    class="envelope"
+  ) %>%
+    header_set("Date", http_date(Sys.time()), append = FALSE) %>%
+    header_set("X-Mailer", paste("{emayili}", packageVersion("emayili"), sep = "-"), append = FALSE) %>%
+    header_set("MIME-Version", "1.0", append = FALSE)
+
+  if (!is.null(to)) koevert <- to(koevert, to)
+  if (!is.null(from)) koevert <- from(koevert, from)
+  if (!is.null(cc)) koevert <- cc(koevert, cc)
+  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
+  if (!is.null(reply)) koevert <- reply(koevert, reply)
+  if (!is.null(subject)) koevert <- subject(koevert, subject)
+  if (!is.null(importance)) koevert <- importance(koevert, importance)
+  if (!is.null(priority)) koevert <- priority(koevert, priority)
+  if (!is.null(text)) koevert <- text(koevert, text)
+  if (!is.null(html)) koevert <- html(koevert, html)
+
+  koevert
 }
 
 headers <- function(x) {
