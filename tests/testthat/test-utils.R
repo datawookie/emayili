@@ -12,3 +12,10 @@ test_that("remove CSS comments", {
     " p {} "
   )
 })
+
+test_that("enclose angle brackets", {
+  expect_equal(wrap_angle_brackets("<foo"), "<foo>")
+  expect_equal(wrap_angle_brackets("foo>"), "<foo>")
+  expect_equal(wrap_angle_brackets("<foo>"), "<foo>")
+  expect_equal(wrap_angle_brackets("foo"), "<foo>")
+})
