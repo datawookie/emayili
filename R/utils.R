@@ -151,3 +151,16 @@ md5 <- function(object) {
   digest(object, algo = "md5", serialize = FALSE, raw = TRUE) %>%
     mime_base64encode()
 }
+
+parse_datetime <- function(datetime, tz) {
+  as.POSIXct(datetime, tz)
+}
+
+#' Format date
+#'
+#' Format like "Fri, 08 Oct 2021 22:06:39 -0700 (PDT)".
+#'
+#' @noRd
+format_datetime <- function(datetime) {
+  strftime(datetime, "%a, %d %b %Y %H:%M:%S %z (%Z)")
+}
