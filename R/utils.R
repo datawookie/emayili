@@ -189,7 +189,6 @@ wrap_angle_brackets <- function(x) {
   x
 }
 
-
 #' Test if list is nested or flat
 #'
 #' @noRd
