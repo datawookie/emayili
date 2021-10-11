@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • emayili</title>
+<title>Set or query message sensitivity — sensitivity • emayili</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="%&amp;gt;%" />
+<meta property="og:title" content="Set or query message sensitivity — sensitivity" />
+<meta property="og:description" content="Manipulate the Sensitivity field as specified in RFC 2156." />
 
 
 
@@ -111,18 +111,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Set or query message sensitivity</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/header-sensitivity.R'><code>R/header-sensitivity.R</code></a></small>
+    <div class="hidden name"><code>sensitivity.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>%&gt;%</p>
+    <p>Manipulate the <code>Sensitivity</code> field as specified in <a href='https://www.ietf.org/rfc/rfc2156.txt'>RFC 2156</a>.</p>
     </div>
 
-    <pre class="usage"><span class='va'>lhs</span> <span class='op'>%&gt;%</span> <span class='va'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>sensitivity</span><span class='op'>(</span><span class='va'>msg</span>, sensitivity <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>msg</th>
+      <td><p>A message object.</p></td>
+    </tr>
+    <tr>
+      <th>sensitivity</th>
+      <td><p>Sensitivity level. One of <code>"personal"</code>, <code>"private"</code>, or <code>"company-confidential"</code>.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A message object.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • emayili</title>
+<title>Quoted-Printable encoding — qp • emayili</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="%&amp;gt;%" />
+<meta property="og:title" content="Quoted-Printable encoding — qp" />
+<meta property="og:description" content="Encode to and decode from Quoted-Printable encoding." />
 
 
 
@@ -111,19 +111,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Quoted-Printable encoding</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/emayili/blob/master/R/encoding.R'><code>R/encoding.R</code></a></small>
+    <div class="hidden name"><code>qp.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>%&gt;%</p>
+    <p>Encode to and decode from Quoted-Printable encoding.</p>
     </div>
 
-    <pre class="usage"><span class='va'>lhs</span> <span class='op'>%&gt;%</span> <span class='va'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>qp_encode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
+<span class='fu'>qp_decode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A string for encoding or decoding.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An encoded string for <code>qp_encode()</code> or a decoded string for <code>qp_decode()</code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>qp_encode</span><span class='op'>(</span><span class='st'>"Mieux vaut être seul que mal accompagné."</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Mieux vaut =C3=AAtre seul que mal accompagn=C3=A9."</div><div class='input'><span class='fu'>qp_decode</span><span class='op'>(</span><span class='st'>"Mieux vaut =C3=AAtre seul que mal accompagn=C3=A9."</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Mieux vaut être seul que mal accompagné."</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
