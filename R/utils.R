@@ -164,3 +164,10 @@ parse_datetime <- function(datetime, tz) {
 format_datetime <- function(datetime) {
   strftime(datetime, "%a, %d %b %Y %H:%M:%S %z (%Z)")
 }
+
+#' Enclose in angle brackets
+wrap_angle_brackets <- function(x) {
+  if (!grepl("^<", x)) x <- paste0("<", x)
+  if (!grepl(">$", x)) x <- paste0(x, ">")
+  x
+}
