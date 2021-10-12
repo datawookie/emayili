@@ -1,3 +1,8 @@
+# {emayili} 0.6.4
+
+* Fix issue with inferring protocol (#89).
+  Thanks https://github.com/stibu81.
+
 # {emayili} 0.6.3
 
 * Fix issue with appending more than two message parts (#87).
