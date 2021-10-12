@@ -126,6 +126,21 @@ html_squish <- function(html) {
 }
 
 mime_base64encode <- function(raw, linewidth = 76L) {
+  if (is.raw(raw)) {
+    log_debug("Input is already raw.")
+  } else {
+    if (file.exists(raw)) {
+      log_debug("Assuming that input is a file.")
+    } else {
+      log_debug("Assuming that input is not a file.")
+      if (is.character(raw)) {
+        raw <- charToRaw(raw)
+      } else {
+        raw <- as.raw(raw)
+      }
+    }
+  }
+
   base64encode(
     raw,
     linewidth,

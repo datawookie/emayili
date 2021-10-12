@@ -6,9 +6,6 @@
 #' @return A message object.
 NULL
 
-LEVELS_PRIORITY <- c("non-urgent", "normal", "urgent")
-LEVELS_IMPORTANCE <- c("low", "normal", "high")
-
 #' Set message priority
 #'
 #' A hint to influence transmission speed and delivery.
