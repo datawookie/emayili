@@ -103,17 +103,10 @@ server <- function(
       use_ssl = 0
     }
 
-    helo <- ifelse(is.na(helo), "", helo)
-
-    smtp_server <- sprintf("%s:%d/%s", host, port, helo)
-    if (!is.na(protocol)) {
-      protocol <- tolower(protocol)
-      stopifnot(protocol %in% c("smtp", "smtps"))
-      smtp_server <- paste(protocol, smtp_server, sep = "://")
-    }
+    smtp_server <- smtp_url(host, port, protocol, helo)
     #
     if (verbose) {
-      cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
+      log_debug("Sending email to ", smtp_server, ".")
     }
 
     # Create an insistent version of send_mail().

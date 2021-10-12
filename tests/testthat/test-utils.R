@@ -19,3 +19,10 @@ test_that("enclose angle brackets", {
   expect_equal(wrap_angle_brackets("<foo>"), "<foo>")
   expect_equal(wrap_angle_brackets("foo"), "<foo>")
 })
+
+test_that("smtp server URL", {
+  expect_equal(smtp_url("smtp.gmail.com", 465, protocol = NA), "smtps://smtp.gmail.com:465/")
+  expect_equal(smtp_url("smtp.gmail.com", 587, protocol = NA), "smtp://smtp.gmail.com:587/")
+  expect_equal(smtp_url("smtp.gmail.com", 465, protocol = "smtp"), "smtp://smtp.gmail.com:465/")
+  expect_equal(smtp_url("smtp.gmail.com", 587, protocol = "smtps"), "smtps://smtp.gmail.com:587/")
+})

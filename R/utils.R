@@ -199,3 +199,18 @@ is.nested <- function(x) {
   stopifnot(is.list(x))
   any(sapply(x, function(x) any(class(x) == "list")))
 }
+
+smtp_url <- function(host, port, protocol = NA, helo = NA) {
+  helo <- ifelse(is.na(helo), "", helo)
+
+  if (is.na(protocol)) {
+    protocol <- ifelse(port == 465, "smtps", "smtp")
+  } else {
+    protocol <- tolower(protocol)
+    if (!grepl("^smtps?$", protocol)) {
+      stop("Invalid protocol: only SMTP and SMTPS are allowed.")
+    }
+  }
+
+  sprintf("%s://%s:%d/%s", protocol, host, port, helo)
+}
