@@ -13,15 +13,8 @@ check_message_body <- function(content) {
 #'
 #' Uses \code{glue::glue()} to evaluate expressions enclosed in brackets as R code.
 #'
+#' @inheritParams mime-parameters
 #' @param msg A message object.
-#' @param content A string of message content.
-#' @param disposition How content is presented (Content-Disposition).
-#' @param charset How content is encoded.
-#' @param encoding How content is transformed to ASCII (Content-Transfer-Encoding).
-#' @param interpolate Whether or not to interpolate into input using \link[glue]{glue}.
-#' @param .open The opening delimiter.
-#' @param .close The closing delimiter.
-#' @param .envir Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.
 #'
 #' @return A message object.
 #' @seealso \code{\link{html}}

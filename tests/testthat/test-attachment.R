@@ -16,7 +16,7 @@ test_that("attachment: specify CID", {
       fixed = TRUE
     )
   )
-  expect_equal(msg$parts$cid, cid)
+  expect_equal(msg$parts[[1]]$cid, cid)
 })
 
 test_that("attachment: number of files", {

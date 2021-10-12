@@ -1,3 +1,9 @@
+# {emayili} 0.6.3
+
+* Fix issue with appending more than two message parts (#87).
+  Thanks https://github.com/tinku-borah.
+* Added `inreplyto()` and `references()`.
+
 # {emayili} 0.6.2
 
 * Added `expires()`, `replyby()` and `sensitivity()`.
