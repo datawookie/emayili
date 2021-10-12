@@ -52,3 +52,11 @@ test_that("append another body", {
   msg <- envelope() %>% text("Hello!") %>% html("<p>Goodbye!</p>")
   expect_equal(length(msg$parts), 2)
 })
+
+test_that("parts are not nested", {
+  msg <- envelope() %>%
+    text("Hello!") %>%
+    html(HTMLPATH) %>%
+    attachment(JPGPATH)
+  expect_false(is.nested(msg$parts))
+})

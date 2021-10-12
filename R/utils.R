@@ -173,3 +173,14 @@ wrap_angle_brackets <- function(x) {
   if (!grepl(">$", x)) x <- paste0(x, ">")
   x
 }
+
+
+#' Test if list is nested or flat
+#'
+#' @noRd
+#' @param x A list.
+#' @return A Boolean.
+is.nested <- function(x) {
+  stopifnot(is.list(x))
+  any(sapply(x, function(x) any(class(x) == "list")))
+}
