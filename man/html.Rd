@@ -22,11 +22,13 @@ html(
 
 \item{content}{A string of message content.}
 
-\item{disposition}{How content is presented (Content-Disposition).}
+\item{disposition}{Should the content be displayed inline or as an attachment? Valid options are \code{"inline"} and \code{"attachment"}. If set to \code{NA} then will guess appropriate value.}
 
-\item{charset}{How content is encoded.}
+\item{charset}{What character set is used. Most often either \code{"UTF-8"} or \code{"ISO-8859-1"}.}
 
-\item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).}
+\item{encoding}{How content is transformed to ASCII (Content-Transfer-Encoding).
+Options are \code{"7bit"}, \code{"quoted-printable"} and \code{"base64"}.
+Use \code{NA} or \code{NULL} for no (or "identity") encoding.}
 
 \item{css_files}{Extra CSS files.}
 
