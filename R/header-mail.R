@@ -201,3 +201,58 @@ references <- function(msg, msgid, subject_prefix = "Re: ") {
     subject(paste0(subject_prefix, subject(msg)))
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
+
+#' Add or query comments of message.
+#'
+
+#' @param msg A message object.
+#' @param comments Comments for the message.
+#'
+#' @return A message object or the comments of the message object (if \code{comments} is \code{NULL}).
+#' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @export
+#' @examples
+#' library(magrittr)
+#'
+#' # Create a message and set the comments
+#' msg <- envelope() %>% comments("This is a comment")
+#'
+#' # Retrieve the comments for a message
+#' comments(msg)
+comments <- function(msg, comments = NULL) {
+  if (is.null(comments)) {
+    header_get(msg, "comments")
+  } else {
+    msg <- header_set(msg, "comments", comments, append = FALSE)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
+  }
+}
+
+#' Add or query keywords of message.
+#'
+
+#' @param msg A message object.
+#' @param keywords Keywords for the message.
+#'
+#' @return A message object or the comments of the message object (if \code{comments} is \code{NULL}).
+#' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @export
+#' @examples
+#' library(magrittr)
+#'
+#' # Create a message and set the keywords
+#' envelope() %>% keywords("keyword1, keyword2")
+#' envelope() %>% keywords("keyword1", "keyword2")
+#' envelope() %>% keywords(c("keyword1", "keyword2"))
+
+#' # Retrieve the keywords for a message
+#' keywords(msg)
+keywords <- function(msg, ..., append = FALSE) {
+   arguments <- c(...)
+  if (is.null(arguments)) {
+    header_get(msg, "keywords")
+  } else {
+    msg <- header_set(msg, "keywords", arguments, append = append, sep = ", ")
+    if (get_option_invisible()) invisible(msg) else msg # nocov
+  }
+}
