@@ -12,6 +12,7 @@ server(
   insecure = FALSE,
   reuse = TRUE,
   helo = NA,
+  protocol = NA,
   pause_base = 1,
   max_times = 5,
   ...
@@ -31,6 +32,9 @@ server(
 \item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
 
 \item{helo}{The HELO domain name of the sending host. If left as \code{NA} then will use local host name.}
+
+\item{protocol}{Which protocol (SMTP or SMTPS) to use for communicating with
+the server. Default will choose appropriate protocol based on port.}
 
 \item{pause_base}{Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.}
 

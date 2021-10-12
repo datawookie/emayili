@@ -7,6 +7,8 @@
 #' @param insecure Whether to ignore SSL issues.
 #' @param reuse Whether the connection to the SMTP server should be left open for reuse.
 #' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
+#' @param protocol Which protocol (SMTP or SMTPS) to use for communicating with
+#'   the server. Default will choose appropriate protocol based on port.
 #' @param max_times Maximum number of times to retry.
 #' @param pause_base Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
@@ -61,6 +63,7 @@ server <- function(
   insecure = FALSE,
   reuse = TRUE,
   helo = NA,
+  protocol = NA,
   pause_base = 1,
   max_times = 5,
   ...) {
@@ -103,6 +106,11 @@ server <- function(
     helo <- ifelse(is.na(helo), "", helo)
 
     smtp_server <- sprintf("%s:%d/%s", host, port, helo)
+    if (!is.na(protocol)) {
+      protocol <- tolower(protocol)
+      stopifnot(protocol %in% c("smtp", "smtps"))
+      smtp_server <- paste(protocol, smtp_server, sep = "://")
+    }
     #
     if (verbose) {
       cat("Sending email to ", smtp_server, ".\n", file = stderr(), sep = "")
