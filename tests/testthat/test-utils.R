@@ -25,4 +25,6 @@ test_that("smtp server URL", {
   expect_equal(smtp_url("smtp.gmail.com", 587, protocol = NA), "smtp://smtp.gmail.com:587/")
   expect_equal(smtp_url("smtp.gmail.com", 465, protocol = "smtp"), "smtp://smtp.gmail.com:465/")
   expect_equal(smtp_url("smtp.gmail.com", 587, protocol = "smtps"), "smtps://smtp.gmail.com:587/")
+  expect_equal(smtp_url("smtp://smtp.gmail.com", 465, protocol = "smtps"), "smtp://smtp.gmail.com:465/")
+  expect_equal(smtp_url("smtps://smtp.gmail.com", 587, protocol = "smtp"), "smtps://smtp.gmail.com:587/")
 })
