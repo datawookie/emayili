@@ -128,6 +128,7 @@
   insecure <span class='op'>=</span> <span class='cn'>FALSE</span>,
   reuse <span class='op'>=</span> <span class='cn'>TRUE</span>,
   helo <span class='op'>=</span> <span class='cn'>NA</span>,
+  protocol <span class='op'>=</span> <span class='cn'>NA</span>,
   pause_base <span class='op'>=</span> <span class='fl'>1</span>,
   max_times <span class='op'>=</span> <span class='fl'>5</span>,
   <span class='va'>...</span>
@@ -163,6 +164,11 @@
     <tr>
       <th>helo</th>
       <td><p>The HELO domain name of the sending host. If left as <code>NA</code> then will use local host name.</p></td>
+    </tr>
+    <tr>
+      <th>protocol</th>
+      <td><p>Which protocol (SMTP or SMTPS) to use for communicating with
+the server. Default will choose appropriate protocol based on port.</p></td>
     </tr>
     <tr>
       <th>pause_base</th>
