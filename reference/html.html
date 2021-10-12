@@ -146,15 +146,17 @@
     </tr>
     <tr>
       <th>disposition</th>
-      <td><p>How content is presented (Content-Disposition).</p></td>
+      <td><p>Should the content be displayed inline or as an attachment? Valid options are <code>"inline"</code> and <code>"attachment"</code>. If set to <code>NA</code> then will guess appropriate value.</p></td>
     </tr>
     <tr>
       <th>charset</th>
-      <td><p>How content is encoded.</p></td>
+      <td><p>What character set is used. Most often either <code>"UTF-8"</code> or <code>"ISO-8859-1"</code>.</p></td>
     </tr>
     <tr>
       <th>encoding</th>
-      <td><p>How content is transformed to ASCII (Content-Transfer-Encoding).</p></td>
+      <td><p>How content is transformed to ASCII (Content-Transfer-Encoding).
+Options are <code>"7bit"</code>, <code>"quoted-printable"</code> and <code>"base64"</code>.
+Use <code>NA</code> or <code>NULL</code> for no (or "identity") encoding.</p></td>
     </tr>
     <tr>
       <th>css_files</th>
