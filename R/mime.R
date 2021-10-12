@@ -6,6 +6,31 @@ is.mime <- function(x) {
   "MIME" %in% class(x)
 }
 
+#' Parameters for MIME functions
+#'
+#' These are parameters which occur commonly across functions for components of
+#' a MIME document.
+#'
+#' @name mime-parameters
+#'
+#' @param content A string of message content.
+#' @param disposition Should the content be displayed inline or as an
+#'   attachment? Valid options are \code{"inline"} and \code{"attachment"}. If
+#'   set to \code{NA} then will guess appropriate value.
+#' @param charset What character set is used. Most often either \code{"UTF-8"}
+#'   or \code{"ISO-8859-1"}.
+#' @param encoding How content is transformed to ASCII. Options are
+#'   \code{"7bit"}, \code{"quoted-printable"} and \code{"base64"}. Use \code{NA}
+#'   or \code{NULL} for no (or "identity") encoding.
+#' @param boundary Boundary string.
+#' @param type The MIME type of the content.
+#' @param children List of child MIME objects.
+#' @param interpolate Whether or not to interpolate into input using \link[glue]{glue}.
+#' @param .open The opening delimiter.
+#' @param .close The closing delimiter.
+#' @param .envir Environment used for \code{glue} interpolation. Defaults to \code{parent.frame()}.
+NULL
+
 #' Create a MIME object
 #'
 #' ```
@@ -37,14 +62,6 @@ is.mime <- function(x) {
 #' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
 #'
 #' @noRd
-#'
-#' @param content Content.
-#' @param disposition Should the content be displayed inline or as an attachment? Valid options are \code{"inline"} and \code{"attachment"}. If set to \code{NA} then will guess appropriate value.
-#' @param charset How to interpret the characters in the content. Most often either UTF-8 or ISO-8859-1.
-#' @param encoding How to encode binary data to ASCII.
-#' @param boundary Boundary string.
-#' @param type The MIME type of the content.
-#' @param children
 #'
 #' @return A MIME object.
 MIME <- function(
@@ -286,6 +303,12 @@ prepend.MIME <- function(x, child) {
 #' @param x MIME object
 #' @param ... Further arguments passed to or from other methods.
 as.character.MIME <- function(x, ...) {
+  if (is.null(x$encoding)) x$encoding <- NA
+
+  if (!is.na(x$encoding) && !(x$encoding %in% LEVELS_ENCODING)) {
+    stop("Invalid encoding Options are: ", paste(LEVELS_ENCODING, collapse = ", "), ".")
+  }
+
   children <- sapply(x$children, function(child) {
     paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\r\n")
   })
@@ -303,11 +326,11 @@ as.character.MIME <- function(x, ...) {
   if (!is.na(x$encoding)) {
     if (x$encoding == "base64") {
       content <- mime_base64encode(content)
+    } else if (x$encoding == "quoted-printable") {
+      content <- qp_encode(content)
     }
 
-    if (x$encoding %in% c("base64", "7bit")) {
-      headers <- c(headers, list(content_md5(x$content)))
-    }
+    headers <- c(headers, list(content_md5(x$content)))
   }
   #
   body <- c(

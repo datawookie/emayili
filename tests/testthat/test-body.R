@@ -12,7 +12,7 @@ test_that("html: HTML from file", {
   expect_true(
     grepl(
       HTMLCONTENT,
-      envelope() %>% html(HTMLPATH) %>% as.character()
+      envelope() %>% html(HTMLPATH, encoding = NULL) %>% as.character()
     )
   )
 })
