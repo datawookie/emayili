@@ -27,7 +27,11 @@ Authors@R:
       person(given = c("Panagiotis"),
              family = "Moulos",
              role = "ctb",
-             email = "pmoulos@gmail.com"))
+             email = "pmoulos@gmail.com"),
+       person(given = "Swechhya",
+              family = "Bista",
+              role = "ctb",
+              email = "swechhyabista@gmail.com"))
 Description: A light, simple tool for sending emails with minimal dependencies.
 URL: https://datawookie.github.io/emayili/
 BugReports: https://github.com/datawookie/emayili/issues
@@ -63,5 +67,5 @@ Suggests:
 SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 KeepSource: true
