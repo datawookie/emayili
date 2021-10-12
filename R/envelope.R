@@ -120,7 +120,7 @@ as.character.envelope <- function(x, ..., details = TRUE) {
   if (length(x$parts) > 1) {
     body <- multipart_mixed(children = x$parts)
   } else {
-    body <- x$parts
+    body <- x$parts[[1]]
   }
 
   if (details) {
@@ -136,9 +136,11 @@ as.character.envelope <- function(x, ..., details = TRUE) {
 #' @param child A child to be appended
 append.envelope <- function(x, child) {
   if(is.null(x$parts)) {
-    x$parts <- child
+    log_debug("Adding first child.")
+    x$parts <- list(child)
   } else {
-    x$parts <- c(list(x$parts), list(child))
+    log_debug("Adding subsequent child.")
+    x$parts <- c(x$parts, list(child))
   }
 
   x

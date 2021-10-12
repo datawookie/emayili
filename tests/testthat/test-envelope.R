@@ -40,12 +40,12 @@ test_that("subject", {
 
 test_that("body text", {
   email_text <- envelope(text = "foo")
-  expect_equal(email_text$parts$content, "foo")
+  expect_equal(email_text$parts[[1]]$content, "foo")
 })
 
 test_that("body html", {
   html <- envelope(html = "<p>foo</p>")
-  expect_match(html$parts$content, "<body><p>foo</p></body>")
+  expect_match(html$parts[[1]]$content, "<body><p>foo</p></body>")
 })
 
 test_that("append another body", {
