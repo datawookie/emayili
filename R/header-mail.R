@@ -212,12 +212,10 @@ references <- function(msg, msgid, subject_prefix = "Re: ") {
 #' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
-#' library(magrittr)
-#'
-#' # Create a message and set the comments
+#' # Create a message and set the comments.
 #' msg <- envelope() %>% comments("This is a comment")
 #'
-#' # Retrieve the comments for a message
+#' # Retrieve the comments for a message.
 #' comments(msg)
 comments <- function(msg, comments = NULL) {
   if (is.null(comments)) {
@@ -238,14 +236,12 @@ comments <- function(msg, comments = NULL) {
 #' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
-#' library(magrittr)
-#'
-#' # Create a message and set the keywords
-#' envelope() %>% keywords("keyword1, keyword2")
-#' envelope() %>% keywords("keyword1", "keyword2")
-#' envelope() %>% keywords(c("keyword1", "keyword2"))
+#' # Create a message and set the keywords.
+#' envelope() %>% keywords("newsletter, marketing")
+#' envelope() %>% keywords("newsletter", "marketing")
+#' envelope() %>% keywords(c("newsletter", "marketing"))
 
-#' # Retrieve the keywords for a message
+#' # Retrieve the keywords for a message.
 #' keywords(msg)
 keywords <- function(msg, ..., append = FALSE) {
    arguments <- c(...)
