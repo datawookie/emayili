@@ -1,3 +1,8 @@
+# {emayili} 0.6.5
+
+* Added `gmail()`, `sendgrid()` and `mailgun()`.
+* Added `return_path()`.
+
 # {emayili} 0.6.4
 
 * Fix issue with inferring protocol (#89).
