@@ -24,6 +24,7 @@ Add or query keywords of message.
 envelope() \%>\% keywords("newsletter, marketing")
 envelope() \%>\% keywords("newsletter", "marketing")
 envelope() \%>\% keywords(c("newsletter", "marketing"))
+
 # Retrieve the keywords for a message.
 msg <- envelope() \%>\% keywords("newsletter, marketing")
 keywords(msg)

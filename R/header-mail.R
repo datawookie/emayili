@@ -204,7 +204,6 @@ references <- function(msg, msgid, subject_prefix = "Re: ") {
 
 #' Add or query comments of message.
 #'
-
 #' @param msg A message object.
 #' @param comments Comments for the message.
 #'
@@ -228,7 +227,6 @@ comments <- function(msg, comments = NULL) {
 
 #' Add or query keywords of message.
 #'
-
 #' @param msg A message object.
 #' @param ... Keywords.
 #' @param append Whether to append or replace keywords.
@@ -241,7 +239,7 @@ comments <- function(msg, comments = NULL) {
 #' envelope() %>% keywords("newsletter, marketing")
 #' envelope() %>% keywords("newsletter", "marketing")
 #' envelope() %>% keywords(c("newsletter", "marketing"))
-
+#'
 #' # Retrieve the keywords for a message.
 #' msg <- envelope() %>% keywords("newsletter, marketing")
 #' keywords(msg)
