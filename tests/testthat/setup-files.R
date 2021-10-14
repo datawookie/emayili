@@ -67,9 +67,7 @@ smtp_insecure <- server(
   insecure = TRUE
 )
 
-smtp_gmail <- server(
-  host = "smtp.gmail.com",
-  port = 587,
+smtp_gmail <- gmail(
   username = SMTP_USERNAME,
   password = SMTP_PASSWORD
 )

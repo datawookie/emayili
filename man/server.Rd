@@ -2,6 +2,7 @@
 % Please edit documentation in R/server.R
 \name{server}
 \alias{server}
+\alias{gmail}
 \title{Create a SMTP server object.}
 \usage{
 server(
@@ -9,6 +10,18 @@ server(
   port = 25,
   username = NULL,
   password = NULL,
+  insecure = FALSE,
+  reuse = TRUE,
+  helo = NA,
+  protocol = NA,
+  pause_base = 1,
+  max_times = 5,
+  ...
+)
+
+gmail(
+  username,
+  password,
   insecure = FALSE,
   reuse = TRUE,
   helo = NA,
@@ -51,7 +64,7 @@ Create a SMTP server object.
 \examples{
 library(magrittr)
 
-# Set parameters for SMTP server (with username and password)
+# Set parameters for SMTP server (with username and password).
 smtp <- server(
   host = "smtp.gmail.com",
   port = 465,
@@ -88,4 +101,9 @@ smtp(msg, verbose = TRUE)
 #
 smtp <- server(host = "mail.example.com",
                helo = "client.example.com")
+# Set parameters for Gmail SMTP server. The host and port are implicit.
+smtp <- gmail(
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
 }

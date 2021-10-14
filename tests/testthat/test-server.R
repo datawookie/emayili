@@ -10,6 +10,7 @@ msg_no_sender <- envelope() %>%
 
 test_that("server type", {
   expect_type(smtp, "closure")
+  expect_type(smtp_gmail, "closure")
 })
 
 test_that("error if sender missing", {

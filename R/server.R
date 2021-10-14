@@ -1,5 +1,7 @@
 #' Create a SMTP server object.
 #'
+#' @name server
+#'
 #' @param host DNS name or IP address of the SMTP server.
 #' @param port Port that the SMTP server is listening on.
 #' @param username Username for SMTP server.
@@ -18,7 +20,7 @@
 #' @examples
 #' library(magrittr)
 #'
-#' # Set parameters for SMTP server (with username and password)
+#' # Set parameters for SMTP server (with username and password).
 #' smtp <- server(
 #'   host = "smtp.gmail.com",
 #'   port = 465,
@@ -145,4 +147,36 @@ server <- function(
 
     invisible(result)
   }
+}
+
+#' @rdname server
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set parameters for Gmail SMTP server. The host and port are implicit.
+#' smtp <- gmail(
+#'   username = "bob@gmail.com",
+#'   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+#' )
+gmail <- function(
+  username,
+  password,
+  insecure = FALSE,
+  reuse = TRUE,
+  helo = NA,
+  protocol = NA,
+  pause_base = 1,
+  max_times = 5,
+  ...) {
+  # Retrieve function.
+  fcall <- match.call(expand.dots = FALSE)
+  # Substitute server() as function to call.
+  fcall[[1]] <- server
+  # Fill in host and port arguments.
+  fcall$host = "smtp.gmail.com"
+  fcall$port = 587
+  # Now run the function call.
+  eval(fcall, parent.frame())
 }
