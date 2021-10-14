@@ -219,9 +219,9 @@ references <- function(msg, msgid, subject_prefix = "Re: ") {
 #' comments(msg)
 comments <- function(msg, comments = NULL) {
   if (is.null(comments)) {
-    header_get(msg, "comments")
+    header_get(msg, "Comments")
   } else {
-    msg <- header_set(msg, "comments", comments, append = FALSE)
+    msg <- header_set(msg, "Comments", comments, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -246,9 +246,9 @@ comments <- function(msg, comments = NULL) {
 keywords <- function(msg, ..., append = FALSE) {
    arguments <- c(...)
   if (is.null(arguments)) {
-    header_get(msg, "keywords")
+    header_get(msg, "Keywords")
   } else {
-    msg <- header_set(msg, "keywords", arguments, append = append, sep = ", ")
+    msg <- header_set(msg, "Keywords", arguments, append = append, sep = ", ")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
