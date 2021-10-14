@@ -37,3 +37,10 @@ test_that("in-reply-to & references", {
     "Subject: +AW: Test"
   )
 })
+
+test_that("return-path", {
+  expect_equal(
+    envelope() %>% return_path("bob@gmail.com") %>% return_path(),
+    address("bob@gmail.com")
+  )
+})

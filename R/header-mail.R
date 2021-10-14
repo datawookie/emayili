@@ -111,6 +111,23 @@ reply <- function(msg, addr = NULL) {
 #'
 #' @export
 #' @examples
+#' # Populating the Return-Path field.
+#' msg <- envelope()
+#' msg %>% return_path("bounced-mail@devnull.org")
+#'
+return_path <- function(msg, addr = NULL) {
+  if (is.null(addr)) {
+    header_get(msg, "Return-Path")
+  } else {
+    msg <- header_set(msg, "Return-Path", as.address(addr), append = FALSE)
+    if (get_option_invisible()) invisible(msg) else msg # nocov
+  }
+}
+
+#' @rdname addresses
+#'
+#' @export
+#' @examples
 #' # Populating the Sender field.
 #' msg <- envelope()
 #' msg %>% sender("on_behalf_of@gmail.com")

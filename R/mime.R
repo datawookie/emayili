@@ -306,7 +306,7 @@ as.character.MIME <- function(x, ...) {
   if (is.null(x$encoding)) x$encoding <- NA
 
   if (!is.na(x$encoding) && !(x$encoding %in% LEVELS_ENCODING)) {
-    stop("Invalid encoding Options are: ", paste(LEVELS_ENCODING, collapse = ", "), ".")
+    stop("Invalid encoding. Options are: ", paste(LEVELS_ENCODING, collapse = ", "), ".")
   }
 
   children <- sapply(x$children, function(child) {
