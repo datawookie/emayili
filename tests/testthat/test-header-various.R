@@ -37,3 +37,24 @@ test_that("in-reply-to & references", {
     "Subject: +AW: Test"
   )
 })
+
+test_that("comments", {
+  msg <- envelope() %>% comments("Test message")
+  expect_equal(comments(msg), "Test message")
+})
+
+test_that("keywords", {
+  expect_match(
+    envelope() %>% keywords("Test keyword") %>% as.character(),
+    "Test keyword"
+  )
+   expect_match(
+     envelope() %>% keywords("Test keyword1, Test keyword2") %>% as.character(), 
+     "Test keyword1, Test keyword2"
+  )
+
+  expect_match(
+    envelope() %>% keywords(c("Test keyword1, Test keyword2")) %>% as.character(),
+    "Test keyword1, Test keyword2"
+  )
+})
