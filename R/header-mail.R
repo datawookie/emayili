@@ -209,7 +209,7 @@ references <- function(msg, msgid, subject_prefix = "Re: ") {
 #' @param comments Comments for the message.
 #'
 #' @return A message object or the comments of the message object (if \code{comments} is \code{NULL}).
-#' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+#' @seealso \code{\link{subject}}
 #' @export
 #' @examples
 #' # Create a message and set the comments.
