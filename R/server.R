@@ -5,7 +5,7 @@
 #' @param host DNS name or IP address of the SMTP server.
 #' @param port Port that the SMTP server is listening on.
 #' @param username Username for SMTP server.
-#' @param password Password for SMTP server.
+#' @param password Password for SMTP server or API key.
 #' @param insecure Whether to ignore SSL issues.
 #' @param reuse Whether the connection to the SMTP server should be left open for reuse.
 #' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
@@ -163,20 +163,84 @@ server <- function(
 gmail <- function(
   username,
   password,
-  insecure = FALSE,
-  reuse = TRUE,
-  helo = NA,
-  protocol = NA,
-  pause_base = 1,
-  max_times = 5,
   ...) {
   # Retrieve function.
-  fcall <- match.call(expand.dots = FALSE)
+  fcall <- match.call(expand.dots = TRUE)
   # Substitute server() as function to call.
   fcall[[1]] <- server
   # Fill in host and port arguments.
   fcall$host = "smtp.gmail.com"
-  fcall$port = 587
+  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
   # Now run the function call.
   eval(fcall, parent.frame())
 }
+
+#' @rdname server
+#'
+#' @section Sendgrid:
+#'
+#' To use Sendgrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
+#' Then use the API key as the password.
+#'
+#' Sendgrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
+#' as 465 (using SMTPS).
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set API key for Sendgrid SMTP server.
+#' smtp <- sendgrid(
+#'   password = "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"
+#' )
+sendgrid <- function(
+  password,
+  ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "smtp.sendgrid.net"
+  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
+  fcall$username = "apikey"
+
+  eval(fcall, parent.frame())
+}
+
+#' @rdname server
+#'
+#' @section Mailgun:
+#'
+#' To use Mailgun you'll need to first create an API key. Then use the API key as the password.
+#'
+#' Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
+#' (using SMTPS).
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set username and password for Mailgun SMTP server.
+#' smtp <- mailgun(
+#'   username = "postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org",
+#'   password = "44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"
+#' )
+mailgun <- function(
+  username,
+  password,
+  ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "smtp.mailgun.org"
+  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
+
+  eval(fcall, parent.frame())
+}
+
+# ./swaks --auth \
+# --server  \
+# --au postmaster@YOUR_DOMAIN_NAME \
+# --ap 3kh9umujora5 \
+# --to bar@example.com \
+# --h-Subject: "Hello" \
+# --body 'Testing some Mailgun awesomness!'
