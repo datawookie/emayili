@@ -18,13 +18,11 @@ A message object or the comments of the message object (if \code{comments} is \c
 Add or query keywords of message.
 }
 \examples{
-library(magrittr)
-
-# Create a message and set the keywords
-envelope() \%>\% keywords("keyword1, keyword2")
-envelope() \%>\% keywords("keyword1", "keyword2")
-envelope() \%>\% keywords(c("keyword1", "keyword2"))
-# Retrieve the keywords for a message
+# Create a message and set the keywords.
+envelope() \%>\% keywords("newsletter, marketing")
+envelope() \%>\% keywords("newsletter", "marketing")
+envelope() \%>\% keywords(c("newsletter", "marketing"))
+# Retrieve the keywords for a message.
 keywords(msg)
 }
 \seealso{

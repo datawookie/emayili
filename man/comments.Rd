@@ -18,14 +18,12 @@ A message object or the comments of the message object (if \code{comments} is \c
 Add or query comments of message.
 }
 \examples{
-library(magrittr)
-
-# Create a message and set the comments
+# Create a message and set the comments.
 msg <- envelope() \%>\% comments("This is a comment")
 
-# Retrieve the comments for a message
+# Retrieve the comments for a message.
 comments(msg)
 }
 \seealso{
-\code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
+\code{\link{subject}}
 }
