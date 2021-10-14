@@ -9,7 +9,9 @@ keywords(msg, ..., append = FALSE)
 \arguments{
 \item{msg}{A message object.}
 
-\item{keywords}{Keywords for the message.}
+\item{...}{Keywords.}
+
+\item{append}{Whether to append or replace keywords.}
 }
 \value{
 A message object or the comments of the message object (if \code{comments} is \code{NULL}).
@@ -23,6 +25,7 @@ envelope() \%>\% keywords("newsletter, marketing")
 envelope() \%>\% keywords("newsletter", "marketing")
 envelope() \%>\% keywords(c("newsletter", "marketing"))
 # Retrieve the keywords for a message.
+msg <- envelope() \%>\% keywords("newsletter, marketing")
 keywords(msg)
 }
 \seealso{

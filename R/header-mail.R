@@ -230,7 +230,8 @@ comments <- function(msg, comments = NULL) {
 #'
 
 #' @param msg A message object.
-#' @param keywords Keywords for the message.
+#' @param ... Keywords.
+#' @param append Whether to append or replace keywords.
 #'
 #' @return A message object or the comments of the message object (if \code{comments} is \code{NULL}).
 #' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
@@ -242,6 +243,7 @@ comments <- function(msg, comments = NULL) {
 #' envelope() %>% keywords(c("newsletter", "marketing"))
 
 #' # Retrieve the keywords for a message.
+#' msg <- envelope() %>% keywords("newsletter, marketing")
 #' keywords(msg)
 keywords <- function(msg, ..., append = FALSE) {
    arguments <- c(...)
