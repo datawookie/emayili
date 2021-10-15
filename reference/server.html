@@ -198,16 +198,17 @@ the server. Default will choose appropriate protocol based on port.</p></td>
     
 
 
-<p>To use Sendgrid you'll need to first <a href='https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api'>create an API key</a>.
+<p>To use SendGrid you'll need to first <a href='https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api'>create an API key</a>.
 Then use the API key as the password.</p>
-<p>Sendgrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
+<p>SendGrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
 as 465 (using SMTPS).</p>
     <h2 class="hasAnchor" id="mailgun"><a class="anchor" href="#mailgun"></a>Mailgun</h2>
 
     
 
 
-<p>To use Mailgun you'll need to first create an API key. Then use the API key as the password.</p>
+<p>To use Mailgun you'll need to first register a sender domain. This will then
+be assigned a username and password.</p>
 <p>Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
 (using SMTPS).</p>
 
@@ -217,7 +218,7 @@ as 465 (using SMTPS).</p>
 <span class='co'># Set parameters for SMTP server (with username and password).</span>
 <span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>
   host <span class='op'>=</span> <span class='st'>"smtp.gmail.com"</span>,
-  port <span class='op'>=</span> <span class='fl'>465</span>,
+  port <span class='op'>=</span> <span class='fl'>587</span>,
   username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
   password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>
 <span class='op'>)</span>
@@ -258,7 +259,7 @@ as 465 (using SMTPS).</p>
   password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>
 <span class='op'>)</span>
 
-<span class='co'># Set API key for Sendgrid SMTP server.</span>
+<span class='co'># Set API key for SendGrid SMTP server.</span>
 <span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendgrid</span><span class='op'>(</span>
   password <span class='op'>=</span> <span class='st'>"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"</span>
 <span class='op'>)</span>
