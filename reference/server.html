@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.5</span>
       </span>
     </div>
 
@@ -132,7 +132,13 @@
   pause_base <span class='op'>=</span> <span class='fl'>1</span>,
   max_times <span class='op'>=</span> <span class='fl'>5</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span>
+
+<span class='fu'>gmail</span><span class='op'>(</span><span class='va'>username</span>, <span class='va'>password</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>sendgrid</span><span class='op'>(</span><span class='va'>password</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>mailgun</span><span class='op'>(</span><span class='va'>username</span>, <span class='va'>password</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,7 +157,7 @@
     </tr>
     <tr>
       <th>password</th>
-      <td><p>Password for SMTP server.</p></td>
+      <td><p>Password for SMTP server or API key.</p></td>
     </tr>
     <tr>
       <th>insecure</th>
@@ -187,11 +193,28 @@ the server. Default will choose appropriate protocol based on port.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A function which is used to send messages to the server.</p>
+    <h2 class="hasAnchor" id="sendgrid"><a class="anchor" href="#sendgrid"></a>Sendgrid</h2>
+
+    
+
+
+<p>To use Sendgrid you'll need to first <a href='https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api'>create an API key</a>.
+Then use the API key as the password.</p>
+<p>Sendgrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
+as 465 (using SMTPS).</p>
+    <h2 class="hasAnchor" id="mailgun"><a class="anchor" href="#mailgun"></a>Mailgun</h2>
+
+    
+
+
+<p>To use Mailgun you'll need to first create an API key. Then use the API key as the password.</p>
+<p>Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
+(using SMTPS).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
 
-<span class='co'># Set parameters for SMTP server (with username and password)</span>
+<span class='co'># Set parameters for SMTP server (with username and password).</span>
 <span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>
   host <span class='op'>=</span> <span class='st'>"smtp.gmail.com"</span>,
   port <span class='op'>=</span> <span class='fl'>465</span>,
@@ -228,6 +251,23 @@ the server. Default will choose appropriate protocol based on port.</p></td>
 <span class='co'>#</span>
 <span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>host <span class='op'>=</span> <span class='st'>"mail.example.com"</span>,
                helo <span class='op'>=</span> <span class='st'>"client.example.com"</span><span class='op'>)</span>
+
+<span class='co'># Set parameters for Gmail SMTP server. The host and port are implicit.</span>
+<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>gmail</span><span class='op'>(</span>
+  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
+  password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>
+<span class='op'>)</span>
+
+<span class='co'># Set API key for Sendgrid SMTP server.</span>
+<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendgrid</span><span class='op'>(</span>
+  password <span class='op'>=</span> <span class='st'>"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"</span>
+<span class='op'>)</span>
+
+<span class='co'># Set username and password for Mailgun SMTP server.</span>
+<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>mailgun</span><span class='op'>(</span>
+  username <span class='op'>=</span> <span class='st'>"postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org"</span>,
+  password <span class='op'>=</span> <span class='st'>"44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"</span>
+<span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
