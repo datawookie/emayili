@@ -1,3 +1,18 @@
+# {emayili} 0.6.6
+
+* Fix attachment name (#91).
+  Thanks https://github.com/nlooije.
+
+# {emayili} 0.6.5
+
+* Added `gmail()`, `sendgrid()` and `mailgun()`.
+* Added `return_path()`.
+
+# {emayili} 0.6.4
+
+* Fix issue with inferring protocol (#89).
+  Thanks https://github.com/stibu81.
+
 # {emayili} 0.6.3
 
 * Fix issue with appending more than two message parts (#87).

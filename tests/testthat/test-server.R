@@ -1,15 +1,18 @@
 msg <- envelope() %>%
-  from(SMTP_USERNAME) %>%
-  to(SMTP_USERNAME)
+  from(SMTP_USERNAME_GMAIL) %>%
+  to(SMTP_USERNAME_GMAIL)
 
 msg_no_recipient <- envelope() %>%
-  from(SMTP_USERNAME)
+  from(SMTP_USERNAME_GMAIL)
 
 msg_no_sender <- envelope() %>%
-  to(SMTP_USERNAME)
+  to(SMTP_USERNAME_GMAIL)
 
 test_that("server type", {
   expect_type(smtp, "closure")
+  expect_type(smtp_gmail, "closure")
+  expect_type(smtp_sendgrid, "closure")
+  expect_type(smtp_mailgun, "closure")
 })
 
 test_that("error if sender missing", {

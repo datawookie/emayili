@@ -2,6 +2,9 @@
 % Please edit documentation in R/server.R
 \name{server}
 \alias{server}
+\alias{gmail}
+\alias{sendgrid}
+\alias{mailgun}
 \title{Create a SMTP server object.}
 \usage{
 server(
@@ -12,10 +15,17 @@ server(
   insecure = FALSE,
   reuse = TRUE,
   helo = NA,
+  protocol = NA,
   pause_base = 1,
   max_times = 5,
   ...
 )
+
+gmail(username, password, ...)
+
+sendgrid(password, ...)
+
+mailgun(username, password, ...)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -24,13 +34,16 @@ server(
 
 \item{username}{Username for SMTP server.}
 
-\item{password}{Password for SMTP server.}
+\item{password}{Password for SMTP server or API key.}
 
 \item{insecure}{Whether to ignore SSL issues.}
 
 \item{reuse}{Whether the connection to the SMTP server should be left open for reuse.}
 
 \item{helo}{The HELO domain name of the sending host. If left as \code{NA} then will use local host name.}
+
+\item{protocol}{Which protocol (SMTP or SMTPS) to use for communicating with
+the server. Default will choose appropriate protocol based on port.}
 
 \item{pause_base}{Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.}
 
@@ -44,10 +57,29 @@ A function which is used to send messages to the server.
 \description{
 Create a SMTP server object.
 }
+\section{Sendgrid}{
+
+
+To use Sendgrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
+Then use the API key as the password.
+
+Sendgrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
+as 465 (using SMTPS).
+}
+
+\section{Mailgun}{
+
+
+To use Mailgun you'll need to first create an API key. Then use the API key as the password.
+
+Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
+(using SMTPS).
+}
+
 \examples{
 library(magrittr)
 
-# Set parameters for SMTP server (with username and password)
+# Set parameters for SMTP server (with username and password).
 smtp <- server(
   host = "smtp.gmail.com",
   port = 465,
@@ -84,4 +116,21 @@ smtp(msg, verbose = TRUE)
 #
 smtp <- server(host = "mail.example.com",
                helo = "client.example.com")
+
+# Set parameters for Gmail SMTP server. The host and port are implicit.
+smtp <- gmail(
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
+
+# Set API key for Sendgrid SMTP server.
+smtp <- sendgrid(
+  password = "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"
+)
+
+# Set username and password for Mailgun SMTP server.
+smtp <- mailgun(
+  username = "postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org",
+  password = "44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"
+)
 }

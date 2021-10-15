@@ -129,7 +129,7 @@ mime_base64encode <- function(raw, linewidth = 76L) {
   if (is.raw(raw)) {
     log_debug("Input is already raw.")
   } else {
-    if (file.exists(raw)) {
+    if (tryCatch(file.exists(raw), error = function(e) FALSE)) {
       log_debug("Assuming that input is a file.")
     } else {
       log_debug("Assuming that input is not a file.")
@@ -198,4 +198,25 @@ wrap_angle_brackets <- function(x) {
 is.nested <- function(x) {
   stopifnot(is.list(x))
   any(sapply(x, function(x) any(class(x) == "list")))
+}
+
+smtp_url <- function(host, port, protocol = NA, helo = NA) {
+  helo <- ifelse(is.na(helo), "", helo)
+
+  # Check if host includes protocol.
+  if (!grepl("^smtps?://", host)) {
+    if (is.na(protocol)) {
+      protocol <- ifelse(port == 465, "smtps", "smtp")
+    } else {
+      protocol <- tolower(protocol)
+      if (!grepl("^smtps?$", protocol)) {
+        stop("Invalid protocol: only SMTP and SMTPS are allowed.")
+      }
+    }
+    protocol <- paste0(protocol, "://")
+  } else {
+    protocol= ""
+  }
+
+  sprintf("%s%s:%d/%s", protocol, host, port, helo)
 }

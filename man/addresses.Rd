@@ -7,6 +7,7 @@
 \alias{bcc}
 \alias{from}
 \alias{reply}
+\alias{return_path}
 \alias{sender}
 \title{Add address fields to message}
 \usage{
@@ -19,6 +20,8 @@ bcc(msg, ..., append = TRUE)
 from(msg, addr = NULL)
 
 reply(msg, addr = NULL)
+
+return_path(msg, addr = NULL)
 
 sender(msg, addr = NULL)
 }
@@ -64,6 +67,10 @@ msg \%>\% from("craig@gmail.com")
 # Populating the Reply-To field.
 msg <- envelope()
 msg \%>\% reply("gerry@gmail.com")
+
+# Populating the Return-Path field.
+msg <- envelope()
+msg \%>\% return_path("bounced-mail@devnull.org")
 
 # Populating the Sender field.
 msg <- envelope()

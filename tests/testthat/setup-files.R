@@ -47,31 +47,41 @@ writeLines(HTMLCONTENT, HTMLPATH)
 #
 SMTP_SERVER   = "mail.smtpbucket.com"
 SMTP_PORT     = 8025
-SMTP_USERNAME <- Sys.getenv("SMTP_USERNAME")
-SMTP_PASSWORD <- Sys.getenv("SMTP_PASSWORD")
+SMTP_USERNAME_GMAIL <- Sys.getenv("SMTP_USERNAME")
+SMTP_PASSWORD_GMAIL <- Sys.getenv("SMTP_PASSWORD")
+SMTP_PASSWORD_SENDGRID <- Sys.getenv("SENDGRID_API_KEY")
+SMTP_USERNAME_MAILGUN <- Sys.getenv("MAILGUN_SMTP_USERNAME")
+SMTP_PASSWORD_MAILGUN <- Sys.getenv("MAILGUN_SMTP_PASSWORD")
 
 smtp <- server(
   host = SMTP_SERVER,
   port = SMTP_PORT,
-  username = SMTP_USERNAME
+  username = SMTP_USERNAME_GMAIL
 )
 smtp_verbose <- server(
   host = SMTP_SERVER,
   port = SMTP_PORT,
-  username = SMTP_USERNAME
+  username = SMTP_USERNAME_GMAIL
 )
 smtp_insecure <- server(
   host = SMTP_SERVER,
   port = SMTP_PORT,
-  username = SMTP_USERNAME,
+  username = SMTP_USERNAME_GMAIL,
   insecure = TRUE
 )
 
-smtp_gmail <- server(
-  host = "smtp.gmail.com",
-  port = 587,
-  username = SMTP_USERNAME,
-  password = SMTP_PASSWORD
+smtp_gmail <- gmail(
+  username = SMTP_USERNAME_GMAIL,
+  password = SMTP_PASSWORD_GMAIL
+)
+
+smtp_sendgrid <- sendgrid(
+  password = SMTP_PASSWORD_SENDGRID
+)
+
+smtp_mailgun <- mailgun(
+  username = SMTP_USERNAME_MAILGUN,
+  password = SMTP_PASSWORD_MAILGUN
 )
 
 # R MARKDOWN FILE --------------------------------------------------------------

@@ -44,7 +44,7 @@ test_that("comments", {
 
   expect_match(
     envelope() %>% comments("Test comments") %>% as.character(),
-    "Test comments"
+    "Comments: +Test comments"
   )
 })
 
@@ -54,7 +54,7 @@ test_that("keywords", {
 
   expect_match(
     envelope() %>% keywords("Test keyword") %>% as.character(),
-    "Test keyword"
+    "Keywords: +Test keyword"
   )
 
   msg <- envelope() %>% keywords("Test keyword1, Test keyword2")
@@ -62,7 +62,7 @@ test_that("keywords", {
 
    expect_match(
      envelope() %>% keywords("Test keyword1, Test keyword2") %>% as.character(), 
-     "Test keyword1, Test keyword2"
+     "Keywords: +Test keyword1, Test keyword2"
   )
 
   msg <- envelope() %>% keywords(c("Test keyword1, Test keyword2"))
@@ -71,5 +71,12 @@ test_that("keywords", {
   expect_match(
     envelope() %>% keywords(c("Test keyword1, Test keyword2")) %>% as.character(),
     "Test keyword1, Test keyword2"
+  )
+})
+
+test_that("return-path", {
+  expect_equal(
+    envelope() %>% return_path("bob@gmail.com") %>% return_path(),
+    address("bob@gmail.com")
   )
 })
