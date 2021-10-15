@@ -60,17 +60,18 @@ Create a SMTP server object.
 \section{Sendgrid}{
 
 
-To use Sendgrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
+To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
 Then use the API key as the password.
 
-Sendgrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
+SendGrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
 as 465 (using SMTPS).
 }
 
 \section{Mailgun}{
 
 
-To use Mailgun you'll need to first create an API key. Then use the API key as the password.
+To use Mailgun you'll need to first register a sender domain. This will then
+be assigned a username and password.
 
 Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
 (using SMTPS).
@@ -82,7 +83,7 @@ library(magrittr)
 # Set parameters for SMTP server (with username and password).
 smtp <- server(
   host = "smtp.gmail.com",
-  port = 465,
+  port = 587,
   username = "bob@gmail.com",
   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
 )
@@ -123,7 +124,7 @@ smtp <- gmail(
   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
 )
 
-# Set API key for Sendgrid SMTP server.
+# Set API key for SendGrid SMTP server.
 smtp <- sendgrid(
   password = "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"
 )
