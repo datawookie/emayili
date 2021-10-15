@@ -210,7 +210,8 @@ sendgrid <- function(
 #'
 #' @section Mailgun:
 #'
-#' To use Mailgun you'll need to first create an API key. Then use the API key as the password.
+#' To use Mailgun you'll need to first register a sender domain. This will then
+#' be assigned a username and password.
 #'
 #' Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
 #' (using SMTPS).
