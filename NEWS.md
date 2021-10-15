@@ -1,3 +1,8 @@
+# {emayili} 0.6.6
+
+* Fix attachment name (#91).
+  Thanks https://github.com/nlooije.
+
 # {emayili} 0.6.5
 
 * Added `gmail()`, `sendgrid()` and `mailgun()`.

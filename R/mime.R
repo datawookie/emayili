@@ -246,7 +246,7 @@ other <- function(
       "attachment"
     )
   }
-  disposition <- glue('{disposition}; filename="{basename}"')
+  disposition <- glue('{disposition}; filename="{name}"')
 
   structure(
     c(
