@@ -31,6 +31,7 @@ globalVariables(
   c(
     ".",
     "msg",
-    "runif"
-    )
+    "runif",
+    "detect_language"
   )
+)

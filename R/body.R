@@ -41,6 +41,7 @@ text <- function(
   disposition = "inline",
   charset = "utf-8",
   encoding = "7bit",
+  language = FALSE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -53,7 +54,7 @@ text <- function(
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 
-  body <- text_plain(content, disposition, charset, encoding)
+  body <- text_plain(content, disposition, charset, encoding, language)
 
   msg <- append(msg, body)
 
@@ -84,6 +85,7 @@ html <- function(
   charset = "utf-8",
   encoding = "quoted-printable",
   css_files = c(),
+  language = FALSE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -104,7 +106,8 @@ html <- function(
 
   body <- text_html(
     content, disposition, charset, encoding,
-    css = read_text(css_files)
+    css = read_text(css_files),
+    language = language
   )
 
   msg <- append(msg, body)

@@ -11,6 +11,7 @@ render(
   squish = TRUE,
   css_files = c(),
   include_css = c("rmd", "bootstrap", "highlight"),
+  language = FALSE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -29,6 +30,10 @@ render(
 \item{css_files}{Extra CSS files.}
 
 \item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS; \code{"highlight"} — highlight.js CSS).}
+
+\item{language}{Langauge of content. If \code{FALSE} then will not include
+language field. If \code{TRUE} then will attempt to auto-detect language.
+Otherwise will use the specified language.}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 

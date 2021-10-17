@@ -3,7 +3,8 @@ manifest <- function(
   params = NULL,
   squish = TRUE,
   css,
-  include_css
+  include_css,
+  language
 ) {
   stopifnot(is.null(params) || is.list(params))
 
@@ -154,7 +155,7 @@ manifest <- function(
     # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
     str_replace("<meta[^>]*>", "")
 
-  output <- text_html(output, squish = squish, css = css)
+  output <- text_html(output, squish = squish, css = css, language = language)
 
   if (plain) {
     output
@@ -254,6 +255,7 @@ render <- function(
   squish = TRUE,
   css_files = c(),
   include_css = c("rmd", "bootstrap", "highlight"),
+  language = FALSE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -311,7 +313,8 @@ render <- function(
     params,
     squish,
     list(extra = read_text(css_files)),
-    include_css
+    include_css,
+    language
   )
 
   msg <- append(msg, body)

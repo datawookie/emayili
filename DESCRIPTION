@@ -59,6 +59,8 @@ Imports:
     xfun,
     xml2
 Suggests:
+    cld2,
+    cld3,
     here,
     memoise,
     testthat (>= 2.1.0),

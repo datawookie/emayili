@@ -22,6 +22,9 @@ is.mime <- function(x) {
 #' @param encoding How content is transformed to ASCII. Options are
 #'   \code{"7bit"}, \code{"quoted-printable"} and \code{"base64"}. Use \code{NA}
 #'   or \code{NULL} for no (or "identity") encoding.
+#' @param language Langauge of content. If \code{FALSE} then will not include
+#'   language field. If \code{TRUE} then will attempt to auto-detect language.
+#'   Otherwise will use the specified language.
 #' @param boundary Boundary string.
 #' @param type The MIME type of the content.
 #' @param children List of child MIME objects.
@@ -69,6 +72,7 @@ MIME <- function(
   disposition = NA,
   charset = NA,
   encoding = NA,
+  language = NA,
   format = NA,
   boundary = emayili:::hexkey(),
   type = NA,
@@ -87,6 +91,7 @@ MIME <- function(
       disposition = disposition,
       charset = charset,
       encoding = encoding,
+      language = language,
       format = format,
       boundary = boundary,
       children = children,
@@ -318,6 +323,7 @@ as.character.MIME <- function(x, ...) {
     content_type(type, x$charset, x$boundary, x$format),
     content_disposition(x$disposition),
     content_transfer_encoding(x$encoding),
+    content_language(x$language, x$content),
     x_attachment_id(x$cid),
     content_id(x$cid)
   )

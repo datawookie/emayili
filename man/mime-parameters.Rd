@@ -17,6 +17,10 @@ or \code{"ISO-8859-1"}.}
 \code{"7bit"}, \code{"quoted-printable"} and \code{"base64"}. Use \code{NA}
 or \code{NULL} for no (or "identity") encoding.}
 
+\item{language}{Langauge of content. If \code{FALSE} then will not include
+language field. If \code{TRUE} then will attempt to auto-detect language.
+Otherwise will use the specified language.}
+
 \item{boundary}{Boundary string.}
 
 \item{type}{The MIME type of the content.}

@@ -11,6 +11,7 @@ html(
   charset = "utf-8",
   encoding = "quoted-printable",
   css_files = c(),
+  language = FALSE,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -34,6 +35,10 @@ or \code{"ISO-8859-1"}.}
 or \code{NULL} for no (or "identity") encoding.}
 
 \item{css_files}{Extra CSS files.}
+
+\item{language}{Langauge of content. If \code{FALSE} then will not include
+language field. If \code{TRUE} then will attempt to auto-detect language.
+Otherwise will use the specified language.}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 
