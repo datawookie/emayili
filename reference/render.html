@@ -133,6 +133,7 @@ processed as Plain Markdown.</p>
   squish <span class='op'>=</span> <span class='cn'>TRUE</span>,
   css_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
   include_css <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rmd"</span>, <span class='st'>"bootstrap"</span>, <span class='st'>"highlight"</span><span class='op'>)</span>,
+  language <span class='op'>=</span> <span class='cn'>FALSE</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
   .close <span class='op'>=</span> <span class='st'>"}}"</span>,
@@ -165,6 +166,12 @@ processed as Plain Markdown.</p>
     <tr>
       <th>include_css</th>
       <td><p>Whether to include rendered CSS from various sources (<code>"rmd"</code> — native R Markdown CSS; <code>"bootstrap"</code> — Bootstrap CSS; <code>"highlight"</code> — highlight.js CSS).</p></td>
+    </tr>
+    <tr>
+      <th>language</th>
+      <td><p>Langauge of content. If <code>FALSE</code> then will not include
+language field. If <code>TRUE</code> then will attempt to auto-detect language.
+Otherwise will use the specified language.</p></td>
     </tr>
     <tr>
       <th>interpolate</th>

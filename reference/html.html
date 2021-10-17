@@ -127,6 +127,7 @@
   charset <span class='op'>=</span> <span class='st'>"utf-8"</span>,
   encoding <span class='op'>=</span> <span class='st'>"quoted-printable"</span>,
   css_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  language <span class='op'>=</span> <span class='cn'>FALSE</span>,
   interpolate <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .open <span class='op'>=</span> <span class='st'>"{{"</span>,
   .close <span class='op'>=</span> <span class='st'>"}}"</span>,
@@ -164,6 +165,12 @@ or <code>NULL</code> for no (or "identity") encoding.</p></td>
     <tr>
       <th>css_files</th>
       <td><p>Extra CSS files.</p></td>
+    </tr>
+    <tr>
+      <th>language</th>
+      <td><p>Langauge of content. If <code>FALSE</code> then will not include
+language field. If <code>TRUE</code> then will attempt to auto-detect language.
+Otherwise will use the specified language.</p></td>
     </tr>
     <tr>
       <th>interpolate</th>
