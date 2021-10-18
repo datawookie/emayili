@@ -5,6 +5,7 @@
 \alias{gmail}
 \alias{sendgrid}
 \alias{mailgun}
+\alias{sendinblue}
 \title{Create a SMTP server object.}
 \usage{
 server(
@@ -26,6 +27,8 @@ gmail(username, password, ...)
 sendgrid(password, ...)
 
 mailgun(username, password, ...)
+
+sendinblue(username, password, ...)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -75,6 +78,14 @@ be assigned a username and password.
 
 Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
 (using SMTPS).
+}
+
+\section{Sendinblue}{
+
+
+To use Sendinblue you'll need to first create an account. You'll find your
+SMTP username and password in the SMTP & API section of your account
+settings.
 }
 
 \examples{
@@ -133,5 +144,11 @@ smtp <- sendgrid(
 smtp <- mailgun(
   username = "postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org",
   password = "44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"
+)
+
+# Set username and password for Sendinblue SMTP server.
+smtp <- sendinblue(
+  username = "bob@gmail.com",
+  password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33-hUx3LBvftIcRPGZE"
 )
 }
