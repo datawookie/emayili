@@ -6,6 +6,7 @@
 \alias{sendgrid}
 \alias{mailgun}
 \alias{sendinblue}
+\alias{mailersend}
 \title{Create a SMTP server object.}
 \usage{
 server(
@@ -29,6 +30,8 @@ sendgrid(password, ...)
 mailgun(username, password, ...)
 
 sendinblue(username, password, ...)
+
+mailersend(username, password, ...)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -86,6 +89,17 @@ Mailgun will accept messages on ports 25 and 587 (using SMTP) as well as 465
 To use Sendinblue you'll need to first create an account. You'll find your
 SMTP username and password in the SMTP & API section of your account
 settings.
+}
+
+\section{MailerSend}{
+
+
+To use MailerSend you'll need to first create an account. You'll find your
+SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails via SMTP with MailerSend}.
+
+Although this is not likely to be a problem in practice, MailerSend insists
+that all messages have at minimum a valid subject and either text or HTML
+content.
 }
 
 \examples{
@@ -149,6 +163,12 @@ smtp <- mailgun(
 # Set username and password for Sendinblue SMTP server.
 smtp <- sendinblue(
   username = "bob@gmail.com",
-  password = "xsmtpsib-c75bd91323adc53a1747c005447cbc9a893c35999635bb7bef1a624bf773da33-hUx3LBvftIcRPGZE"
+  password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33-hUx3LBvftIcRPGZE"
+)
+
+# Set username and password for MailerSend SMTP server.
+smtp <- mailersend(
+  username = "NS_Pf3ALM@gmail.com",
+  password = "e5ATWLlTnWWDaKeE"
 )
 }
