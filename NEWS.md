@@ -1,5 +1,8 @@
 # {emayili} 0.6.6
 
+* Added `Content-Language` header field.
+* Added `Comments` & `Keywords` header fields.
+* Added support for Sendinblue and MailerSend.
 * Fix attachment name (#91).
   Thanks https://github.com/nlooije.
 
