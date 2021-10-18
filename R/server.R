@@ -253,7 +253,7 @@ mailgun <- function(
 #' # Set username and password for Sendinblue SMTP server.
 #' smtp <- sendinblue(
 #'   username = "bob@gmail.com",
-#'   password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33-hUx3LBvftIcRPGZE"
+#'   password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33"
 #' )
 sendinblue <- function(
   username,
@@ -263,6 +263,39 @@ sendinblue <- function(
 
   fcall[[1]] <- server
   fcall$host = "smtp-relay.sendinblue.com"
+  fcall$port = 587
+
+  eval(fcall, parent.frame())
+}
+
+#' @rdname server
+#'
+#' @section MailerSend:
+#'
+#' To use MailerSend you'll need to first create an account. You'll find your
+#' SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails via SMTP with MailerSend}.
+#'
+#' Although this is not likely to be a problem in practice, MailerSend insists
+#' that all messages have at minimum a valid subject and either text or HTML
+#' content.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set username and password for MailerSend SMTP server.
+#' smtp <- mailersend(
+#'   username = "NS_Pf3ALM@gmail.com",
+#'   password = "e5ATWLlTnWWDaKeE"
+#' )
+mailersend <- function(
+  username,
+  password,
+  ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "smtp.mailersend.net"
   fcall$port = 587
 
   eval(fcall, parent.frame())
