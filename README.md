@@ -126,8 +126,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
-    X-Mailer:                  {emayili}-0.6.1
+    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
+    X-Mailer:                  {emayili}-0.6.5
     MIME-Version:              1.0
     From:                      alice@yahoo.com
     To:                        bob@google.com
@@ -175,10 +175,10 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
-    X-Mailer:                  {emayili}-0.6.1
+    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
+    X-Mailer:                  {emayili}-0.6.5
     MIME-Version:              1.0
-    Content-Type:              text/plain; charset=utf-8
+    Content-Type:              text/plain; charset=utf-8; format=flowed
     Content-Disposition:       inline
     Content-Transfer-Encoding: 7bit
     Content-MD5:               nhjeY5ZYMzru+kSCGUzNKg==
@@ -199,8 +199,8 @@ envelope() %>%
   )
 ```
 
-    Date:                      Thu, 07 Oct 2021 13:37:35 GMT
-    X-Mailer:                  {emayili}-0.6.1
+    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
+    X-Mailer:                  {emayili}-0.6.5
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
@@ -350,6 +350,109 @@ There is a selection of other R packages which also send emails:
 -   [mailR](https://cran.r-project.org/package=mailR)
 -   [sendmailR](https://cran.r-project.org/package=sendmailR)
 -   [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
+
+## Blog Posts
+
+<table>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/">Support
+for Gmail, SendGrid & Mailgun</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message
+Precedence</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message
+Integrity</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-right-to-left/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-right-to-left/">Right-to-Left</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-styling-figures/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-styling-figures/">Styling
+Figures</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-managing-css/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-managing-css/">Managing
+CSS</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/">R
+Markdown Parameters</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/">Rendering
+R Markdown</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown">Rendering
+Plain Markdown</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content">Interpolating
+Message Content</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary
+Email Address Validation</a>
+</td>
+</tr>
+</table>
 
 ## Developer Notes
 
