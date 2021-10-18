@@ -238,10 +238,32 @@ mailgun <- function(
   eval(fcall, parent.frame())
 }
 
-# ./swaks --auth \
-# --server  \
-# --au postmaster@YOUR_DOMAIN_NAME \
-# --ap 3kh9umujora5 \
-# --to bar@example.com \
-# --h-Subject: "Hello" \
-# --body 'Testing some Mailgun awesomness!'
+#' @rdname server
+#'
+#' @section Sendinblue:
+#'
+#' To use Sendinblue you'll need to first create an account. You'll find your
+#' SMTP username and password in the SMTP & API section of your account
+#' settings.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set username and password for Sendinblue SMTP server.
+#' smtp <- sendinblue(
+#'   username = "bob@gmail.com",
+#'   password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33-hUx3LBvftIcRPGZE"
+#' )
+sendinblue <- function(
+  username,
+  password,
+  ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "smtp-relay.sendinblue.com"
+  fcall$port = 587
+
+  eval(fcall, parent.frame())
+}
