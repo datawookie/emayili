@@ -5,6 +5,9 @@
 * Added support for Sendinblue and MailerSend.
 * Fix attachment name (#91).
   Thanks https://github.com/nlooije.
+* Added support for `{htmltools}` `tagList` and vector of 
+  characters in `html()`.
+  (@colinfay, #92)
 
 # {emayili} 0.6.5
 

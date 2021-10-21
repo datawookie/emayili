@@ -97,10 +97,24 @@ Add a subject.
 email <- email %>% subject("This is a plain text message!")
 ```
 
-Add a text body. You can use `html()` to add an HTML body.
+Add a text body.
 
 ``` r
 email <- email %>% text("Hello!")
+```
+
+You can use `html()` to add an HTML body. It accepts either a vector of
+characters or a `tagList()` from `{htmltools}`.
+
+``` r
+library(htmltools)
+
+email <- email %>% html(
+  tagList(
+    h2("Hello"),
+    p("World!")
+  )
+)
 ```
 
 Add an attachment.
@@ -126,8 +140,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     From:                      alice@yahoo.com
     To:                        bob@google.com
@@ -169,14 +183,14 @@ You can use `{glue}` syntax to interpolate content into the body of a
 message.
 
 ``` r
-name = "Alice"
+name <- "Alice"
 
 envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8; format=flowed
     Content-Disposition:       inline
@@ -199,8 +213,8 @@ envelope() %>%
   )
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
@@ -305,10 +319,12 @@ email <- envelope() %>%
 Create a SMTP server object and send the message.
 
 ``` r
-smtp <- server(host = "smtp.gmail.com",
-               port = 465,
-               username = "bob@gmail.com",
-               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
 smtp(email, verbose = TRUE)
 ```
 

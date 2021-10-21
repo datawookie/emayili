@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(comment=NA)
+knitr::opts_chunk$set(comment = NA)
 ```
 
 # emayili <img src="man/figures/emayili-hex.png" align="right" alt="" width="120" />
@@ -91,10 +91,23 @@ Add a subject.
 email <- email %>% subject("This is a plain text message!")
 ```
 
-Add a text body. You can use `html()` to add an HTML body.
+Add a text body. 
 
 ```{r eval=FALSE}
 email <- email %>% text("Hello!")
+```
+
+You can use `html()` to add an HTML body. It accepts either a vector of characters or a `tagList()` from `{htmltools}`.
+
+```{r eval=FALSE}
+library(htmltools)
+
+email <- email %>% html(
+  tagList(
+    h2("Hello"),
+    p("World!")
+  )
+)
 ```
 
 Add an attachment.
@@ -157,7 +170,7 @@ options(envelope.invisible = FALSE)
 You can use `{glue}` syntax to interpolate content into the body of a message.
 
 ```{r}
-name = "Alice"
+name <- "Alice"
 
 envelope() %>%
   text("Hello {{name}}!")
@@ -263,10 +276,12 @@ email <- envelope() %>%
 Create a SMTP server object and send the message.
 
 ```{r eval=FALSE}
-smtp <- server(host = "smtp.gmail.com",
-               port = 465,
-               username = "bob@gmail.com",
-               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
 smtp(email, verbose = TRUE)
 ```
 
