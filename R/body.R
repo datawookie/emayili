@@ -35,22 +35,23 @@ check_message_body <- function(content) {
 #' # Disable {glue} interpolation.
 #' #
 #' msg <- envelope() %>% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
-text <- function(
-  msg,
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = "7bit",
-  language = FALSE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
-) {
+text <- function(msg,
+                 content,
+                 disposition = "inline",
+                 charset = "utf-8",
+                 encoding = "7bit",
+                 language = FALSE,
+                 interpolate = TRUE,
+                 .open = "{{",
+                 .close = "}}",
+                 .envir = NULL) {
   check_message_body(content)
 
-  if (is.null(.envir)) .envir = parent.frame()
-  else .envir = list2env(.envir)
+  if (is.null(.envir)) {
+    .envir <- parent.frame()
+  } else {
+    .envir <- list2env(.envir)
+  }
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 
@@ -60,6 +61,37 @@ text <- function(
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
+
+#' Transfor a (tag)list to a character string
+#'
+#' @param content element to transform.
+#'
+#' @return If the content is a list, a tagList or a tag,
+#'     a character vector. Otherwise, it will return the
+#'     input unchanged.
+#'
+#' @noRd
+#' @example
+#' cast_to_char( list("<h2>this</h2>", "<p>That</p>") )
+#' library(htmltools)
+#' cast_to_char( tagList(h2("this"), p("That") ))
+cast_to_char <- function(content) {
+  if (
+    # We do the change if the element is a
+    # tag or a tag.list
+    inherits(content, "shiny.tag.list") |
+      inherits(content, "shiny.tag")
+  ) {
+    content <- as.character(content)
+  }
+  # Then if we have a list, we collapse it to
+  # a character vector
+  if (length(content) > 1) {
+    content <- paste(content, collapse = "\n")
+  }
+  content
+}
+
 
 #' Add an HTML body to a message object.
 #'
@@ -78,19 +110,30 @@ text <- function(
 #' htmlfile <- tempfile(fileext = ".html")
 #' cat("<p>Hello!</p>\n", file = htmlfile)
 #' envelope() %>% html(htmlfile)
-html <- function(
-  msg,
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = "quoted-printable",
-  css_files = c(),
-  language = FALSE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
-) {
+#'
+#' # You can pass a a vector of character
+#' # Note that they will be separated with a `\n`
+#' envelope() %>% html(c("<b>Hello!</b>", "<p>World</p>"))
+#'
+#' # You can also pass a tagList built with {htmltools}
+#' if (requireNamespace("hmltools", quietly = TRUE)) {
+#'   library(htmltools)
+#'   envelope() %>% html(tagList(h2("Hello"), p("World")))
+#' }
+html <- function(msg,
+                 content,
+                 disposition = "inline",
+                 charset = "utf-8",
+                 encoding = "quoted-printable",
+                 css_files = c(),
+                 language = FALSE,
+                 interpolate = TRUE,
+                 .open = "{{",
+                 .close = "}}",
+                 .envir = NULL) {
+  content <- cast_to_char(content)
+
+  # Not sure we need that anymore ?
   check_message_body(content)
 
   # Check if it's a file.
@@ -99,8 +142,11 @@ html <- function(
     content <- paste(readLines(content), collapse = "\n")
   }
 
-  if (is.null(.envir)) .envir = parent.frame()
-  else .envir = list2env(.envir)
+  if (is.null(.envir)) {
+    .envir <- parent.frame()
+  } else {
+    .envir <- list2env(.envir)
+  }
 
   if (interpolate) content <- glue(content, .open = .open, .close = .close, .envir = .envir)
 

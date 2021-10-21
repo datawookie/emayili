@@ -18,8 +18,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 `{emayili}` is a package for sending emails from R. The design goals
 are:
 
--   works on all manner of SMTP servers and
--   has minimal dependencies (or dependencies which are easily
+  - works on all manner of SMTP servers and
+  - has minimal dependencies (or dependencies which are easily
     satisfied).
 
 The package name is an adaption of the Zulu word for email, *imeyili*.
@@ -81,9 +81,11 @@ There are also `bcc()` and `reply()` functions for setting the `Bcc` and
 
 You can supply multiple addresses in a variety of formats:
 
--   as a single comma-separated string
--   as separate strings; or
--   as a vector of strings.
+  - as a single comma-separated string
+  - as separate strings; or
+  - as a vector of strings.
+
+<!-- end list -->
 
 ``` r
 envelope() %>% to("bob@google.com, craig@google.com, erin@gmail.com")
@@ -97,10 +99,23 @@ Add a subject.
 email <- email %>% subject("This is a plain text message!")
 ```
 
-Add a text body. You can use `html()` to add an HTML body.
+Add a text body.
 
 ``` r
 email <- email %>% text("Hello!")
+```
+
+You can use `html()` to add an HTML body. `html()` supports both vector
+of characters and `tagList()` build with `{htmltools}`.
+
+``` r
+library(htmltools)
+email <- email %>% html(
+  tagList(
+    h2("Hello"),
+    p("World")
+  )
+)
 ```
 
 Add an attachment.
@@ -126,8 +141,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Thu, 21 Oct 2021 19:46:08 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     From:                      alice@yahoo.com
     To:                        bob@google.com
@@ -169,20 +184,20 @@ You can use `{glue}` syntax to interpolate content into the body of a
 message.
 
 ``` r
-name = "Alice"
+name <- "Alice"
 
 envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Thu, 21 Oct 2021 19:46:08 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     Content-Type:              text/plain; charset=utf-8; format=flowed
     Content-Disposition:       inline
     Content-Transfer-Encoding: 7bit
     Content-MD5:               nhjeY5ZYMzru+kSCGUzNKg==
-
+    
     Hello Alice!
 
 ### Rendering Markdown
@@ -199,12 +214,12 @@ envelope() %>%
   )
 ```
 
-    Date:                      Mon, 18 Oct 2021 06:58:12 GMT
-    X-Mailer:                  {emayili}-0.6.5
+    Date:                      Thu, 21 Oct 2021 19:46:08 GMT
+    X-Mailer:                  {emayili}-0.6.6
     MIME-Version:              1.0
     Content-Type:              text/html; charset=utf-8
     Content-Disposition:       inline
-
+    
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
     <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
 
@@ -217,7 +232,8 @@ envelope() %>%
 ```
 
 In both cases the function will accept either a file path or a character
-vector containing Markdown text.
+vector containing Markdown
+text.
 
 <img src="man/figures/screenshot-email-rendered.png" style="filter: drop-shadow(5px 5px 5px black); margin-bottom: 5px;">
 
@@ -228,16 +244,16 @@ Interpolation also works with `render()`.
 When you render an R Markdown document the resulting HTML includes CSS
 from three sources:
 
--   [Bootstrap](https://getbootstrap.com/)
--   [highlightjs](https://highlightjs.org/) and
--   `{rmarkdown}`.
+  - [Bootstrap](https://getbootstrap.com/)
+  - [highlightjs](https://highlightjs.org/) and
+  - `{rmarkdown}`.
 
 You can control which of these propagate to the message using the
-`include_css` parameter which, by default, is set to
-`c("rmd", "bootstrap", "highlight")`.
+`include_css` parameter which, by default, is set to `c("rmd",
+"bootstrap", "highlight")`.
 
 🚨 *Note:* Gmail doesn’t like the Bootstrap CSS. If you want your styling
-to work on Gmail you should set `include_css =  c("rmd", "highlight")`.
+to work on Gmail you should set `include_css = c("rmd", "highlight")`.
 
 ### Extra CSS
 
@@ -266,7 +282,8 @@ encode](https://en.wikipedia.org/wiki/Base64) the image.
 img_base64 <- base64enc::base64encode("image.jpg")
 ```
 
-Then create the HTML message body.
+Then create the HTML message
+body.
 
 ``` r
 html_body <- sprintf('<html><body><img src="data:image/jpeg;base64,%s"></body></html>', img_base64)
@@ -305,10 +322,12 @@ email <- envelope() %>%
 Create a SMTP server object and send the message.
 
 ``` r
-smtp <- server(host = "smtp.gmail.com",
-               port = 465,
-               username = "bob@gmail.com",
-               password = "bd40ef6d4a9413de9c1318a65cbae5d7")
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = "bob@gmail.com",
+  password = "bd40ef6d4a9413de9c1318a65cbae5d7"
+)
 smtp(email, verbose = TRUE)
 ```
 
@@ -321,137 +340,232 @@ print(email, details = TRUE)
 ### Using STARTTLS
 
 If you’re trying to send email with a host that uses the STARTTLS
-security protocol (like Google Mail, Yahoo! or AOL), then it will most
+security protocol (like Google Mail, Yahoo\! or AOL), then it will most
 probably be blocked due to insufficient security. In order to circumvent
 this, you can grant access to less secure apps. See the links below for
 specifics:
 
--   [Google](https://myaccount.google.com/security)
--   [Yahoo!](https://login.yahoo.com/account/security) and
--   [AOL](https://login.aol.com/account/security).
+  - [Google](https://myaccount.google.com/security)
+  - [Yahoo\!](https://login.yahoo.com/account/security) and
+  - [AOL](https://login.aol.com/account/security).
 
 ## Standards Documents
 
 The following (draft) standards documents relate to emails:
 
--   [RFC 2822](https://tools.ietf.org/html/rfc2822)
--   [RFC 5322](https://tools.ietf.org/html/rfc5322)
--   [RFC 6854](https://tools.ietf.org/html/rfc6854) (an update to RFC
+  - [RFC 2822](https://tools.ietf.org/html/rfc2822)
+  - [RFC 5322](https://tools.ietf.org/html/rfc5322)
+  - [RFC 6854](https://tools.ietf.org/html/rfc6854) (an update to RFC
     5322).
 
 ## Similar Packages
 
 There is a selection of other R packages which also send emails:
 
--   [blastula](https://cran.r-project.org/package=blastula)
--   [blatr](https://cran.r-project.org/package=blatr) (Windows)
--   [gmailr](https://cran.r-project.org/package=gmailr)
--   [mail](https://cran.r-project.org/package=mail)
--   [mailR](https://cran.r-project.org/package=mailR)
--   [sendmailR](https://cran.r-project.org/package=sendmailR)
--   [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
+  - [blastula](https://cran.r-project.org/package=blastula)
+  - [blatr](https://cran.r-project.org/package=blatr)
+(Windows)
+  - [gmailr](https://cran.r-project.org/package=gmailr)
+  - [mail](https://cran.r-project.org/package=mail)
+  - [mailR](https://cran.r-project.org/package=mailR)
+  - [sendmailR](https://cran.r-project.org/package=sendmailR)
+  - [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
 
 ## Blog Posts
 
 <table>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/">Support
-for Gmail, SendGrid & Mailgun</a>
+for Gmail, SendGrid &
+Mailgun</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message
 Precedence</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message
 Integrity</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-right-to-left/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-right-to-left/">Right-to-Left</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-styling-figures/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-styling-figures/">Styling
 Figures</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-managing-css/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-managing-css/">Managing
 CSS</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/">R
-Markdown Parameters</a>
+Markdown
+Parameters</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/">Rendering
-R Markdown</a>
+R
+Markdown</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown">Rendering
-Plain Markdown</a>
+Plain
+Markdown</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content">Interpolating
-Message Content</a>
+Message
+Content</a>
+
 </td>
+
 </tr>
+
 <tr>
+
 <td>
+
 <img src="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation/featured.jpg" width="100px">
+
 </td>
+
 <td>
+
 <a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary
 Email Address Validation</a>
+
 </td>
+
 </tr>
+
 </table>
 
 ## Developer Notes

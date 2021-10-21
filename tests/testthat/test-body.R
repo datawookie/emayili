@@ -3,9 +3,53 @@ test_that("text: only single message body", {
   expect_error(envelope() %>% text(c("<p>foo</p>", "<p>bar</p>")))
 })
 
-test_that("html: only single message body", {
-  expect_error(envelope() %>% html("<p>foo</p>"), NA)
-  expect_error(envelope() %>% html(c("<p>foo</p>", "<p>bar</p>")))
+test_that("cast_to_char: tagList & vec of html are casted to character", {
+  expect_equal(
+    cast_to_char(c("<b>Hello!</b>", "<p>World</p>")),
+    "<b>Hello!</b>\n<p>World</p>"
+  )
+  skip_if_not_installed("htmltools")
+  expect_equal(
+    cast_to_char(
+      htmltools::tagList(
+        htmltools::h2("this"),
+        htmltools::p("That")
+      )
+    ),
+    "<h2>this</h2>\n<p>That</p>"
+  )
+})
+
+test_that("html: tagList & vec of html are casted to character", {
+  res <- envelope() %>% html(c("<b>Hello!</b>", "<p>World</p>"))
+  expect_true(
+    grepl(
+      "<b>Hello!</b>",
+      res$parts[[1]]$content
+    )
+  )
+  expect_true(
+    grepl(
+      "<p>World</p>",
+      res$parts[[1]]$content
+    )
+  )
+
+  skip_if_not_installed("htmltools")
+  res <- envelope() %>% html(tagList(h2("Hello"), p("World")))
+
+  expect_true(
+    grepl(
+      "<h2>Hello</h2>",
+      res$parts[[1]]$content
+    )
+  )
+  expect_true(
+    grepl(
+      "<p>World</p>",
+      res$parts[[1]]$content
+    )
+  )
 })
 
 test_that("html: HTML from file", {
