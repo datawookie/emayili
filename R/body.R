@@ -64,9 +64,9 @@ text <- function(
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
 
-#' Transfor a (tag)list to a character string
+#' Transform a (tag)list to a character string
 #'
-#' @param content element to transform.
+#' @param content Element to transform.
 #'
 #' @return If the content is a list, a tagList or a tag,
 #'     a character vector. Otherwise, it will return the
@@ -74,9 +74,9 @@ text <- function(
 #'
 #' @noRd
 #' @examples
-#' list_to_char(list("<h2>this</h2>", "<p>That</p>"))
+#' list_to_char(list("<b>Hello</b>", "<p>World!</p>"))
 #' library(htmltools)
-#' list_to_char(tagList(h2("this"), p("That")))
+#' list_to_char(tagList(h2("Hello"), p("World!")))
 list_to_char <- function(content) {
   if (
     # We do the change if the element is a
@@ -112,14 +112,14 @@ list_to_char <- function(content) {
 #' cat("<p>Hello!</p>\n", file = htmlfile)
 #' envelope() %>% html(htmlfile)
 #'
-#' # You can pass a a vector of character
-#' # Note that they will be separated with a `\n`
-#' envelope() %>% html(c("<b>Hello!</b>", "<p>World</p>"))
+#' # You can pass a vector of character. Components will be separated by a
+#' # "\n".
+#' envelope() %>% html(c("<b>Hello</b>", "<p>World!</p>"))
 #'
-#' # You can also pass a tagList built with {htmltools}
-#' if (requireNamespace("hmltools", quietly = TRUE)) {
+#' # You can also pass a tagList from {htmltools}.
+#' if (requireNamespace("htmltools", quietly = TRUE)) {
 #'   library(htmltools)
-#'   envelope() %>% html(tagList(h2("Hello"), p("World")))
+#'   envelope() %>% html(tagList(h2("Hello"), p("World!")))
 #' }
 html <- function(
   msg,

@@ -1,12 +1,12 @@
 #' @import curl
 #' @import digest
-#' @import stringr
 #' @import dplyr
-#' @import tidyr
-#' @import purrr
+#' @import htmltools
 #' @import logger
+#' @import purrr
+#' @import stringr
+#' @import tidyr
 #' @import xml2
-#' @importFrom htmltools tags
 #' @importFrom base64enc base64encode
 #' @importFrom commonmark markdown_html
 #' @importFrom glue glue
