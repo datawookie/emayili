@@ -73,11 +73,11 @@ text <- function(
 #'     input unchanged.
 #'
 #' @noRd
-#' @example
-#' cast_to_char( list("<h2>this</h2>", "<p>That</p>") )
+#' @examples
+#' list_to_char(list("<h2>this</h2>", "<p>That</p>"))
 #' library(htmltools)
-#' cast_to_char( tagList(h2("this"), p("That") ))
-cast_to_char <- function(content) {
+#' list_to_char(tagList(h2("this"), p("That")))
+list_to_char <- function(content) {
   if (
     # We do the change if the element is a
     # tag or a tag.list
@@ -134,7 +134,7 @@ html <- function(
   .close = "}}",
   .envir = NULL
 ) {
-  content <- cast_to_char(content)
+  content <- list_to_char(content)
 
   # Check if it's a file.
   #

@@ -1,5 +1,6 @@
 library(here)
 library(logger)
+require(htmltools, quietly = TRUE)
 
 log_threshold(ERROR)
 

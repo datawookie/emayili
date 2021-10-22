@@ -64,6 +64,16 @@ envelope() \%>\% html("<b>Hello!</b>")
 htmlfile <- tempfile(fileext = ".html")
 cat("<p>Hello!</p>\n", file = htmlfile)
 envelope() \%>\% html(htmlfile)
+
+# You can pass a a vector of character
+# Note that they will be separated with a `\n`
+envelope() \%>\% html(c("<b>Hello!</b>", "<p>World</p>"))
+
+# You can also pass a tagList built with {htmltools}
+if (requireNamespace("hmltools", quietly = TRUE)) {
+  library(htmltools)
+  envelope() \%>\% html(tagList(h2("Hello"), p("World")))
+}
 }
 \seealso{
 \code{\link{text}}
