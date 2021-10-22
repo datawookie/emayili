@@ -7,20 +7,27 @@ test_that("set sensitivity", {
 
   expect_equal(envelope() %>% sensitivity("personal") %>% sensitivity(), "personal")
 })
-test_that("set expires & reply-by", {
-  withr::with_envvar(
-    c(TZ = "UTC"),
-    {
-      expect_match(
-        envelope() %>% expires("2030-01-01 13:25:00", "UTC") %>% expires(),
-        "Tue, 01 Jan 2030 13:25:00 \\+0000 \\(UTC|GMT\\)"
-      )
-      expect_match(
-        envelope() %>% replyby("2021-12-25 06:00:00", "GMT") %>% replyby(),
-        "Sat, 25 Dec 2021 06:00:00 \\+0000 \\(UTC|GMT\\)"
-      )
-    }
+
+with_tz <- function(code) {
+  old_tz <- Sys.getenv("TZ")
+  on.exit(
+    Sys.setenv("TZ" = old_tz)
   )
+  Sys.setenv(TZ = "UTC")
+  force(code)
+}
+
+test_that("set expires & reply-by", {
+  with_tz({
+    expect_match(
+      envelope() %>% expires("2030-01-01 13:25:00", "UTC") %>% expires(),
+      "Tue, 01 Jan 2030 13:25:00 \\+0000 \\(UTC|GMT\\)"
+    )
+    expect_match(
+      envelope() %>% replyby("2021-12-25 06:00:00", "GMT") %>% replyby(),
+      "Sat, 25 Dec 2021 06:00:00 \\+0000 \\(UTC|GMT\\)"
+    )
+  })
 })
 
 test_that("in-reply-to & references", {
