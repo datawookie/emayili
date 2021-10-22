@@ -36,7 +36,12 @@ test_that("html: tagList & vec of html are cast to character", {
   )
 
   skip_if_not_installed("htmltools")
-  msg <- envelope() %>% html(tagList(h2("Hello"), p("World")))
+  msg <- envelope() %>% html(
+    htmltools::tagList(
+      htmltools::h2("Hello"),
+      htmltools::p("World")
+    )
+  )
 
   expect_true(
     grepl(
