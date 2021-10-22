@@ -14,6 +14,8 @@ test_that("content-language field", {
 })
 
 test_that("detect language", {
+  skip_if_not_installed("cld3")
+  skip_if_not_installed("cld2")
   expect_no_match(
     envelope() %>% text("Hello!", language = FALSE) %>% as.character(),
     "Content-Language:"
