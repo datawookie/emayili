@@ -21,8 +21,6 @@ check_message_body <- function(content) {
 #'
 #' @export
 #' @examples
-#' library(magrittr)
-#'
 #' msg <- envelope() %>% text("Hello!")
 #'
 #' # Using {glue} interpolation.
@@ -102,8 +100,6 @@ list_to_char <- function(content) {
 #' @seealso \code{\link{text}}
 #' @export
 #' @examples
-#' library(magrittr)
-#'
 #' # Inline HTML message.
 #' envelope() %>% html("<b>Hello!</b>")
 #'

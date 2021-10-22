@@ -33,8 +33,6 @@ A message object.
 Add attachments to a message object
 }
 \examples{
-library(magrittr)
-
 path_mtcars  <- tempfile(fileext = ".csv")
 path_scatter <- tempfile(fileext = ".png")
 path_cats    <- system.file("cats.jpg", package = "emayili")

@@ -150,8 +150,6 @@ sender <- function(msg, addr = NULL) {
 #' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
 #' @export
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a message and set the subject
 #' msg <- envelope() %>% subject("Updated report")
 #'

@@ -58,8 +58,6 @@ described in \href{https://www.ietf.org/rfc/rfc2646.txt}{RFC 2646}.
 Uses \code{glue::glue()} to evaluate expressions enclosed in brackets as R code.
 }
 \examples{
-library(magrittr)
-
 msg <- envelope() \%>\% text("Hello!")
 
 # Using {glue} interpolation.

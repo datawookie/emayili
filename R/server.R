@@ -18,8 +18,6 @@
 #' @return A function which is used to send messages to the server.
 #' @export
 #' @examples
-#' library(magrittr)
-#'
 #' # Set parameters for SMTP server (with username and password).
 #' smtp <- server(
 #'   host = "smtp.gmail.com",

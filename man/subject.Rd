@@ -33,8 +33,6 @@ A message object or the subject of the message object (if \code{subject} is \cod
 Add or query subject of message.
 }
 \examples{
-library(magrittr)
-
 # Create a message and set the subject
 msg <- envelope() \%>\% subject("Updated report")
 

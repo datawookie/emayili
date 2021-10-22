@@ -55,8 +55,6 @@ A message object.
 Add an HTML body to a message object.
 }
 \examples{
-library(magrittr)
-
 # Inline HTML message.
 envelope() \%>\% html("<b>Hello!</b>")
 
