@@ -13,9 +13,25 @@ test_that("content-language field", {
   )
 })
 
+skip_if_neither_installed <- function(paks) {
+  are_there <- vapply(
+    paks,
+    requireNamespace,
+    FUN.VALUE = logical(1),
+    quietly  = TRUE
+  )
+  if (!any(are_there)) {
+    testthat::skip(
+      sprintf(
+        "None of {%s} are installed",
+        paste(paks, collapse = "} or {")
+      )
+    )
+  }
+}
+
 test_that("detect language", {
-  skip_if_not_installed("cld3")
-  skip_if_not_installed("cld2")
+  skip_if_neither_installed(c("cld3", "cld2"))
   expect_no_match(
     envelope() %>% text("Hello!", language = FALSE) %>% as.character(),
     "Content-Language:"
