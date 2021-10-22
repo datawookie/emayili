@@ -124,7 +124,7 @@
 <li>as separate strings; or</li>
 <li>as a vector of strings.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com, craig@google.com, erin@gmail.com"</span><span class="op">)</span>
 <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span>
 <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -134,13 +134,14 @@
 <p>Add a text body.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello!"</span><span class="op">)</span></code></pre></div>
-<p>You can use <code><a href="reference/html.html">html()</a></code> to add an HTML body. <code><a href="reference/html.html">html()</a></code> supports both vector of characters and <code><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList()</a></code> build with <a href="https://github.com/rstudio/htmltools">htmltools</a>.</p>
+<p>You can use <code><a href="reference/html.html">html()</a></code> to add an HTML body. It accepts either a vector of characters or a <code><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList()</a></code> from <a href="https://github.com/rstudio/htmltools">htmltools</a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools">htmltools</a></span><span class="op">)</span>
+
 <span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">h2</a></span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">p</a></span><span class="op">(</span><span class="st">"World"</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">p</a></span><span class="op">(</span><span class="st">"World!"</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Add an attachment.</p>
@@ -157,7 +158,7 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>Date<span class="op">:</span><span class="st">                      </span>Thu, <span class="dv">21</span> Oct <span class="dv">2021</span> <span class="dv">19</span><span class="op">:</span><span class="dv">46</span><span class="op">:</span><span class="dv">08</span> GMT</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">22</span> Oct <span class="dv">2021</span> <span class="dv">06</span><span class="op">:</span><span class="dv">06</span><span class="op">:</span><span class="dv">03</span> GMT</span>
 <span id="cb14-2"><a href="#cb14-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">6.6</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">              </span><span class="fl">1.0</span></span>
 <span id="cb14-4"><a href="#cb14-4"></a>From<span class="op">:</span><span class="st">                      </span>alice<span class="op">@</span>yahoo.com</span>
@@ -191,7 +192,7 @@
 
 <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>Date<span class="op">:</span><span class="st">                      </span>Thu, <span class="dv">21</span> Oct <span class="dv">2021</span> <span class="dv">19</span><span class="op">:</span><span class="dv">46</span><span class="op">:</span><span class="dv">08</span> GMT</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">22</span> Oct <span class="dv">2021</span> <span class="dv">06</span><span class="op">:</span><span class="dv">06</span><span class="op">:</span><span class="dv">03</span> GMT</span>
 <span id="cb18-2"><a href="#cb18-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">6.6</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">              </span><span class="fl">1.0</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">              </span>text<span class="op">/</span>plain; charset=utf<span class="dv">-8</span>; format=flowed</span>
@@ -212,7 +213,7 @@
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span>
     <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span>
   <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Date<span class="op">:</span><span class="st">                      </span>Thu, <span class="dv">21</span> Oct <span class="dv">2021</span> <span class="dv">19</span><span class="op">:</span><span class="dv">46</span><span class="op">:</span><span class="dv">08</span> GMT</span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">22</span> Oct <span class="dv">2021</span> <span class="dv">06</span><span class="op">:</span><span class="dv">06</span><span class="op">:</span><span class="dv">03</span> GMT</span>
 <span id="cb20-2"><a href="#cb20-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">6.6</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">              </span><span class="fl">1.0</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">              </span>text<span class="op">/</span>html; charset=utf<span class="dv">-8</span></span>
@@ -241,7 +242,7 @@
 <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</li>
 </ul>
 <p>You can control which of these propagate to the message using the <code>include_css</code> parameter which, by default, is set to <code><a href="https://rdrr.io/r/base/c.html">c("rmd", "bootstrap", "highlight")</a></code>.</p>
-<p>🚨 <em>Note:</em> Gmail doesn’t like the Bootstrap CSS. If you want your styling to work on Gmail you should set <code>include_css = c("rmd", "highlight")</code>.</p>
+<p>🚨 <em>Note:</em> Gmail doesn’t like the Bootstrap CSS. If you want your styling to work on Gmail you should set <code>include_css =  c("rmd", "highlight")</code>.</p>
 </div>
 <div id="extra-css" class="section level3">
 <h3 class="hasAnchor">
@@ -339,90 +340,90 @@
 <table class="table">
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/featured.jpg" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/featured.jpg" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/">Support for Gmail, SendGrid &amp; Mailgun</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<p><img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px"></p>
-</td>
-<td>
-<p><a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message Precedence</a></p>
+<a href="https://datawookie.dev/blog/2021/10/emayili-support-for-gmail-sendgrid-mailgun/">Support for Gmail, SendGrid &amp; Mailgun</a>
 </td>
 </tr>
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message Integrity</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-right-to-left/featured.jpg" width="100px"></p>
-</td>
-<td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-right-to-left/">Right-to-Left</a></p>
+<a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message Precedence</a>
 </td>
 </tr>
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-styling-figures/featured.jpg" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-styling-figures/">Styling Figures</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-managing-css/featured.jpg" width="100px"></p>
-</td>
-<td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-managing-css/">Managing CSS</a></p>
+<a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message Integrity</a>
 </td>
 </tr>
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/featured.jpg" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/09/emayili-right-to-left/featured.jpg" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/">R Markdown Parameters</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/featured.jpg" width="100px"></p>
-</td>
-<td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/">Rendering R Markdown</a></p>
+<a href="https://datawookie.dev/blog/2021/09/emayili-right-to-left/">Right-to-Left</a>
 </td>
 </tr>
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown/featured.jpg" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/09/emayili-styling-figures/featured.jpg" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown">Rendering Plain Markdown</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<p><img src="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content/featured.jpg" width="100px"></p>
-</td>
-<td>
-<p><a href="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content">Interpolating Message Content</a></p>
+<a href="https://datawookie.dev/blog/2021/09/emayili-styling-figures/">Styling Figures</a>
 </td>
 </tr>
 <tr>
 <td>
-<p><img src="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation/featured.jpg" width="100px"></p>
+<img src="https://datawookie.dev/blog/2021/09/emayili-managing-css/featured.jpg" width="100px">
 </td>
 <td>
-<p><a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary Email Address Validation</a></p>
+<a href="https://datawookie.dev/blog/2021/09/emayili-managing-css/">Managing CSS</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-r-markdown-parameters/">R Markdown Parameters</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-rendering-r-markdown/">Rendering R Markdown</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-rendering-plain-markdown">Rendering Plain Markdown</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/09/emayili-interpolating-message-content">Interpolating Message Content</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary Email Address Validation</a>
 </td>
 </tr>
 </table>
