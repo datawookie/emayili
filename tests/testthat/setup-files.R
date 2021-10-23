@@ -48,16 +48,18 @@ writeLines(HTMLCONTENT, HTMLPATH)
 #
 SMTP_SERVER   = "mail.smtpbucket.com"
 SMTP_PORT     = 8025
-SMTP_USERNAME_GMAIL <- Sys.getenv("SMTP_USERNAME")
-SMTP_PASSWORD_GMAIL <- Sys.getenv("SMTP_PASSWORD")
+SMTP_USERNAME_GMAIL <- Sys.getenv("GMAIL_USERNAME", NA)
+SMTP_PASSWORD_GMAIL <- Sys.getenv("GMAIL_PASSWORD", NA)
 SMTP_PASSWORD_SENDGRID <- Sys.getenv("SENDGRID_API_KEY")
 SMTP_USERNAME_MAILGUN <- Sys.getenv("MAILGUN_SMTP_USERNAME")
 SMTP_PASSWORD_MAILGUN <- Sys.getenv("MAILGUN_SMTP_PASSWORD")
 
+EMAIL_FROM <- "alice@gmail.com"
+EMAIL_TO <- "bob@yahoo.com"
+
 smtp <- server(
   host = SMTP_SERVER,
-  port = SMTP_PORT,
-  username = SMTP_USERNAME_GMAIL
+  port = SMTP_PORT
 )
 smtp_verbose <- server(
   host = SMTP_SERVER,
@@ -71,10 +73,14 @@ smtp_insecure <- server(
   insecure = TRUE
 )
 
-smtp_gmail <- gmail(
-  username = SMTP_USERNAME_GMAIL,
-  password = SMTP_PASSWORD_GMAIL
-)
+if (is.na(SMTP_USERNAME_GMAIL) || is.na(SMTP_PASSWORD_GMAIL)) {
+  smtp_gmail <- NA
+} else {
+  smtp_gmail <- gmail(
+    username = SMTP_USERNAME_GMAIL,
+    password = SMTP_PASSWORD_GMAIL
+  )
+}
 
 smtp_sendgrid <- sendgrid(
   password = SMTP_PASSWORD_SENDGRID
