@@ -94,3 +94,31 @@ rmarkdown::draft(
   package = "rmarkdown",
   edit = FALSE
 )
+
+# UTILITY ----------------------------------------------------------------------
+
+skip_if_neither_installed <- function(paks) {
+  are_there <- vapply(
+    paks,
+    requireNamespace,
+    FUN.VALUE = logical(1),
+    quietly  = TRUE
+  )
+  if (!any(are_there)) {
+    testthat::skip(
+      sprintf(
+        "None of {%s} are installed",
+        paste(paks, collapse = "} or {")
+      )
+    )
+  }
+}
+
+with_tz <- function(code) {
+  old_tz <- Sys.getenv("TZ")
+  on.exit(
+    Sys.setenv("TZ" = old_tz)
+  )
+  Sys.setenv(TZ = "UTC")
+  force(code)
+}

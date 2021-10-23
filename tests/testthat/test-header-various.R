@@ -8,15 +8,6 @@ test_that("set sensitivity", {
   expect_equal(envelope() %>% sensitivity("personal") %>% sensitivity(), "personal")
 })
 
-with_tz <- function(code) {
-  old_tz <- Sys.getenv("TZ")
-  on.exit(
-    Sys.setenv("TZ" = old_tz)
-  )
-  Sys.setenv(TZ = "UTC")
-  force(code)
-}
-
 test_that("set expires & reply-by", {
   with_tz({
     expect_match(
