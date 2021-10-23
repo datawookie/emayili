@@ -53,6 +53,10 @@ SMTP_PASSWORD_GMAIL <- Sys.getenv("GMAIL_PASSWORD", NA)
 SMTP_PASSWORD_SENDGRID <- Sys.getenv("SENDGRID_API_KEY")
 SMTP_USERNAME_MAILGUN <- Sys.getenv("MAILGUN_SMTP_USERNAME")
 SMTP_PASSWORD_MAILGUN <- Sys.getenv("MAILGUN_SMTP_PASSWORD")
+SMTP_USERNAME_SENDINBLUE <- Sys.getenv("SENDINBLUE_SMTP_USERNAME")
+SMTP_PASSWORD_SENDINBLUE <- Sys.getenv("SENDINBLUE_SMTP_PASSWORD")
+SMTP_USERNAME_MAILERSEND <- Sys.getenv("MAILERSEND_SMTP_USERNAME")
+SMTP_PASSWORD_MAILERSEND <- Sys.getenv("MAILERSEND_SMTP_PASSWORD")
 
 EMAIL_FROM <- "alice@gmail.com"
 EMAIL_TO <- "bob@yahoo.com"
@@ -89,6 +93,16 @@ smtp_sendgrid <- sendgrid(
 smtp_mailgun <- mailgun(
   username = SMTP_USERNAME_MAILGUN,
   password = SMTP_PASSWORD_MAILGUN
+)
+
+smtp_sendinblue <- sendinblue(
+  username = SMTP_USERNAME_SENDINBLUE,
+  password = SMTP_PASSWORD_SENDINBLUE
+)
+
+smtp_mailersend <- mailersend(
+  username = SMTP_USERNAME_MAILERSEND,
+  password = SMTP_PASSWORD_MAILERSEND
 )
 
 # R MARKDOWN FILE --------------------------------------------------------------
