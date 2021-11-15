@@ -1,5 +1,6 @@
 # {emayili} 0.6.7
 
+* Added `request_receipt_read()`.
 * Added support for `{htmltools}` `tagList` and vector of 
   characters in `html()`. (@colinfay, issue #92)
 
