@@ -136,21 +136,22 @@
     <p>A tibble.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>email</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>from</a></span><span class='op'>(</span><span class='st'>"Gerald &lt;gerald@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>to</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span>, <span class='st'>"alice@yahoo.com"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>cc</a></span><span class='op'>(</span><span class='st'>"Craig     &lt; craig@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>bcc</a></span><span class='op'>(</span><span class='st'>"  Erin   &lt;erin@yahoo.co.uk    &gt;"</span><span class='op'>)</span>
-
-<span class='fu'>parties</span><span class='op'>(</span><span class='va'>email</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 × 6</span>
-#&gt;   type                    address display raw              local  domain     
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    <span style='color: #949494; font-style: italic;'>&lt;addr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
-#&gt; <span style='color: #BCBCBC;'>1</span> From  Gerald &lt;gerald@gmail.com&gt; Gerald  gerald@gmail.com gerald gmail.com  
-#&gt; <span style='color: #BCBCBC;'>2</span> To                bob@gmail.com <span style='color: #BB0000;'>NA</span>      bob@gmail.com    bob    gmail.com  
-#&gt; <span style='color: #BCBCBC;'>3</span> To              alice@yahoo.com <span style='color: #BB0000;'>NA</span>      alice@yahoo.com  alice  yahoo.com  
-#&gt; <span style='color: #BCBCBC;'>4</span> Cc      Craig &lt;craig@gmail.com&gt; Craig   craig@gmail.com  craig  gmail.com  
-#&gt; <span style='color: #BCBCBC;'>5</span> Bcc     Erin &lt;erin@yahoo.co.uk&gt; Erin    erin@yahoo.co.uk erin   yahoo.co.uk</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>email</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>from</a></span><span class='op'>(</span><span class='st'>"Gerald &lt;gerald@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>to</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span>, <span class='st'>"alice@yahoo.com"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>cc</a></span><span class='op'>(</span><span class='st'>"Craig     &lt; craig@gmail.com&gt;"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>bcc</a></span><span class='op'>(</span><span class='st'>"  Erin   &lt;erin@yahoo.co.uk    &gt;"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>parties</span><span class='op'>(</span><span class='va'>email</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 5 × 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   type                    address display raw              local  domain     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    <span style='color: #949494; font-style: italic;'>&lt;addr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> From  Gerald &lt;gerald@gmail.com&gt; Gerald  gerald@gmail.com gerald gmail.com  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> To                bob@gmail.com <span style='color: #BB0000;'>NA</span>      bob@gmail.com    bob    gmail.com  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> To              alice@yahoo.com <span style='color: #BB0000;'>NA</span>      alice@yahoo.com  alice  yahoo.com  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> Cc      Craig &lt;craig@gmail.com&gt; Craig   craig@gmail.com  craig  gmail.com  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Bcc     Erin &lt;erin@yahoo.co.uk&gt; Erin    erin@yahoo.co.uk erin   yahoo.co.uk</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -113,9 +113,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>[<span class="dv">1</span>] <span class="st">"envelope"</span></span></code></pre></div>
 <p>Add addresses for the sender and recipient.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/addresses.html">from</a></span><span class="op">(</span><span class="st">"alice@yahoo.com"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/addresses.html">from</a></span><span class="op">(</span><span class="st">"alice@yahoo.com"</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com"</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/addresses.html">cc</a></span><span class="op">(</span><span class="st">"craig@google.com"</span><span class="op">)</span></code></pre></div>
 <p>There are also <code><a href="reference/addresses.html">bcc()</a></code> and <code><a href="reference/addresses.html">reply()</a></code> functions for setting the <code>Bcc</code> and <code>Reply-To</code> fields.</p>
 <p>You can supply multiple addresses in a variety of formats:</p>
@@ -125,20 +125,20 @@
 <li>as a vector of strings.</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com, craig@google.com, erin@gmail.com"</span><span class="op">)</span>
-<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span>
-<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com, craig@google.com, erin@gmail.com"</span><span class="op">)</span>
+<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span>
+<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/addresses.html">to</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bob@google.com"</span>, <span class="st">"craig@google.com"</span>, <span class="st">"erin@gmail.com"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Add a subject.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/subject.html">subject</a></span><span class="op">(</span><span class="st">"This is a plain text message!"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/subject.html">subject</a></span><span class="op">(</span><span class="st">"This is a plain text message!"</span><span class="op">)</span></code></pre></div>
 <p>Add a text body.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello!"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello!"</span><span class="op">)</span></code></pre></div>
 <p>You can use <code><a href="reference/html.html">html()</a></code> to add an HTML body. It accepts either a vector of characters or a <code><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList()</a></code> from <a href="https://github.com/rstudio/htmltools">htmltools</a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools">htmltools</a></span><span class="op">)</span>
 
-<span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span>
+<span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">h2</a></span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">p</a></span><span class="op">(</span><span class="st">"World!"</span><span class="op">)</span>
@@ -146,7 +146,7 @@
 <span class="op">)</span></code></pre></div>
 <p>Add an attachment.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/attachment.html">attachment</a></span><span class="op">(</span><span class="st">"image.jpg"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/attachment.html">attachment</a></span><span class="op">(</span><span class="st">"image.jpg"</span><span class="op">)</span></code></pre></div>
 <p>You can also create the message in a single command:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span>
@@ -190,7 +190,7 @@
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"Alice"</span>
 
-<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>Date<span class="op">:</span><span class="st">                      </span>Fri, <span class="dv">22</span> Oct <span class="dv">2021</span> <span class="dv">06</span><span class="op">:</span><span class="dv">06</span><span class="op">:</span><span class="dv">03</span> GMT</span>
 <span id="cb18-2"><a href="#cb18-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                  </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">6.6</span></span>
@@ -208,7 +208,7 @@
 <p>You can render Markdown straight into a message.</p>
 <p>Use either plain Markdown.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="co"># Render plain Markdown from a character vector.</span>
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span>
     <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span>
@@ -223,7 +223,7 @@
 <span id="cb20-8"><a href="#cb20-8"></a><span class="er">&lt;</span>html<span class="op">&gt;</span><span class="er">&lt;</span>body<span class="op">&gt;</span><span class="er">&lt;</span>p<span class="op">&gt;</span>Check out <span class="op">&lt;</span>a href=<span class="st">"https://cran.r-project.org/package=emayili"</span><span class="op">&gt;</span><span class="er">&lt;</span>code<span class="op">&gt;</span>{emayili}<span class="op">&lt;</span><span class="er">/</span>code<span class="op">&gt;</span><span class="er">&lt;/</span>a<span class="op">&gt;</span>.<span class="op">&lt;</span><span class="er">/</span>p<span class="op">&gt;</span><span class="er">&lt;/</span>body<span class="op">&gt;</span><span class="er">&lt;/</span>html<span class="op">&gt;</span></span></code></pre></div>
 <p>Or R Markdown.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="co"># Render R Markdown from a file.</span>
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"message.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>In both cases the function will accept either a file path or a character vector containing Markdown text.</p>
@@ -241,7 +241,7 @@
 <li>
 <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</li>
 </ul>
-<p>You can control which of these propagate to the message using the <code>include_css</code> parameter which, by default, is set to <code><a href="https://rdrr.io/r/base/c.html">c("rmd", "bootstrap", "highlight")</a></code>.</p>
+<p>You can control which of these propagate to the message using the <code>include_css</code> parameter which, by default, is set to <code>c("rmd", "bootstrap", "highlight")</code>.</p>
 <p>🚨 <em>Note:</em> Gmail doesn’t like the Bootstrap CSS. If you want your styling to work on Gmail you should set <code>include_css =  c("rmd", "highlight")</code>.</p>
 </div>
 <div id="extra-css" class="section level3">
@@ -249,7 +249,7 @@
 <a href="#extra-css" class="anchor"></a>Extra CSS</h3>
 <p>You can insert extra CSS into your rendered messages.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"message.Rmd"</span>, css_files <span class="op">=</span> <span class="st">"extra.css"</span><span class="op">)</span></code></pre></div>
 <p>If you are having trouble getting this to work with Gmail then it might be worthwhile taking a look at their <a href="https://developers.google.com/gmail/design/css">CSS support</a>.</p>
 </div>
@@ -266,7 +266,7 @@
 <code class="sourceCode R"><span class="va">html_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">'&lt;html&gt;&lt;body&gt;&lt;img src="data:image/jpeg;base64,%s"&gt;&lt;/body&gt;&lt;/html&gt;'</span>, <span class="va">img_base64</span><span class="op">)</span></code></pre></div>
 <p>And finally add it to the email.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span></code></pre></div>
 <p><em>Note:</em> It’s important that you specify the appropriate media type (<code>image/jpeg</code> for JPEG and <code>image/png</code> for PNG).</p>
 <p><em>2. Using a CID</em></p>
 <p>Unfortunately some mail clients (like Gmail) will not display Base64 encoded images. In this case using a CID is a working alternative.</p>
@@ -275,8 +275,8 @@
 <code class="sourceCode R"><span class="va">html_body</span> <span class="op">&lt;-</span> <span class="st">'&lt;html&gt;&lt;body&gt;&lt;img src="cid:image"&gt;&lt;/body&gt;&lt;/html&gt;'</span></code></pre></div>
 <p>Then attach the image and specify the <code>cid</code> argument.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/html.html">html</a></span><span class="op">(</span><span class="va">html_body</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/attachment.html">attachment</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"image.jpg"</span>, cid <span class="op">=</span> <span class="st">"image"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="sending-a-message" class="section level3">
@@ -437,7 +437,7 @@
 <p>You can find the test coverage report at <a href="https://app.codecov.io/gh/datawookie/emayili">Codecov</a>. For development purposes it’s more convenient to use the <a href="https://cran.r-project.org/package=covr"><code>{covr}</code></a> package.</p>
 <p>Generate a coverage report.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">covr</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://covr.r-lib.org">covr</a></span><span class="op">)</span>
 
 <span class="co"># Tests that are skipped on CRAN should still be included in coverage report.</span>
 <span class="co">#</span>

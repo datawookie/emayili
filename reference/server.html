@@ -235,73 +235,73 @@ that all messages have at minimum a valid subject and either text or HTML
 content.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Set parameters for SMTP server (with username and password).</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>
-  host <span class='op'>=</span> <span class='st'>"smtp.gmail.com"</span>,
-  port <span class='op'>=</span> <span class='fl'>587</span>,
-  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
-  password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>
-<span class='op'>)</span>
-
-<span class='co'># Set parameters for a (fake) testing SMTP server.</span>
-<span class='co'>#</span>
-<span class='co'># More information about this service can be found at https://www.smtpbucket.com/.</span>
-<span class='co'>#</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>
-  host <span class='op'>=</span> <span class='st'>"mail.smtpbucket.com"</span>,
-  port <span class='op'>=</span> <span class='fl'>8025</span>
-<span class='op'>)</span>
-
-<span class='co'># Create a message</span>
-<span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>from</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='addresses.html'>to</a></span><span class='op'>(</span><span class='st'>"alice@yahoo.com"</span><span class='op'>)</span>
-
-<span class='co'># Send message (verbose output from interactions with server)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>smtp</span><span class='op'>(</span><span class='va'>msg</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'># To confirm that the message was sent, go to https://www.smtpbucket.com/ then:</span>
-<span class='co'>#</span>
-<span class='co'># - fill in "bob@gmail.com" for the Sender field and</span>
-<span class='co'># - fill in "alice@yahoo.com" for the Recipient field then</span>
-<span class='co'># - press the Search button.</span>
-
-<span class='co'># With explicit HELO domain.</span>
-<span class='co'>#</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>host <span class='op'>=</span> <span class='st'>"mail.example.com"</span>,
-               helo <span class='op'>=</span> <span class='st'>"client.example.com"</span><span class='op'>)</span>
-
-<span class='co'># Set parameters for Gmail SMTP server. The host and port are implicit.</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>gmail</span><span class='op'>(</span>
-  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
-  password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span>
-<span class='op'>)</span>
-
-<span class='co'># Set API key for SendGrid SMTP server.</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendgrid</span><span class='op'>(</span>
-  password <span class='op'>=</span> <span class='st'>"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"</span>
-<span class='op'>)</span>
-
-<span class='co'># Set username and password for Mailgun SMTP server.</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>mailgun</span><span class='op'>(</span>
-  username <span class='op'>=</span> <span class='st'>"postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org"</span>,
-  password <span class='op'>=</span> <span class='st'>"44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"</span>
-<span class='op'>)</span>
-
-<span class='co'># Set username and password for Sendinblue SMTP server.</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendinblue</span><span class='op'>(</span>
-  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,
-  password <span class='op'>=</span> <span class='st'>"xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33"</span>
-<span class='op'>)</span>
-
-<span class='co'># Set username and password for MailerSend SMTP server.</span>
-<span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>mailersend</span><span class='op'>(</span>
-  username <span class='op'>=</span> <span class='st'>"NS_Pf3ALM@gmail.com"</span>,
-  password <span class='op'>=</span> <span class='st'>"e5ATWLlTnWWDaKeE"</span>
-<span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Set parameters for SMTP server (with username and password).</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span></span>
+<span class='r-in'>  host <span class='op'>=</span> <span class='st'>"smtp.gmail.com"</span>,</span>
+<span class='r-in'>  port <span class='op'>=</span> <span class='fl'>587</span>,</span>
+<span class='r-in'>  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,</span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set parameters for a (fake) testing SMTP server.</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># More information about this service can be found at https://www.smtpbucket.com/.</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span></span>
+<span class='r-in'>  host <span class='op'>=</span> <span class='st'>"mail.smtpbucket.com"</span>,</span>
+<span class='r-in'>  port <span class='op'>=</span> <span class='fl'>8025</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Create a message</span></span>
+<span class='r-in'><span class='va'>msg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='envelope.html'>envelope</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>from</a></span><span class='op'>(</span><span class='st'>"bob@gmail.com"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='addresses.html'>to</a></span><span class='op'>(</span><span class='st'>"alice@yahoo.com"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Send message (verbose output from interactions with server)</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='fu'>smtp</span><span class='op'>(</span><span class='va'>msg</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># To confirm that the message was sent, go to https://www.smtpbucket.com/ then:</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># - fill in "bob@gmail.com" for the Sender field and</span></span>
+<span class='r-in'><span class='co'># - fill in "alice@yahoo.com" for the Recipient field then</span></span>
+<span class='r-in'><span class='co'># - press the Search button.</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># With explicit HELO domain.</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>server</span><span class='op'>(</span>host <span class='op'>=</span> <span class='st'>"mail.example.com"</span>,</span>
+<span class='r-in'>               helo <span class='op'>=</span> <span class='st'>"client.example.com"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set parameters for Gmail SMTP server. The host and port are implicit.</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>gmail</span><span class='op'>(</span></span>
+<span class='r-in'>  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,</span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"bd40ef6d4a9413de9c1318a65cbae5d7"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set API key for SendGrid SMTP server.</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendgrid</span><span class='op'>(</span></span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"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"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set username and password for Mailgun SMTP server.</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>mailgun</span><span class='op'>(</span></span>
+<span class='r-in'>  username <span class='op'>=</span> <span class='st'>"postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org"</span>,</span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set username and password for Sendinblue SMTP server.</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>sendinblue</span><span class='op'>(</span></span>
+<span class='r-in'>  username <span class='op'>=</span> <span class='st'>"bob@gmail.com"</span>,</span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Set username and password for MailerSend SMTP server.</span></span>
+<span class='r-in'><span class='va'>smtp</span> <span class='op'>&lt;-</span> <span class='fu'>mailersend</span><span class='op'>(</span></span>
+<span class='r-in'>  username <span class='op'>=</span> <span class='st'>"NS_Pf3ALM@gmail.com"</span>,</span>
+<span class='r-in'>  password <span class='op'>=</span> <span class='st'>"e5ATWLlTnWWDaKeE"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
