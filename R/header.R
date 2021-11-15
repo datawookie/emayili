@@ -24,7 +24,7 @@ new_header <- function(
 #' @return A formatted header field.
 as.character.header <- function(x, ...) {
   sprintf(
-    "%-26s %s",
+    "%-28s %s",
     paste0(x$name, ":"),
     paste(
       sapply(x$values, as.character),
