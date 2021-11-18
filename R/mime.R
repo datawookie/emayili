@@ -303,6 +303,16 @@ prepend.MIME <- function(x, child) {
 
 # CHARACTER -------------------------------------------------------------------
 
+#' MIME type of message part
+#'
+#' @noRd
+#' @param part Message part.
+#'
+#' @return Character vector.
+type <- function(x) {
+  ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
+}
+
 #' Convert MIME object to character vector
 #'
 #' @param x MIME object
@@ -317,10 +327,9 @@ as.character.MIME <- function(x, ...) {
   children <- sapply(x$children, function(child) {
     paste(paste0("--", x$boundary), as.character.MIME(child), sep = "\r\n")
   })
-  type <- ifelse(!is.na(x$type), x$type, sub("_", "/", class(x)[1]))
   #
   headers <- list(
-    content_type(type, x$charset, x$boundary, x$format),
+    content_type(type(x), x$charset, x$boundary, x$format),
     content_disposition(x$disposition),
     content_transfer_encoding(x$encoding),
     content_language(x$language, x$content),
