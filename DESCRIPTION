@@ -2,7 +2,7 @@ Type: Package
 Package: emayili
 Title: Send Email Messages
 Version: 0.6.7
-Authors@R: 
+Authors@R:
     c(person(given = c("Andrew", "B."),
              family = "Collier",
              role = c("aut", "cre", "cph"),
@@ -71,6 +71,8 @@ Suggests:
     testthat (>= 2.1.0),
     roxygen2,
     showtext
+Enhances:
+    Microsoft365R
 SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

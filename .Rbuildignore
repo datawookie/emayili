@@ -13,3 +13,4 @@ README.html
 test.R
 examples/
 ^\.github$
+.pre-commit-config.yaml
