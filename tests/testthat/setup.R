@@ -4,6 +4,12 @@ require(htmltools, quietly = TRUE)
 
 log_threshold(ERROR)
 
+# Generate random folder name.
+#
+rndchar <- function(n = 24) {
+  stringi::stri_rand_strings(1, n)
+}
+
 TXTPATH <- tempfile(fileext = ".txt")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
@@ -38,6 +44,8 @@ writeLines(
 HTMLCONTENT <- "<p>Hello there, stranger!</p>"
 #
 writeLines(HTMLCONTENT, HTMLPATH)
+
+SUBJECT <- rndchar(36)
 
 # SERVER -----------------------------------------------------------------------
 
