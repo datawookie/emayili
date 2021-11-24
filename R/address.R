@@ -206,21 +206,22 @@ as.character.vctrs_address <- function(x, ...) {
   format(x, ...)
 }
 
+#' Compare address objects
+#'
+#' @noRd
+#'
+#' @param lhs LHS operand.
+#' @param rhs RHS operand.
+#'
+#' @return A Boolean, \code{TRUE} if the \code{lhs} address is the same as the
+#'   \code{rhs} address (ignores the display name).
+#' @export
 Ops.vctrs_address <- function(lhs, rhs)
 {
   if (!("address" %in% class(rhs))) rhs <- as.address(rhs)
+  if (!("address" %in% class(lhs))) lhs <- as.address(lhs)
 
-  op = .Generic[[1]]
-  switch(
-    op,
-    `==` = {
-      compare(raw(lhs), raw(rhs)) & compare(display(lhs), display(rhs))
-    },
-    `!=` = {
-      !compare(raw(lhs), raw(rhs)) | !compare(display(lhs), display(rhs))
-    },
-    stop("Undefined operation.", call. = FALSE)
-  )
+  get(.Generic)(raw(lhs), raw(rhs))
 }
 
 #' Create an address object

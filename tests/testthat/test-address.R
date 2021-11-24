@@ -68,8 +68,8 @@ test_that("print address", {
 test_that("address operators", {
   expect_true(address("alice@yahoo.com", "Alice") == address("alice@yahoo.com", "Alice"))
   expect_true(address("alice@yahoo.com", "Alice") == "Alice <alice@yahoo.com>")
+  expect_true(address("alice@yahoo.com", "Alice") == address("alice@yahoo.com", "Gerald"))
   expect_true(address("alice@yahoo.com", "Alice") != address("bob@gmail.com", "Bob"))
-  expect_true(address("alice@yahoo.com", "Alice") != address("alice@yahoo.com", "Gerald"))
   expect_true(address("alice@yahoo.com", "Alice") != address("gerry@gmail.com", "Alice"))
   #
   # Undefined operation.
