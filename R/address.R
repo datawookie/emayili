@@ -210,18 +210,18 @@ as.character.vctrs_address <- function(x, ...) {
 #'
 #' @noRd
 #'
-#' @param lhs LHS operand.
-#' @param rhs RHS operand.
+#' @param e1 LHS operand.
+#' @param e2 RHS operand.
 #'
-#' @return A Boolean, \code{TRUE} if the \code{lhs} address is the same as the
-#'   \code{rhs} address (ignores the display name).
+#' @return A Boolean, \code{TRUE} if the \code{e1} address is the same as the
+#'   \code{e2} address (ignores the display name).
 #' @export
-Ops.vctrs_address <- function(lhs, rhs)
+Ops.vctrs_address <- function(e1, e2)
 {
-  if (!("address" %in% class(rhs))) rhs <- as.address(rhs)
-  if (!("address" %in% class(lhs))) lhs <- as.address(lhs)
+  if (!("address" %in% class(e1))) e1 <- as.address(e1)
+  if (!("address" %in% class(e2))) e2 <- as.address(e2)
 
-  get(.Generic)(raw(lhs), raw(rhs))
+  get(.Generic)(raw(e1), raw(e2))
 }
 
 #' Create an address object

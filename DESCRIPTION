@@ -70,8 +70,7 @@ Suggests:
     memoise,
     testthat (>= 2.1.0),
     roxygen2,
-    showtext
-Enhances:
+    showtext,
     Microsoft365R
 SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
 Encoding: UTF-8

@@ -30,6 +30,8 @@ LEVELS_IMPORTANCE <- c("low", "normal", "high")
 globalVariables(
   c(
     ".",
+    "e1",
+    "e2",
     "msg",
     "runif",
     "detect_language"
