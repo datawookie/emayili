@@ -36,11 +36,19 @@ msg <- envelope(
   subject = SUBJECT,
   html = HTMLCONTENT
 )
-msg <- outlook$create_email(msg)
+msg_outlook <- outlook$create_email(msg)
 
-expect_identical(msg$properties$body$contentType, "html")
-expect_true(grepl(HTMLCONTENT, msg$properties$body$content))
-expect_identical(msg$properties$subject, SUBJECT)
-expect_identical(msg$properties$toRecipients[[1]]$emailAddress$address, to_addr)
-expect_identical(msg$properties$ccRecipients[[1]]$emailAddress$address, cc_addr)
-expect_identical(msg$properties$bccRecipients[[1]]$emailAddress$address, bcc_addr)
+test_that("body is correct", {
+  expect_identical(msg_outlook$properties$body$contentType, "html")
+  expect_true(grepl(HTMLCONTENT, msg_outlook$properties$body$content))
+})
+
+test_that("subject is correct", {
+  expect_identical(msg_outlook$properties$subject, SUBJECT)
+})
+
+test_that("parties are correct", {
+  expect_identical(msg_outlook$properties$toRecipients[[1]]$emailAddress$address, as.character(to(msg)))
+  expect_identical(msg_outlook$properties$ccRecipients[[1]]$emailAddress$address, as.character(cc(msg)))
+  expect_identical(msg_outlook$properties$bccRecipients[[1]]$emailAddress$address, as.character(bcc(msg)))
+})
