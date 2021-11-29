@@ -24,12 +24,15 @@ encrypt <- function(msg, sign = TRUE) {
 }
 
 encrypt_body <- function(content, parties, encrypt, sign) {
+  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
+  sign <- ifelse(is.null(sign), FALSE, sign)
+
   if (encrypt || sign) {
     if(!require(gpg, quietly = TRUE)) {
       stop("Install {gpg} to encrypt and/or sign messages.")
     }
-    log_debug("Encrypt message: {msg$encrypt}.")
-    log_debug("Sign message:    {msg$encrypt}.")
+    log_debug("Encrypt message: {msg$encrypt}")
+    log_debug("Sign message:    {msg$encrypt}")
 
     parties <- parties %>% select(type, email = raw)
 
@@ -56,11 +59,16 @@ encrypt_body <- function(content, parties, encrypt, sign) {
 
     # Encrypt content from temporary file.
     #
-    content <- gpg_encrypt(TMPFILE, fingerprints)
+    encrypted <- gpg_encrypt(TMPFILE, fingerprints)
 
     # Delete temporary file.
     #
     unlink(TMPFILE)
+
+    content <- emayili:::multipart_encrypted()
+    content <- emayili:::append.MIME(content, emayili:::application_pgp_encrypted())
+    content <- emayili:::append.MIME(content, emayili:::application_octet_stream(encrypted, disposition = "inline",  filename = "encrypted.asc"))
+    emayili:::as.character.MIME(content) %>% cat()
   }
 
   content

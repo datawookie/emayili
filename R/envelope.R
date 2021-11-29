@@ -118,6 +118,7 @@ print.envelope <- function(x, details = NA, ...) {
 #'
 #' @return A formatted message object.
 as.character.envelope <- function(x, ..., details = TRUE) {
+  log_debug("Encrypt message: {msg$encrypt}")
   message <- list(
     headers(x)
   )
@@ -137,6 +138,22 @@ as.character.envelope <- function(x, ..., details = TRUE) {
 
   if (details) {
     message <- c(message, as.character(body))
+  }
+
+  if (x$encrypt) {
+    if(!require(gpg, quietly = TRUE)) {
+      stop("Install {gpg} to encrypt messages.")
+    }
+
+    recipients <- parties(msg)$raw
+
+    gpg_key_list <- gpg_list_keys()
+
+    missing_keys <- setdiff(recipients, gpg_key_list$email)
+
+    if (length(missing_keys)) {
+      stop("Missing public keys for the follow addresses: ", paste(missing_keys, collapse = ", "), ".")
+    }
   }
 
   do.call(paste0, c(list(message), collapse = "\r\n"))
