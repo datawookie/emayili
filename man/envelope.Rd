@@ -14,7 +14,8 @@ envelope(
   importance = NULL,
   priority = NULL,
   text = NULL,
-  html = NULL
+  html = NULL,
+  encrypt = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ envelope(
 \item{text}{See \code{\link[=text]{text()}}.}
 
 \item{html}{See \code{\link[=html]{html()}}.}
+
+\item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
 }
 \value{
 A message object.
