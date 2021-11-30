@@ -130,7 +130,7 @@ server <- function(
       # in email client).
       mail_from = raw(from(msg)),
       mail_rcpt = raw(recipients),
-      #
+      # Get character representation of envelope object.
       message = as.character(msg),
       smtp_server = smtp_server,
       username = username,

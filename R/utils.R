@@ -129,9 +129,7 @@ html_squish <- function(html) {
 }
 
 mime_base64encode <- function(raw, linewidth = 76L) {
-  if (is.raw(raw)) {
-    log_debug("Input is already raw.")
-  } else {
+  if (!is.raw(raw)) {
     if (tryCatch(file.exists(raw), error = function(e) FALSE)) {
       log_debug("Assuming that input is a file.")
     } else {
