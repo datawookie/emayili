@@ -118,7 +118,6 @@ print.envelope <- function(x, details = NA, ...) {
 #'
 #' @return A formatted message object.
 as.character.envelope <- function(x, ..., details = TRUE) {
-  log_debug("Encrypt message: {msg$encrypt}")
   message <- list(
     headers(x)
   )

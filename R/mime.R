@@ -25,7 +25,9 @@ is.mime <- function(x) {
 #' @param language Langauge of content. If \code{FALSE} then will not include
 #'   language field. If \code{TRUE} then will attempt to auto-detect language.
 #'   Otherwise will use the specified language.
+#' @param description Description of content.
 #' @param name Name used when downloading file.
+#' @param filename Path to a file.
 #' @param boundary Boundary string.
 #' @param type The MIME type of the content.
 #' @param children List of child MIME objects.
@@ -66,7 +68,6 @@ NULL
 #' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
 #'
 #' @noRd
-#'
 #' @return A MIME object.
 MIME <- function(
   content = NULL,
@@ -75,6 +76,9 @@ MIME <- function(
   charset = NA,
   encoding = NA,
   language = NA,
+  description = NA,
+  name = NA,
+  filename = NA,
   format = NA,
   boundary = emayili:::hexkey(),
   type = NA,
@@ -95,6 +99,9 @@ MIME <- function(
       charset = charset,
       encoding = encoding,
       language = language,
+      description = description,
+      name = name,
+      filename = filename,
       format = format,
       boundary = boundary,
       children = children,
@@ -121,6 +128,71 @@ multipart_mixed <- function(...) {
       list()
     ),
     class = c("multipart_mixed", "MIME")
+  )
+}
+
+#' Create \code{multipart/encrypted} MIME object
+#'
+#' @noRd
+#'
+#' @inheritParams MIME
+multipart_encrypted <- function(
+  content,
+  ...
+) {
+  structure(
+    c(
+      MIME(
+        "This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156).",
+        protocol = "application/pgp-encrypted",
+        ...
+      ),
+      list()
+    ),
+    class = c("multipart_encrypted", "MIME")
+  )
+}
+
+application_pgp_encrypted <- function(
+  content = "Version: 1",
+  ...
+) {
+  structure(
+    c(
+      MIME(
+        content,
+        type = "application/pgp-encrypted",
+        description = "PGP/MIME version identification",
+        boundary = NA,
+        ...
+      ),
+      list()
+    ),
+    class = c("application_pgp_encrypted", "MIME")
+  )
+}
+
+application_octet_stream <- function(
+  content,
+  disposition = "inline",
+  filename,
+  ...
+) {
+  structure(
+    c(
+      MIME(
+        content,
+        disposition = disposition,
+        type = "application/octet-stream",
+        description = "OpenPGP encrypted message",
+        name = filename,
+        filename = filename,
+        boundary = NA,
+        ...
+      ),
+      list()
+    ),
+    class = c("application_octet_stream", "MIME")
   )
 }
 
@@ -218,7 +290,6 @@ text_html <- function(
 #'
 #' @inheritParams MIME
 #'
-#' @param filename Path to a file.
 #' @param cid An optional Content-Id.
 #' @param ... Further arguments passed to or from other methods.
 other <- function(
@@ -254,11 +325,10 @@ other <- function(
       "attachment"
     )
   }
-  disposition <- glue('{disposition}; filename="{name}"')
 
   structure(
     c(
-      MIME(read_bin(filename), disposition, NA, charset, encoding, boundary = NA, type = type, ...),
+      MIME(read_bin(filename), disposition, NA, charset, encoding, boundary = NA, filename = name, type = type, ...),
       list(
         cid = ifelse(is.na(cid), hexkey(), cid)
       )
@@ -332,8 +402,9 @@ as.character.MIME <- function(x, ...) {
   })
   #
   headers <- list(
-    content_type(type(x), x$protocol, x$charset, x$boundary, x$format),
-    content_disposition(x$disposition),
+    content_type(type(x), x$protocol, x$charset, x$boundary, x$format, x$name),
+    content_description(x$description),
+    content_disposition(x$disposition, x$filename),
     content_transfer_encoding(x$encoding),
     content_language(x$language, x$content),
     x_attachment_id(x$cid),

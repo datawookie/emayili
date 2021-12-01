@@ -93,7 +93,7 @@ qp_encode <- function(x, crlf = "\r\n") {
   stopifnot(length(x) == 1)
 
   # Split into lines.
-  x <- stri_split(x, regex = "(\n|\r\n|\n\r)")[[1]]
+  x <- str_split(x, "(\n|\r\n|\n\r)") %>% unlist()
 
   # Encode each line.
   #
