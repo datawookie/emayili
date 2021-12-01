@@ -70,6 +70,7 @@ NULL
 MIME <- function(
   content = NULL,
   disposition = NA,
+  protocol = NA,
   charset = NA,
   encoding = NA,
   language = NA,
@@ -89,6 +90,7 @@ MIME <- function(
     list(
       content = content,
       disposition = disposition,
+      protocol = protocol,
       charset = charset,
       encoding = encoding,
       language = language,
@@ -130,7 +132,7 @@ text_plain <- function(
 ) {
   structure(
     c(
-      MIME(content, disposition, charset, encoding, format = "flowed", boundary = NA, ...),
+      MIME(content, disposition, NA, charset, encoding, format = "flowed", boundary = NA, ...),
       list()
     ),
     class = c("text_plain", "MIME")
@@ -197,6 +199,7 @@ text_html <- function(
       MIME(
         content,
         disposition,
+        NA,
         charset,
         encoding,
         boundary = NA,
@@ -255,7 +258,7 @@ other <- function(
 
   structure(
     c(
-      MIME(read_bin(filename), disposition, charset, encoding, boundary = NA, type = type, ...),
+      MIME(read_bin(filename), disposition, NA, charset, encoding, boundary = NA, type = type, ...),
       list(
         cid = ifelse(is.na(cid), hexkey(), cid)
       )
@@ -329,7 +332,7 @@ as.character.MIME <- function(x, ...) {
   })
   #
   headers <- list(
-    content_type(type(x), x$charset, x$boundary, x$format),
+    content_type(type(x), x$protocol, x$charset, x$boundary, x$format),
     content_disposition(x$disposition),
     content_transfer_encoding(x$encoding),
     content_language(x$language, x$content),
