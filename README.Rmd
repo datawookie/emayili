@@ -45,12 +45,17 @@ remotes::install_github("datawookie/emayili", ref = "dev")
 
 ## Usage
 
-First create a message object.
+Load the library.
 
 ```{r message=FALSE}
 library(emayili)
-library(magrittr)
 
+packageVersion("emayili")
+```
+
+Create a message object.
+
+```{r}
 email <- envelope()
 ```
 
@@ -91,7 +96,7 @@ Add a subject.
 email <- email %>% subject("This is a plain text message!")
 ```
 
-Add a text body. 
+Add a text body.
 
 ```{r eval=FALSE}
 email <- email %>% text("Hello!")

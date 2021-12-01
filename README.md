@@ -48,12 +48,19 @@ remotes::install_github("datawookie/emayili", ref = "dev")
 
 ## Usage
 
-First create a message object.
+Load the library.
 
 ``` r
 library(emayili)
-library(magrittr)
 
+packageVersion("emayili")
+```
+
+    [1] '0.6.9'
+
+Create a message object.
+
+``` r
 email <- envelope()
 ```
 
@@ -140,13 +147,13 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
-    X-Mailer:                  {emayili}-0.6.6
-    MIME-Version:              1.0
-    From:                      alice@yahoo.com
-    To:                        bob@google.com
-    Cc:                        craig@google.com
-    Subject:                   This is a plain text message!
+    Date:                        Wed, 01 Dec 2021 08:47:49 GMT
+    X-Mailer:                    {emayili}-0.6.9
+    MIME-Version:                1.0
+    From:                        alice@yahoo.com
+    To:                          bob@google.com
+    Cc:                          craig@google.com
+    Subject:                     This is a plain text message!
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -189,13 +196,13 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
-    X-Mailer:                  {emayili}-0.6.6
-    MIME-Version:              1.0
-    Content-Type:              text/plain; charset=utf-8; format=flowed
-    Content-Disposition:       inline
-    Content-Transfer-Encoding: 7bit
-    Content-MD5:               nhjeY5ZYMzru+kSCGUzNKg==
+    Date:                        Wed, 01 Dec 2021 08:47:49 GMT
+    X-Mailer:                    {emayili}-0.6.9
+    MIME-Version:                1.0
+    Content-Type:                text/plain; charset=utf-8; format=flowed
+    Content-Disposition:         inline
+    Content-Transfer-Encoding:   7bit
+    Content-MD5:                 nhjeY5ZYMzru+kSCGUzNKg==
 
     Hello Alice!
 
@@ -213,11 +220,11 @@ envelope() %>%
   )
 ```
 
-    Date:                      Fri, 22 Oct 2021 06:06:03 GMT
-    X-Mailer:                  {emayili}-0.6.6
-    MIME-Version:              1.0
-    Content-Type:              text/html; charset=utf-8
-    Content-Disposition:       inline
+    Date:                        Wed, 01 Dec 2021 08:47:50 GMT
+    X-Mailer:                    {emayili}-0.6.9
+    MIME-Version:                1.0
+    Content-Type:                text/html; charset=utf-8
+    Content-Disposition:         inline
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
     <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
