@@ -17,10 +17,13 @@ content_type <- function(type, protocol, charset, boundary, format = NA, name = 
   )
 }
 
-content_disposition <- function(disposition = NA) {
+content_disposition <- function(disposition = NA, filename = NA) {
   if (is.na(disposition)) {
     NULL
   } else {
+    if (!is.na(filename)) {
+      disposition <- paste(disposition, glue('filename="{filename}"'), sep = "; ")
+    }
     new_header("Content-Disposition", disposition)
   }
 }
