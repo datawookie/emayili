@@ -36,6 +36,14 @@ content_transfer_encoding <- function(encoding = NA) {
   }
 }
 
+content_description <- function(description = NA) {
+  if (is.na(description)) {
+    NULL
+  } else {
+    new_header("Content-Description", description)
+  }
+}
+
 x_attachment_id <- function(cid = NULL) {
   if (is.null(cid)) {
     NULL
