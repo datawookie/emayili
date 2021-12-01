@@ -28,7 +28,7 @@ encrypt_body <- function(content, parties, encrypt, sign) {
   sign <- ifelse(is.null(sign), FALSE, sign)
 
   if (encrypt || sign) {
-    if(!require(gpg, quietly = TRUE)) {
+    if(!requireNamespace("gpg", quietly = TRUE)) {
       stop("Install {gpg} to encrypt and/or sign messages.")
     }
     log_debug("Encrypt message: {msg$encrypt}")
@@ -39,7 +39,7 @@ encrypt_body <- function(content, parties, encrypt, sign) {
     sender <- parties %>% filter(type == "From")
     recipients <- parties %>% anti_join(sender, by = c("type", "email"))
 
-    keys <- gpg_list_keys()
+    keys <- gpg::gpg_list_keys()
 
     missing_keys <- anti_join(recipients, keys, by = "email")
 
@@ -59,15 +59,15 @@ encrypt_body <- function(content, parties, encrypt, sign) {
 
     # Encrypt content from temporary file.
     #
-    encrypted <- gpg_encrypt(TMPFILE, fingerprints)
+    encrypted <- gpg::gpg_encrypt(TMPFILE, fingerprints)
 
     # Delete temporary file.
     #
     unlink(TMPFILE)
 
-    content <- emayili:::multipart_encrypted()
-    content <- emayili:::append.MIME(content, emayili:::application_pgp_encrypted())
-    content <- emayili:::append.MIME(content, emayili:::application_octet_stream(encrypted, disposition = "inline",  filename = "encrypted.asc"))
+    content <- multipart_encrypted()
+    content <- append.MIME(content, application_pgp_encrypted())
+    content <- append.MIME(content, application_octet_stream(encrypted, disposition = "inline",  filename = "encrypted.asc"))
     emayili:::as.character.MIME(content) %>% cat()
   }
 

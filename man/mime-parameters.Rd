@@ -21,6 +21,12 @@ or \code{NULL} for no (or "identity") encoding.}
 language field. If \code{TRUE} then will attempt to auto-detect language.
 Otherwise will use the specified language.}
 
+\item{description}{Description of content.}
+
+\item{name}{Name used when downloading file.}
+
+\item{filename}{Path to a file.}
+
 \item{boundary}{Boundary string.}
 
 \item{type}{The MIME type of the content.}

@@ -6,7 +6,7 @@
 \alias{qp_decode}
 \title{Quoted-Printable encoding}
 \usage{
-qp_encode(x)
+qp_encode(x, crlf = "\\r\\n")
 
 qp_decode(x)
 }

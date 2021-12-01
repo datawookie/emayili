@@ -15,7 +15,8 @@ envelope(
   priority = NULL,
   text = NULL,
   html = NULL,
-  encrypt = FALSE
+  encrypt = FALSE,
+  sign = FALSE
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ envelope(
 \item{html}{See \code{\link[=html]{html()}}.}
 
 \item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
+
+\item{sign}{Whether to sign the message. See \code{\link[=encrypt]{encrypt()}}.}
 }
 \value{
 A message object.

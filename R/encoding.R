@@ -85,6 +85,7 @@ ascii_qp_decoded <- ascii_qp_decoded[ascii_qp_decoded != ""]
 NULL
 
 #' @rdname qp
+#' @param crlf End-of-line characters.
 #'
 #' @export
 #' @examples

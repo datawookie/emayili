@@ -80,7 +80,7 @@ MIME <- function(
   name = NA,
   filename = NA,
   format = NA,
-  boundary = emayili:::hexkey(),
+  boundary = hexkey(),
   type = NA,
   children = list()
 ) {
