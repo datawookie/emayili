@@ -62,9 +62,14 @@ ASCII_QP_DECODED <- c(
 #
 PRINTABLE <- c(seq(33, 61), seq(63, 127))
 
-# Don't encode printable characters.
-ascii_qp_encoded <- ASCII_QP_ENCODED[-PRINTABLE]
-ascii_qp_decoded <- ASCII_QP_DECODED[-PRINTABLE]
+# Indices of carriage return (\r) and line feed (\n).
+#
+CRLF <- c(11, 14)
+
+# Don't encode these characters.
+ascii_qp_encoded <- ASCII_QP_ENCODED[-c(PRINTABLE, CRLF)]
+ascii_qp_decoded <- ASCII_QP_DECODED[-c(PRINTABLE, CRLF)]
+
 # Can't search for empty strings.
 ascii_qp_encoded <- ascii_qp_encoded[ascii_qp_decoded != ""]
 ascii_qp_decoded <- ascii_qp_decoded[ascii_qp_decoded != ""]
@@ -84,31 +89,40 @@ NULL
 #' @export
 #' @examples
 #' qp_encode("Mieux vaut être seul que mal accompagné.")
-qp_encode <- function(x) {
+qp_encode <- function(x, crlf = "\r\n") {
   stopifnot(length(x) == 1)
 
-  x <- x %>%
-    stri_replace_all_fixed(ascii_qp_decoded, ascii_qp_encoded, vectorize_all = FALSE)
+  # Split into lines.
+  x <- stri_split(x, regex = "(\n|\r\n|\n\r)")[[1]]
 
-  xlen = nchar(x)
+  # Encode each line.
+  #
+  x <- stri_replace_all_fixed(x, ascii_qp_decoded, ascii_qp_encoded, vectorize_all = FALSE)
 
-  lhs <- 1
-  breaks <- c()
-  while (TRUE) {
-    rhs <- lhs + MAXLINESIZE - 2
-    # Check if line ends with in middle of encoded symbol.
-    offset <- regexpr("=", substr(x, rhs - 1, rhs))
-    offset <- ifelse(offset == -1, 0, 3 - offset)
-    rhs <- rhs - offset
-    breaks <- c(breaks, rhs)
-    if (rhs >= xlen) break
-    lhs <- rhs + 1
+  find_line_breaks <- function(l) {
+    len = nchar(l)
+
+    lhs <- 1
+    breaks <- c()
+    while (TRUE) {
+      rhs <- lhs + MAXLINESIZE - 2
+      # Check if line ends in middle of encoded symbol.
+      offset <- regexpr("=", substr(l, rhs - 1, rhs))
+      offset <- ifelse(offset == -1, 0, 3 - offset)
+      rhs <- rhs - offset
+      breaks <- c(breaks, rhs)
+      if (rhs >= len) break
+      lhs <- rhs + 1
+    }
+
+    rhs <- breaks
+    lhs <- c(0, breaks[1:length(breaks) - 1]) + 1
+
+    paste(str_sub(l, lhs, rhs), collapse = "=\n")
   }
 
-  rhs <- breaks
-  lhs <- c(0, breaks[1:length(breaks) - 1]) + 1
-
-  paste(str_sub(x, lhs, rhs), collapse = "=\n")
+  lapply(x, find_line_breaks) %>%
+    paste(collapse = crlf)
 }
 
 #' @rdname qp
