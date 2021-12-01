@@ -25,6 +25,7 @@ is.mime <- function(x) {
 #' @param language Langauge of content. If \code{FALSE} then will not include
 #'   language field. If \code{TRUE} then will attempt to auto-detect language.
 #'   Otherwise will use the specified language.
+#' @param name Name used when downloading file.
 #' @param boundary Boundary string.
 #' @param type The MIME type of the content.
 #' @param children List of child MIME objects.
@@ -218,7 +219,6 @@ text_html <- function(
 #' @inheritParams MIME
 #'
 #' @param filename Path to a file.
-#' @param name Name used when downloading file.
 #' @param cid An optional Content-Id.
 #' @param ... Further arguments passed to or from other methods.
 other <- function(
