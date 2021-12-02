@@ -1,4 +1,8 @@
-#' Encrypt message
+#' Encrypt or sign a message
+#'
+#' Specify whether the message should be encrypted, signed or have a public key attached.
+#'
+#' If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the message contents.
 #'
 #' @inheritParams envelope
 #' @inheritParams parties
@@ -6,12 +10,8 @@
 #' @return A message object.
 #' @export
 #'
-#' @examples#'
+#' @examples
 #' \dontrun{
-#' # A WWII D-Day message.
-#' #
-#' # See https://twitter.com/bletchleypark/status/1136490396626800640.
-#' #
 #' msg <- envelope(
 #'   to = "schunk@u-boat.com",
 #'   subject = "Top Secret Message",
@@ -34,6 +34,8 @@ encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
 encrypt_body <- function(content, parties, encrypt, sign, public_key) {
   encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
   sign <- ifelse(is.null(sign), FALSE, sign)
+  print(encrypt)
+  print(sign)
 
   # - Can't encrypt or sign an empty message...
   # - ... unless that message just contains a public key.

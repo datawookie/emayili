@@ -127,8 +127,17 @@ rmarkdown::draft(
 
 if(require("gpg", quietly = TRUE)) {
   log_debug("Setting encryption tests.")
+  print("FOO")
+  message("FOO")
+  cat("FOO")
   gpg_restart(home = tempdir(), silent = TRUE)
+  print("BAR")
+  message("BAR")
+  cat("BAR")
   gpg_keygen(name = "Alice", email = "alice@yahoo.com")
+  print("ZAP")
+  message("ZAP")
+  cat("ZAP")
   gpg_keygen(name = "Bob", email = "bob@gmail.com")
   gpg_keygen(name = "Jim", email = "jim@aol.com")
 } else {

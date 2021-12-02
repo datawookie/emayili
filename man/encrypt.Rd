@@ -2,32 +2,31 @@
 % Please edit documentation in R/encrypt.R
 \name{encrypt}
 \alias{encrypt}
-\title{Encrypt message}
+\title{Encrypt or sign a message}
 \usage{
 encrypt(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE)
 }
 \arguments{
 \item{msg}{A message object.}
 
-\item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
+\item{encrypt}{Whether to encrypt the message. If \code{TRUE} then the entire
+message will be encrypted using the private key of the sender.}
 
-\item{sign}{Whether to sign the message. See \code{\link[=encrypt]{encrypt()}}.}
+\item{sign}{Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.}
 
-\item{public_key}{Whether to public key. See \code{\link[=encrypt]{encrypt()}}.}
+\item{public_key}{Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.}
 }
 \value{
 A message object.
 }
 \description{
-Encrypt message
+Specify whether the message should be encrypted, signed or have a public key attached.
+}
+\details{
+If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the message contents.
 }
 \examples{
-#'
 \dontrun{
-# A WWII D-Day message.
-#
-# See https://twitter.com/bletchleypark/status/1136490396626800640.
-#
 msg <- envelope(
   to = "schunk@u-boat.com",
   subject = "Top Secret Message",
