@@ -18,6 +18,11 @@ test_that("sender address", {
   expect_equal(sender$headers$From$values[[1]], address("bob@gmail.com"))
 })
 
+test_that("maximum one sender address", {
+  expect_error(envelope(from = c("bob@gmail.com", "anne@example.com")))
+  expect_error(envelope() %>% from(c("bob@gmail.com", "anne@example.com")))
+})
+
 test_that("cc", {
   cc <- envelope(cc = "bob@gmail.com")
   expect_equal(cc$headers$Cc$values[[1]], address("bob@gmail.com"))

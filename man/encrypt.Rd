@@ -17,3 +17,18 @@ A message object.
 \description{
 Encrypt message
 }
+\examples{
+#'
+\dontrun{
+# A WWII D-Day message.
+#
+# See https://twitter.com/bletchleypark/status/1136490396626800640.
+#
+msg <- envelope(
+  to = "schunk@u-boat.com",
+  subject = "Top Secret Message",
+  text = "Immediate readiness. There are indications that the invasion has begun."
+)
+msg \%>\% encrypt()
+}
+}

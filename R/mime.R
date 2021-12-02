@@ -153,6 +153,28 @@ multipart_encrypted <- function(
   )
 }
 
+#' Create \code{multipart/signed} MIME object
+#'
+#' @noRd
+#'
+#' @inheritParams MIME
+multipart_signed <- function(
+  ...
+) {
+  structure(
+    c(
+      emayili:::MIME(
+        "This is an OpenPGP/MIME signed message (RFC 4880 and 3156).",
+        protocol = "application/pgp-signature",
+        type = 'multipart/signed; micalg="pgp-sha256"',
+        ...
+      ),
+      list()
+    ),
+    class = c("multipart_signed", "MIME")
+  )
+}
+
 application_pgp_encrypted <- function(
   content = "Version: 1",
   ...
@@ -169,6 +191,50 @@ application_pgp_encrypted <- function(
       list()
     ),
     class = c("application_pgp_encrypted", "MIME")
+  )
+}
+
+application_pgp_signature <- function(
+  content,
+  ...
+) {
+  structure(
+    c(
+      emayili:::MIME(
+        content,
+        type = "application/pgp-signature",
+        description = "OpenPGP digital signature",
+        name = "signature.asc",
+        filename = "signature.asc",
+        disposition = "attachment",
+        boundary = NA,
+        ...
+      ),
+      list()
+    ),
+    class = c("application_pgp_signature", "MIME")
+  )
+}
+
+application_pgp_keys <- function(
+  content,
+  ...
+) {
+  structure(
+    c(
+      emayili:::MIME(
+        content,
+        type = "application/pgp-keys",
+        description = "OpenPGP public key",
+        name = "keys.asc",
+        filename = "keys.asc",
+        disposition = "attachment",
+        boundary = NA,
+        ...
+      ),
+      list()
+    ),
+    class = c("application_pgp_keys", "MIME")
   )
 }
 

@@ -166,8 +166,8 @@ manifest <- function(
 
 # If {memoise} is installed then memoise manifest().
 #
-if (require(memoise, quietly = TRUE)) {
-  manifest <- memoise(manifest)
+if (requireNamespace("memoise", quietly = TRUE)) {
+  manifest <- memoise::memoise(manifest)
 }
 
 #' Render Markdown into email

@@ -32,6 +32,7 @@ globalVariables(
     ".",
     "e1",
     "e2",
+    "fingerprint",
     "msg",
     "runif",
     "detect_language"

@@ -85,7 +85,9 @@ from <- function(msg, addr = NULL) {
   if (is.null(addr)) {
     header_get(msg, "From")
   } else {
-    msg <- header_set(msg, "From", as.address(addr), append = FALSE)
+    addr <- as.address(addr)
+    if (length(addr) > 1) stop("Only one sender address allowed.")
+    msg <- header_set(msg, "From", addr, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }

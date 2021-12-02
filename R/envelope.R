@@ -56,6 +56,7 @@ envelope <- function(
     list(
       headers = list(),
       encrypt = encrypt,
+      sign = sign,
       parts = NULL
     ),
     class="envelope"
@@ -119,16 +120,16 @@ print.envelope <- function(x, details = NA, ...) {
 #' @return A formatted message object.
 as.character.envelope <- function(x, ..., details = TRUE) {
   message <- list(
-    headers(x)
+    emayili:::headers(x)
   )
 
   if (length(x$parts) > 1) {
-    body <- multipart_mixed(children = x$parts)
+    body <- emayili:::multipart_mixed(children = x$parts)
   } else {
     body <- x$parts[[1]]
   }
 
-  body <- encrypt_body(
+  body <- emayili:::encrypt_body(
     body,
     parties(x),
     encrypt = x$encrypt,
@@ -137,22 +138,6 @@ as.character.envelope <- function(x, ..., details = TRUE) {
 
   if (details) {
     message <- c(message, as.character(body))
-  }
-
-  if (x$encrypt) {
-    if(!require(gpg, quietly = TRUE)) {
-      stop("Install {gpg} to encrypt messages.")
-    }
-
-    recipients <- parties(msg)$raw
-
-    gpg_key_list <- gpg_list_keys()
-
-    missing_keys <- setdiff(recipients, gpg_key_list$email)
-
-    if (length(missing_keys)) {
-      stop("Missing public keys for the follow addresses: ", paste(missing_keys, collapse = ", "), ".")
-    }
   }
 
   do.call(paste0, c(list(message), collapse = "\r\n"))

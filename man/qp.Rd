@@ -12,6 +12,8 @@ qp_decode(x)
 }
 \arguments{
 \item{x}{A string for encoding or decoding.}
+
+\item{crlf}{End-of-line characters.}
 }
 \value{
 An encoded string for \code{qp_encode()} or a decoded string for \code{qp_decode()}.
