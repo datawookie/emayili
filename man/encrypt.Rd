@@ -4,12 +4,10 @@
 \alias{encrypt}
 \title{Encrypt message}
 \usage{
-encrypt(msg, sign = TRUE)
+encrypt(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE)
 }
 \arguments{
 \item{msg}{A message object.}
-
-\item{sign}{Whether to sign the message.}
 }
 \value{
 A message object.

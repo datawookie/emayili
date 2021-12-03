@@ -123,6 +123,18 @@ rmarkdown::draft(
   edit = FALSE
 )
 
+# ENCRYPTION -------------------------------------------------------------------
+
+if(require("gpg", quietly = TRUE)) {
+  log_debug("Setting encryption tests.")
+  gpg_restart(home = tempdir(), silent = TRUE)
+  gpg_keygen(name = "Alice", email = "alice@yahoo.com")
+  gpg_keygen(name = "Bob", email = "bob@gmail.com")
+  gpg_keygen(name = "Jim", email = "jim@aol.com")
+} else {
+  log_debug("Not setting up encryption tests because {gpg} not installed.")
+}
+
 # UTILITY ----------------------------------------------------------------------
 
 skip_if_neither_installed <- function(paks) {

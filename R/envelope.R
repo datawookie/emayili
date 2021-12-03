@@ -16,6 +16,7 @@ is.envelope <- function(x) {
 #' @param html See [html()].
 #' @param encrypt Whether to encrypt the message. See [encrypt()].
 #' @param sign Whether to sign the message. See [encrypt()].
+#' @param public_key Whether to public key. See [encrypt()].
 #'
 #' @return A message object.
 #' @seealso [subject()], [from()], [to()], [cc()], [bcc()] and [reply()].
@@ -50,13 +51,15 @@ envelope <- function(
   text = NULL,
   html = NULL,
   encrypt = FALSE,
-  sign = FALSE
+  sign = FALSE,
+  public_key = FALSE
 ) {
   koevert <- structure(
     list(
       headers = list(),
       encrypt = encrypt,
       sign = sign,
+      public_key = public_key,
       parts = NULL
     ),
     class="envelope"
@@ -129,11 +132,12 @@ as.character.envelope <- function(x, ..., details = TRUE) {
     body <- x$parts[[1]]
   }
 
-  body <- emayili:::encrypt_body(
+  body <- encrypt_body(
     body,
     parties(x),
     encrypt = x$encrypt,
-    sign = x$sign
+    sign = x$sign,
+    public_key = x$public_key
   )
 
   if (details) {

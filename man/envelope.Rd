@@ -16,7 +16,8 @@ envelope(
   text = NULL,
   html = NULL,
   encrypt = FALSE,
-  sign = FALSE
+  sign = FALSE,
+  public_key = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ envelope(
 \item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
 
 \item{sign}{Whether to sign the message. See \code{\link[=encrypt]{encrypt()}}.}
+
+\item{public_key}{Whether to public key. See \code{\link[=encrypt]{encrypt()}}.}
 }
 \value{
 A message object.

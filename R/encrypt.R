@@ -1,7 +1,6 @@
 #' Encrypt message
 #'
 #' @inheritParams parties
-#' @param sign Whether to sign the message.
 #'
 #' @return A message object.
 #' @export
@@ -19,22 +18,27 @@
 #' )
 #' msg %>% encrypt()
 #' }
-encrypt <- function(msg, encrypt = TRUE, sign = TRUE) {
+encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
   encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
   sign <- ifelse(is.null(sign), FALSE, sign)
   stopifnot(is.logical(encrypt) && is.logical(sign))
 
   msg$encrypt <- encrypt
   msg$sign <- sign
+  msg$public_key <- public_key
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
 
-encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRUE) {
+encrypt_body <- function(content, parties, encrypt, sign, public_key) {
   encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
   sign <- ifelse(is.null(sign), FALSE, sign)
 
-  if (encrypt || sign) {
+  # - Can't encrypt or sign an empty message...
+  # - ... unless that message just contains a public key.
+  if ((encrypt || sign) && is.null(content) && !public_key) stop("Can't sign or encrypt an empty message!")
+
+  if (encrypt || sign || public_key) {
     if(!requireNamespace("gpg", quietly = TRUE)) {
       stop("Install {gpg} to encrypt and/or sign messages.")
     }
@@ -44,7 +48,9 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
     parties <- parties %>% select(type, email = raw)
 
     sender <- parties %>% filter(type == "From")
+    if (!nrow(sender)) stop("Can't sign or encrypt without sender!")
     recipients <- parties %>% anti_join(sender, by = c("type", "email"))
+    if (!nrow(recipients)) stop("Can't sign or encrypt without recipients!")
 
     keys <- gpg::gpg_list_keys()
 
@@ -68,24 +74,29 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
 
     TMPFILE <- tempfile()
 
-    # - Sign content from temporary file.
-    # - Write result back to temporary file.
-    #
-    if (sign) {
+    if (sign || public_key) {
       if (!("multipart_mixed" %in% class(content))) {
         log_debug("Convert message to multipart/mixed.")
         content <- emayili:::multipart_mixed(
           children = list(content)
         )
       }
-      if (share_public_key) {
+    }
+
+    if (public_key) {
+      if (public_key) {
         log_debug("Export public key.")
         public_key <- gpg::gpg_export(sender_fingerprint)
         log_debug("Done!")
         log_debug("Append public key.")
         content <- emayili:::append.MIME(content, application_pgp_keys(public_key))
       }
+    }
 
+    # - Sign content from temporary file.
+    # - Write result back to temporary file.
+    #
+    if (sign) {
       log_debug("Write message to {TMPFILE}.")
       cat(emayili:::as.character.MIME(content), file = TMPFILE)
       log_debug("Sign message from {TMPFILE}.")
