@@ -19,12 +19,14 @@
 #' )
 #' msg %>% encrypt()
 #' }
-encrypt <- function(msg, sign = TRUE) {
+encrypt <- function(msg, encrypt = TRUE, sign = TRUE) {
+  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
   sign <- ifelse(is.null(sign), FALSE, sign)
-  stopifnot(is.logical(sign))
+  stopifnot(is.logical(encrypt) && is.logical(sign))
 
-  msg$encrypt <- TRUE
+  msg$encrypt <- encrypt
   msg$sign <- sign
+
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
 
@@ -64,22 +66,7 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
       inner_join(recipients, by = "email") %>%
       pull(fingerprint)
 
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TODO: DON'T USE /TMP
-    # TMPFILE <- tempfile()
-    TMPFILE <- tempfile(tmpdir = "/tmp")
+    TMPFILE <- tempfile()
 
     # - Sign content from temporary file.
     # - Write result back to temporary file.
@@ -98,25 +85,12 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
         log_debug("Append public key.")
         content <- emayili:::append.MIME(content, application_pgp_keys(public_key))
       }
-      #
-      # log_debug("Create outer multipart/mixed.")
-      # content <- emayili:::multipart_mixed(
-      #   children = list(content)
-      # )
 
       log_debug("Write message to {TMPFILE}.")
       cat(emayili:::as.character.MIME(content), file = TMPFILE)
-      # print(emayili:::as.character.MIME(content))
-      # print(paste(readLines(TMPFILE), collapse = "\n"))
-      print("MAKE COPY")
-      file.copy(TMPFILE, "/tmp/body.txt", overwrite = TRUE)
       log_debug("Sign message from {TMPFILE}.")
       signature <- gpg::gpg_sign(TMPFILE, sender_fingerprint, mode = "detach")
-      print("WRITE SIGNATURE")
-      cat(signature, file = "/tmp/signature.txt")
       log_debug("Done!")
-      # cat(paste(readLines(TMPFILE), collapse = "\n"))
-      # cat(signature)
       log_debug("Add signature.")
       signed <- emayili:::multipart_signed(
         children = list(
@@ -126,55 +100,38 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
       )
       log_debug("Write multipart/signed message to {TMPFILE}.")
       emayili:::as.character.MIME(signed) %>% writeLines(TMPFILE)
+    } else {
+      log_debug("Write message to {TMPFILE}.")
+      emayili:::as.character.MIME(content) %>% writeLines(TMPFILE)
     }
 
-    # THIS WILL NUKE THE SIGNED CONTENT? MAYBE JUST CHECK IF FILE ALREADY EXISTS?
-    # log_debug("Write message to {TMPFILE}.")
-    # emayili:::as.character.MIME(content) %>% writeLines(TMPFILE)
-
-    # # - Encrypt content from temporary file.
-    # # - Write result back to temporary file.
-    # #
-    # if (encrypt) {
-    #   log_debug("Encrypt message from {TMPFILE}.")
-    #   encrypted <- gpg::gpg_encrypt(TMPFILE, recipients_fingerprint)
-    #   log_debug("Done!")
-    #   encrypted <- emayili:::multipart_encrypted(
-    #     children = list(
-    #       emayili:::application_pgp_encrypted(),
-    #       emayili:::application_octet_stream(
-    #         encrypted,
-    #         disposition = "inline",
-    #         filename = "encrypted.asc"
-    #       )
-    #     )
-    #   )
-    #   log_debug("Write multipart/encrypted message to {TMPFILE}.")
-    #   emayili:::as.character.MIME(encrypted) %>% writeLines(TMPFILE)
-    # }
+    # - Encrypt content from temporary file.
+    # - Write result back to temporary file.
+    #
+    if (encrypt) {
+      log_debug("Encrypt message from {TMPFILE}.")
+      encrypted <- gpg::gpg_encrypt(TMPFILE, recipients_fingerprint)
+      log_debug("Done!")
+      encrypted <- emayili:::multipart_encrypted(
+        children = list(
+          emayili:::application_pgp_encrypted(),
+          emayili:::application_octet_stream(
+            encrypted,
+            disposition = "inline",
+            filename = "encrypted.asc"
+          )
+        )
+      )
+      log_debug("Write multipart/encrypted message to {TMPFILE}.")
+      emayili:::as.character.MIME(encrypted) %>% writeLines(TMPFILE)
+    }
 
     log_debug("Read message from {TMPFILE}.")
     content <- read_text(TMPFILE)
 
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
-    # TODO!!
     # Delete temporary file.
     #
-    # unlink(TMPFILE)
+    unlink(TMPFILE)
   }
 
   content
