@@ -220,3 +220,8 @@ smtp_url <- function(host, port, protocol = NA, helo = NA) {
 
   sprintf("%s%s:%d/%s", protocol, host, port, helo)
 }
+
+stop <- function(..., call. = FALSE, domain = NULL) {
+  txt <- glue::glue(...)
+  base::stop(txt, call. = call., domain = domain)
+}

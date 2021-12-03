@@ -23,10 +23,6 @@
 #' @importFrom xfun read_utf8
 NULL
 
-LEVELS_ENCODING <- c("7bit", "quoted-printable", "base64")
-LEVELS_PRIORITY <- c("non-urgent", "normal", "urgent")
-LEVELS_IMPORTANCE <- c("low", "normal", "high")
-
 globalVariables(
   c(
     ".",

@@ -158,15 +158,21 @@ multipart_encrypted <- function(
 #' @noRd
 #'
 #' @inheritParams MIME
+#' @param micalg Message Integrity Check ALGorithm. Valid options are:
+#'   \code{"pgp-sha256"}, \code{"pgp-md5"}, \code{"pgp-sha1"},
+#'   \code{"pgp-ripemd160"}, \code{"pgp-md2"}, \code{"pgp-tiger192"}, and
+#'  \code{"pgp-haval-5-160"}.
 multipart_signed <- function(
+  micalg = "pgp-sha256",
   ...
 ) {
+  if (!(micalg %in% LEVELS_MICALG)) stop('Invalid micalg: "{micalg}".')
   structure(
     c(
       emayili:::MIME(
         "This is an OpenPGP/MIME signed message (RFC 4880 and 3156).",
         protocol = "application/pgp-signature",
-        type = 'multipart/signed; micalg="pgp-sha256"',
+        type = glue('multipart/signed; micalg="{micalg}"'),
         ...
       ),
       list()
