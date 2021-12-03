@@ -235,6 +235,7 @@ application_pgp_keys <- function(
         name = "keys.asc",
         filename = "keys.asc",
         disposition = "attachment",
+        encoding = "quoted-printable",
         boundary = NA,
         ...
       ),

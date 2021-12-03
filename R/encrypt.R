@@ -85,21 +85,20 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
     # - Write result back to temporary file.
     #
     if (sign) {
-      # log_debug("Export public key.")
-      # public_key <- gpg::gpg_export(sender_fingerprint)
-      # log_debug("Done!")
-      # #
       if (!("multipart_mixed" %in% class(content))) {
-        log_debug("- Convert message to multipart/mixed.")
+        log_debug("Convert message to multipart/mixed.")
         content <- emayili:::multipart_mixed(
           children = list(content)
         )
       }
-      # if (share_public_key) {
-      #   log_debug("- Append public key.")
-      #   content <- emayili:::append.MIME(content, application_pgp_keys(public_key))
-      # }
-      # #
+      if (share_public_key) {
+        log_debug("Export public key.")
+        public_key <- gpg::gpg_export(sender_fingerprint)
+        log_debug("Done!")
+        log_debug("Append public key.")
+        content <- emayili:::append.MIME(content, application_pgp_keys(public_key))
+      }
+      #
       # log_debug("Create outer multipart/mixed.")
       # content <- emayili:::multipart_mixed(
       #   children = list(content)
@@ -107,15 +106,17 @@ encrypt_body <- function(content, parties, encrypt, sign, share_public_key = TRU
 
       log_debug("Write message to {TMPFILE}.")
       cat(emayili:::as.character.MIME(content), file = TMPFILE)
-      print(emayili:::as.character.MIME(content))
-      print(paste(readLines(TMPFILE), collapse = "\n"))
-      # file.copy(TMPFILE, "/tmp/body.txt")
+      # print(emayili:::as.character.MIME(content))
+      # print(paste(readLines(TMPFILE), collapse = "\n"))
+      print("MAKE COPY")
+      file.copy(TMPFILE, "/tmp/body.txt", overwrite = TRUE)
       log_debug("Sign message from {TMPFILE}.")
       signature <- gpg::gpg_sign(TMPFILE, sender_fingerprint, mode = "detach")
-      # cat(signature, file = "/tmp/signature.txt")
+      print("WRITE SIGNATURE")
+      cat(signature, file = "/tmp/signature.txt")
       log_debug("Done!")
-      cat(paste(readLines(TMPFILE), collapse = "\n"))
-      cat(signature)
+      # cat(paste(readLines(TMPFILE), collapse = "\n"))
+      # cat(signature)
       log_debug("Add signature.")
       signed <- emayili:::multipart_signed(
         children = list(
