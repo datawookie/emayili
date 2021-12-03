@@ -123,11 +123,11 @@ print.envelope <- function(x, details = NA, ...) {
 #' @return A formatted message object.
 as.character.envelope <- function(x, ..., details = TRUE) {
   message <- list(
-    emayili:::headers(x)
+    headers(x)
   )
 
   if (length(x$parts) > 1) {
-    body <- emayili:::multipart_mixed(children = x$parts)
+    body <- multipart_mixed(children = x$parts)
   } else {
     body <- x$parts[[1]]
   }

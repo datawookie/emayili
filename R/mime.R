@@ -169,7 +169,7 @@ multipart_signed <- function(
   if (!(micalg %in% LEVELS_MICALG)) stop('Invalid micalg: "{micalg}".')
   structure(
     c(
-      emayili:::MIME(
+      MIME(
         "This is an OpenPGP/MIME signed message (RFC 4880 and 3156).",
         protocol = "application/pgp-signature",
         type = glue('multipart/signed; micalg="{micalg}"'),
@@ -206,7 +206,7 @@ application_pgp_signature <- function(
 ) {
   structure(
     c(
-      emayili:::MIME(
+      MIME(
         content,
         type = "application/pgp-signature",
         description = "OpenPGP digital signature",
@@ -228,7 +228,7 @@ application_pgp_keys <- function(
 ) {
   structure(
     c(
-      emayili:::MIME(
+      MIME(
         content,
         type = "application/pgp-keys",
         description = "OpenPGP public key",

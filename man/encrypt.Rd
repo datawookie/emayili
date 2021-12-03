@@ -8,6 +8,12 @@ encrypt(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE)
 }
 \arguments{
 \item{msg}{A message object.}
+
+\item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
+
+\item{sign}{Whether to sign the message. See \code{\link[=encrypt]{encrypt()}}.}
+
+\item{public_key}{Whether to public key. See \code{\link[=encrypt]{encrypt()}}.}
 }
 \value{
 A message object.

@@ -1,5 +1,6 @@
 #' Encrypt message
 #'
+#' @inheritParams envelope
 #' @inheritParams parties
 #'
 #' @return A message object.
@@ -77,7 +78,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     if (sign || public_key) {
       if (!("multipart_mixed" %in% class(content))) {
         log_debug("Convert message to multipart/mixed.")
-        content <- emayili:::multipart_mixed(
+        content <- multipart_mixed(
           children = list(content)
         )
       }
@@ -89,7 +90,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
         public_key <- gpg::gpg_export(sender_fingerprint)
         log_debug("Done!")
         log_debug("Append public key.")
-        content <- emayili:::append.MIME(content, application_pgp_keys(public_key))
+        content <- append.MIME(content, application_pgp_keys(public_key))
       }
     }
 
@@ -98,22 +99,22 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     #
     if (sign) {
       log_debug("Write message to {TMPFILE}.")
-      cat(emayili:::as.character.MIME(content), file = TMPFILE)
+      cat(as.character.MIME(content), file = TMPFILE)
       log_debug("Sign message from {TMPFILE}.")
       signature <- gpg::gpg_sign(TMPFILE, sender_fingerprint, mode = "detach")
       log_debug("Done!")
       log_debug("Add signature.")
-      signed <- emayili:::multipart_signed(
+      signed <- multipart_signed(
         children = list(
           content,
-          emayili:::application_pgp_signature(signature)
+          application_pgp_signature(signature)
         )
       )
       log_debug("Write multipart/signed message to {TMPFILE}.")
-      emayili:::as.character.MIME(signed) %>% writeLines(TMPFILE)
+      as.character.MIME(signed) %>% writeLines(TMPFILE)
     } else {
       log_debug("Write message to {TMPFILE}.")
-      emayili:::as.character.MIME(content) %>% writeLines(TMPFILE)
+      as.character.MIME(content) %>% writeLines(TMPFILE)
     }
 
     # - Encrypt content from temporary file.
@@ -123,10 +124,10 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
       log_debug("Encrypt message from {TMPFILE}.")
       encrypted <- gpg::gpg_encrypt(TMPFILE, recipients_fingerprint)
       log_debug("Done!")
-      encrypted <- emayili:::multipart_encrypted(
+      encrypted <- multipart_encrypted(
         children = list(
-          emayili:::application_pgp_encrypted(),
-          emayili:::application_octet_stream(
+          application_pgp_encrypted(),
+          application_octet_stream(
             encrypted,
             disposition = "inline",
             filename = "encrypted.asc"
@@ -134,7 +135,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
         )
       )
       log_debug("Write multipart/encrypted message to {TMPFILE}.")
-      emayili:::as.character.MIME(encrypted) %>% writeLines(TMPFILE)
+      as.character.MIME(encrypted) %>% writeLines(TMPFILE)
     }
 
     log_debug("Read message from {TMPFILE}.")
