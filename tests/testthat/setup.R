@@ -1,5 +1,6 @@
 library(here)
 library(logger)
+library(dplyr)
 require(htmltools, quietly = TRUE)
 
 log_threshold(ERROR)
@@ -122,46 +123,6 @@ rmarkdown::draft(
   package = "rmarkdown",
   edit = FALSE
 )
-
-# ENCRYPTION -------------------------------------------------------------------
-
-if(require("gpg", quietly = TRUE)) {
-  log_debug("Setting encryption tests.")
-  print("FOO")
-  message("FOO")
-  cat("FOO")
-  gpg_restart(home = tempdir(), silent = TRUE)
-  print("BAR")
-  message("BAR")
-  cat("BAR")
-  #
-  phrases = list(
-    "alice" = rndchar(),
-    "bob" = rndchar(),
-    "jim" = rndchar()
-  )
-  #
-  gpg_keygen(
-    name = "Alice",
-    email = "alice@yahoo.com",
-    passphrase = phrases$alice
-  )
-  print("ZAP")
-  message("ZAP")
-  cat("ZAP")
-  gpg_keygen(
-    name = "Bob",
-    email = "bob@gmail.com",
-    passphrase = phrases$bob
-  )
-  gpg_keygen(
-    name = "Jim",
-    email = "jim@aol.com",
-    passphrase = phrases$jim
-  )
-} else {
-  log_debug("Not setting up encryption tests because {gpg} not installed.")
-}
 
 # UTILITY ----------------------------------------------------------------------
 

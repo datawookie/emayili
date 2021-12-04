@@ -1,4 +1,6 @@
-spelling::spell_check_package()
+library(dplyr)
+
+# spelling::spell_check_package()
 
 devtools::check(cran = TRUE)
 
@@ -15,3 +17,24 @@ devtools::check(
 devtools::check_win_devel()
 
 rhub::check_for_cran()
+
+# Check on macOS.
+#
+rhub::check_for_cran(
+  platforms = rhub::platforms() %>%
+    filter(categories == "macOS") %>%
+    pull(name),
+  env_vars = c(
+    `_R_CHECK_FORCE_SUGGESTS_` = "true",
+    `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "false"
+  )
+)
+
+
+rhub::check_for_cran(
+  platforms = "macos-highsierra-release-cran",
+  env_vars = c(
+    `_R_CHECK_FORCE_SUGGESTS_` = "true",
+    `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "false"
+  )
+)
