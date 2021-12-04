@@ -14,12 +14,14 @@ is.envelope <- function(x) {
 #' @param priority See [priority()].
 #' @param text See [text()].
 #' @param html See [html()].
-#' @param encrypt Whether to encrypt the message. See [encrypt()].
-#' @param sign Whether to sign the message. See [encrypt()].
-#' @param public_key Whether to public key. See [encrypt()].
+#' @param encrypt Whether to encrypt the message. If \code{TRUE} then the entire
+#'   message will be encrypted using the private key of the sender.
+#' @param sign Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.
+#' @param public_key Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.
 #'
 #' @return A message object.
-#' @seealso [subject()], [from()], [to()], [cc()], [bcc()] and [reply()].
+#' @seealso [subject()], [from()], [to()], [cc()], [bcc()], [reply()] and
+#'   [encrypt()].
 #' @export
 #' @examples
 #' # Create an (empty) message object.

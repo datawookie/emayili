@@ -41,11 +41,12 @@ envelope(
 
 \item{html}{See \code{\link[=html]{html()}}.}
 
-\item{encrypt}{Whether to encrypt the message. See \code{\link[=encrypt]{encrypt()}}.}
+\item{encrypt}{Whether to encrypt the message. If \code{TRUE} then the entire
+message will be encrypted using the private key of the sender.}
 
-\item{sign}{Whether to sign the message. See \code{\link[=encrypt]{encrypt()}}.}
+\item{sign}{Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.}
 
-\item{public_key}{Whether to public key. See \code{\link[=encrypt]{encrypt()}}.}
+\item{public_key}{Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.}
 }
 \value{
 A message object.
@@ -73,5 +74,6 @@ envelope(
 )
 }
 \seealso{
-\code{\link[=subject]{subject()}}, \code{\link[=from]{from()}}, \code{\link[=to]{to()}}, \code{\link[=cc]{cc()}}, \code{\link[=bcc]{bcc()}} and \code{\link[=reply]{reply()}}.
+\code{\link[=subject]{subject()}}, \code{\link[=from]{from()}}, \code{\link[=to]{to()}}, \code{\link[=cc]{cc()}}, \code{\link[=bcc]{bcc()}}, \code{\link[=reply]{reply()}} and
+\code{\link[=encrypt]{encrypt()}}.
 }

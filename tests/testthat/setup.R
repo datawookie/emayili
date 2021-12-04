@@ -134,12 +134,31 @@ if(require("gpg", quietly = TRUE)) {
   print("BAR")
   message("BAR")
   cat("BAR")
-  gpg_keygen(name = "Alice", email = "alice@yahoo.com")
+  #
+  phrases = list(
+    "alice" = rndchar(),
+    "bob" = rndchar(),
+    "jim" = rndchar()
+  )
+  #
+  gpg_keygen(
+    name = "Alice",
+    email = "alice@yahoo.com",
+    passphrase = phrases$alice
+  )
   print("ZAP")
   message("ZAP")
   cat("ZAP")
-  gpg_keygen(name = "Bob", email = "bob@gmail.com")
-  gpg_keygen(name = "Jim", email = "jim@aol.com")
+  gpg_keygen(
+    name = "Bob",
+    email = "bob@gmail.com",
+    passphrase = phrases$bob
+  )
+  gpg_keygen(
+    name = "Jim",
+    email = "jim@aol.com",
+    passphrase = phrases$jim
+  )
 } else {
   log_debug("Not setting up encryption tests because {gpg} not installed.")
 }
