@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -93,11 +93,12 @@
 <dt>html</dt>
 <dd><p>See <code><a href="html.html">html()</a></code>.</p></dd>
 <dt>encrypt</dt>
-<dd><p>Whether to encrypt the message. See <code><a href="encrypt.html">encrypt()</a></code>.</p></dd>
+<dd><p>Whether to encrypt the message. If <code>TRUE</code> then the entire
+message will be encrypted using the private key of the sender.</p></dd>
 <dt>sign</dt>
-<dd><p>Whether to sign the message. See <code><a href="encrypt.html">encrypt()</a></code>.</p></dd>
+<dd><p>Whether to sign the message. If <code>TRUE</code> then the entire message will be signed using the private key of the sender.</p></dd>
 <dt>public_key</dt>
-<dd><p>Whether to public key. See <code><a href="encrypt.html">encrypt()</a></code>.</p></dd>
+<dd><p>Whether to attach a public key. If <code>TRUE</code> then the public key of the sender will be attached.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -105,7 +106,8 @@
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="subject.html">subject()</a></code>, <code><a href="addresses.html">from()</a></code>, <code><a href="addresses.html">to()</a></code>, <code><a href="addresses.html">cc()</a></code>, <code><a href="addresses.html">bcc()</a></code> and <code><a href="addresses.html">reply()</a></code>.</p></div>
+    <div class="dont-index"><p><code><a href="subject.html">subject()</a></code>, <code><a href="addresses.html">from()</a></code>, <code><a href="addresses.html">to()</a></code>, <code><a href="addresses.html">cc()</a></code>, <code><a href="addresses.html">bcc()</a></code>, <code><a href="addresses.html">reply()</a></code> and
+<code><a href="encrypt.html">encrypt()</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
@@ -127,8 +129,8 @@
 <span class="r-in">  subject <span class="op">=</span> <span class="st">"Hiya!"</span>,</span>
 <span class="r-in">  text <span class="op">=</span> <span class="st">"Hi Bob, how are you?"</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                        Sun, 05 Dec 2021 05:31:23 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                    {emayili}-0.6.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                        Sun, 05 Dec 2021 05:46:49 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                    {emayili}-0.7.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> To:                          bob@gmail.com</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> From:                        craig@gmail.com</span>
