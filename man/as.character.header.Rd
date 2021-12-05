@@ -4,10 +4,12 @@
 \alias{as.character.header}
 \title{Create formatted header.}
 \usage{
-\method{as.character}{header}(x, ...)
+\method{as.character}{header}(x, width = 28, ...)
 }
 \arguments{
 \item{x}{A header object.}
+
+\item{width}{The width of the head name field.}
 
 \item{...}{Further arguments passed to or from other methods.}
 }

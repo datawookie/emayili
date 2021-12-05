@@ -27,5 +27,5 @@ content_language <- function(language, content) {
       stop("Language must either be a string or TRUE/FALSE.")   # nocov
     }
   }
-  new_header("Content-Language", paste(language, collapse = ", "))
+  header("Content-Language", paste(language, collapse = ", "))
 }

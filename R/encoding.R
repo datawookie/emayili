@@ -64,11 +64,12 @@ PRINTABLE <- c(seq(33, 61), seq(63, 127))
 
 # Indices of carriage return (\r) and line feed (\n).
 #
-CRLF <- c(11, 14)
+LINFEED <- c(11)
+CARRIAGE_RETURN <- c(14)
 
 # Don't encode these characters.
-ascii_qp_encoded <- ASCII_QP_ENCODED[-c(PRINTABLE, CRLF)]
-ascii_qp_decoded <- ASCII_QP_DECODED[-c(PRINTABLE, CRLF)]
+ascii_qp_encoded <- ASCII_QP_ENCODED[-c(PRINTABLE, LINFEED, CARRIAGE_RETURN)]
+ascii_qp_decoded <- ASCII_QP_DECODED[-c(PRINTABLE, LINFEED, CARRIAGE_RETURN)]
 
 # Can't search for empty strings.
 ascii_qp_encoded <- ascii_qp_encoded[ascii_qp_decoded != ""]
@@ -90,7 +91,7 @@ NULL
 #' @export
 #' @examples
 #' qp_encode("Mieux vaut être seul que mal accompagné.")
-qp_encode <- function(x, crlf = "\r\n") {
+qp_encode <- function(x, crlf = CRLF) {
   stopifnot(length(x) == 1)
 
   # Split into lines.

@@ -46,7 +46,7 @@ test_that("squish", {
 test_that("header fields", {
   mime_txt <- other(TXTPATH, disposition = NA)
 
-  expect_match(as.character.MIME(mime_txt), "Content-Type: +text/plain; name=\"[^.]+\\.txt\"\r\nContent-Disposition: +inline; filename=\"[^.]+\\.txt\"\r\nContent-Transfer-Encoding: +base64\r\nX-Attachment-Id: +.*\nContent-ID: +<[^>]+>\r\n")
+  expect_match(as.character.MIME(mime_txt), "Content-Type: +text/plain;[[:space:]]+name=\"[^.]+\\.txt\"\r\nContent-Disposition: +inline;[[:space:]]+filename=\"[^.]+\\.txt\"\r\nContent-Transfer-Encoding: +base64\r\nX-Attachment-Id: +.*\nContent-ID: +<[^>]+>\r\n")
 })
 
 test_that("valid encoding", {

@@ -120,6 +120,6 @@ test_that("html: inject CSS", {
 test_that("Content-Type header", {
   expect_match(
     envelope() %>% text("Hello!") %>% as.character(),
-    "Content-Type: +text/plain; charset=utf-8; format=flowed"
+    "Content-Type: +text/plain;[[:space:]]+charset=utf-8;[[:space:]]+format=flowed"
   )
 })

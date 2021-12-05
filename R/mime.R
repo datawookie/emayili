@@ -172,7 +172,7 @@ multipart_signed <- function(
       MIME(
         "This is an OpenPGP/MIME signed message (RFC 4880 and 3156).",
         protocol = "application/pgp-signature",
-        type = glue('multipart/signed; micalg="{micalg}"'),
+        type = c("multipart/signed", 'micalg="{micalg}"'),
         ...
       ),
       list()

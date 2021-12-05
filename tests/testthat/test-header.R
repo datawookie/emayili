@@ -1,6 +1,6 @@
 test_that("print header", {
   expect_output(
-    print(new_header("Header", "value")),
+    print(header("Header", "value")),
     "Header: +value"
   )
 })

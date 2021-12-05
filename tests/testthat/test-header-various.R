@@ -71,7 +71,7 @@ test_that("keywords", {
 
   expect_match(
     envelope() %>% keywords("Test keyword1, Test keyword2") %>% as.character(),
-    "Test keyword1, Test keyword2"
+    "Test keyword1,[[:space:]]+Test keyword2"
   )
 
   msg <- envelope() %>% keywords(c("Test keyword1, Test keyword2"))
@@ -79,6 +79,6 @@ test_that("keywords", {
 
   expect_match(
     envelope() %>% keywords(c("Test keyword1, Test keyword2")) %>% as.character(),
-    "Test keyword1, Test keyword2"
+    "Test keyword1,[[:space:]]+Test keyword2"
   )
 })
