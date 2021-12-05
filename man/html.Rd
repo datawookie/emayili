@@ -74,5 +74,5 @@ if (requireNamespace("htmltools", quietly = TRUE)) {
 }
 }
 \seealso{
-\code{\link{text}}
+\code{\link{text}}, \code{\link{render}}
 }

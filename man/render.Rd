@@ -115,3 +115,6 @@ if (suitable_pandoc) {
 # Cleanup.
 file.remove(filename)
 }
+\seealso{
+\code{\link{text}}, \code{\link{html}}
+}

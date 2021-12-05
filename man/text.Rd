@@ -72,5 +72,5 @@ print(msg, details = TRUE)
 msg <- envelope() \%>\% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
 }
 \seealso{
-\code{\link{html}}
+\code{\link{html}}, \code{\link{render}}
 }

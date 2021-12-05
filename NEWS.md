@@ -1,7 +1,19 @@
+# {emayili} 0.7.0
+
+* Added full support for GPG signed and encrypted messages. (issue #84)
+
+# {emayili} 0.6.9
+
+* Added initial support for GPG signed and encrypted messages.
+
+# {emayili} 0.6.8
+
+* Added tests for `{Microsoft365R}` compatibility.
+
 # {emayili} 0.6.7
 
 * Added `request_receipt_read()`.
-* Added support for `{htmltools}` `tagList` and vector of 
+* Added support for `{htmltools}` `tagList` and vector of
   characters in `html()`. (@colinfay, issue #92)
 
 # {emayili} 0.6.6
