@@ -30,6 +30,9 @@ rhub::check_for_cran(
   )
 )
 
+# Try this one instead?
+#
+rhub::check(platform = c("macos-highsierra-release"))
 
 rhub::check_for_cran(
   platforms = "macos-highsierra-release-cran",

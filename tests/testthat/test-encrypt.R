@@ -21,7 +21,7 @@ gpg_keygen(name = "Jim", email = "jim@aol.com")
 #
 # The keys should all be RSA.
 #
-stopifnot(all(gpg_list_keys() %>% pull(algo) == "RSA"))
+stopifnot(all(gpg_list_keys() %>% pull(algo) %in% c("RSA", "EdDSA")))
 
 test_that("sign/encrypt empty message", {
   msg <- envelope(
