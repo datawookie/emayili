@@ -34,8 +34,6 @@ encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
 encrypt_body <- function(content, parties, encrypt, sign, public_key) {
   encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
   sign <- ifelse(is.null(sign), FALSE, sign)
-  print(encrypt)
-  print(sign)
 
   # - Can't encrypt or sign an empty message...
   # - ... unless that message just contains a public key.

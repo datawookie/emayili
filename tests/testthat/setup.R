@@ -1,7 +1,9 @@
-library(here)
-library(logger)
-library(dplyr)
-require(htmltools, quietly = TRUE)
+suppressPackageStartupMessages({
+  library(here)
+  library(logger)
+  library(dplyr)
+  require(htmltools, quietly = TRUE)
+})
 
 log_threshold(ERROR)
 
