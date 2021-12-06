@@ -122,7 +122,8 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     #
     if (encrypt) {
       log_debug("Encrypt message from {TMPFILE}.")
-      encrypted <- gpg::gpg_encrypt(TMPFILE, recipients_fingerprint)
+      # Don't sign here because signature is handled separately.
+      encrypted <- gpg::gpg_encrypt(TMPFILE, recipients_fingerprint, signer = NULL)
       log_debug("Done!")
       encrypted <- multipart_encrypted(
         children = list(
