@@ -1,33 +1,20 @@
 skip_on_ci()
-# skip_if_not(
-#   interactive(),
-#   "{Microsoft365R} tests skipped (not interactive session)."
-# )
 skip_if_not(
   require(Microsoft365R, quietly=TRUE),
   "{Microsoft365R} tests skipped (package not available)."
 )
 
+# To run these tests you'll need to first authenticate. This is done by running
+# the following command in an interactive session.
+#
+# It might also help to login to a Microsoft account (https://login.live.com/).
+
+outlook <- get_personal_outlook()
+
 from_addr <- "anne@example.com"
 to_addr <- "bob@example.com"
 cc_addr <- "jane@example.com"
 bcc_addr <- "rex@example.com"
-
-# require(AzureAuth)
-# scopes <- c(
-#   file.path("https://graph.microsoft.com", c("Mail.Send", "Mail.ReadWrite", "User.Read")),
-#   "openid",
-#   "offline_access"
-# )
-# token <- get_azure_token(
-#   scopes,
-#   "consumers",
-#   "d44a05d5-c6a5-4bbb-82d2-443123722380",
-#   version = 2
-# )
-# outlook <- get_personal_outlook(token = token)
-
-outlook <- get_personal_outlook()
 
 msg <- envelope(
   to = to_addr,
