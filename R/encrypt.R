@@ -20,13 +20,13 @@
 #' msg %>% encrypt()
 #' }
 encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
-  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)
+  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)           # nocov start
   sign <- ifelse(is.null(sign), FALSE, sign)
   stopifnot(is.logical(encrypt) && is.logical(sign))
 
   msg$encrypt <- encrypt
   msg$sign <- sign
-  msg$public_key <- public_key
+  msg$public_key <- public_key                                  # nocov end
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
@@ -41,7 +41,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
 
   if (encrypt || sign || public_key) {
     if(!requireNamespace("gpg", quietly = TRUE)) {
-      stop("Install {gpg} to encrypt and/or sign messages.")
+      stop("Install {gpg} to encrypt and/or sign messages.")    # nocov
     }
     log_debug("Encrypt message: {encrypt}")
     log_debug("Sign message:    {sign}")
@@ -55,10 +55,10 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
 
     keys <- gpg::gpg_list_keys()
 
-    missing_keys <- anti_join(recipients, keys, by = "email")
+    missing_keys <- anti_join(parties, keys, by = "email")
 
     if (nrow(missing_keys)) {
-      stop("Missing public keys for the follow addresses: ", paste(missing_keys$email, collapse = ", "), ".")
+      stop("Missing keys for the follow addresses: ", paste(missing_keys$email, collapse = ", "), ".")
     }
 
     # Get the fingerprints of the senders' keys.
@@ -77,10 +77,15 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
 
     if (sign || public_key) {
       if (!("multipart_mixed" %in% class(content))) {
-        log_debug("Convert message to multipart/mixed.")
-        content <- multipart_mixed(
-          children = list(content)
-        )
+        if (is.null(content)) {
+          log_debug("Create empty multipart/mixed.")
+          content <- multipart_mixed()
+        } else {
+          log_debug("Convert message to multipart/mixed.")
+          content <- multipart_mixed(
+            children = list(content)
+          )
+        }
       }
     }
 
