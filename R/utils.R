@@ -44,10 +44,11 @@ compare <- function(lhs, rhs) {
 #'
 #' @return A character vector
 read_text <- function(path, collapse = "\n") {
-  map_chr(path, function(p) {
-    if (!file.exists(p)) stop("Unable to find file: ", p, ".")
-    readChar(p, file.info(p)$size)
+  map(path, function(p) {
+    if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
+    readLines(p)
   }) %>%
+    unlist()%>%
     str_c(collapse = collapse)
 }
 
