@@ -17,7 +17,7 @@ check_message_body <- function(content) {
 #' @param msg A message object.
 #'
 #' @return A message object.
-#' @seealso \code{\link{html}}
+#' @seealso \code{\link{html}}, \code{\link{render}}
 #'
 #' @export
 #' @examples
@@ -97,7 +97,7 @@ list_to_char <- function(content) {
 #' @inheritParams text
 #' @param css_files Extra CSS files.
 #' @return A message object.
-#' @seealso \code{\link{text}}
+#' @seealso \code{\link{text}}, \code{\link{render}}
 #' @export
 #' @examples
 #' # Inline HTML message.

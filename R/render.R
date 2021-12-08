@@ -200,6 +200,7 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' @param include_css Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS; \code{"highlight"} — highlight.js CSS).
 #'
 #' @return A message object.
+#' @seealso \code{\link{text}}, \code{\link{html}}
 #' @export
 #'
 #' @examples
