@@ -101,3 +101,7 @@ test_that("order doesn't matter", {
     NA
   )
 })
+
+test_that("invalid hash algorithm", {
+  expect_error(multipart_signed(micalg = "pgp-sha0"))
+})

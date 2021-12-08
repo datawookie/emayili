@@ -30,14 +30,14 @@ rhub::check_for_cran(
   )
 )
 
-# Try this one instead?
+# # Try this one instead?
+# #
+# rhub::check(platform = c("macos-highsierra-release"))
 #
-rhub::check(platform = c("macos-highsierra-release"))
-
-rhub::check_for_cran(
-  platforms = "macos-highsierra-release-cran",
-  env_vars = c(
-    `_R_CHECK_FORCE_SUGGESTS_` = "true",
-    `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "false"
-  )
-)
+# rhub::check_for_cran(
+#   platforms = "macos-highsierra-release-cran",
+#   env_vars = c(
+#     `_R_CHECK_FORCE_SUGGESTS_` = "true",
+#     `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "false"
+#   )
+# )

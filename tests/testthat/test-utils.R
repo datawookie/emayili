@@ -34,3 +34,8 @@ test_that("base64 encoding with non-file input", {
   expect_equal(emayili:::mime_base64encode("Hello!"), "SGVsbG8h")
   expect_equal(emayili:::mime_base64encode(42), "Kg==")
 })
+
+test_that("compare", {
+  expect_false(all(compare(c(1, 2, 3, 4), c(1, 2, 3, NA))))
+  expect_true(all(compare(c(1, 2, 3, NA), c(1, 2, 3, NA))))
+})
