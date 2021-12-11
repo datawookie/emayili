@@ -43,10 +43,10 @@ compare <- function(lhs, rhs) {
 #'             paths, in which case their content is concatenated.
 #'
 #' @return A character vector
-read_text <- function(path, collapse = "\n") {
+read_text <- function(path, encoding = "UTF-8", collapse = "\n") {
   map(path, function(p) {
     if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
-    readLines(p)
+    readLines(p, encoding = encoding, warn = FALSE)
   }) %>%
     unlist()%>%
     str_c(collapse = collapse)
