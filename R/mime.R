@@ -375,8 +375,7 @@ other <- function(
   ...
 ) {
   charset <- NA
-  basename <- basename(filename)
-  name <- ifelse(is.na(name), basename, name)
+  if (is.na(name)) name <- basename(filename)
 
   if (!is.na(type)) {
     # Could use mime::mimemap to map from specific extensions to MIME types,
@@ -387,7 +386,7 @@ other <- function(
   } else {
     type <- guess_type(filename, empty = "application/octet-stream")
   }
-  type <- glue('{type}; name="{name}"')
+  type <- glue('{type}; name{parameter_value_encode(name)}')
 
   if (is.na(disposition)) {
     disposition <- ifelse(
