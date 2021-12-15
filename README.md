@@ -56,7 +56,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.0'
+    [1] '0.7.1'
 
 Create a message object.
 
@@ -147,8 +147,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                        Sun, 12 Dec 2021 13:15:41 GMT
-    X-Mailer:                    {emayili}-0.7.0
+    Date:                        Wed, 15 Dec 2021 07:37:17 GMT
+    X-Mailer:                    {emayili}-0.7.1
     MIME-Version:                1.0
     From:                        alice@yahoo.com
     To:                          bob@google.com
@@ -196,8 +196,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                        Sun, 12 Dec 2021 13:15:41 GMT
-    X-Mailer:                    {emayili}-0.7.0
+    Date:                        Wed, 15 Dec 2021 07:37:17 GMT
+    X-Mailer:                    {emayili}-0.7.1
     MIME-Version:                1.0
     Content-Type:                text/plain;
                                   charset=utf-8;
@@ -222,8 +222,8 @@ envelope() %>%
   )
 ```
 
-    Date:                        Sun, 12 Dec 2021 13:15:41 GMT
-    X-Mailer:                    {emayili}-0.7.0
+    Date:                        Wed, 15 Dec 2021 07:37:17 GMT
+    X-Mailer:                    {emayili}-0.7.1
     MIME-Version:                1.0
     Content-Type:                text/html;
                                   charset=utf-8

@@ -1,3 +1,7 @@
+# {emayili} 0.7.1
+
+* Fix encoding of non-ASCII characters in MIME headers.
+
 # {emayili} 0.7.0
 
 * Added full support for GPG signed and encrypted messages. (issue #84)
