@@ -75,7 +75,9 @@
 
 <span class="fu">sendinblue</span><span class="op">(</span><span class="va">username</span>, <span class="va">password</span>, <span class="va">...</span><span class="op">)</span>
 
-<span class="fu">mailersend</span><span class="op">(</span><span class="va">username</span>, <span class="va">password</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu">mailersend</span><span class="op">(</span><span class="va">username</span>, <span class="va">password</span>, <span class="va">...</span><span class="op">)</span>
+
+<span class="fu">smtpbucket</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -148,6 +150,14 @@ SMTP username and password under Domains. See <a href="https://www.mailersend.co
 that all messages have at minimum a valid subject and either text or HTML
 content.</p>
     </div>
+    <div id="smtp-bucket">
+    <h2>SMTP Bucket</h2>
+    
+
+
+<p>SMTP Bucket is a fake SMTP server that captures all the messagfes it receives
+and makes them available through a website or REST API.</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -217,6 +227,9 @@ content.</p>
 <span class="r-in">  username <span class="op">=</span> <span class="st">"NS_Pf3ALM@gmail.com"</span>,</span>
 <span class="r-in">  password <span class="op">=</span> <span class="st">"e5ATWLlTnWWDaKeE"</span></span>
 <span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># SMTP Bucket server.</span></span>
+<span class="r-in"><span class="va">smtp</span> <span class="op">&lt;-</span> <span class="fu">smtpbucket</span><span class="op">(</span><span class="op">)</span></span>
 </code></pre></div>
     </div>
   </div>
