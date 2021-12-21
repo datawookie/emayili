@@ -21,7 +21,7 @@ parties <- function(msg) {
   map_dfr(c("From", "To", "Cc", "Bcc"), function(type) {
     tibble(
       type,
-      address = msg$headers[type]
+      address = map(msg$headers[type], unclass)
     )
   }) %>%
     hoist(address, "values") %>%
