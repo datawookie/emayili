@@ -7,6 +7,7 @@
 \alias{mailgun}
 \alias{sendinblue}
 \alias{mailersend}
+\alias{smtpbucket}
 \title{Create a SMTP server object.}
 \usage{
 server(
@@ -32,6 +33,8 @@ mailgun(username, password, ...)
 sendinblue(username, password, ...)
 
 mailersend(username, password, ...)
+
+smtpbucket(...)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -102,6 +105,13 @@ that all messages have at minimum a valid subject and either text or HTML
 content.
 }
 
+\section{SMTP Bucket}{
+
+
+SMTP Bucket is a fake SMTP server that captures all the messagfes it receives
+and makes them available through a website or REST API.
+}
+
 \examples{
 # Set parameters for SMTP server (with username and password).
 smtp <- server(
@@ -169,4 +179,7 @@ smtp <- mailersend(
   username = "NS_Pf3ALM@gmail.com",
   password = "e5ATWLlTnWWDaKeE"
 )
+
+# SMTP Bucket server.
+smtp <- smtpbucket()
 }

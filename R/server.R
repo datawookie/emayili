@@ -298,3 +298,26 @@ mailersend <- function(
 
   eval(fcall, parent.frame())
 }
+
+#' @rdname server
+#'
+#' @section SMTP Bucket:
+#'
+#' SMTP Bucket is a fake SMTP server that captures all the messagfes it receives
+#' and makes them available through a website or REST API.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # SMTP Bucket server.
+#' smtp <- smtpbucket()
+smtpbucket <- function(...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "mail.smtpbucket.com"
+  fcall$port = 8025
+
+  eval(fcall, parent.frame())
+}

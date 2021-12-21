@@ -1,3 +1,7 @@
+# {emayili} 0.7.2
+
+* Add `smtpbucket()` which makes it easy to use SMTP Bucket for testing.
+
 # {emayili} 0.7.1
 
 * Fix encoding of non-ASCII characters in MIME headers.
