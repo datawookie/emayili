@@ -1,11 +1,11 @@
 test_that("to: set/get", {
   msg <- envelope() %>% to("bob@gmail.com")
-  expect_equal(msg$header$To$values[[1]], address("bob@gmail.com"))
-  expect_equal(to(msg)[[1]], address("bob@gmail.com"))
+  expect_equal(msg$header$To$values, address("bob@gmail.com"))
+  expect_equal(to(msg), address("bob@gmail.com"))
 })
 
 test_that("to: set multiple recipients", {
-  recipients <- c(address("bob@gmail.com"), address("alice@yahoo.com"))
+  recipients <- address(c("bob@gmail.com", "alice@yahoo.com"))
 
   expect_equal(
     envelope() %>% to("bob@gmail.com, alice@yahoo.com") %>% to(),

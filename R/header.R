@@ -31,7 +31,7 @@ as.character.header <- function(x, width = 28, ...) {
     FORMAT,
     paste0(x$name, ":"),
     paste(
-      sapply(x$values, as.character),
+      as.character(x$values),
       collapse = x$sep
     )
   )

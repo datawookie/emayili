@@ -1,14 +1,12 @@
 test_that("create address", {
+  addr <- address(
+    c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
+    c("Gerald", "Alice", NA)
+  )
+
   expect_equal(
-    address(
-      c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-      c("Gerald", "Alice", NA)
-    ),
-    c(
-      address("gerry@gmail.com", "Gerald"),
-      address("alice@yahoo.com", "Alice"),
-      address("jim@aol.com")
-    )
+    as.character(addr),
+    c("Gerald <gerry@gmail.com>", "Alice <alice@yahoo.com>", "jim@aol.com")
   )
 })
 
@@ -51,14 +49,6 @@ test_that("parse address", {
 
 test_that("normalise", {
   expect_equal(as.address("     Gerald    <   gerry@gmail.com    >"), address("gerry@gmail.com", "Gerald"))
-})
-
-test_that("full type of vector", {
-  expect_equal(vec_ptype_full(address("alice@yahoo.com", "Alice")), "address")
-})
-
-test_that("abbreviated type of vector", {
-  expect_equal(vec_ptype_abbr(address("alice@yahoo.com", "Alice")), "addr")
 })
 
 test_that("print address", {

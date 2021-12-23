@@ -18,20 +18,30 @@ parties <- function(msg) {
   address <- NULL # nocov
   values <- NULL # nocov
 
-  map_dfr(c("From", "To", "Cc", "Bcc"), function(type) {
+  PARTIES <- c("From", "To", "Cc", "Bcc")
+  #
+  # Retain only populated headers.
+  #
+  PARTIES <- intersect(PARTIES, names(msg$headers))
+
+  map_dfr(PARTIES, function(type) {
     tibble(
       type,
       address = msg$headers[type]
     )
   }) %>%
     hoist(address, "values") %>%
+    mutate(
+      values = map(values, cleave)
+    ) %>%
     unnest(values) %>%
     select(-address) %>%
     rename(address = values) %>%
     mutate(
-      display = display(address),
-      raw = raw(address),
-      local = local(address),
-      domain = domain(address)
+      display = map_chr(address, display),
+      raw = map_chr(address, raw),
+      local = map_chr(address, local),
+      domain = map_chr(address, domain),
+      address = map_chr(address, as.character)
     )
 }

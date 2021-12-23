@@ -18,8 +18,6 @@
 #' @importFrom tools file_ext
 #' @importFrom urltools url_decode
 #' @importFrom utils packageVersion
-#' @importFrom vctrs new_rcrd vec_recycle_common vec_cast_common vec_assert field
-#' @importFrom vctrs vec_ptype_abbr vec_ptype_full
 #' @importFrom xfun read_utf8
 NULL
 
