@@ -7,10 +7,10 @@
 cleave(addr)
 }
 \arguments{
-\item{addr}{}
+\item{addr}{An \code{address} object.}
 }
 \value{
-
+A list of \code{address} objects.
 }
 \description{
 Split into individual addresses

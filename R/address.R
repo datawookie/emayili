@@ -148,7 +148,6 @@ address <- function(
 #' Length of address object
 #'
 #' @param x An \code{address} object.
-#' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A character vector.
 #' @export
@@ -316,9 +315,9 @@ domain <- function(addr) {
 
 #' Split into individual addresses
 #'
-#' @param addr
+#' @param addr An \code{address} object.
 #'
-#' @return
+#' @return A list of \code{address} objects.
 #' @export
 #'
 #' @examples

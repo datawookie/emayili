@@ -8,8 +8,6 @@
 }
 \arguments{
 \item{x}{An \code{address} object.}
-
-\item{...}{Further arguments passed to or from other methods.}
 }
 \value{
 A character vector.
