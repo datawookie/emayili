@@ -68,6 +68,7 @@ Suggests:
     cld3,
     gpg,
     here,
+    jinjar,
     memoise,
     testthat (>= 2.1.0),
     roxygen2,

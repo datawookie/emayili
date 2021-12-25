@@ -15,6 +15,7 @@ TXTPATH <- tempfile(fileext = ".txt")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
+TEMPLATE_NAME <- "letter"
 
 IMG_URL <- "https://cran.r-project.org/Rlogo.svg"
 
@@ -36,7 +37,7 @@ ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
 
 # Start with a blank slate.
 #
-source("teardown-files.R", local = TRUE)
+source("teardown.R", local = TRUE)
 
 # The , sep = "" prevents it from writing an "\n" at the end of the line.
 writeLines(TXTCONTENT, TXTPATH, sep = "")
@@ -123,6 +124,12 @@ smtp_mailersend <- mailersend(
 
 smtp_smtpbucket <- smtpbucket(
 )
+
+# TEMPLATE ---------------------------------------------------------------------
+
+dir.create(TEMPLATE_NAME)
+writeLines("<p>Hello {{ name }}!</p>", file.path(TEMPLATE_NAME, "template.html"))
+writeLines("Hello {{ name }}!", file.path(TEMPLATE_NAME, "template.txt"))
 
 # R MARKDOWN FILE --------------------------------------------------------------
 

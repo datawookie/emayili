@@ -1,5 +1,7 @@
 <html>
   <body>
-    <img src="{ logo_path }">
+    {% if logo %}
+    <img src="{{ logo }}">
+    {% endif %}
   </body>
 </html>
