@@ -1,19 +1,39 @@
-template <- function(msg, name, ..., .envir = NULL) {
-  if(!requireNamespace("gpg", quietly = TRUE)) {
+`%|>%` <- magrittr::pipe_nested
+
+#' Add message body from template
+#'
+#' Variables given as named arguments will override any variables in the
+#' environment with the same name.
+#'
+#' Will probably not get variables from environment if used as part of a
+#' pipeline. In this case might need to use the \code{%|>%} (nested pipe)
+#' operator.
+#'
+#' @param msg A message object.
+#' @param .name A template name.
+#' @param ... Variables for substitution.
+#' @param .envir Environment for substitution.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+template <- function (msg, .name, ..., .envir = parent.frame()) {
+  if(!requireNamespace("jinjar", quietly = TRUE)) {
     stop("Install {jinjar} to to use templates.")    # nocov
   }
 
-  # Override values in environment.
-  env <- as.environment(list(...))
-  # Merge in parent environment (fallback if not defined in ...).
-  parent.env(env) <- ifelse(is.null(.envir), parent.frame(), list2env(.envir))
+  # Convert environment to list.
+  params <- as.list(.envir)
+  # Override values from environment.
+  params <- modifyList(params, list(...))
 
   PATH <- NULL
   for (path in c(
     # Look in relative or absolute path.
-    name,
+    .name,
     # Look in system folder.
-    file.path(system.file(package = "emayili"), "template", name)
+    file.path(system.file(package = "emayili"), "template", .name)
   )) {
     if (dir.exists(path)) {
       PATH <- path
@@ -21,43 +41,21 @@ template <- function(msg, name, ..., .envir = NULL) {
       break
     }
   }
-  if (is.null(PATH)) stop(glue("Unable to find '{name}' template."))
+  if (is.null(PATH)) stop(glue("Unable to find '{.name}' template."))
 
-  # path_html <- file.path(path, "template.html")
-  # path_text <- file.path(path, "template.txt")
-  #
-  # if (!file.exists(path_html)) stop("Unable to find HTML template.")
-  # if (!file.exists(path_text)) stop("Unable to find text template.")
-  #
-  # template_html <- emayili:::read_text(path_html)
-  # template_text <- emayili:::read_text(path_text)
-  #
-  # print("------------------------------------------------------")
-  # print(sapply(ls(env), function(x) get(x, envir = env)))
-  # print("------------------------------------------------------")
-  #
-  # template_html <- glue(template_html, .envir = env)
-  # template_text <- glue(template_text, .envir = env)
-  #
-  # print("HTML")
-  # print(template_html)
-  # print("TEXT")
-  # print(template_text)
+  path_html <- file.path(path, "template.html")
+  path_text <- file.path(path, "template.txt")
+
+  if (!file.exists(path_html)) stop("Unable to find HTML template.")
+  if (!file.exists(path_text)) stop("Unable to find text template.")
+
+  template_html <- emayili:::read_text(path_html)
+  template_text <- emayili:::read_text(path_text)
+
+  template_html <- jinjar::render(template_html, !!!params)
+  template_text <- jinjar::render(template_text, !!!params)
+
+  msg <- msg %>% html(template_html)
+
+  if (get_option_invisible()) invisible(msg) else msg # nocov
 }
-
-# library(dplyr)
-# library(glue)
-#
-# logo_path = "/home/foobar/Downloads/fathom-logo.png"
-#
-# envelope() %>%
-#   template("fud", logo_path = "/home/wookie/Downloads/fathom-logo.png") %>%
-#   as.character(details = TRUE)
-#
-# envelope() %>%
-#   template("branded-letter", logo_path = "/home/wookie/Downloads/fathom-logo.png") %>%
-#   as.character(details = TRUE)
-#
-# envelope() %>%
-#   template("branded-letter") %>%
-#   as.character(details = TRUE)

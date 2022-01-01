@@ -1,7 +1,10 @@
 <html>
   <body>
-    {% if logo %}
+    {% if default(logo, false) %}
     <img src="{{ logo }}">
     {% endif %}
+
+    <p>Dear {{ name }},</p>
+    <p><strong>{{ subject }}</strong></p>
   </body>
 </html>
