@@ -330,13 +330,15 @@ text_html <- function(
     }
   }
 
+  content <- as.character(content)
+
   # Clean up content.
   if (squish) {
     content <- html_squish(content)
   }
 
   # Replace bare line-feeds.
-  content <- drape_linefeed(as.character(content))
+  content <- drape_linefeed(content)
 
   structure(
     c(

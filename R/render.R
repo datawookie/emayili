@@ -155,6 +155,8 @@ manifest <- function(
     # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
     str_replace("<meta[^>]*>", "")
 
+  output <- read_html(output)
+
   output <- text_html(output, squish = squish, css = css, language = language)
 
   if (plain) {
