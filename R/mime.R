@@ -308,7 +308,10 @@ text_html <- function(
   if (squish) {
     content <- html_squish(content)
   }
-  content <- read_html(content)
+  content <- possibly(read_html, otherwise = NULL)(content)
+  if (is.null(content)) {
+    stop("Unable to find HTML file. Did you mean to provide verbatim HTML? Are you missing tags?")
+  }
 
   if (length(css) && !all(is.na(css) | css == "")) {
     css <- css %>%
