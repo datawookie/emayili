@@ -22,8 +22,8 @@ jobs:
         run: |
           R CMD INSTALL .
       - name: Check test coverage
-        run: covr::codecov()
-        shell: Rscript {0}
+        run: |
+          Rscript -e "covr::codecov()" 2>&1 | cat || true
 
   check:
     runs-on: ${{ matrix.config.os }}
