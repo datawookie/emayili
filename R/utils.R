@@ -262,3 +262,7 @@ parameter_value_encode <- function(x){
     return(paste0("*=utf-8''", paste(encoded, collapse = "")))
   }
 }
+
+file.ext <- function(path) {
+  sub(".*\\.", "", basename(path))
+}

@@ -56,13 +56,13 @@ Imports:
     mime,
     purrr,
     rmarkdown,
+    rvest,
     stringi,
     stringr,
     tidyr,
     urltools,
     vctrs,
-    xfun,
-    xml2
+    xfun
 Suggests:
     cld2,
     cld3,

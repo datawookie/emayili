@@ -4,10 +4,11 @@
 #' @import htmltools
 #' @import logger
 #' @import purrr
+#' @import rvest
 #' @import stringr
 #' @import tidyr
 #' @import xml2
-#' @importFrom base64enc base64encode
+#' @importFrom base64enc base64decode base64encode
 #' @importFrom commonmark markdown_html
 #' @importFrom glue glue
 #' @importFrom httr http_date
