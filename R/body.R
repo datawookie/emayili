@@ -201,26 +201,32 @@ html <- function(
     language = language
   )
 
-  related <- multipart_related() %>% append(body)
+  images <- images[!sapply(images, is.null)]
 
-  # TODO: Something similar is done in manifest(). Can we refactor?
+  if (length(images)) {
+    related <- multipart_related() %>% append(body)
 
-  for (path in images) {
-    if (is.null(path)) next
+    # TODO: Something similar is done in manifest(). Can we refactor?
 
-    cid <- hexkey(basename(path))
+    for (path in images) {
+      if (is.null(path)) next
 
-    related <- append(
-      related,
-      other(
-        filename = path,
-        cid = cid,
-        disposition = "inline"
+      cid <- hexkey(basename(path))
+
+      related <- append(
+        related,
+        other(
+          filename = path,
+          cid = cid,
+          disposition = "inline"
+        )
       )
-    )
-  }
+    }
 
-  msg <- append(msg, related)
+    msg <- append(msg, related)
+  } else {
+    msg <- append(msg, body)
+  }
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
