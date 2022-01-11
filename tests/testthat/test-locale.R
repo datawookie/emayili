@@ -1,3 +1,5 @@
+skip_on_ci()
+skip_on_cran()
 skip_on_os(os = c("mac", "windows", "solaris"))
 
 # To ensure that these locales are supported you might need to run this in the
