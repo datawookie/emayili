@@ -32,6 +32,11 @@ CURRENT_LOCALE = Sys.getlocale("LC_CTYPE")
 
 # Spanish
 #
+# Might need to install locale:
+#
+# $ sudo locale-gen es_ES.utf8
+# $ sudo update-locale
+#
 ES_TXT <- "Desde el comité organizador"
 #
 check_render("es_ES.utf8", TRUE, ES_TXT)
