@@ -24,7 +24,8 @@ msg <- envelope(
   bcc = bcc_addr,
   subject = SUBJECT,
   html = HTMLCONTENT
-)
+) %>%
+  attachment(JPGPATH)
 msg_outlook <- outlook$create_email(msg)
 
 test_that("body is correct", {
