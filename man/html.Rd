@@ -9,7 +9,7 @@ html(
   content,
   disposition = "inline",
   charset = "utf-8",
-  encoding = "quoted-printable",
+  encoding = NA,
   css_files = c(),
   language = FALSE,
   interpolate = TRUE,
