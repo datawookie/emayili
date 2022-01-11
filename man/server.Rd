@@ -108,7 +108,7 @@ content.
 \section{SMTP Bucket}{
 
 
-SMTP Bucket is a fake SMTP server that captures all the messagfes it receives
+SMTP Bucket is a fake SMTP server that captures all the messages it receives
 and makes them available through a website or REST API.
 }
 

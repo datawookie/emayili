@@ -14,6 +14,7 @@ test_that("server type", {
   expect_type(smtp_mailgun, "closure")
   expect_type(smtp_sendinblue, "closure")
   expect_type(smtp_mailersend, "closure")
+  expect_type(smtp_smtpbucket, "closure")
 
   skip_if(suppressWarnings(is.na(smtp_gmail)))
   expect_type(smtp_gmail, "closure")

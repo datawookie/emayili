@@ -57,6 +57,30 @@ test_that("html: tagList & vec of html are cast to character", {
   )
 })
 
+test_that("html: Text not HTML", {
+  expect_error(envelope %>% html(TXTCONTENT))
+})
+
+test_that("html: <img> without src", {
+  expect_error(envelope %>% html("<img>"))
+})
+
+test_that("html: <img> from URL", {
+  msg <- envelope() %>% html(glue('<img src="{IMG_URL}">'))
+  expect_match(as.character(msg), '<img src="cid:[0-9a-z]{8}">')
+})
+
+test_that("html: <img> from file", {
+  msg <- envelope() %>% html(glue('<img src="{JPGPATH}">'))
+  expect_match(as.character(msg), '<img src="cid:[0-9a-z]{8}">')
+})
+
+test_that("html: <img> with Base64 encoded content", {
+  img_uri <- dataURI(file = JPGPATH, mime = "image/jpg")
+  msg <- envelope() %>% html(glue('<img src="{img_uri}">'))
+  expect_match(as.character(msg), '<img src="cid:[0-9a-z]{8}">')
+})
+
 test_that("html: HTML from file", {
   expect_true(
     grepl(

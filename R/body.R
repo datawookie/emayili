@@ -209,8 +209,6 @@ html <- function(
     # TODO: Something similar is done in manifest(). Can we refactor?
 
     for (path in images) {
-      if (is.null(path)) next
-
       cid <- hexkey(basename(path))
 
       related <- append(

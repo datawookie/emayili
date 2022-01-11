@@ -1,6 +1,7 @@
 suppressPackageStartupMessages({
   library(here)
   library(dplyr)
+  library(base64enc)
   require(htmltools, quietly = TRUE)
 })
 
@@ -14,6 +15,8 @@ TXTPATH <- tempfile(fileext = ".txt")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
+
+IMG_URL <- "https://cran.r-project.org/Rlogo.svg"
 
 # This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
 #
@@ -111,6 +114,9 @@ smtp_sendinblue <- sendinblue(
 smtp_mailersend <- mailersend(
   username = SMTP_USERNAME_MAILERSEND,
   password = SMTP_PASSWORD_MAILERSEND
+)
+
+smtp_smtpbucket <- smtpbucket(
 )
 
 # R MARKDOWN FILE --------------------------------------------------------------

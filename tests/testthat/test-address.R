@@ -17,6 +17,15 @@ test_that("create address from local and domain", {
   )
 })
 
+test_that("unable to recycle", {
+  expect_error(
+    address(
+      email = c("bob@gmail.com", "alice@yahoo.com"),
+      display = c("Bob", "Alice", "Jim")
+    )
+  )
+})
+
 test_that("mandatory arguments", {
   expect_error(address())
   expect_error(address(NA, "Bob"))
@@ -58,6 +67,7 @@ test_that("print address", {
 test_that("address operators", {
   expect_true(address("alice@yahoo.com", "Alice") == address("alice@yahoo.com", "Alice"))
   expect_true(address("alice@yahoo.com", "Alice") == "Alice <alice@yahoo.com>")
+  expect_true("Alice <alice@yahoo.com>" == address("alice@yahoo.com", "Alice"))
   expect_true(address("alice@yahoo.com", "Alice") == address("alice@yahoo.com", "Gerald"))
   expect_true(address("alice@yahoo.com", "Alice") != address("bob@gmail.com", "Bob"))
   expect_true(address("alice@yahoo.com", "Alice") != address("gerry@gmail.com", "Alice"))
