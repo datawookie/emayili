@@ -51,6 +51,7 @@ Imports:
     glue,
     htmltools,
     httr,
+    logger,
     magrittr,
     mime,
     purrr,
@@ -60,7 +61,6 @@ Imports:
     stringr,
     tidyr,
     urltools,
-    vctrs,
     xfun,
     xml2
 Suggests:
@@ -68,7 +68,6 @@ Suggests:
     cld3,
     gpg,
     here,
-    logger,
     memoise,
     testthat (>= 2.1.0),
     roxygen2,

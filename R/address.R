@@ -77,8 +77,6 @@ compliant <- function(addr, error = FALSE) {
 #'
 #' Create an \code{address} object which represents an email address.
 #'
-#' Implemented as an \href{https://cran.r-project.org/package=vctrs/vignettes/s3-vector.html}{S3 vector class}.
-#'
 #' @param email Email address.
 #' @param display Display name.
 #' @param local Local part of email address.

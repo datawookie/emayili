@@ -15,15 +15,15 @@ jobs:
       - name: Install Ubuntu dependencies
         run: |
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: covr
       - name: Install package
         run: |
           R CMD INSTALL .
-      - name: Check test coverage
+      - name: Coverage upload
         run: |
-          Rscript -e "covr::codecov()" 2>&1 | cat || true
+          Rscript -e "covr::codecov()"
 
   check:
     runs-on: ${{ matrix.config.os }}
