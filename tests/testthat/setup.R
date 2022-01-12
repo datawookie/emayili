@@ -50,6 +50,11 @@ writeLines(HTMLCONTENT, HTMLPATH)
 
 SUBJECT <- rndchar(36)
 
+ACCENTED_NAME <- "señor-gonzález.csv"
+ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
+
+file.create(ACCENTED_PATH)
+
 # SERVER -----------------------------------------------------------------------
 
 # Using fake SMTP server.

@@ -1,8 +1,3 @@
-ACCENTED_NAME <- "señor-gonzález.csv"
-ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
-
-file.create(ACCENTED_PATH)
-
 test_that("parameter value encoding (unquoted)", {
   expect_equal(parameter_value_encode("Not quoted."), "=\"Not quoted.\"")
 })
@@ -27,5 +22,3 @@ test_that("parameter value encoding (non-ASCII)", {
     fixed = TRUE
   )
 })
-
-file.remove(ACCENTED_PATH)
