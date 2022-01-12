@@ -149,14 +149,6 @@ manifest <- function(
   # Remove all other tags in <head>
   xml_find_all(output, "//head/*") %>% xml_remove()
 
-  output <- as.character(output) %>%
-    # Remove <!DOCTYPE> tag.
-    str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "") %>%
-    # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
-    str_replace("<meta[^>]*>", "")
-
-  output <- read_html(output)
-
   output <- text_html(output, squish = squish, css = css, language = language)
 
   if (plain) {

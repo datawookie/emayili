@@ -290,6 +290,7 @@ text_plain <- function(
 #' @noRd
 #'
 #' @inheritParams MIME
+#' @param content An xml_document object.
 #' @param squish Whether to remove whitespace outside of tags.
 #' @param ... Further arguments passed to or from other methods.
 #'
@@ -336,6 +337,12 @@ text_html <- function(
   if (squish) {
     content <- html_squish(content)
   }
+
+  content <- content %>%
+    # Remove <!DOCTYPE> tag.
+    str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "") %>%
+    # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
+    str_replace("<meta[^>]*>", "")
 
   # Replace bare line-feeds.
   content <- drape_linefeed(content)
