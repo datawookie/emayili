@@ -31,6 +31,9 @@ PLAIN_MARKDOWN_INTERPOLATE <- "Hi {{name}}!"
 
 COLOUR_GLAUCOUS = "#6082b6"
 
+ACCENTED_NAME <- "señor-gonzález.csv"
+ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
+
 # Start with a blank slate.
 #
 source("teardown-files.R", local = TRUE)
@@ -49,9 +52,6 @@ HTMLCONTENT <- "<p>Hello there, stranger!</p>"
 writeLines(HTMLCONTENT, HTMLPATH)
 
 SUBJECT <- rndchar(36)
-
-ACCENTED_NAME <- "señor-gonzález.csv"
-ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
 
 file.create(ACCENTED_PATH)
 
