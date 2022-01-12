@@ -20,7 +20,7 @@ processed as Plain Markdown.'><!-- mathjax --><script src="https://cdnjs.cloudfl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2</span>
       </span>
     </div>
 
@@ -136,14 +136,12 @@ Otherwise will use the specified language.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Render from Markdown in character vector.</span></span>
 <span class="r-in"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">render</span><span class="op">(</span><span class="va">markdown</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in log_debug("Interpreting input as character vector."):</span> could not find function "log_debug"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Create a file containing Markdown</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">markdown</span>, file <span class="op">=</span> <span class="va">filename</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Render from Markdown in file.</span></span>
 <span class="r-in"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">render</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in log_debug("Interpreting input as path to file."):</span> could not find function "log_debug"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Cleanup.</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
@@ -173,7 +171,6 @@ Otherwise will use the specified language.</p></dd>
 <span class="r-in">  <span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">    <span class="fu">render</span><span class="op">(</span><span class="va">filename</span>, include_css <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rmd"</span>, <span class="st">"highlight"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in log_debug("Interpreting input as path to file."):</span> could not find function "log_debug"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Cleanup.</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
