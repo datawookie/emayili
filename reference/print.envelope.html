@@ -72,16 +72,29 @@ option is <code>TRUE</code>.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="text.html">text</a></span><span class="op">(</span><span class="st">"Hello, World!"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in log_debug("Adding first child."):</span> could not find function "log_debug"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in print(msg):</span> object 'msg' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                        Wed, 12 Jan 2022 12:47:11 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                    {emayili}-0.7.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                1.0</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in print(msg, details = TRUE):</span> object 'msg' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                        Wed, 12 Jan 2022 12:47:11 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                    {emayili}-0.7.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Content-Type:                text/plain;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               charset=utf-8;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               format=flowed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Content-Disposition:         inline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Content-Transfer-Encoding:   7bit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Content-MD5:                 ZajifYh5KDgxtmS9i38K1A==</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hello, World!</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>envelope_details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in print(msg):</span> object 'msg' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                        Wed, 12 Jan 2022 12:47:11 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                    {emayili}-0.7.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                1.0</span>
 </code></pre></div>
     </div>
   </div>
