@@ -1,6 +1,7 @@
 # {emayili} 0.7.2
 
 * Add `smtpbucket()` which makes it easy to use SMTP Bucket for testing.
+* Images in HTML messages are converted into attachments with CID.
 
 # {emayili} 0.7.1
 
