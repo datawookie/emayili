@@ -340,7 +340,7 @@ text_html <- function(
 
   content <- content %>%
     # Remove <!DOCTYPE> tag.
-    str_replace("[:space:]*<!DOCTYPE html>[:space:]*", "") %>%
+    str_replace("[:space:]*<!DOCTYPE html[^>]*>[:space:]*", "") %>%
     # Remove <meta> tag (a "Content-Type" <meta> inserted by {xml2}).
     str_replace("<meta[^>]*>", "")
 
