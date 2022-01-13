@@ -51,7 +51,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     sender <- parties %>% filter(type == "From")
     if (!nrow(sender)) stop("Can't sign or encrypt without sender!")
     recipients <- parties %>% anti_join(sender, by = c("type", "email"))
-    if (!nrow(recipients)) stop("Can't encrypt without recipients!")
+    if (!nrow(recipients) && encrypt) stop("Can't encrypt without recipients!")
 
     keys <- gpg::gpg_list_keys()
 
