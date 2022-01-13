@@ -51,11 +51,19 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     sender <- parties %>% filter(type == "From")
     if (!nrow(sender)) stop("Can't sign or encrypt without sender!")
     recipients <- parties %>% anti_join(sender, by = c("type", "email"))
-    if (!nrow(recipients)) stop("Can't sign or encrypt without recipients!")
+    if (!nrow(recipients)) stop("Can't encrypt without recipients!")
 
     keys <- gpg::gpg_list_keys()
 
-    missing_keys <- anti_join(parties, keys, by = "email")
+    # Always need to have sender keys (if signing and/or encrypting).
+    missing_keys <- anti_join(sender, keys, by = "email")
+    # Need to have recipient keys if encrypting.
+    if (encrypt) {
+      missing_keys <- rbind(
+        missing_keys,
+        anti_join(recipients, keys, by = "email")
+      )
+    }
 
     if (nrow(missing_keys)) {
       stop("Missing keys for the follow addresses: ", paste(missing_keys$email, collapse = ", "), ".")
