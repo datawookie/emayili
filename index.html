@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.3</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://datawookie.github.io/emayili/" class="external-link">emayili</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"emayili"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.2'</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.3'</span></span></code></pre></div>
 <p>Create a message object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -156,8 +156,8 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>Date<span class="op">:</span><span class="st">                        </span>Wed, <span class="dv">12</span> Jan <span class="dv">2022</span> <span class="dv">17</span><span class="op">:</span><span class="dv">34</span><span class="op">:</span><span class="dv">24</span> GMT</span>
-<span id="cb16-2"><a href="#cb16-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.2</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>Date<span class="op">:</span><span class="st">                        </span>Fri, <span class="dv">14</span> Jan <span class="dv">2022</span> <span class="dv">07</span><span class="op">:</span><span class="dv">39</span><span class="op">:</span><span class="dv">39</span> GMT</span>
+<span id="cb16-2"><a href="#cb16-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.3</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">                </span><span class="fl">1.0</span></span>
 <span id="cb16-4"><a href="#cb16-4"></a>From<span class="op">:</span><span class="st">                        </span>alice<span class="op">@</span>yahoo.com</span>
 <span id="cb16-5"><a href="#cb16-5"></a>To<span class="op">:</span><span class="st">                          </span>bob<span class="op">@</span>google.com</span>
@@ -190,8 +190,8 @@
 
 <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Date<span class="op">:</span><span class="st">                        </span>Wed, <span class="dv">12</span> Jan <span class="dv">2022</span> <span class="dv">17</span><span class="op">:</span><span class="dv">34</span><span class="op">:</span><span class="dv">24</span> GMT</span>
-<span id="cb20-2"><a href="#cb20-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.2</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Date<span class="op">:</span><span class="st">                        </span>Fri, <span class="dv">14</span> Jan <span class="dv">2022</span> <span class="dv">07</span><span class="op">:</span><span class="dv">39</span><span class="op">:</span><span class="dv">39</span> GMT</span>
+<span id="cb20-2"><a href="#cb20-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.3</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">                </span><span class="fl">1.0</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">                </span>text<span class="op">/</span>plain;</span>
 <span id="cb20-5"><a href="#cb20-5"></a>                              charset=utf<span class="dv">-8</span>;</span>
@@ -213,15 +213,14 @@
   <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span>
     <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span>
   <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>Date<span class="op">:</span><span class="st">                        </span>Wed, <span class="dv">12</span> Jan <span class="dv">2022</span> <span class="dv">17</span><span class="op">:</span><span class="dv">34</span><span class="op">:</span><span class="dv">24</span> GMT</span>
-<span id="cb22-2"><a href="#cb22-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.2</span></span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>Date<span class="op">:</span><span class="st">                        </span>Fri, <span class="dv">14</span> Jan <span class="dv">2022</span> <span class="dv">07</span><span class="op">:</span><span class="dv">39</span><span class="op">:</span><span class="dv">39</span> GMT</span>
+<span id="cb22-2"><a href="#cb22-2"></a>X<span class="op">-</span>Mailer<span class="op">:</span><span class="st">                    </span>{emayili}<span class="op">-</span><span class="dv">0</span>.<span class="fl">7.3</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a>MIME<span class="op">-</span>Version<span class="op">:</span><span class="st">                </span><span class="fl">1.0</span></span>
 <span id="cb22-4"><a href="#cb22-4"></a>Content<span class="op">-</span>Type<span class="op">:</span><span class="st">                </span>text<span class="op">/</span>html;</span>
 <span id="cb22-5"><a href="#cb22-5"></a>                              charset=utf<span class="dv">-8</span></span>
 <span id="cb22-6"><a href="#cb22-6"></a>Content<span class="op">-</span>Disposition<span class="op">:</span><span class="st">         </span>inline</span>
 <span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="op">&lt;!</span>DOCTYPE html PUBLIC <span class="st">"-//W3C//DTD HTML 4.0 Transitional//EN"</span> <span class="st">"http://www.w3.org/TR/REC-html40/loose.dtd"</span><span class="op">&gt;</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="er">&lt;</span>html<span class="op">&gt;</span><span class="er">&lt;</span>body<span class="op">&gt;</span><span class="er">&lt;</span>p<span class="op">&gt;</span>Check out <span class="op">&lt;</span>a href=<span class="st">"https://cran.r-project.org/package=emayili"</span><span class="op">&gt;</span><span class="er">&lt;</span>code<span class="op">&gt;</span>{emayili}<span class="op">&lt;</span><span class="er">/</span>code<span class="op">&gt;</span><span class="er">&lt;/</span>a<span class="op">&gt;</span>.<span class="op">&lt;</span><span class="er">/</span>p<span class="op">&gt;</span><span class="er">&lt;/</span>body<span class="op">&gt;</span><span class="er">&lt;/</span>html<span class="op">&gt;</span></span></code></pre></div>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="op">&lt;</span>html<span class="op">&gt;</span><span class="er">&lt;</span>body<span class="op">&gt;</span><span class="er">&lt;</span>p<span class="op">&gt;</span>Check out <span class="op">&lt;</span>a href=<span class="st">"https://cran.r-project.org/package=emayili"</span><span class="op">&gt;</span><span class="er">&lt;</span>code<span class="op">&gt;</span>{emayili}<span class="op">&lt;</span><span class="er">/</span>code<span class="op">&gt;</span><span class="er">&lt;/</span>a<span class="op">&gt;</span>.<span class="op">&lt;</span><span class="er">/</span>p<span class="op">&gt;</span><span class="er">&lt;/</span>body<span class="op">&gt;</span><span class="er">&lt;/</span>html<span class="op">&gt;</span></span></code></pre></div>
 <p>Or R Markdown.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
