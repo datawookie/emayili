@@ -341,6 +341,8 @@ text_html <- function(
   xml_find_all(content, "//script | //link | //meta") %>% xml_remove()
   # - Remove comments.
   xml_find_all(content, "//comment()") %>% xml_remove()
+  # - Remove all other tags in <head>
+  # xml_find_all(output, "//head/*") %>% xml_remove()
 
   # Convert from xml_document to string.
   #

@@ -138,9 +138,6 @@ manifest <- function(
     }
   }
 
-  # Remove all other tags in <head>
-  xml_find_all(output, "//head/*") %>% xml_remove()
-
   output <- text_html(output, squish = squish, css = css, language = language)
 
   if (plain) {
