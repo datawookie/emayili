@@ -112,14 +112,6 @@ manifest <- function(
       css
     )
 
-    # Delete <script>, <link>, <style> and <meta> tags.
-    #
-    xml_find_all(output, "//script | //link | //style | //meta") %>% xml_remove()
-
-    # Remove comments.
-    #
-    xml_find_all(output, "//comment()") %>% xml_remove()
-
     # Convert image links into CID references.
     #
     for (img in xml_find_all(output, "//img")) {

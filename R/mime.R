@@ -290,7 +290,8 @@ text_plain <- function(
 #' @noRd
 #'
 #' @inheritParams MIME
-#' @param content An xml_document object.
+#' @param content An \code{xml_document} object. Will try to coerce to
+#'   \code{xml_document} object
 #' @param squish Whether to remove whitespace outside of tags.
 #' @param ... Further arguments passed to or from other methods.
 #'
@@ -304,6 +305,9 @@ text_html <- function(
   css = NA,
   ...
 ) {
+  if (!("xml_document" %in% class(content))) {
+    content <- read_html(content)
+  }
   if (length(css) && !all(is.na(css) | css == "")) {
     css <- css %>%
       unlist() %>%
@@ -331,6 +335,15 @@ text_html <- function(
     }
   }
 
+  # Clean up HTML content.
+  #
+  # - Delete <script>, <link>, <style> and <meta> tags.
+  xml_find_all(content, "//script | //link | //meta") %>% xml_remove()
+  # - Remove comments.
+  xml_find_all(content, "//comment()") %>% xml_remove()
+
+  # Convert from xml_document to string.
+  #
   content <- as.character(content)
 
   # Clean up content.
