@@ -42,7 +42,6 @@ CURRENT_LOCALE = Sys.getlocale("LC_CTYPE")
 ES_TXT <- "Desde el comité organizador"
 #
 check_render("es_ES.utf8", TRUE, ES_TXT)
-check_render("Spanish", FALSE, ES_TXT)
 
 # Restore locale.
 #
