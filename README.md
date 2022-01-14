@@ -56,7 +56,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.2'
+    [1] '0.7.3'
 
 Create a message object.
 
@@ -147,8 +147,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                        Wed, 12 Jan 2022 17:34:24 GMT
-    X-Mailer:                    {emayili}-0.7.2
+    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     From:                        alice@yahoo.com
     To:                          bob@google.com
@@ -196,8 +196,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                        Wed, 12 Jan 2022 17:34:24 GMT
-    X-Mailer:                    {emayili}-0.7.2
+    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     Content-Type:                text/plain;
                                   charset=utf-8;
@@ -222,14 +222,13 @@ envelope() %>%
   )
 ```
 
-    Date:                        Wed, 12 Jan 2022 17:34:24 GMT
-    X-Mailer:                    {emayili}-0.7.2
+    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     Content-Type:                text/html;
                                   charset=utf-8
     Content-Disposition:         inline
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
     <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
 
 Or R Markdown.

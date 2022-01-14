@@ -1,3 +1,8 @@
+# {emayili} 0.7.3
+
+* Don't require recipient address or recipient keys for signing.
+* Refactor code for attaching images (consolidate for HTML body and rendered).
+
 # {emayili} 0.7.2
 
 * Add `smtpbucket()` which makes it easy to use SMTP Bucket for testing.
