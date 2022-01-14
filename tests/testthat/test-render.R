@@ -51,13 +51,6 @@ test_that("whether to include rendered CSS", {
       as.character(),
     '<style type="text/css">'
   )
-  # Only CSS from highlightjs.
-  expect_match(
-    envelope() %>%
-      render(RMD_TEMPLATE, include_css = "highlight") %>%
-      as.character(),
-    '<style type="text/css">.*\\.hljs-literal'
-  )
   # All CSS.
   expect_match(
     envelope() %>%

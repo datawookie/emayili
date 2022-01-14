@@ -10,7 +10,7 @@ render(
   params = NULL,
   squish = TRUE,
   css_files = c(),
-  include_css = c("rmd", "bootstrap", "highlight"),
+  include_css = c("rmd", "bootstrap"),
   language = FALSE,
   interpolate = TRUE,
   .open = "{{",
@@ -29,7 +29,7 @@ render(
 
 \item{css_files}{Extra CSS files.}
 
-\item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS; \code{"highlight"} — highlight.js CSS).}
+\item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS).}
 
 \item{language}{Langauge of content. If \code{FALSE} then will not include
 language field. If \code{TRUE} then will attempt to auto-detect language.
@@ -109,7 +109,7 @@ suitable_pandoc <- !is.null(pandoc$dir) && grepl("^2", pandoc$version)
 # Render from Rmd file.
 if (suitable_pandoc) {
   msg <- envelope() \%>\%
-    render(filename, include_css = c("rmd", "highlight"))
+    render(filename, include_css = c("rmd", "bootstrap"))
 }
 
 # Cleanup.

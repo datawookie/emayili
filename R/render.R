@@ -83,14 +83,7 @@ manifest <- function(
         str_replace("data:text/css,", "")
     } else NULL,
     # * External CSS in <link> tags.
-    #
-    # This is CSS for:
-    #
-    # - Bootstrap and
-    # - highlight.js.
-    #
-    # Doesn't apply to Plain Markdown.
-    #
+    # - Doesn't apply to Plain Markdown.
     if (exists("input")) {
       external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
         xml_attr("href") %>%
@@ -154,7 +147,7 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' @param input The input Markdown file to be rendered or a character vector of Markdown text.
 #' @param params A list of named parameters that override custom parameters specified in the YAML front-matter.
 #' @param squish Whether to clean up whitespace in rendered document.
-#' @param include_css Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS; \code{"highlight"} — highlight.js CSS).
+#' @param include_css Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS).
 #'
 #' @return A message object.
 #' @seealso \code{\link{text}}, \code{\link{html}}
@@ -201,7 +194,7 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' # Render from Rmd file.
 #' if (suitable_pandoc) {
 #'   msg <- envelope() %>%
-#'     render(filename, include_css = c("rmd", "highlight"))
+#'     render(filename, include_css = c("rmd", "bootstrap"))
 #' }
 #'
 #' # Cleanup.
@@ -212,7 +205,7 @@ render <- function(
   params = NULL,
   squish = TRUE,
   css_files = c(),
-  include_css = c("rmd", "bootstrap", "highlight"),
+  include_css = c("rmd", "bootstrap"),
   language = FALSE,
   interpolate = TRUE,
   .open = "{{",
