@@ -19,7 +19,6 @@ manifest <- function(
     #
     input <- tempfile(fileext = ".Rmd", tmpdir = getwd())
     output <- sub("\\.Rmd", ".html", input)
-    image_path <- file.path(sub("\\.Rmd", "_files", input), "figure-html")
 
     # Clean up rendered artefacts.
     #
@@ -29,8 +28,7 @@ manifest <- function(
     cat(markdown, file = input)
 
     output_format <- html_document(
-      # Inline images don't work with GMail web client.
-      self_contained = FALSE,
+      self_contained = TRUE,
       # Silence pandoc warnings (mostly due to missing document title).
       pandoc_args = "--quiet"
     )

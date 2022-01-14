@@ -1,3 +1,7 @@
+# {emayili} 0.7.4
+
+* Render self-contained HTML from R Markdown.
+
 # {emayili} 0.7.3
 
 * Don't require recipient address or recipient keys for signing.
