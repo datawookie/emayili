@@ -1,4 +1,5 @@
 manifest <- function(
+  msg,
   markdown,
   params = NULL,
   squish = TRUE,
@@ -17,6 +18,8 @@ manifest <- function(
     # files (like CSV) using a relative path.
     #
     input <- tempfile(fileext = ".Rmd", tmpdir = getwd())
+    output <- sub("\\.Rmd", ".html", input)
+    image_path <- file.path(sub("\\.Rmd", "_files", input), "figure-html")
 
     # Clean up rendered artefacts.
     #
@@ -24,9 +27,6 @@ manifest <- function(
 
     # Write input to file.
     cat(markdown, file = input)
-
-    output <- sub("\\.Rmd", ".html", input)
-    image_path <- file.path(sub("\\.Rmd", "_files", input), "figure-html")
 
     output_format <- html_document(
       # Inline images don't work with GMail web client.
@@ -71,25 +71,29 @@ manifest <- function(
 
     # Read output from file.
     output <- read_html(output)
+  }
 
-    # Extract CSS from <link> and <style> tags and append.
+  # Extract CSS from <link> and <style> tags and append.
+  #
+  css <- c(
+    # * Inline CSS in <link> tags.
+    if (any("rmd" == include_css)) {
+      inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
+        xml_attr("href") %>%
+        unlist() %>%
+        url_decode() %>%
+        str_replace("data:text/css,", "")
+    } else NULL,
+    # * External CSS in <link> tags.
     #
-    css <- c(
-      # * Inline CSS in <link> tags.
-      if (any("rmd" == include_css)) {
-        inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-          xml_attr("href") %>%
-          unlist() %>%
-          url_decode() %>%
-          str_replace("data:text/css,", "")
-      } else NULL,
-      # * External CSS in <link> tags.
-      #
-      # This is CSS for:
-      #
-      # - Bootstrap and
-      # - highlight.js.
-      #
+    # This is CSS for:
+    #
+    # - Bootstrap and
+    # - highlight.js.
+    #
+    # Doesn't apply to Plain Markdown.
+    #
+    if (exists("input")) {
       external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
         xml_attr("href") %>%
         map(function(path) {
@@ -101,50 +105,22 @@ manifest <- function(
         }) %>%
         unlist() %>%
         file.path(dirname(input), .) %>%
-        map_chr(read_text),
-      # * Inline CSS in <style> tags.
-      if (any("rmd" == include_css)) {
-        style = xml_find_all(output, "//style") %>%
-          xml_text() %>%
-          unlist()
-      } else NULL,
-      # * Add custom CSS rules last so that it overrides preceding rules.
-      css
-    )
+        map_chr(read_text)
+    } else NULL,
+    # * Inline CSS in <style> tags.
+    if (any("rmd" == include_css)) {
+      style = xml_find_all(output, "//style") %>%
+        xml_text() %>%
+        unlist()
+    } else NULL,
+    # * Add custom CSS rules last so that it overrides preceding rules.
+    css
+  )
 
-    # Convert image links into CID references.
-    #
-    for (img in xml_find_all(output, "//img")) {
-      src <- xml_attr(img, "src")
-      # Check for Base64 encoded inline image.
-      if (!str_detect(src, "^data:image")) {
-        xml_attr(img, "src") <- paste0('cid:', hexkey(basename(src)))
-      }
-    }
+  css_files <- tempfile(fileext = ".css")
+  writeLines(paste(css, collapse = "\n"), css_files)
 
-    body <- multipart_related()
-
-    # Attach images with appropriate CID.
-    #
-    for (image in list.files(image_path, full.names = TRUE)) {
-      body <- append(
-        body,
-        other(
-          filename = image,
-          cid = hexkey(basename(image)),
-          disposition = "inline"
-        )
-      )
-    }
-  }
-
-  output <- text_html(output, squish = squish, css = css, language = language)
-
-  if (plain) {
-    output
-  } else {
-    prepend(body, output)
-  }
+  attach_images(msg, output, disposition = "inline", charset = "utf-8", encoding = NA, css_files, language)
 }
 
 # If {memoise} is installed then memoise manifest().
@@ -267,7 +243,7 @@ render <- function(
       "Valid options for include_css are: ",
       paste(INCLUDE_CSS_OPTIONS, collapse = ", "),
       "."
-      )
+    )
   }
 
   if (is.null(.envir)) .envir = parent.frame()
@@ -292,7 +268,8 @@ render <- function(
 
   attr(markdown, "plain") <- plain
 
-  body <- manifest(
+  msg <- manifest(
+    msg,
     markdown,
     params,
     squish,
@@ -300,8 +277,6 @@ render <- function(
     include_css,
     language
   )
-
-  msg <- append(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }

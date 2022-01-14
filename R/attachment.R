@@ -101,8 +101,6 @@ attach_images <- function(
   if (length(images)) {
     related <- multipart_related() %>% append(body)
 
-    # TODO: Something similar is done in manifest(). Can we refactor?
-
     for (path in images) {
       cid <- hexkey(basename(path))
 
