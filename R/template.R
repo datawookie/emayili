@@ -46,16 +46,42 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   path_html <- file.path(path, "template.html")
   path_text <- file.path(path, "template.txt")
 
-  if (!file.exists(path_html)) stop("Unable to find HTML template.")
-  if (!file.exists(path_text)) stop("Unable to find text template.")
+  if (file.exists(path_html)) {
+    template_html <- emayili:::read_text(path_html)
+    log_debug("Populating HTML template.")
+    template_html <- jinjar::render(template_html, !!!params)
+    log_debug("Done.")
+  } else {
+    template_html <- NULL
+    log_debug("Unable to find HTML template.")
+  }
+  if (file.exists(path_text)) {
+    template_text <- emayili:::read_text(path_text)
+    log_debug("Populating text template.")
+    template_text <- jinjar::render(template_text, !!!params)
+    log_debug("Done.")
+  } else {
+    template_text <- NULL
+    log_debug("Unable to find text template.")
+  }
 
-  template_html <- emayili:::read_text(path_html)
-  template_text <- emayili:::read_text(path_text)
+  if (is.null(template_text) && is.null(template_html)) {
+    stop("Could not find either HTML or text template.")
+  }
+  if (!is.null(template_text) && !is.null(template_html)) {
+    content <- multipart_alternative()
+    content <- append.MIME(content, text_html(template_html))
+    content <- append.MIME(content, text_plain(template_text))
 
-  template_html <- jinjar::render(template_html, !!!params)
-  template_text <- jinjar::render(template_text, !!!params)
-
-  msg <- msg %>% html(template_html)
+    msg <- append(msg, content)
+  } else {
+    if (!is.null(template_html)) {
+      msg <- append(msg, text_html(template_html))
+    }
+    if (!is.null(template_text)) {
+      msg <- append(msg, text_plain(template_html))
+    }
+  }
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }

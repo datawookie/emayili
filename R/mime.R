@@ -121,6 +121,16 @@ multipart_related <- function(...) {
   )
 }
 
+multipart_alternative <- function(...) {
+  structure(
+    c(
+      MIME(...),
+      list()
+    ),
+    class = c("multipart_alternative", "MIME")
+  )
+}
+
 multipart_mixed <- function(...) {
   structure(
     c(
