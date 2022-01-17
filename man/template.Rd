@@ -27,3 +27,28 @@ Will probably not get variables from environment if used as part of a
 pipeline. In this case might need to use the \code{\%|>\%} (nested pipe)
 operator.
 }
+\examples{
+# Use a builtin template.
+envelope() \%>\%
+  template(
+    "bootstrap-newsletter",
+    title = "A Sample Newsletter",
+    articles = list(
+      list(
+        "title" = "Article (with date)",
+        "content" = as.list(stri_rand_lipsum(7)),
+        "date" = "1 January 2022"
+      ),
+      list(
+        "title" = "Another Article (without date)",
+        "content" = as.list(stri_rand_lipsum(5)),
+        "date" = "3 January 2022"
+      )
+    )
+  )
+# Use a custom local template.
+\dontrun{
+envelope() \%>\%
+  template("./templates/custom-template")
+}
+}

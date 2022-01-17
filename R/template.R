@@ -18,6 +18,29 @@
 #' @export
 #'
 #' @examples
+#' # Use a builtin template.
+#' envelope() %>%
+#'   template(
+#'     "bootstrap-newsletter",
+#'     title = "A Sample Newsletter",
+#'     articles = list(
+#'       list(
+#'         "title" = "Article (with date)",
+#'         "content" = as.list(stri_rand_lipsum(7)),
+#'         "date" = "1 January 2022"
+#'       ),
+#'       list(
+#'         "title" = "Another Article (without date)",
+#'         "content" = as.list(stri_rand_lipsum(5)),
+#'         "date" = "3 January 2022"
+#'       )
+#'     )
+#'   )
+#' # Use a custom local template.
+#' \dontrun{
+#' envelope() %>%
+#'   template("./templates/custom-template")
+#' }
 template <- function (msg, .name, ..., .envir = parent.frame()) {
   if(!requireNamespace("jinjar", quietly = TRUE)) {
     stop("Install {jinjar} to to use templates.")    # nocov
@@ -48,7 +71,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
 
   if (file.exists(path_html)) {
     template_html <- emayili:::read_text(path_html)
-    log_debug("Populating HTML template.")
+    log_debug("Found HTML template. Populating...")
     template_html <- jinjar::render(template_html, !!!params)
     log_debug("Done.")
   } else {
@@ -57,7 +80,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   }
   if (file.exists(path_text)) {
     template_text <- emayili:::read_text(path_text)
-    log_debug("Populating text template.")
+    log_debug("Found text template. Populating...")
     template_text <- jinjar::render(template_text, !!!params)
     log_debug("Done.")
   } else {

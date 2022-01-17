@@ -1,1 +1,0 @@
-LOGO: {logo_path}
