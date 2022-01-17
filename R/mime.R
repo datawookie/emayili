@@ -357,6 +357,9 @@ text_html <- function(
     }
   }
 
+  # Replace CSS @import content.
+  content <- css_import(content)
+
   # Convert from xml_document to string.
   #
   content <- as.character(content)
