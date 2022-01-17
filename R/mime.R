@@ -324,11 +324,9 @@ text_html <- function(
   # - Delete <script>, <link>, <style> and <meta> tags. There might be multiple
   #   <style> tags in the original document. Remove all of those and then add
   #   back a single consolidated <style> tag.
-  xml_find_all(content, "//script | //link | //style | //meta") %>% xml_remove()
+  xml_find_all(content, "//script | //meta") %>% xml_remove()
   # - Remove comments.
   xml_find_all(content, "//comment()") %>% xml_remove()
-  # - Remove all other tags in <head>
-  xml_find_all(content, "//head/*") %>% xml_remove()
 
   if (length(css) && !all(is.na(css) | css == "")) {
     css <- css %>%
