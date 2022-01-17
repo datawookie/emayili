@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Bootstrap Newsletter</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -105,7 +106,7 @@
               <div class="mb-1 text-muted">{{ card.date }}</div>
               <p class="card-text mb-auto">{{ card.text }}</p>
             </div>
-            <img class="card-img-right flex-auto d-none d-md-block" style="width: 200px; height: 250px;" src="{{ card.image }}">
+            <img class="card-img-right flex-auto d-none d-md-block" style="width: 200px; height: 250px;" src="{{ card.image.url }}" alt="{{ card.image.alt }}">
           </div>
         </div>
         {% endfor %}
