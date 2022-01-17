@@ -1,0 +1,162 @@
+<!-- Template based on https://getbootstrap.com/docs/4.0/examples/blog/. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Newsletter</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+    body {
+      font-family: "Roboto";
+      font-weight: 300;
+      font-size: 16px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      text-decoration: none;
+      line-height: 1.2;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-size: 1.75rem;
+    }
+    .jumbo {
+      color: #ffffff !important;
+      background-color: rgb(52, 58, 64);
+      border-radius: 4px;
+      padding: 45px;
+      margin-bottom: 30px;
+    }
+    .jumbo h1 {
+      font-size: 3.5rem;
+      font-style: italic;
+      margin: 0;
+    }
+    .jumbo p {
+      font-size: 1.25rem;
+      margin-bottom: 0;
+    }
+    .container {
+      margin: 0 250px;
+    }
+    .row {
+      font-size: 0;
+    }
+    .row > .posts {
+      width: 75%;
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: 16px;
+      padding: 10px;
+    }
+    .row > .aside {
+      width: 25%;
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 16px;
+      padding: 10px;
+    }
+    .row > .col {
+      font-size: 16px;
+      width: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 10px;
+      vertical-align: top;
+    }
+    .card {
+    }
+    .card-body {
+      overflow: hidden;
+    }
+    .card-body strong {
+      color: rgb(0, 123, 255);
+    }
+    .date {
+      color: rgb(108, 117, 125);
+    }
+    .card-img {
+      float: right;
+      margin-left: 10px;
+    }
+    .aside ul, .aside li {
+      list-style: none;
+      list-style-position: inside;
+      padding-left: 0;
+      margin-left: 0 !important;
+    }
+    footer p {
+      font-size: 16px;
+      text-align: right;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+      </header>
+      <div class="jumbo">
+        <h1>{{ default(jumbo_title, "Default Title") }}</h1>
+        {% if exists("jumbo_text") %}
+        <p>{{ jumbo_text }}</p>
+        {% endif %}
+      </div>
+      {% if exists("cards") %}
+      <div class="row">
+        {% for card in cards %}
+        <div class="col">
+          <div class="card">
+            <img class="card-img" style="width: 200px; height: 250px;" src="{{ card.image.url }}" alt="{{ card.image.alt }}">
+            <div class="card-body">
+              <strong>{{ card.category }}</strong>
+              <h3>{{ card.title }}</h3>
+              <div class="date">{{ card.date }}</div>
+              <p>{{ card.text }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <hr>
+      <div class="row">
+        <div class="posts">
+          {% for article in default(articles, []) %}
+          <div class="newsletter-post">
+            <h2 class="newsletter-post-title">{{ article.title }}</h2>
+            <div class="date">{{ article.date }}</div>
+            {% for paragraph in article.content %}
+            <p>{{ paragraph }}</p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="aside">
+          {% if exists("about") %}
+          <div>
+            <h3>About</h3>
+            <p>{{ about }}</p>
+          </div>
+          {% endif %}
+          {% if exists("links") %}
+          <div>
+            <h3>Links</h3>
+            <ul>
+              {% for link in default(links, []) %}
+              <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>Newsletter built with <a href="https://github.com/datawookie/emayili"><code>{emayili}</code></a>.</p>
+      </footer>
+    </div>
+</body>
+</html>
