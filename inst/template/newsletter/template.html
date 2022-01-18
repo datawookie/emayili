@@ -127,7 +127,9 @@
           {% for article in default(articles, []) %}
           <div class="newsletter-post">
             <h2 class="newsletter-post-title">{{ article.title }}</h2>
+            {% if exists("article.date") %}
             <div class="date">{{ article.date }}</div>
+            {% endif %}
             {% for paragraph in article.content %}
             <p>{{ paragraph }}</p>
             {% endfor %}

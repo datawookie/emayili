@@ -108,10 +108,10 @@ manifest <- function(
     css
   )
 
-  css_files <- tempfile(fileext = ".css")
-  writeLines(paste(css, collapse = "\n"), css_files)
+  css_file <- tempfile(fileext = ".css")
+  cat(paste(css, collapse = "\n"), file = css_file)
 
-  attach_images(msg, output, disposition = "inline", charset = "utf-8", encoding = NA, css_files, language)
+  attach_images(msg, output, disposition = "inline", charset = "utf-8", encoding = NA, css_file, language)
 }
 
 # If {memoise} is installed then memoise manifest().
@@ -218,17 +218,19 @@ render <- function(
   stopifnot(is.character(.close))
   stopifnot(!length(css_files) || is.character(css_files))
 
+  # What are permissible options for include_css?
   INCLUDE_CSS_OPTIONS <- eval(formals(render)$include_css)
 
   # Translate Boolean include_css:
   #
   # TRUE  - all CSS
-  # FALSE - no CSS).
+  # FALSE - no CSS
   #
   if (is.logical(include_css) && length(include_css) == 1) {
     include_css <- if(include_css) INCLUDE_CSS_OPTIONS else NULL
   }
 
+  # Check for include_css options that are not available.
   if (length(setdiff(include_css, INCLUDE_CSS_OPTIONS)) > 0) {
     stop(
       "Valid options for include_css are: ",
@@ -264,7 +266,7 @@ render <- function(
     markdown,
     params,
     squish,
-    list(extra = read_text(css_files)),
+    css = list(extra = read_text(css_files)),
     include_css,
     language
   )

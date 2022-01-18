@@ -14,25 +14,24 @@
 #' @param ... Variables for substitution.
 #' @param .envir Environment for substitution.
 #'
-#' @return
+#' @return A message object.
 #' @export
 #'
 #' @examples
 #' # Use a builtin template.
 #' envelope() %>%
 #'   template(
-#'     "bootstrap-newsletter",
+#'     "newsletter",
 #'     title = "A Sample Newsletter",
 #'     articles = list(
 #'       list(
 #'         "title" = "Article (with date)",
-#'         "content" = as.list(stri_rand_lipsum(7)),
+#'         "content" = as.list("Vivamus, justo quisque, sed."),
 #'         "date" = "1 January 2022"
 #'       ),
 #'       list(
 #'         "title" = "Another Article (without date)",
-#'         "content" = as.list(stri_rand_lipsum(5)),
-#'         "date" = "3 January 2022"
+#'         "content" = as.list("Quam lorem sed metus egestas.")
 #'       )
 #'     )
 #'   )
@@ -70,7 +69,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   path_text <- file.path(path, "template.txt")
 
   if (file.exists(path_html)) {
-    template_html <- emayili:::read_text(path_html)
+    template_html <- read_text(path_html)
     log_debug("Found HTML template. Populating...")
     template_html <- jinjar::render(template_html, !!!params)
     log_debug("Done.")
@@ -79,7 +78,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     log_debug("Unable to find HTML template.")
   }
   if (file.exists(path_text)) {
-    template_text <- emayili:::read_text(path_text)
+    template_text <- read_text(path_text)
     log_debug("Found text template. Populating...")
     template_text <- jinjar::render(template_text, !!!params)
     log_debug("Done.")

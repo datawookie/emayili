@@ -231,8 +231,8 @@ stop <- function(..., call. = FALSE, domain = NULL) {
 #'   \code{"=\\"I'm not quoted.csv\\""} while \code{"\\"I'm quoted\\".csv"}
 #'   results in \code{"*=utf-8''\%22I'm\%20quoted\%22.csv"}.
 #' @examples
-#' emayili:::parameter_value_encode("I'm not quoted.csv")
-#' emayili:::parameter_value_encode("\"I'm quoted\".csv")
+#' parameter_value_encode("I'm not quoted.csv")
+#' parameter_value_encode("\"I'm quoted\".csv")
 parameter_value_encode <- function(x){
   raw <- charToRaw(x)
   ascii_to_encode <- as.raw(c(0x00:0x1F, 0x22, 0x5C, 0x7F))

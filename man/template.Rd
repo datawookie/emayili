@@ -16,7 +16,7 @@ template(msg, .name, ..., .envir = parent.frame())
 \item{.envir}{Environment for substitution.}
 }
 \value{
-
+A message object.
 }
 \description{
 Variables given as named arguments will override any variables in the
@@ -31,18 +31,17 @@ operator.
 # Use a builtin template.
 envelope() \%>\%
   template(
-    "bootstrap-newsletter",
+    "newsletter",
     title = "A Sample Newsletter",
     articles = list(
       list(
         "title" = "Article (with date)",
-        "content" = as.list(stri_rand_lipsum(7)),
+        "content" = as.list("Vivamus, justo quisque, sed."),
         "date" = "1 January 2022"
       ),
       list(
         "title" = "Another Article (without date)",
-        "content" = as.list(stri_rand_lipsum(5)),
-        "date" = "3 January 2022"
+        "content" = as.list("Quam lorem sed metus egestas.")
       )
     )
   )
