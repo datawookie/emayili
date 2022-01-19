@@ -90,6 +90,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   if (is.null(template_text) && is.null(template_html)) {
     stop("Could not find either HTML or text template.")
   }
+
   if (!is.null(template_text) && !is.null(template_html)) {
     content <- multipart_alternative()
     content <- append.MIME(content, text_html(template_html))

@@ -44,35 +44,23 @@ css_import <- function(content) {
 }
 
 css_inline <- function(content) {
-  # Extract CSS from <link> and <style> tags and append.
-  #
-  css <- c(
+  c(
     # * Inline CSS in <link> tags.
-    inline = xml_find_all(content, "//link[starts-with(@href,'data:text/css')]") %>%
+    inline = xml_find_all(content, "//link[starts-with(@href, 'data:text/css') and @rel='stylesheet']") %>%
       xml_attr("href") %>%
       unlist() %>%
       url_decode() %>%
       str_replace("data:text/css,", ""),
     # * External CSS in <link> tags.
-    # - Doesn't apply to Plain Markdown.
-    # external = xml_find_all(content, "//link[not(starts-with(@href,'data:text/css'))]") %>%
-    #   xml_attr("href") %>%
-    #   map(function(path) {
-    #     include_css <- setdiff(include_css, "rmd")
-    #     # Check is CSS path matches one of the requested options.
-    #     if (length(include_css)) {
-    #       if (str_detect(path, paste0("/", include_css, collapse = "|"))) path else NULL
-    #     } else NULL
-    #   }) %>%
-    #   unlist(),
-      # file.path(dirname(input), .) %>%
-      # map_chr(read_text),
+    external = xml_find_all(content, "//link[starts-with(@href, 'http') and @rel='stylesheet']") %>%
+      xml_attr("href") %>%
+      map(function(href) {
+        readLines(href, warn = FALSE) %>% paste(collapse = "\n")
+      }),
     # * Inline CSS in <style> tags.
     style = xml_find_all(content, "//style") %>%
       xml_text() %>%
       unlist(),
     NULL
   )
-
-  css
 }
