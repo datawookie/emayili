@@ -319,6 +319,9 @@ text_html <- function(
     content <- read_html(content)
   }
 
+  # Replace CSS @import content.
+  content <- css_import(content)
+
   # Add custom CSS rules last so that they overrides preceding rules.
   css <- c(css_inline(content), css)
 
@@ -327,19 +330,25 @@ text_html <- function(
   # - Delete <script>, <link>, <style> and <meta> tags. There might be multiple
   #   <style> tags in the original document. Remove all of those and then add
   #   back a single consolidated <style> tag.
+  log_debug("- Remove various tags.")
   xml_find_all(content, "//script | //meta | //link | //style") %>% xml_remove()
   # - Remove comments.
+  log_debug("- Remove comments.")
   xml_find_all(content, "//comment()") %>% xml_remove()
 
   if (length(css) && !all(is.na(css) | css == "")) {
+    log_debug("- Consolidate CSS.")
+
     css <- css %>%
       unlist() %>%
+      na.omit() %>%
       str_c(collapse = "\n") %>%
       css_remove_comment() %>%
       str_squish()
 
     # Add <head> (can be missing if rendering Plain Markdown).
     if (is.na(xml_find_first(content, "//head"))) {
+      log_debug("- Add <head>.")
       xml_add_sibling(
         xml_find_first(content, "//body"),
         "head",
@@ -357,9 +366,6 @@ text_html <- function(
       )
     }
   }
-
-  # Replace CSS @import content.
-  content <- css_import(content)
 
   # Convert from xml_document to string.
   #
