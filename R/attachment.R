@@ -46,6 +46,10 @@ attach_images <- function(
   css_files,
   language
 ) {
+  if (!("xml_document" %in% class(content))) {
+    content <- read_html(content)
+  }
+
   images <- content %>% html_nodes("img")
 
   images <- map(images, function(img) {

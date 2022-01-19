@@ -98,7 +98,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     msg <- append(msg, content)
   } else {
     if (!is.null(template_html)) {
-      msg <- append(msg, text_html(template_html))
+      msg <- attach_images(msg, template_html, disposition = "inline", charset = "utf-8")
     }
     if (!is.null(template_text)) {
       msg <- append(msg, text_plain(template_html))
