@@ -71,42 +71,28 @@ manifest <- function(
     output <- read_html(output)
   }
 
-  # Extract CSS from <link> and <style> tags and append.
+  # Decide what sources of CSS to retain.
   #
-  css <- c(
-    # * Inline CSS in <link> tags.
-    if (any("rmd" == include_css)) {
-      inline = xml_find_all(output, "//link[starts-with(@href,'data:text/css')]") %>%
-        xml_attr("href") %>%
-        unlist() %>%
-        url_decode() %>%
-        str_replace("data:text/css,", "")
-    } else NULL,
-    # * External CSS in <link> tags.
-    # - Doesn't apply to Plain Markdown.
-    if (exists("input")) {
-      external = xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]") %>%
-        xml_attr("href") %>%
-        map(function(path) {
-          include_css <- setdiff(include_css, "rmd")
-          # Check is CSS path matches one of the requested options.
-          if (length(include_css)) {
-            if (str_detect(path, paste0("/", include_css, collapse = "|"))) path else NULL
-          } else NULL
-        }) %>%
-        unlist() %>%
-        file.path(dirname(input), .) %>%
-        map_chr(read_text)
-    } else NULL,
-    # * Inline CSS in <style> tags.
-    if (any("rmd" == include_css)) {
-      style = xml_find_all(output, "//style") %>%
-        xml_text() %>%
-        unlist()
-    } else NULL,
-    # * Add custom CSS rules last so that it overrides preceding rules.
-    css
-  )
+  # * Inline CSS in <link> tags.
+  if (any("rmd" == include_css)) {
+    log_debug("- Retain CSS from inline <link> tags.")
+  } else {
+    log_debug("- Remove CSS from inline <link> tags.")
+    xml_remove(xml_find_all(output, "//link[starts-with(@href,'data:text/css')]"))
+  }
+  #
+  # * External CSS in <link> tags.
+  # - Doesn't apply to Plain Markdown.
+  log_debug("- Remove CSS from external <link> tags.")
+  xml_remove(xml_find_all(output, "//link[not(starts-with(@href,'data:text/css'))]"))
+  #
+  # * Inline CSS in <style> tags.
+  if (any("rmd" == include_css)) {
+    log_debug("- Retain inline <style>.")
+  } else {
+    log_debug("- Remove inline <style>.")
+    xml_remove(xml_find_all(output, "//style"))
+  }
 
   css_file <- tempfile(fileext = ".css")
   cat(paste(css, collapse = "\n"), file = css_file)

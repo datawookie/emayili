@@ -41,10 +41,10 @@ attach_images <- function(
   msg,
   content,
   disposition,
-  charset,
-  encoding,
-  css_files,
-  language
+  charset = "utf-8",
+  encoding = NA,
+  css_files = NA,
+  language = NA
 ) {
   if (!("xml_document" %in% class(content))) {
     content <- read_html(content)
@@ -96,7 +96,7 @@ attach_images <- function(
 
   body <- text_html(
     content, disposition, charset, encoding,
-    css = read_text(css_files),
+    css = ifelse(is.na(css_files), NA, read_text(css_files)),
     language = language
   )
 

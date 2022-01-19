@@ -319,6 +319,9 @@ text_html <- function(
     content <- read_html(content)
   }
 
+  # Add custom CSS rules last so that they overrides preceding rules.
+  css <- c(css_inline(content), css)
+
   # Clean up HTML content.
   #
   # - Delete <script>, <link>, <style> and <meta> tags. There might be multiple
@@ -345,7 +348,7 @@ text_html <- function(
     }
 
     # Write consolidated CSS to single <style> tag.
-    if (nchar(css)) {
+    if (!is.na(css) && nchar(css)) {
       xml_add_child(
         xml_find_first(content, "//head"),
         "style",

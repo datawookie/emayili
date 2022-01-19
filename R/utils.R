@@ -254,3 +254,33 @@ parameter_value_encode <- function(x){
 file.ext <- function(path) {
   sub(".*\\.", "", basename(path))
 }
+
+#' Transform a (tag)list to a character string
+#'
+#' @param content Element to transform.
+#'
+#' @return If the content is a list, a tagList or a tag,
+#'     a character vector. Otherwise, it will return the
+#'     input unchanged.
+#'
+#' @noRd
+#' @examples
+#' list_to_char(list("<b>Hello</b>", "<p>World!</p>"))
+#' library(htmltools)
+#' list_to_char(tagList(h2("Hello"), p("World!")))
+list_to_char <- function(content) {
+  if (
+    # We do the change if the element is a
+    # tag or a tag.list
+    inherits(content, "shiny.tag.list") |
+    inherits(content, "shiny.tag")
+  ) {
+    content <- as.character(content)
+  }
+  # Then if we have a list, we collapse it to
+  # a character vector
+  if (length(content) > 1) {
+    content <- paste(content, collapse = "\n")
+  }
+  content
+}
