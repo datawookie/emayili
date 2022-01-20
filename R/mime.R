@@ -468,11 +468,17 @@ other <- function(
 NULL
 
 #' @rdname add_children
+#' @export
 #' @noRd
 #'
 append <- function(x, child) {
   UseMethod("append", x)
 }
+
+#' @rdname add_children
+#' @export
+#' @noRd
+#'
 append.MIME <- function(x, child) {
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(x$children, list(child))
@@ -480,11 +486,17 @@ append.MIME <- function(x, child) {
 }
 
 #' @rdname add_children
+#' @export
 #' @noRd
 #'
 prepend <- function(x, child) {
   UseMethod("prepend", x)
 }
+
+#' @rdname add_children
+#' @export
+#' @noRd
+#'
 prepend.MIME <- function(x, child) {
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(list(child), x$children)
@@ -576,6 +588,7 @@ print.MIME <- function(x, ...) {
 #' This is especially important for when we have a message that only consists
 #' of one MIME item. In that case we don't want it rendered as multipart/mixed.
 #'
+#' @export
 #' @noRd
 #'
 #' @param x A MIME object.

@@ -4,6 +4,27 @@ test_that("children must be MIME", {
   expect_error(prepend.MIME(MIME(), 1), ERROR_NOT_MIME_OBJECT)
 })
 
+test_that("(ap|pre)pend children", {
+  foo <- text_plain("foo")
+  bar <- text_plain("bar")
+
+  related <- MIME(children = foo)
+
+  expect_equal(
+    prepend(related, bar)$children[[1]]$content,
+    "bar"
+  )
+  expect_equal(
+    append(related, bar)$children[[2]]$content,
+    "bar"
+  )
+})
+
+test_that("length of MIME", {
+  mime <- MIME()
+  expect_equal(length(mime), 1)
+})
+
 test_that("create multipart/mixed", {
   expect_equal(class(multipart_mixed()), c("multipart_mixed", "MIME"))
 })

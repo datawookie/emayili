@@ -15,7 +15,11 @@ TXTPATH <- tempfile(fileext = ".txt")
 CSSPATH <- tempfile(fileext = ".css")
 HTMLPATH <- "hello.html"
 RMD_TEMPLATE <- "vignette.Rmd"
-TEMPLATE_NAME <- "letter"
+
+TEMPLATE_HTML <- "letter-html"
+TEMPLATE_TEXT <- "letter-text"
+TEMPLATE_BOTH <- "letter-both"
+TEMPLATE_NONE <- "letter-none"
 
 IMG_URL <- "https://cran.r-project.org/Rlogo.svg"
 
@@ -127,9 +131,19 @@ smtp_smtpbucket <- smtpbucket(
 
 # TEMPLATE ---------------------------------------------------------------------
 
-dir.create(TEMPLATE_NAME)
-writeLines("<p>Hello {{ name }}!</p>", file.path(TEMPLATE_NAME, "template.html"))
-writeLines("Hello {{ name }}!", file.path(TEMPLATE_NAME, "template.txt"))
+TEMPLATE_HTML_CONTENT <- "<p>Hello {{ name }}!</p>"
+TEMPLATE_TEXT_CONTENT <- "Hello {{ name }}!"
+
+for (dir in c(TEMPLATE_HTML, TEMPLATE_TEXT, TEMPLATE_BOTH, TEMPLATE_NONE)) {
+  dir.create(dir)
+}
+
+for (dir in c(TEMPLATE_HTML, TEMPLATE_BOTH)) {
+  writeLines(TEMPLATE_HTML_CONTENT, file.path(dir, "template.html"))
+}
+for (dir in c(TEMPLATE_TEXT, TEMPLATE_BOTH)) {
+  writeLines(TEMPLATE_TEXT_CONTENT, file.path(dir, "template.txt"))
+}
 
 # R MARKDOWN FILE --------------------------------------------------------------
 

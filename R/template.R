@@ -74,8 +74,8 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     template_html <- jinjar::render(template_html, !!!params)
     log_debug("Done.")
   } else {
-    template_html <- NULL
-    log_debug("Unable to find HTML template.")
+    template_html <- NULL                            # nocov
+    log_debug("Unable to find HTML template.")       # nocov
   }
   if (file.exists(path_text)) {
     template_text <- read_text(path_text)
@@ -102,7 +102,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
       msg <- attach_images(msg, template_html, disposition = "inline", charset = "utf-8")
     }
     if (!is.null(template_text)) {
-      msg <- append(msg, text_plain(template_html))
+      msg <- append(msg, text_plain(template_text))
     }
   }
 
