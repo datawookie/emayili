@@ -127,6 +127,9 @@
     <loc>/reference/subject.html</loc>
   </url>
   <url>
+    <loc>/reference/template.html</loc>
+  </url>
+  <url>
     <loc>/reference/text.html</loc>
   </url>
 </urlset>
