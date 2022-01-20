@@ -1,6 +1,9 @@
 # {emayili} 0.7.4
 
 * Render self-contained HTML from R Markdown.
+* Add a Shiny demo app.
+* Streamlined handling of CSS in HTML messages.
+* Message templates.
 
 # {emayili} 0.7.3
 

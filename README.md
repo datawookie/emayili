@@ -147,7 +147,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
     X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     From:                        alice@yahoo.com
@@ -196,7 +196,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
     X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     Content-Type:                text/plain;
@@ -222,7 +222,7 @@ envelope() %>%
   )
 ```
 
-    Date:                        Fri, 14 Jan 2022 07:39:39 GMT
+    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
     X-Mailer:                    {emayili}-0.7.3
     MIME-Version:                1.0
     Content-Type:                text/html;
