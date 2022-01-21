@@ -481,15 +481,7 @@ after.MIME <- function(x, child) {
 #' @export
 #' @noRd
 #'
-prepend <- function(x, child) {
-  UseMethod("prepend", x)
-}
-
-#' @rdname add_children
-#' @export
-#' @noRd
-#'
-prepend.MIME <- function(x, child) {
+before.MIME <- function(x, child) {
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(list(child), x$children)
   x
