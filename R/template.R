@@ -57,13 +57,14 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     # Look in system folder.
     file.path(system.file(package = "emayili"), "template", .name)
   )) {
+    log_debug("Looking for template in {path}.")
     if (dir.exists(path)) {
       PATH <- path
       log_debug("Found template in {PATH}.")
       break
     }
   }
-  if (is.null(PATH)) stop(glue("Unable to find '{.name}' template."))
+  if (is.null(PATH)) stop(glue("Unable to find '{.name}' template. Did you specify a file (rather than a directory)?"))
 
   path_html <- file.path(path, "template.html")
   path_text <- file.path(path, "template.txt")
