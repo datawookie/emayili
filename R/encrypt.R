@@ -103,7 +103,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
         public_key <- gpg::gpg_export(sender_fingerprint)
         log_debug("Done!")
         log_debug("Append public key.")
-        content <- append.MIME(content, application_pgp_keys(public_key))
+        content <- after(content, application_pgp_keys(public_key))
       }
     }
 

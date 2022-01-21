@@ -93,8 +93,8 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
 
   if (!is.null(template_text) && !is.null(template_html)) {
     content <- multipart_alternative()
-    content <- append.MIME(content, text_html(template_html))
-    content <- append.MIME(content, text_plain(template_text))
+    content <- after(content, text_html(template_html))
+    content <- after(content, text_plain(template_text))
 
     msg <- after(msg, content)
   } else {

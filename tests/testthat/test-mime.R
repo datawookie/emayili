@@ -1,6 +1,6 @@
 test_that("children must be MIME", {
   expect_error(MIME(children = list(1)), ERROR_NOT_MIME_OBJECT)
-  expect_error(append.MIME(MIME(), 1), ERROR_NOT_MIME_OBJECT)
+  expect_error(after(MIME(), 1), ERROR_NOT_MIME_OBJECT)
   expect_error(prepend.MIME(MIME(), 1), ERROR_NOT_MIME_OBJECT)
 })
 
@@ -15,7 +15,7 @@ test_that("(ap|pre)pend children", {
     "bar"
   )
   expect_equal(
-    append(related, bar)$children[[2]]$content,
+    after(related, bar)$children[[2]]$content,
     "bar"
   )
 })

@@ -471,15 +471,7 @@ NULL
 #' @export
 #' @noRd
 #'
-append <- function(x, child) {
-  UseMethod("append", x)
-}
-
-#' @rdname add_children
-#' @export
-#' @noRd
-#'
-append.MIME <- function(x, child) {
+after.MIME <- function(x, child) {
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(x$children, list(child))
   x

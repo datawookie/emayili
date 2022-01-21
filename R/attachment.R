@@ -103,12 +103,12 @@ attach_images <- function(
   images <- images[!sapply(images, is.null)]
 
   if (length(images)) {
-    related <- multipart_related() %>% append(body)
+    related <- multipart_related() %>% after(body)
 
     for (path in images) {
       cid <- hexkey(basename(path))
 
-      related <- append(
+      related <- after(
         related,
         other(
           filename = path,
