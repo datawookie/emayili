@@ -32,7 +32,7 @@ attachment <- function(msg, path, name = NA, type = NA, cid = NA, disposition = 
 
   body <- other(path, name, type, cid, disposition)
 
-  msg <- append(msg, body)
+  msg <- after(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
@@ -118,9 +118,9 @@ attach_images <- function(
       )
     }
 
-    msg <- append(msg, related)
+    msg <- after(msg, related)
   } else {
-    msg <- append(msg, body)
+    msg <- after(msg, body)
   }
 
   msg

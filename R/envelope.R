@@ -153,7 +153,7 @@ as.character.envelope <- function(x, ..., details = TRUE) {
 #'
 #' @param x Message object
 #' @param child A child to be appended
-append.envelope <- function(x, child) {
+after.envelope <- function(x, child) {
   if(is.null(x$parts)) {
     log_debug("Adding first child.")
     x$parts <- list(child)

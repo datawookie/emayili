@@ -57,7 +57,7 @@ text <- function(
 
   body <- text_plain(content, disposition, charset, encoding, language)
 
-  msg <- append(msg, body)
+  msg <- after(msg, body)
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }

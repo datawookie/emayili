@@ -96,13 +96,13 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     content <- append.MIME(content, text_html(template_html))
     content <- append.MIME(content, text_plain(template_text))
 
-    msg <- append(msg, content)
+    msg <- after(msg, content)
   } else {
     if (!is.null(template_html)) {
       msg <- attach_images(msg, template_html, disposition = "inline", charset = "utf-8")
     }
     if (!is.null(template_text)) {
-      msg <- append(msg, text_plain(template_text))
+      msg <- after(msg, text_plain(template_text))
     }
   }
 
