@@ -9,7 +9,10 @@ template(msg, .name, ..., .envir = parent.frame())
 \arguments{
 \item{msg}{A message object.}
 
-\item{.name}{A template name.}
+\item{.name}{A template name. This can be provided as either: (i) the name
+of a template that's baked into the package, (ii) a relative path or (iii)
+an absolute path. The paths must be for the directory containing the
+template files, not the files themselves.}
 
 \item{...}{Variables for substitution.}
 

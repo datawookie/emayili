@@ -10,7 +10,10 @@
 #' operator.
 #'
 #' @param msg A message object.
-#' @param .name A template name.
+#' @param .name A template name. This can be provided as either: (i) the name
+#'   of a template that's baked into the package, (ii) a relative path or (iii)
+#'   an absolute path. The paths must be for the directory containing the
+#'   template files, not the files themselves.
 #' @param ... Variables for substitution.
 #' @param .envir Environment for substitution.
 #'
