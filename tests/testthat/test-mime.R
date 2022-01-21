@@ -44,16 +44,6 @@ test_that("missing disposition", {
   expect_match(mime_jpg$disposition, "^attachment")
 })
 
-test_that("print", {
-  mime_txt <- emayili:::other(TXTPATH, disposition = NA)
-
-  expect_output(
-    print.MIME(mime_txt),
-    as.character.MIME(mime_txt) %>% str_replace_all("\r\n", "\n"),
-    fixed = TRUE
-  )
-})
-
 test_that("squish", {
   expect_match(
     text_html(

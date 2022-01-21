@@ -559,7 +559,7 @@ as.character.MIME <- function(x, ...) {
 #' @param x MIME object
 #' @param ... Further arguments passed to or from other methods.
 print.MIME <- function(x, ...) {
-  cat(as.character(x))
+  cat(as.character(x))                               # nocov
 }
 
 # LENGTH ----------------------------------------------------------------------
