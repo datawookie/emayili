@@ -67,8 +67,23 @@ the server. Default will choose appropriate protocol based on port.}
 A function which is used to send messages to the server.
 }
 \description{
-Create a SMTP server object.
+Create an object which can be used to send messages to an SMTP server.
 }
+\details{
+These functions return a function which can then be called with a message object.
+}
+\section{Gmail}{
+
+
+If you're having trouble authenticating with Gmail then you should try the following:
+\itemize{
+\item enable 2-factor authentication and
+\item create an app password.
+}
+
+Then use the app password rather than your usual account password.
+}
+
 \section{Sendgrid}{
 
 

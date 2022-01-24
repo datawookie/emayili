@@ -1,5 +1,9 @@
 #' Create a SMTP server object.
 #'
+#' Create an object which can be used to send messages to an SMTP server.
+#'
+#' These functions return a function which can then be called with a message object.
+#'
 #' @name server
 #'
 #' @param host DNS name or IP address of the SMTP server.
@@ -172,6 +176,15 @@ server <- function(
 }
 
 #' @rdname server
+#'
+#' @section Gmail:
+#'
+#' If you're having trouble authenticating with Gmail then you should try the following:
+#'
+#' - enable 2-factor authentication and
+#' - create an app password.
+#'
+#' Then use the app password rather than your usual account password.
 #'
 #' @export
 #'
