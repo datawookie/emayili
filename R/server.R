@@ -11,6 +11,7 @@
 #' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
 #' @param protocol Which protocol (SMTP or SMTPS) to use for communicating with
 #'   the server. Default will choose appropriate protocol based on port.
+#' @param test Test login to server.
 #' @param max_times Maximum number of times to retry.
 #' @param pause_base Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
@@ -64,6 +65,7 @@ server <- function(
   reuse = TRUE,
   helo = NA,
   protocol = NA,
+  test = FALSE,
   pause_base = 1,
   max_times = 5,
   ...) {
@@ -111,6 +113,28 @@ server <- function(
   }
 
   smtp_server <- smtp_url(host, port, protocol, helo)
+
+  if (test) {
+    log_debug("Check login to {smtp_server}.")
+
+    response <- safely(send_mail)(
+      c(),
+      c(),
+      message = "",
+      smtp_server = smtp_server,
+      use_ssl = use_ssl,
+      username = username,
+      password = password,
+      verbose = TRUE
+    )
+
+    if (!is.null(response$error)) {
+      log_error("Login denied.")
+      stop(response$error$message)
+    } else {
+      log_debug("Login successful.")
+    }
+  }
 
   function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr()) # nocov

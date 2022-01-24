@@ -19,6 +19,7 @@ server(
   reuse = TRUE,
   helo = NA,
   protocol = NA,
+  test = FALSE,
   pause_base = 1,
   max_times = 5,
   ...
@@ -53,6 +54,8 @@ smtpbucket(...)
 
 \item{protocol}{Which protocol (SMTP or SMTPS) to use for communicating with
 the server. Default will choose appropriate protocol based on port.}
+
+\item{test}{Test login to server.}
 
 \item{pause_base}{Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.}
 
