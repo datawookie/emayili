@@ -67,6 +67,51 @@ server <- function(
   pause_base = 1,
   max_times = 5,
   ...) {
+  # See curl::curl_options() for available options.
+  #
+  # * SSL
+  #
+  # - If you get the "The certificate chain was issued by an authority that is not trusted." error then
+  #   can add in ssl_verifypeer = FALSE.
+  # - Other flags:
+  #
+  #   - ssl_verifyhost
+  #   - ssl_verifypeer
+  #   - ssl_verifystatus
+  #
+  #   Run curl_options('ssl') to see other options.
+  #
+  if (insecure) {
+    ssl_verifypeer = FALSE
+  } else {
+    ssl_verifypeer = TRUE
+  }
+
+  port <- as.integer(port)
+  if (port %in% c(465, 587)) {
+    use_ssl = 1
+  } else {
+    use_ssl = 0
+  }
+
+  # Create an insistent version of send_mail().
+  #
+  # This is to mitigate occasional curl_fetch_memory() errors.
+  #
+  if (max_times > 1) {
+    send_mail <- insistently(
+      send_mail,
+      rate = rate_backoff(
+        max_times = max_times,
+        pause_base = pause_base,
+        pause_cap = pause_base * 2**max_times,
+        jitter = FALSE
+      )
+    )
+  }
+
+  smtp_server <- smtp_url(host, port, protocol, helo)
+
   function(msg, verbose = FALSE) {
     debugfunction <- if (verbose) function(type, msg) cat(readBin(msg, character()), file = stderr()) # nocov
 
@@ -76,53 +121,8 @@ server <- function(
     #
     if (length(recipients) < 1) stop("Must specify at least one email recipient.")
 
-    # See curl::curl_options() for available options.
-    #
-    # * SSL
-    #
-    # - If you get the "The certificate chain was issued by an authority that is not trusted." error then
-    #   can add in ssl_verifypeer = FALSE.
-    # - Other flags:
-    #
-    #   - ssl_verifyhost
-    #   - ssl_verifypeer
-    #   - ssl_verifystatus
-    #
-    #   Run curl_options('ssl') to see other options.
-    #
-    if (insecure) {
-      ssl_verifypeer = FALSE
-    } else {
-      ssl_verifypeer = TRUE
-    }
-
-    port <- as.integer(port)
-    if (port %in% c(465, 587)) {
-      use_ssl = 1
-    } else {
-      use_ssl = 0
-    }
-
-    smtp_server <- smtp_url(host, port, protocol, helo)
-    #
     if (verbose) {
-      log_debug("Sending email to ", smtp_server, ".")
-    }
-
-    # Create an insistent version of send_mail().
-    #
-    # This is to mitigate occasional curl_fetch_memory() errors.
-    #
-    if (max_times > 1) {
-      send_mail <- insistently(
-        send_mail,
-        rate = rate_backoff(
-          max_times = max_times,
-          pause_base = pause_base,
-          pause_cap = pause_base * 2**max_times,
-          jitter = FALSE
-        )
-      )
+      log_debug("Sending email to {smtp_server}.")
     }
 
     result <- send_mail(
