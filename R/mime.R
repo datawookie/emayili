@@ -319,10 +319,8 @@ text_html <- function(
     content <- read_html(content)
   }
 
-  # Replace CSS @import content.
-  content <- css_import(content)
-
-  # Add custom CSS rules last so that they overrides preceding rules.
+  # - Extract CSS from message.
+  # - Add custom CSS rules last so that they overrides preceding rules.
   css <- c(css_inline(content), css)
 
   # Clean up HTML content.

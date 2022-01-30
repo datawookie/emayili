@@ -145,6 +145,7 @@ test_that("css: multiple CSS sources", {
   MSG = "<html>
   <head>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
       b {color: green;}
     </style>
     <link rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css'/>
@@ -164,6 +165,8 @@ test_that("css: multiple CSS sources", {
   expect_match(msg, "b \\{color: green;\\}")
   # CSS from <link>.
   expect_match(msg, "Font Awesome")
+  # CSS from @import.
+  expect_match(msg, "font-family: 'Roboto';")
 })
 
 test_that("Content-Type header", {

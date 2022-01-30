@@ -10,12 +10,16 @@ css_remove_comment <- function(css) {
   str_replace_all(css, "/\\*!?(\\*(?!/)|[^\\*])*\\*/", "")
 }
 
-#' Replace @import() content in CSS
+#' - Replace @import() content in CSS. Assumes that there is just a single
+#'   <style> tag in <head>.
+#' - Extract all sources of CSS and return in named vector with components:
 #'
-#' Assumes that there is just a single \code{<style>} tag in \code{<head>}.
+#'   * inline
+#'   * external and
+#'   * style.
 #'
 #' @noRd
-css_import <- function(content) {
+css_inline <- function(content) {
   # Find first <style> tag in <head>.
   css <- xml_find_first(content, "//head/style")
 
@@ -31,6 +35,7 @@ css_import <- function(content) {
       # Get URL from url().
       url <- import %>% str_remove_all("(^@import url\\([\"']|[\"']\\);$)")
       # Pull content from URL.
+      log_debug("Import CSS from {url}.")
       imported <- readLines(url) %>% paste(collapse = "\n")
       # Replace @import url(); with downloaded content.
       css_text <- sub(import, imported, css_text, fixed = TRUE)
@@ -40,10 +45,6 @@ css_import <- function(content) {
     xml_text(css) <- css_text
   }
 
-  content
-}
-
-css_inline <- function(content) {
   c(
     # * Inline CSS in <link> tags.
     inline = xml_find_all(content, "//link[starts-with(@href, 'data:text/css') and @rel='stylesheet']") %>%
