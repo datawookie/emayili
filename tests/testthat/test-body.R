@@ -132,13 +132,38 @@ test_that("toggle visibility", {
   expect_invisible(envelope() %>% text("Hello!"))
 })
 
-test_that("html: inject CSS", {
+test_that("css: inject CSS", {
   expect_match(
     envelope() %>%
       html("<p>foo</p>", css_files = CSSPATH) %>%
       as.character(),
     COLOUR_GLAUCOUS
   )
+})
+
+test_that("css: multiple CSS sources", {
+  MSG = "<html>
+  <head>
+    <style>
+      b {color: green;}
+    </style>
+    <link rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css'/>
+  </head>
+  <body>
+    <p>Some test text.<b>BOLD!</b></p>
+  </body>
+</html>"
+
+  msg <- envelope() %>%
+    html(MSG, css_files = CSSPATH) %>%
+    as.character()
+
+  # CSS from file.
+  expect_match(msg, COLOUR_GLAUCOUS)
+  # CSS from <style>.
+  expect_match(msg, "b \\{color: green;\\}")
+  # CSS from <link>.
+  expect_match(msg, "Font Awesome")
 })
 
 test_that("Content-Type header", {
