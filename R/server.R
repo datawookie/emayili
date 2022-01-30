@@ -129,7 +129,7 @@ server <- function(
       use_ssl = use_ssl,
       username = username,
       password = password,
-      verbose = TRUE
+      verbose = FALSE
     )
 
     if (!is.null(response$error)) {

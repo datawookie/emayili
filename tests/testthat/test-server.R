@@ -20,6 +20,26 @@ test_that("server type", {
   expect_type(smtp_gmail, "closure")
 })
 
+test_that("test server connection", {
+  expect_type(
+    gmail(
+      username = SMTP_USERNAME_GMAIL,
+      password = SMTP_PASSWORD_GMAIL,
+      test = TRUE
+    ),
+    "closure"
+  )
+  expect_error(
+    gmail(
+      username = SMTP_USERNAME_GMAIL,
+      password = NULL,
+      test = TRUE,
+      max_times = 1
+    ),
+    "Login denied"
+  )
+})
+
 test_that("error if sender missing", {
   skip_on_cran()
   expect_error(smtp(msg_no_sender), "Must specify who the email is from.")

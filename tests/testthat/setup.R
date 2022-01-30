@@ -2,8 +2,11 @@ suppressPackageStartupMessages({
   library(here)
   library(dplyr)
   library(base64enc)
+  library(logger)
   require(htmltools, quietly = TRUE)
 })
+
+log_threshold(FATAL)
 
 # Generate random folder name.
 #
