@@ -21,6 +21,8 @@ test_that("server type", {
 })
 
 test_that("test server connection", {
+  skip_if(suppressWarnings(is.na(smtp_gmail)))
+
   expect_type(
     gmail(
       username = SMTP_USERNAME_GMAIL,
