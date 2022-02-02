@@ -13,6 +13,7 @@ NULL
 #' @rdname addresses
 #'
 #' @param ... Addresses.
+#' @inheritParams as.address
 #'
 #' @export
 #' @examples
@@ -22,12 +23,12 @@ NULL
 #' msg %>% to("bob@gmail.com", "alice@yahoo.com")
 #' msg %>% to(c("bob@gmail.com", "alice@yahoo.com"))
 #'
-to <- function(msg, ..., append = TRUE) {
+to <- function(msg, ..., append = TRUE, split = ", *") {
   arguments <- c(...)
   if (is.null(arguments)) {
     header_get(msg, "To")
   } else {
-    msg <- header_set(msg, "To", as.address(arguments), append = append, sep = ", ")
+    msg <- header_set(msg, "To", as.address(arguments, split = split), append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -42,12 +43,12 @@ to <- function(msg, ..., append = TRUE) {
 #' msg %>% cc("bob@gmail.com", "alice@yahoo.com")
 #' msg %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
-cc <- function(msg, ..., append = TRUE) {
+cc <- function(msg, ..., append = TRUE, split = ", *") {
   arguments <- c(...)
   if (is.null(arguments)) {
     header_get(msg, "Cc")
   } else {
-    msg <- header_set(msg, "Cc", as.address(arguments), append = append, sep = ", ")
+    msg <- header_set(msg, "Cc", as.address(arguments, split = split), append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -62,12 +63,12 @@ cc <- function(msg, ..., append = TRUE) {
 #' msg %>% bcc("bob@gmail.com", "alice@yahoo.com")
 #' msg %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
-bcc <- function(msg, ..., append = TRUE) {
+bcc <- function(msg, ..., append = TRUE, split = ", *") {
   arguments <- c(...)
   if (is.null(arguments)) {
     header_get(msg, "Bcc")
   } else {
-    msg <- header_set(msg, "Bcc", as.address(arguments), append = append, sep = ", ")
+    msg <- header_set(msg, "Bcc", as.address(arguments, split = split), append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -81,11 +82,11 @@ bcc <- function(msg, ..., append = TRUE) {
 #' # Populating the From field.
 #' msg %>% from("craig@gmail.com")
 #'
-from <- function(msg, addr = NULL) {
+from <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "From")
   } else {
-    addr <- as.address(addr)
+    addr <- as.address(addr, split = split)
     if (length(addr) > 1) stop("Only one sender address allowed.")
     msg <- header_set(msg, "From", addr, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
@@ -100,11 +101,11 @@ from <- function(msg, addr = NULL) {
 #' msg <- envelope()
 #' msg %>% reply("gerry@gmail.com")
 #'
-reply <- function(msg, addr = NULL) {
+reply <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Reply-To")
   } else {
-    msg <- header_set(msg, "Reply-To", as.address(addr), append = FALSE)
+    msg <- header_set(msg, "Reply-To", as.address(addr, split = split), append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -117,11 +118,11 @@ reply <- function(msg, addr = NULL) {
 #' msg <- envelope()
 #' msg %>% return_path("bounced-mail@devnull.org")
 #'
-return_path <- function(msg, addr = NULL) {
+return_path <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Return-Path")
   } else {
-    msg <- header_set(msg, "Return-Path", as.address(addr), append = FALSE)
+    msg <- header_set(msg, "Return-Path", as.address(addr, split = split), append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -133,11 +134,11 @@ return_path <- function(msg, addr = NULL) {
 #' # Populating the Sender field.
 #' msg <- envelope()
 #' msg %>% sender("on_behalf_of@gmail.com")
-sender <- function(msg, addr = NULL) {
+sender <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Sender")
   } else {
-    msg <- header_set(msg, "Sender", as.address(addr), append = FALSE)
+    msg <- header_set(msg, "Sender", as.address(addr, split = split), append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }

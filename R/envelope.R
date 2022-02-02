@@ -18,6 +18,7 @@ is.envelope <- function(x) {
 #'   message will be encrypted using the private key of the sender.
 #' @param sign Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.
 #' @param public_key Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.
+#' @inheritParams as.address
 #'
 #' @return A message object.
 #' @seealso [subject()], [from()], [to()], [cc()], [bcc()], [reply()] and
@@ -54,7 +55,8 @@ envelope <- function(
   html = NULL,
   encrypt = FALSE,
   sign = FALSE,
-  public_key = FALSE
+  public_key = FALSE,
+  split = ", *"
 ) {
   koevert <- structure(
     list(
@@ -70,11 +72,11 @@ envelope <- function(
     header_set("X-Mailer", paste("{emayili}", packageVersion("emayili"), sep = "-"), append = FALSE) %>%
     header_set("MIME-Version", "1.0", append = FALSE)
 
-  if (!is.null(to)) koevert <- to(koevert, to)
-  if (!is.null(from)) koevert <- from(koevert, from)
-  if (!is.null(cc)) koevert <- cc(koevert, cc)
-  if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
-  if (!is.null(reply)) koevert <- reply(koevert, reply)
+  if (!is.null(to)) koevert <- to(koevert, to, split = split)
+  if (!is.null(from)) koevert <- from(koevert, from, split = split)
+  if (!is.null(cc)) koevert <- cc(koevert, cc, split = split)
+  if (!is.null(bcc)) koevert <- bcc(koevert, bcc, split = split)
+  if (!is.null(reply)) koevert <- reply(koevert, reply, split = split)
   if (!is.null(subject)) koevert <- subject(koevert, subject)
   if (!is.null(importance)) koevert <- importance(koevert, importance)
   if (!is.null(priority)) koevert <- priority(koevert, priority)

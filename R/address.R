@@ -164,6 +164,12 @@ format.address <- function(x, ...) {
   email <- x$email
   display <- x$display
 
+  # If the display name includes a comma, then quote it.
+  #
+  if (!is.na(display) && str_detect(display, ",")) {
+    display <- paste0('"', display, '"')
+  }
+
   fmt <- ifelse(is.na(display), email, glue("{display} <{email}>"))
   fmt[is.na(email)] <- NA
 

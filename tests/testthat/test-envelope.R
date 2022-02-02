@@ -65,3 +65,16 @@ test_that("parts are not nested", {
     attachment(JPGPATH)
   expect_false(is.nested(msg$parts))
 })
+
+test_that("not splitting addresses", {
+  msg <- envelope(
+    to = c("Durrell, Gerald <gerry@gmail.com>", "Jones, Bob <bob@yahoo.com>"),
+    cc = c("Durrell, Gerald <gerry@gmail.com>", "Jones, Bob <bob@yahoo.com>"),
+    bcc = c("Durrell, Gerald <gerry@gmail.com>", "Jones, Bob <bob@yahoo.com>"),
+    split = FALSE
+  )
+
+  expect_match(headers(msg), 'To:[[:space:]]+"Durrell, Gerald" <gerry@gmail.com>,\r\n[[:space:]]+"Jones, Bob" <bob@yahoo.com>')
+  expect_match(headers(msg), 'Cc:[[:space:]]+"Durrell, Gerald" <gerry@gmail.com>,\r\n[[:space:]]+"Jones, Bob" <bob@yahoo.com>')
+  expect_match(headers(msg), 'Bcc:[[:space:]]+"Durrell, Gerald" <gerry@gmail.com>,\r\n[[:space:]]+"Jones, Bob" <bob@yahoo.com>')
+})

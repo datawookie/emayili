@@ -24,28 +24,19 @@ header <- function(
 #'
 #' @return A formatted header field.
 as.character.header <- function(x, width = 28, ...) {
-  FORMAT <- glue("%-{width}s %s")
-  INDENT <- strrep(" ", width + 1)
+  FORMAT <- glue("%-{width}s")
+  INDENT <- strrep(" ", width + 2)
 
-  header <- sprintf(
-    FORMAT,
-    paste0(x$name, ":"),
+  paste(
+    sprintf(
+        FORMAT,
+        paste0(x$name, ":")
+    ),
     paste(
       as.character(x$values),
-      collapse = x$sep
+      collapse = paste0(x$sep, CRLF, INDENT)
     )
   )
-
-  # Split header parameters across lines.
-  if (!is.null(x$sep)) {
-    header <- header %>%
-      str_replace_all(
-        paste0("(", str_trim(x$sep, side = "right"), ")"),
-        paste0("\\1", CRLF, INDENT)
-      )
-  }
-
-  header
 }
 
 print.header <- function(x, ... ) {
