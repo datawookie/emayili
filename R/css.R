@@ -2,16 +2,18 @@
 #'
 #' Will handle comments with the following form:
 #'
-#' - /* ... */
-#' - /*! ... */
+#' - \code{/* ... */}
+#' - \code{/*! ... */}
 #'
 #' @noRd
 css_remove_comment <- function(css) {
   str_replace_all(css, "/\\*!?(\\*(?!/)|[^\\*])*\\*/", "")
 }
 
-#' - Replace @import() content in CSS. Assumes that there is just a single
-#'   <style> tag in <head>.
+#' Inline CSS from various sources
+#'
+#' - Replace \code{@import()} content in CSS. Assumes that there is just a
+#'   single \code{<style>} tag in \code{<head>}.
 #' - Extract all sources of CSS and return in named vector with components:
 #'
 #'   * inline
