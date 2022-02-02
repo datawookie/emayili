@@ -4,10 +4,12 @@
 \alias{as.address}
 \title{Create an address object}
 \usage{
-as.address(addr)
+as.address(addr, split = ", *")
 }
 \arguments{
 \item{addr}{An email address.}
+
+\item{split}{Pattern for splitting multiple addresses.}
 }
 \value{
 An \code{address} object.
@@ -21,4 +23,5 @@ as.address("Gerald <gerry@gmail.com>")
 as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
 as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com"))
+as.address("Durrell, Gerald <gerry@gmail.com>", FALSE)
 }

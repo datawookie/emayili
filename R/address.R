@@ -202,6 +202,7 @@ Ops.address <- function(e1, e2)
 #' Create an address object
 #'
 #' @param addr An email address.
+#' @param split Pattern for splitting multiple addresses.
 #'
 #' @return An \code{address} object.
 #' @export
@@ -212,13 +213,16 @@ Ops.address <- function(e1, e2)
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com"))
-as.address <- function(addr) {
+#' as.address("Durrell, Gerald <gerry@gmail.com>", FALSE)
+as.address <- function(addr, split = ", *") {
   if ("address" %in% class(addr)) {
     addr
   } else {
-    # Check if multiple comma-separated addresses.
+    # Check if multiple addresses.
     #
-    addr <- str_split(addr, ", *") %>% unlist()
+    if (is.character(split)) {
+      addr <- str_split(addr, split) %>% unlist()
+    }
     #
     display <- ifelse(
       str_detect(addr, "[<>]"),

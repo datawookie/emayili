@@ -95,4 +95,8 @@ test_that("split address list", {
     as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com")),
     addr_list
   )
+  expect_equal(
+    as.address("Durrell, Gerald <gerry@gmail.com>", split = FALSE),
+    address("gerry@gmail.com", "Durrell, Gerald")
+  )
 })
