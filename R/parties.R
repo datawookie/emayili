@@ -6,13 +6,13 @@
 #' @export
 #'
 #' @examples
-#' email <- envelope() %>%
+#' msg <- envelope() %>%
 #'   from("Gerald <gerald@gmail.com>") %>%
 #'   to(c("bob@gmail.com", "alice@yahoo.com")) %>%
 #'   cc("Craig     < craig@gmail.com>") %>%
 #'   bcc("  Erin   <erin@yahoo.co.uk    >")
 #'
-#' parties(email)
+#' parties(msg)
 parties <- function(msg) {
   # Avoid "no visible binding for global variable" note.
   address <- NULL # nocov
@@ -24,19 +24,12 @@ parties <- function(msg) {
   #
   PARTIES <- intersect(PARTIES, names(msg$headers))
 
-  map_dfr(PARTIES, function(type) {
-    tibble(
-      type,
-      address = msg$headers[type]
-    )
-  }) %>%
-    hoist(address, "values") %>%
+  map(msg$headers[PARTIES], ~ .$values) %>%
+    tibble(type = names(.), address = .) %>%
     mutate(
-      values = map(values, cleave)
+      address = map(address, cleave)
     ) %>%
-    unnest(values) %>%
-    select(-address) %>%
-    rename(address = values) %>%
+    unnest(address) %>%
     mutate(
       display = map_chr(address, display),
       raw = map_chr(address, raw),
