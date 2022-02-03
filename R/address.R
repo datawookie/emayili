@@ -91,7 +91,7 @@ compliant <- function(addr, error = FALSE) {
 #' address("gerry@gmail.com", "Gerald")
 #' address(
 #'   c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-#'   c("Gerald", "Alice", NA)
+#'   c("Durrell, Gerald", "Alice", NA)
 #' )
 address <- function(
   email = NA,
@@ -156,19 +156,23 @@ length.address <- function(x) {
 #' Encode email addresses in a common format
 #'
 #' @param x An \code{address} object.
+#' @param quote Whether to quote display name (only relevant if display name is
+#'   given in "Last, First" format).
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A character vector.
 #' @export
-format.address <- function(x, ...) {
+format.address <- function(x, quote = TRUE, ...) {
   email <- x$email
   display <- x$display
 
   # If the display name includes a comma, then quote it.
   #
-  if (!is.na(display) && str_detect(display, ",")) {
-    display <- paste0('"', display, '"')
-  }
+  display <- ifelse(
+    !is.na(display) & str_detect(display, ",") & quote,
+    paste0('"', display, '"'),
+    display
+  )
 
   fmt <- ifelse(is.na(display), email, glue("{display} <{email}>"))
   fmt[is.na(email)] <- NA
@@ -178,13 +182,16 @@ format.address <- function(x, ...) {
 
 #' Convert address object to character
 #'
+#' If display name is specifed as "Last, First" then the display name will be
+#' quoted.
+#'
 #' @param x  An \code{address} object.
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A character vector.
 #' @export
 as.character.address <- function(x, ...) {
-  format(x, ...)
+  format(x, TRUE, ...)
 }
 
 #' Compare address objects
@@ -247,6 +254,9 @@ as.address <- function(addr, split = ", *") {
 
 #' Print an address object
 #'
+#' If display name is specifed as "Last, First" then the display name will be
+#' quoted.
+#'
 #' @param x An \code{address} object.
 #' @param ... Further arguments passed to or from other methods.
 #'
@@ -256,7 +266,7 @@ as.address <- function(addr, split = ", *") {
 #' gerry <- as.address("gerry@gmail.com")
 #' print(gerry)
 print.address <- function(x, ...) {
-  print(format(x))
+  print(format(x, FALSE))
 }
 
 #' Extract raw email address

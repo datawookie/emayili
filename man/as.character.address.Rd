@@ -15,5 +15,6 @@
 A character vector.
 }
 \description{
-Convert address object to character
+If display name is specifed as "Last, First" then the display name will be
+quoted.
 }

@@ -28,6 +28,6 @@ address("gerry@gmail.com")
 address("gerry@gmail.com", "Gerald")
 address(
   c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-  c("Gerald", "Alice", NA)
+  c("Durrell, Gerald", "Alice", NA)
 )
 }

@@ -12,7 +12,8 @@
 \item{...}{Further arguments passed to or from other methods.}
 }
 \description{
-Print an address object
+If display name is specifed as "Last, First" then the display name will be
+quoted.
 }
 \examples{
 gerry <- as.address("gerry@gmail.com")
