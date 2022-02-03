@@ -25,9 +25,9 @@ header <- function(
 #' @return A formatted header field.
 as.character.header <- function(x, width = 28, ...) {
   FORMAT <- glue("%-{width}s")
-  INDENT <- strrep(" ", width + 2)
+  INDENT <- strrep(" ", width)
 
-  paste(
+  paste0(
     sprintf(
         FORMAT,
         paste0(x$name, ":")
