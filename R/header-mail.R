@@ -24,11 +24,12 @@ NULL
 #' msg %>% to(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 to <- function(msg, ..., append = TRUE, split = ", *") {
-  arguments <- c(...)
-  if (is.null(arguments)) {
+  addr <- list(...)
+  if (is.null(addr)) {
     header_get(msg, "To")
   } else {
-    msg <- header_set(msg, "To", as.address(arguments, split = split), append = append, sep = ",")
+    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    msg <- header_set(msg, "To", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -44,11 +45,12 @@ to <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 cc <- function(msg, ..., append = TRUE, split = ", *") {
-  arguments <- c(...)
-  if (is.null(arguments)) {
+  addr <- list(...)
+  if (is.null(addr)) {
     header_get(msg, "Cc")
   } else {
-    msg <- header_set(msg, "Cc", as.address(arguments, split = split), append = append, sep = ",")
+    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    msg <- header_set(msg, "Cc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -64,11 +66,12 @@ cc <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 bcc <- function(msg, ..., append = TRUE, split = ", *") {
-  arguments <- c(...)
-  if (is.null(arguments)) {
+  addr <- list(...)
+  if (is.null(addr)) {
     header_get(msg, "Bcc")
   } else {
-    msg <- header_set(msg, "Bcc", as.address(arguments, split = split), append = append, sep = ",")
+    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    msg <- header_set(msg, "Bcc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
