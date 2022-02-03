@@ -24,7 +24,7 @@ NULL
 #' msg %>% to(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 to <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- list(...)
+  addr <- as.list(...)
   if (is.null(addr)) {
     header_get(msg, "To")
   } else {
@@ -45,7 +45,7 @@ to <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 cc <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- list(...)
+  addr <- as.list(...)
   if (is.null(addr)) {
     header_get(msg, "Cc")
   } else {
@@ -66,7 +66,7 @@ cc <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 bcc <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- list(...)
+  addr <- as.list(...)
   if (is.null(addr)) {
     header_get(msg, "Bcc")
   } else {
