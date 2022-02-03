@@ -28,7 +28,7 @@ to <- function(msg, ..., append = TRUE, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "To")
   } else {
-    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    addr <- map(addr, as.address, split = split)
     msg <- header_set(msg, "To", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
@@ -49,7 +49,7 @@ cc <- function(msg, ..., append = TRUE, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Cc")
   } else {
-    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    addr <- map(addr, as.address, split = split)
     msg <- header_set(msg, "Cc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
@@ -70,7 +70,7 @@ bcc <- function(msg, ..., append = TRUE, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Bcc")
   } else {
-    addr <- map(addr, as.address, split = split) %>% map(as.character)
+    addr <- map(addr, as.address, split = split)
     msg <- header_set(msg, "Bcc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
