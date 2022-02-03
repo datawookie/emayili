@@ -26,8 +26,5 @@ Create an \code{address} object which represents an email address.
 \examples{
 address("gerry@gmail.com")
 address("gerry@gmail.com", "Gerald")
-address(
-  c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-  c("Durrell, Gerald", "Alice", NA)
-)
+address("gerry@gmail.com", "Durrell, Gerald")
 }

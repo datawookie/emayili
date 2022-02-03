@@ -23,7 +23,7 @@ header <- function(
 #' @export
 #'
 #' @return A formatted header field.
-as.character.header <- function(x, width = 28, ...) {
+as.character.header <- function(x, width = 30, ...) {
   FORMAT <- glue("%-{width}s")
   INDENT <- strrep(" ", width)
 
@@ -38,6 +38,7 @@ as.character.header <- function(x, width = 28, ...) {
     )
   )
 }
+# as.character.header(msg$headers$To) %>% cat()
 
 print.header <- function(x, ... ) {
   print(as.character(x))
@@ -50,10 +51,11 @@ header_get <- function(msg, name) {
 header_set <- function(msg, name, values, append = FALSE, sep = NULL) {
   # Get current header.
   header <- msg$headers[[name]]
-  # Header has not previously been set.
   if (is.null(header)) {
+    # Header has not previously been set.
     header <- header(name, c(), sep)
   } else {
+    # Header has previously been set.
     if (append) {
       values <- c(header$values, values)
     }

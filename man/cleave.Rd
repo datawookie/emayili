@@ -2,7 +2,7 @@
 % Please edit documentation in R/address.R
 \name{cleave}
 \alias{cleave}
-\title{Split into individual addresses}
+\title{Split a compound address object}
 \usage{
 cleave(addr)
 }
@@ -10,12 +10,12 @@ cleave(addr)
 \item{addr}{An \code{address} object.}
 }
 \value{
-A list of \code{address} objects.
+A list of \code{address} objects, each of which contains only a single
+address.
 }
 \description{
-Split into individual addresses
+Split a compound address object
 }
 \examples{
-to <- as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
-cleave(to)
+cleave(as.address(c("foo@yahoo.com", "bar@yahoo.com")))
 }

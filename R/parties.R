@@ -27,9 +27,10 @@ parties <- function(msg) {
   map(msg$headers[PARTIES], ~ .$values) %>%
     tibble(type = names(.), address = .) %>%
     mutate(
+      # Split addresses so that there is one record per address.
       address = map(address, cleave)
     ) %>%
-    unnest(address) %>%
+    unnest(cols = c(address)) %>%
     mutate(
       display = map_chr(address, display),
       raw = map_chr(address, raw),

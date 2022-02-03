@@ -4,7 +4,7 @@
 \alias{as.character.header}
 \title{Create formatted header.}
 \usage{
-\method{as.character}{header}(x, width = 28, ...)
+\method{as.character}{header}(x, width = 30, ...)
 }
 \arguments{
 \item{x}{A header object.}

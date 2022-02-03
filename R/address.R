@@ -89,10 +89,7 @@ compliant <- function(addr, error = FALSE) {
 #' @examples
 #' address("gerry@gmail.com")
 #' address("gerry@gmail.com", "Gerald")
-#' address(
-#'   c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-#'   c("Durrell, Gerald", "Alice", NA)
-#' )
+#' address("gerry@gmail.com", "Durrell, Gerald")
 address <- function(
   email = NA,
   display = NA,
@@ -130,15 +127,18 @@ address <- function(
     email = ifelse(is.na(email), paste0(local, "@", domain), email)
   )
 
+  email = ifelse(is.na(email), paste0(local, "@", domain), email)
+
   if (normalise) {
-    args <- args %>% mutate(
-      email = sanitise(email),
-      display = str_squish(display)
-    )
+    email = sanitise(email)
+    display = str_squish(display)
   }
 
   structure(
-    args %>% select(email, display) %>% as.list(),
+    list(
+      email = email,
+      display = display
+    ),
     class = "address"
   )
 }
@@ -214,10 +214,12 @@ Ops.address <- function(e1, e2)
 
 #' Create an address object
 #'
+#' This is capable of handling more than one address at a time.
+#'
 #' @param addr An email address.
 #' @param split Pattern for splitting multiple addresses.
 #'
-#' @return An \code{address} object.
+#' @return A list of \code{address} objects.
 #' @export
 #'
 #' @examples
@@ -225,7 +227,6 @@ Ops.address <- function(e1, e2)
 #' as.address("Gerald <gerry@gmail.com>")
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
-#' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com"))
 #' as.address("Durrell, Gerald <gerry@gmail.com>", FALSE)
 as.address <- function(addr, split = ", *") {
   if ("address" %in% class(addr)) {
@@ -267,6 +268,32 @@ as.address <- function(addr, split = ", *") {
 #' print(gerry)
 print.address <- function(x, ...) {
   print(format(x, FALSE))
+}
+
+#' Concatenate address objects
+#'
+#' @param ... Address objects to be concatenated.
+#'
+#' @return An \code{address} object.
+#' @export
+#'
+#' @examples
+#' gerry <- as.address("Gerald <gerry@gmail.com>")
+#' alice <- address("alice@yahoo.com")
+#' jim <- address("jim@aol.com", "Jim")
+#' c(gerry, alice)
+#' c(gerry, c(alice, jim))
+c.address <- function(...) {
+  addr <- list(...)
+  email <- map(addr, ~ .$email) %>% do.call(c, .)
+  display <- map(addr, ~ .$display) %>% do.call(c, .)
+  structure(
+    list(
+      email = email,
+      display = display
+    ),
+    class = "address"
+  )
 }
 
 #' Extract raw email address
@@ -311,8 +338,8 @@ display <- function(addr) {
 #' @examples
 #' local("alice@example.com")
 local <- function(addr) {
-  addr <- as.address(addr)
-  raw(addr) %>%
+  as.address(addr) %>%
+    raw() %>%
     str_remove("@.*$")
 }
 
@@ -326,24 +353,26 @@ local <- function(addr) {
 #' @examples
 #' domain("alice@example.com")
 domain <- function(addr) {
-  addr <- as.address(addr)
-  raw(addr) %>%
+  as.address(addr) %>%
+    raw() %>%
     str_remove("^.*@")
 }
 
-#' Split into individual addresses
+#' Split a compound address object
 #'
 #' @param addr An \code{address} object.
 #'
-#' @return A list of \code{address} objects.
+#' @return A list of \code{address} objects, each of which contains only a single
+#'   address.
 #' @export
 #'
 #' @examples
-#' to <- as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
-#' cleave(to)
+#' cleave(as.address(c("foo@yahoo.com", "bar@yahoo.com")))
 cleave <- function(addr) {
-  data.frame(unclass(addr)) %>%
-    pmap(function(email, display) {
-      address(email, display)
-    })
+  addr <- as.address(addr)
+
+  addr %>%
+    unclass() %>%
+    data.frame() %>%
+    pmap(function(email, display) address(email, display))
 }

@@ -1,19 +1,19 @@
 test_that("create address", {
-  addr <- address(
-    c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-    c("Gerald", "Alice", NA)
-  )
-
   expect_equal(
-    as.character(addr),
-    c("Gerald <gerry@gmail.com>", "Alice <alice@yahoo.com>", "jim@aol.com")
+    address("gerry@gmail.com") %>% as.character(), "gerry@gmail.com"
+  )
+  expect_equal(
+    address("gerry@gmail.com", NA) %>% as.character(), "gerry@gmail.com"
+  )
+  expect_equal(
+    address("gerry@gmail.com", "Gerald") %>% as.character(), "Gerald <gerry@gmail.com>"
   )
 })
 
 test_that("create address from local and domain", {
   expect_equal(
-    address(local = c("alice", "erin"), domain = "yahoo.com"),
-    address(c("alice@yahoo.com", "erin@yahoo.com"))
+    address(local = "alice", domain = "yahoo.com"),
+    address("alice@yahoo.com")
   )
 })
 
@@ -79,8 +79,8 @@ test_that("address operators", {
 
 test_that("split address list", {
   addr_list <- address(
-    c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
-    c("Gerald", NA, NA)
+    email = c("gerry@gmail.com", "alice@yahoo.com", "jim@aol.com"),
+    display = c("Gerald", NA, NA)
   )
 
   expect_equal(

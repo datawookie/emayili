@@ -5,7 +5,7 @@ test_that("to: set/get", {
 })
 
 test_that("to: set multiple recipients", {
-  recipients <- address(c("bob@gmail.com", "alice@yahoo.com"))
+  recipients <- as.address(c("bob@gmail.com", "alice@yahoo.com"))
 
   expect_equal(
     envelope() %>% to("bob@gmail.com, alice@yahoo.com") %>% to(),

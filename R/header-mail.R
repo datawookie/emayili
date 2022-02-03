@@ -24,13 +24,13 @@ NULL
 #' msg %>% to(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 to <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- as.list(...)
-  if (is.null(addr)) {
-    header_get(msg, "To")
-  } else {
-    addr <- map(addr, as.address, split = split)
+  addr <- list(...)
+  if (length(addr)) {
+    addr <- map(addr, as.address, split = split) %>% do.call(c, .)
     msg <- header_set(msg, "To", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
+  } else {
+    header_get(msg, "To")
   }
 }
 
@@ -45,13 +45,13 @@ to <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% cc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 cc <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- as.list(...)
-  if (is.null(addr)) {
-    header_get(msg, "Cc")
-  } else {
-    addr <- map(addr, as.address, split = split)
+  addr <- list(...)
+  if (length(addr)) {
+    addr <- map(addr, as.address, split = split) %>% do.call(c, .)
     msg <- header_set(msg, "Cc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
+  } else {
+    header_get(msg, "Cc")
   }
 }
 
@@ -66,13 +66,13 @@ cc <- function(msg, ..., append = TRUE, split = ", *") {
 #' msg %>% bcc(c("bob@gmail.com", "alice@yahoo.com"))
 #'
 bcc <- function(msg, ..., append = TRUE, split = ", *") {
-  addr <- as.list(...)
-  if (is.null(addr)) {
-    header_get(msg, "Bcc")
-  } else {
-    addr <- map(addr, as.address, split = split)
+  addr <- list(...)
+  if (length(addr)) {
+    addr <- map(addr, as.address, split = split) %>% do.call(c, .)
     msg <- header_set(msg, "Bcc", addr, append = append, sep = ",")
     if (get_option_invisible()) invisible(msg) else msg # nocov
+  } else  {
+    header_get(msg, "Bcc")
   }
 }
 
@@ -108,7 +108,8 @@ reply <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Reply-To")
   } else {
-    msg <- header_set(msg, "Reply-To", as.address(addr, split = split), append = FALSE)
+    addr <- as.address(addr, split = split)
+    msg <- header_set(msg, "Reply-To", addr, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -125,7 +126,8 @@ return_path <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Return-Path")
   } else {
-    msg <- header_set(msg, "Return-Path", as.address(addr, split = split), append = FALSE)
+    addr <- as.address(addr, split = split)
+    msg <- header_set(msg, "Return-Path", addr, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
@@ -141,7 +143,8 @@ sender <- function(msg, addr = NULL, split = ", *") {
   if (is.null(addr)) {
     header_get(msg, "Sender")
   } else {
-    msg <- header_set(msg, "Sender", as.address(addr, split = split), append = FALSE)
+    addr <- as.address(addr, split = split)
+    msg <- header_set(msg, "Sender", addr, append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
