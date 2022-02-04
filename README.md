@@ -56,7 +56,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.3'
+    [1] '0.7.5'
 
 Create a message object.
 
@@ -147,13 +147,13 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
-    X-Mailer:                    {emayili}-0.7.3
-    MIME-Version:                1.0
-    From:                        alice@yahoo.com
-    To:                          bob@google.com
-    Cc:                          craig@google.com
-    Subject:                     This is a plain text message!
+    Date:                         Sun, 06 Feb 2022 07:20:44 GMT
+    X-Mailer:                     {emayili}-0.7.5
+    MIME-Version:                 1.0
+    From:                         alice@yahoo.com
+    To:                           bob@google.com
+    Cc:                           craig@google.com
+    Subject:                      This is a plain text message!
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -196,15 +196,15 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
-    X-Mailer:                    {emayili}-0.7.3
-    MIME-Version:                1.0
-    Content-Type:                text/plain;
-                                  charset=utf-8;
+    Date:                         Sun, 06 Feb 2022 07:20:45 GMT
+    X-Mailer:                     {emayili}-0.7.5
+    MIME-Version:                 1.0
+    Content-Type:                 text/plain; 
+                                  charset=utf-8; 
                                   format=flowed
-    Content-Disposition:         inline
-    Content-Transfer-Encoding:   7bit
-    Content-MD5:                 nhjeY5ZYMzru+kSCGUzNKg==
+    Content-Disposition:          inline
+    Content-Transfer-Encoding:    7bit
+    Content-MD5:                  nhjeY5ZYMzru+kSCGUzNKg==
 
     Hello Alice!
 
@@ -222,12 +222,12 @@ envelope() %>%
   )
 ```
 
-    Date:                        Thu, 20 Jan 2022 06:48:52 GMT
-    X-Mailer:                    {emayili}-0.7.3
-    MIME-Version:                1.0
-    Content-Type:                text/html;
+    Date:                         Sun, 06 Feb 2022 07:20:45 GMT
+    X-Mailer:                     {emayili}-0.7.5
+    MIME-Version:                 1.0
+    Content-Type:                 text/html; 
                                   charset=utf-8
-    Content-Disposition:         inline
+    Content-Disposition:          inline
 
     <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
 

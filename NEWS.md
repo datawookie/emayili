@@ -1,3 +1,10 @@
+# {emayili} 0.7.5
+
+* More robust handling of addresses.
+* Tweak indenting in headers.
+* Quote display name differently for as.character() and print().
+* Cater for "Last, First" in to(), cc() and bcc().
+
 # {emayili} 0.7.4
 
 * Render self-contained HTML from R Markdown.
