@@ -7,18 +7,16 @@ test_that("parameter value encoding (quoted)", {
 })
 
 test_that("parameter value encoding (non-ASCII)", {
-  expect_equal(parameter_value_encode(ACCENTED_NAME), "*=utf-8''se%C3%B1or-gonz%C3%A1lez.csv")
+  expect_match(parameter_value_encode(ACCENTED_NAME), "*=utf-8''se(%C3%B1|%F1)or-gonz(%C3%A1|%E1)lez.csv")
 
   msg <- envelope() %>% attachment(ACCENTED_PATH)
 
   expect_match(
     msg %>% as.character(),
-    "name*=utf-8''se%C3%B1or-gonz%C3%A1lez.csv",
-    fixed = TRUE
+    "name\\*=utf-8''se(%C3%B1|%F1)or-gonz(%C3%A1|%E1)lez.csv"
   )
   expect_match(
     msg %>% as.character(),
-    "filename*=utf-8''se%C3%B1or-gonz%C3%A1lez.csv",
-    fixed = TRUE
+    "filename\\*=utf-8''se(%C3%B1|%F1)or-gonz(%C3%A1|%E1)lez.csv"
   )
 })
