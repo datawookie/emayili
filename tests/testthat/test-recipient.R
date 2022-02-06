@@ -25,6 +25,9 @@ test_that("from: set/get", {
   msg <- envelope() %>% from("craig@gmail.com")
   expect_equal(from(msg), address("craig@gmail.com"))
 })
+test_that("from: only one sender", {
+  expect_error(envelope() %>% from(c("bob@gmail.com", "craig@gmail.com")))
+})
 
 test_that("cc: set/get", {
   msg <- envelope() %>% cc("bob@gmail.com")

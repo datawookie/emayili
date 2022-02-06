@@ -18,22 +18,28 @@ devtools::check_win_devel()
 
 rhub::check_for_cran(
   platforms = c(
-    # devel
-    "debian-clang-devel",
+    # ==========================================================================
+    # -> devel
+    # ==========================================================================
+    # "debian-clang-devel",
     "debian-gcc-devel",
-    "ubuntu-gcc-devel",
+    # "ubuntu-gcc-devel",
     "fedora-clang-devel",
     "fedora-gcc-devel",
     "windows-x86_64-devel",
-    # patched
+    # ==========================================================================
+    # -> patched
+    # ==========================================================================
     "debian-gcc-patched",
     "windows-x86_64-patched",
-    "solaris-x86-patched",
-    # release
+    # "solaris-x86-patched",
+    # ==========================================================================
+    # -> release
+    # ==========================================================================
     "debian-gcc-release",
     "ubuntu-gcc-release",
     "macos-highsierra-release",
-    "macos-m1-bigsur-release",
+    # "macos-m1-bigsur-release",
     "windows-x86_64-release"
   ),
   env_vars = c(
