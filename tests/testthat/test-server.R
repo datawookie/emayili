@@ -1,6 +1,7 @@
 msg <- envelope() %>%
   from(EMAIL_FROM) %>%
-  to(EMAIL_TO)
+  to(EMAIL_TO) %>%
+  text("Hello from {emayili}!")
 
 msg_no_recipient <- envelope() %>%
   from(EMAIL_FROM)
@@ -124,4 +125,28 @@ test_that("replace bare line feeds", {
   msg <- envelope() %>% render("Hello!")
 
   expect_false(as.character(msg) %>% str_detect(REGEX_BARE_LINEFEED))
+})
+
+# SENDINBLUE -------------------------------------------------------------------
+
+test_that("send: Sendinblue", {
+  expect_error(smtp_sendinblue(msg %>% subject("{emayili} test (Sendinblue)")), NA)
+})
+
+# MAILGUN ----------------------------------------------------------------------
+
+test_that("send: Mailgun", {
+  expect_error(smtp_mailgun(msg %>% subject("{emayili} test (Mailgun)")), NA)
+})
+
+# MAILERSEND -------------------------------------------------------------------
+
+test_that("send: MailerSend", {
+  expect_error(smtp_mailersend(msg %>% subject("{emayili} test (MailerSend)"), verbose = TRUE), NA)
+})
+
+# SMTP BUCKET ------------------------------------------------------------------
+
+test_that("send: SMTP Bucket", {
+  expect_error(smtp_mailersend(msg %>% subject("{emayili} test (SMTP Bucket)"), verbose = TRUE), NA)
 })
