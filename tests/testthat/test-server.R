@@ -142,11 +142,11 @@ test_that("send: Mailgun", {
 # MAILERSEND -------------------------------------------------------------------
 
 test_that("send: MailerSend", {
-  expect_error(smtp_mailersend(msg %>% subject("{emayili} test (MailerSend)"), verbose = TRUE), NA)
+  expect_error(smtp_mailersend(msg %>% subject("{emayili} test (MailerSend)")), NA)
 })
 
 # SMTP BUCKET ------------------------------------------------------------------
 
 test_that("send: SMTP Bucket", {
-  expect_error(smtp_mailersend(msg %>% subject("{emayili} test (SMTP Bucket)"), verbose = TRUE), NA)
+  expect_error(smtp_smtpbucket(msg %>% subject("{emayili} test (SMTP Bucket)")), NA)
 })
