@@ -36,7 +36,7 @@ or \code{NULL} for no (or "identity") encoding.}
 
 \item{css_files}{Extra CSS files.}
 
-\item{language}{Langauge of content. If \code{FALSE} then will not include
+\item{language}{Language of content. If \code{FALSE} then will not include
 language field. If \code{TRUE} then will attempt to auto-detect language.
 Otherwise will use the specified language.}
 
