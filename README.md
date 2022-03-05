@@ -12,7 +12,7 @@ status](https://github.com/datawookie/emayili/actions/workflows/build.yaml/badge
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 `{emayili}` is a package for sending emails from R. The design goals
@@ -147,7 +147,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sun, 06 Feb 2022 07:20:44 GMT
+    Date:                         Sat, 05 Mar 2022 06:48:02 GMT
     X-Mailer:                     {emayili}-0.7.5
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
@@ -196,7 +196,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sun, 06 Feb 2022 07:20:45 GMT
+    Date:                         Sat, 05 Mar 2022 06:48:02 GMT
     X-Mailer:                     {emayili}-0.7.5
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
@@ -222,7 +222,7 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sun, 06 Feb 2022 07:20:45 GMT
+    Date:                         Sat, 05 Mar 2022 06:48:02 GMT
     X-Mailer:                     {emayili}-0.7.5
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
