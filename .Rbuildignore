@@ -8,6 +8,7 @@
 ^emayili.*\.tar\.gz$
 ^emayili.*\.tgz$
 .bumpversion.cfg
+codecov.yml
 README.Rmd
 README.html
 test.R
