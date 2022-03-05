@@ -383,6 +383,11 @@ text_html <- function(
   # Replace bare line-feeds.
   content <- drape_linefeed(content)
 
+  # Remove empty lines.
+  content <- str_replace_all(content, "(\\r\\n)+", "\r\n")
+  # Remove line-feed at end.
+  content <- str_replace(content, "(\\r\\n)+$", "")
+
   structure(
     c(
       MIME(
