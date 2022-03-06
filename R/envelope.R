@@ -87,7 +87,11 @@ envelope <- function(
 }
 
 headers <- function(x) {
-  paste(sapply(x$headers, as.character), collapse = "\r\n")
+  headers <- x$headers
+  # Drop the Bcc header.
+  headers <- headers[names(headers) != "Bcc"]
+
+  paste(sapply(headers, as.character), collapse = "\r\n")
 }
 
 #' Print a message object
