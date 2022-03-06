@@ -176,13 +176,13 @@ multipart_signed <- function(
   micalg = "pgp-sha256",
   ...
 ) {
-  if (!(micalg %in% LEVELS_MICALG)) stop('Invalid micalg: "{micalg}".')
+  if (!(micalg %in% LEVELS_MICALG)) stop('Invalid micalg.')
   structure(
     c(
       MIME(
         "This is an OpenPGP/MIME signed message (RFC 4880 and 3156).",
         protocol = "application/pgp-signature",
-        type = c("multipart/signed", 'micalg="{micalg}"'),
+        type = c("multipart/signed", glue('micalg="{micalg}"')),
         ...
       ),
       list()
