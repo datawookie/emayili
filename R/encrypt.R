@@ -4,6 +4,8 @@
 #'
 #' If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the message contents.
 #'
+#' @name encrypt
+#'
 #' @inheritParams envelope
 #' @inheritParams parties
 #'
@@ -29,6 +31,15 @@ encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
   msg$public_key <- public_key                                  # nocov end
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
+}
+
+#' @rdname encrypt
+#'
+#' @inheritParams encrypt
+#'
+#' @export
+signature <- function(msg, public_key = TRUE) {
+  encrypt(msg, sign = TRUE, encrypt = FALSE, public_key = public_key)
 }
 
 encrypt_body <- function(content, parties, encrypt, sign, public_key) {

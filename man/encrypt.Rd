@@ -2,9 +2,12 @@
 % Please edit documentation in R/encrypt.R
 \name{encrypt}
 \alias{encrypt}
+\alias{signature}
 \title{Encrypt or sign a message}
 \usage{
 encrypt(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE)
+
+signature(msg, public_key = TRUE)
 }
 \arguments{
 \item{msg}{A message object.}
