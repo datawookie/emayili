@@ -1,5 +1,9 @@
 `%|>%` <- magrittr::pipe_nested
 
+JINJAR_CONFIG <- jinjar::jinjar_config(
+  lstrip_blocks = FALSE
+)
+
 #' Add message body from template
 #'
 #' Variables given as named arguments will override any variables in the
@@ -75,7 +79,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   if (file.exists(path_html)) {
     template_html <- read_text(path_html)
     log_debug("Found HTML template. Populating...")
-    template_html <- jinjar::render(template_html, !!!params)
+    template_html <- jinjar::render(template_html, !!!params, .config = JINJAR_CONFIG)
     log_debug("Done.")
   } else {
     template_html <- NULL                            # nocov
@@ -84,7 +88,7 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   if (file.exists(path_text)) {
     template_text <- read_text(path_text)
     log_debug("Found text template. Populating...")
-    template_text <- jinjar::render(template_text, !!!params)
+    template_text <- jinjar::render(template_text, !!!params, .config = JINJAR_CONFIG)
     log_debug("Done.")
   } else {
     template_text <- NULL
