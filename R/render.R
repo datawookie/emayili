@@ -127,6 +127,13 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' Regardless of what \code{output} type is specified in the input file,
 #' \code{render()} will always use the \code{"html_document"} output format.
 #'
+#' Rending an R Markdown document can result in a lot of CSS. When all of the
+#' CSS is included in the HTML `<head>` and sent to GMail it can result in a
+#' message which is not correctly displayed inline in the Gmail web client.
+#' To get around this you can specify `include_css = FALSE`. This will mean
+#' that some styling will not be present in the resulting message, but that
+#'the message content will be correctly rendered inline.
+#'
 #' @inheritParams text
 #' @inheritParams html
 #' @param msg A message object.
