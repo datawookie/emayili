@@ -344,6 +344,9 @@ text_html <- function(
       css_remove_comment() %>%
       str_squish()
 
+    # Remove web fonts.
+    css <- gsub("@font-face\\{[^}]*\\}", "", css)
+
     # Add <head> (can be missing if rendering Plain Markdown).
     if (is.na(xml_find_first(content, "//head"))) {
       log_debug("- Add <head>.")
