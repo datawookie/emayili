@@ -26,5 +26,9 @@ Create an \code{address} object which represents an email address.
 \examples{
 address("gerry@gmail.com")
 address("gerry@gmail.com", "Gerald")
+address("gerry@gmail.com", "Gerald Durrell")
+# Display name in "Last, First" format.
 address("gerry@gmail.com", "Durrell, Gerald")
+# Display name contains non-ASCII characters.
+address("hans@gmail.com", "Hansjörg Müller")
 }

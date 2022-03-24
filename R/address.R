@@ -89,7 +89,11 @@ compliant <- function(addr, error = FALSE) {
 #' @examples
 #' address("gerry@gmail.com")
 #' address("gerry@gmail.com", "Gerald")
+#' address("gerry@gmail.com", "Gerald Durrell")
+#' # Display name in "Last, First" format.
 #' address("gerry@gmail.com", "Durrell, Gerald")
+#' # Display name contains non-ASCII characters.
+#' address("hans@gmail.com", "Hansjörg Müller")
 address <- function(
   email = NA,
   display = NA,
@@ -171,6 +175,15 @@ format.address <- function(x, quote = TRUE, ...) {
   display <- ifelse(
     !is.na(display) & str_detect(display, ",") & quote,
     paste0('"', display, '"'),
+    display
+  )
+
+  # Apply encoding as specified in Section 2 ("Syntax of encoded-words") of
+  # RFC 2047.
+  #
+  display <- ifelse(
+    !is.na(display) & stri_enc_mark(display) != "ASCII",
+    paste0("=?UTF-8?B?", map_chr(display, ~ base64encode(charToRaw(.))), "?="),
     display
   )
 
