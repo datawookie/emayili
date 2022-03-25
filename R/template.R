@@ -1,9 +1,5 @@
 `%|>%` <- magrittr::pipe_nested
 
-JINJAR_CONFIG <- jinjar::jinjar_config(
-  lstrip_blocks = FALSE
-)
-
 #' Add message body from template
 #'
 #' Variables given as named arguments will override any variables in the
@@ -51,6 +47,10 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
   if(!requireNamespace("jinjar", quietly = TRUE)) {
     stop("Install {jinjar} to to use templates.")    # nocov
   }
+
+  JINJAR_CONFIG <- jinjar::jinjar_config(
+    lstrip_blocks = FALSE
+  )
 
   # Convert environment to list.
   params <- as.list(.envir)

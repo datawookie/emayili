@@ -162,6 +162,7 @@ length.address <- function(x) {
 #' @param x An \code{address} object.
 #' @param quote Whether to quote display name (only relevant if display name is
 #'   given in "Last, First" format).
+#' @param encode Whether to encode headers.
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A character vector.

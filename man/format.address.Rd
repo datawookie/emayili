@@ -12,6 +12,8 @@
 \item{quote}{Whether to quote display name (only relevant if display name is
 given in "Last, First" format).}
 
+\item{encode}{Whether to encode headers.}
+
 \item{...}{Further arguments passed to or from other methods.}
 }
 \value{

@@ -126,6 +126,7 @@ print.envelope <- function(x, details = NA, ...) {
 #' Accepts a message object and formats it as a MIME document.
 #'
 #' @inheritParams print.envelope
+#' @param encode Whether to encode headers.
 #' @export
 #'
 #' @return A formatted message object.
