@@ -1,6 +1,6 @@
 test_that("subject: set/get", {
   msg <- envelope() %>% subject("Test message")
-  expect_equal(subject(msg), "Test message")
+  expect_equal(subject(msg), encodable("Test message"))
 })
 
 test_that("interpolate", {
@@ -11,12 +11,12 @@ test_that("interpolate", {
     envelope() %>%
       subject("Hello {{name}}!") %>%
       subject(),
-    "Hello Alice!"
+    encodable("Hello Alice!")
   )
   expect_equal(
     envelope() %>%
       subject("Hello {{name}}!", .envir = variables) %>%
       subject(),
-    "Hello Alice!"
+    encodable("Hello Alice!")
   )
 })

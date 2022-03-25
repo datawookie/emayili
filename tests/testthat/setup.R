@@ -160,7 +160,8 @@ rmarkdown::draft(
 
 # ------------------------------------------------------------------------------
 
-ADDRESS_HANS <- address(email = "hans@gmail.com", display = "Hansjörg Müller")
+ADDRESS_HANS_DISPLAY <- "Hansjörg Müller"
+ADDRESS_HANS <- address(email = "hans@gmail.com", display = ADDRESS_HANS_DISPLAY)
 
 SUBJECT_FURNITURE_FEET <- encodable("Möbelträgerfüße")
 
