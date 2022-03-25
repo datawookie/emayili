@@ -159,7 +159,7 @@ server <- function(
       mail_from = raw(from(msg)),
       mail_rcpt = raw(recipients),
       # Get character representation of envelope object.
-      message = as.character(msg),
+      message = as.character(msg, encode = TRUE),
       smtp_server = smtp_server,
       username = username,
       password = password,

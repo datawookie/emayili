@@ -129,9 +129,9 @@ print.envelope <- function(x, details = NA, ...) {
 #' @export
 #'
 #' @return A formatted message object.
-as.character.envelope <- function(x, ..., details = TRUE) {
+as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
   message <- list(
-    headers(x)
+    headers(x, encode = encode)
   )
 
   if (length(x$parts) > 1) {

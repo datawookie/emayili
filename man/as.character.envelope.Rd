@@ -4,7 +4,7 @@
 \alias{as.character.envelope}
 \title{Create formatted message.}
 \usage{
-\method{as.character}{envelope}(x, ..., details = TRUE)
+\method{as.character}{envelope}(x, ..., details = TRUE, encode = FALSE)
 }
 \arguments{
 \item{x}{A message object.}
