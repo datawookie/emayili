@@ -86,12 +86,12 @@ envelope <- function(
   koevert
 }
 
-headers <- function(x) {
+headers <- function(x, encode = FALSE) {
   headers <- x$headers
   # Drop the Bcc header.
   headers <- headers[names(headers) != "Bcc"]
 
-  paste(sapply(headers, as.character), collapse = "\r\n")
+  paste(map_chr(headers, as.character, encode = encode), collapse = "\r\n")
 }
 
 #' Print a message object

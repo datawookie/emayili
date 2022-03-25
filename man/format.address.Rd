@@ -4,7 +4,7 @@
 \alias{format.address}
 \title{Encode email addresses in a common format}
 \usage{
-\method{format}{address}(x, quote = TRUE, ...)
+\method{format}{address}(x, quote = TRUE, encode = FALSE, ...)
 }
 \arguments{
 \item{x}{An \code{address} object.}

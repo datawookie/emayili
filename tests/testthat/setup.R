@@ -158,6 +158,10 @@ rmarkdown::draft(
   edit = FALSE
 )
 
+# ADDRESSES --------------------------------------------------------------------
+
+ADDRESS_HANS <- address(email = "hans@gmail.com", display = "Hansjörg Müller")
+
 # UTILITY ----------------------------------------------------------------------
 
 skip_if_neither_installed <- function(paks) {
