@@ -38,7 +38,11 @@ test_that("display name not encoded in console", {
 
 test_that("display name encoded in message", {
   expect_match(
-    envelope(to = ADDRESS_HANS) %>% as.character(),
+    envelope(to = ADDRESS_HANS) %>% as.character(encode = FALSE),
+    "Hansjörg Müller"
+  )
+  expect_match(
+    envelope(to = ADDRESS_HANS) %>% as.character(encode = TRUE),
     "=?UTF-8?B?SGFuc2rDtnJnIE3DvGxsZXI=?=",
     fixed = TRUE
   )
