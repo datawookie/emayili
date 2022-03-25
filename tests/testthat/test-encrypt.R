@@ -44,9 +44,10 @@ test_that("sign/encrypt empty message", {
 test_that("sign", {
   msg <- envelope(
     to = "alice@yahoo.com",
-    from = "bob@gmail.com",
-    sign = TRUE
-  ) %>% text(TXTCONTENT)
+    from = "bob@gmail.com"
+  ) %>%
+    text(TXTCONTENT) %>%
+    signature(public_key = FALSE)
 
   expect_match(as.character(msg), BEGIN_PGP_SIGNATURE)
   expect_match(as.character(msg), END_PGP_SIGNATURE)
