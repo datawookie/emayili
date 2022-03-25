@@ -12,6 +12,8 @@
 \item{...}{Further arguments passed to or from other methods.}
 
 \item{details}{Whether or not to display full message content.}
+
+\item{encode}{Whether to encode headers.}
 }
 \value{
 A formatted message object.
