@@ -156,7 +156,7 @@ subject <- function(
 
     if (interpolate) subject <- glue(subject, .open = .open, .close = .close, .envir = .envir)
 
-    msg <- header_set(msg, "Subject", subject, append = FALSE)
+    msg <- header_set(msg, "Subject", encodable(subject), append = FALSE)
     if (get_option_invisible()) invisible(msg) else msg # nocov
   }
 }
