@@ -36,6 +36,10 @@ test_that("display name not encoded in console", {
   expect_match(as.character(ADDRESS_HANS), "Hansjörg Müller")
 })
 
+test_that("subject not encoded in console", {
+  expect_match(as.character(SUBJECT_FURNITURE_FEET), "Möbelträgerfüße")
+})
+
 test_that("display name encoded in message", {
   expect_match(
     envelope(to = ADDRESS_HANS) %>% as.character(encode = FALSE),
@@ -44,6 +48,18 @@ test_that("display name encoded in message", {
   expect_match(
     envelope(to = ADDRESS_HANS) %>% as.character(encode = TRUE),
     "=?UTF-8?B?SGFuc2rDtnJnIE3DvGxsZXI=?=",
+    fixed = TRUE
+  )
+})
+
+test_that("subject encoded in message", {
+  expect_match(
+    envelope(subject = SUBJECT_FURNITURE_FEET) %>% as.character(encode = FALSE),
+    "Möbelträgerfüße"
+  )
+  expect_match(
+    envelope(subject = SUBJECT_FURNITURE_FEET) %>% as.character(encode = TRUE),
+    "=?UTF-8?B?TcO2YmVsdHLDpGdlcmbDvMOfZQ==?=",
     fixed = TRUE
   )
 })
