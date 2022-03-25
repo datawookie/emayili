@@ -166,7 +166,7 @@ length.address <- function(x) {
 #'
 #' @return A character vector.
 #' @export
-format.address <- function(x, quote = TRUE, ...) {
+format.address <- function(x, quote = TRUE, encode = FALSE, ...) {
   email <- x$email
   display <- x$display
 
@@ -182,7 +182,7 @@ format.address <- function(x, quote = TRUE, ...) {
   # RFC 2047.
   #
   display <- ifelse(
-    !is.na(display) & stri_enc_mark(display) != "ASCII",
+    !is.na(display) & stri_enc_mark(display) != "ASCII" & encode,
     paste0("=?UTF-8?B?", map_chr(display, ~ base64encode(charToRaw(.))), "?="),
     display
   )
@@ -195,7 +195,7 @@ format.address <- function(x, quote = TRUE, ...) {
 
 #' Convert address object to character
 #'
-#' If display name is specifed as "Last, First" then the display name will be
+#' If display name is specified as "Last, First" then the display name will be
 #' quoted.
 #'
 #' @param x  An \code{address} object.

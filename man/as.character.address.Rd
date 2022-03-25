@@ -15,6 +15,6 @@
 A character vector.
 }
 \description{
-If display name is specifed as "Last, First" then the display name will be
+If display name is specified as "Last, First" then the display name will be
 quoted.
 }

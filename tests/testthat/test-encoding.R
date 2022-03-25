@@ -31,3 +31,15 @@ test_that("unicode", {
   expect_equal(Encoding(qp_decode("=E3=83=84")), Encoding("ツ"))
   expect_equal(qp_decode("=E3=83=84"), "ツ")
 })
+
+test_that("display name not encoded in console", {
+  expect_match(as.character(ADDRESS_HANS), "Hansjörg Müller")
+})
+
+test_that("display name encoded in message", {
+  expect_match(
+    envelope(to = ADDRESS_HANS) %>% as.character(),
+    "=?UTF-8?B?SGFuc2rDtnJnIE3DvGxsZXI=?=",
+    fixed = TRUE
+  )
+})
