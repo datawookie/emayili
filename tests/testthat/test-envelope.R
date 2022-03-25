@@ -40,7 +40,7 @@ test_that("reply to", {
 
 test_that("subject", {
   subject <- envelope(subject = "Email Subject")
-  expect_equal(subject$header$Subject$values, "Email Subject")
+  expect_equal(subject$header$Subject$values %>% as.character(), "Email Subject")
 })
 
 test_that("body text", {

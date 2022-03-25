@@ -17,6 +17,10 @@ encodable <- function(text) {
 
 #' Convert encodable object to character
 #'
+#' The `?B?` presumably indicates that the data is Base64 encoded. You can also
+#' use `?Q?`, which presumably indicates that the data is Quoted Printable
+#' encoded.
+#'
 #' @param x  An \code{encodable} object.
 #' @param encode Whether to encode.
 #' @param ... Further arguments passed to or from other methods.
@@ -31,3 +35,18 @@ as.character.encodable <- function(x, encode = FALSE, ...) {
     x
   }
 }
+
+Ops.encodable <- function(e1, e2)
+{
+  e1 <- encodable(e1)
+  e2 <- encodable(e2)
+
+  get(.Generic)(as.character(e1), as.character(e2))
+}
+
+# x <- encodable("foo")
+# y <- "foo"
+# z <- "bar"
+#
+# x == y
+# x == z
