@@ -69,6 +69,7 @@ Suggests:
     gpg,
     here,
     jinjar,
+    lintr,
     memoise,
     testthat (>= 2.1.0),
     roxygen2,
