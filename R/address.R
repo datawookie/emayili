@@ -167,14 +167,7 @@ format.address <- function(x, quote = TRUE, encode = FALSE, ...) {
     display
   )
 
-  # Apply encoding as specified in Section 2 ("Syntax of encoded-words") of
-  # RFC 2047.
-  #
-  display <- ifelse(
-    !is.na(display) & stri_enc_mark(display) != "ASCII" & encode,
-    paste0("=?UTF-8?B?", map_chr(display, ~ base64encode(charToRaw(.))), "?="),
-    display
-  )
+  display <- encodable(display) %>% as.character(encode = encode)
 
   fmt <- ifelse(is.na(display), email, glue("{display} <{email}>"))
   fmt[is.na(email)] <- NA

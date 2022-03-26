@@ -17,6 +17,9 @@ encodable <- function(text) {
 
 #' Convert encodable object to character
 #'
+#' Apply encoding as specified in Section 2 ("Syntax of encoded-words") of
+#' RFC 2047.
+#'
 #' The `?B?` presumably indicates that the data is Base64 encoded. You can also
 #' use `?Q?`, which presumably indicates that the data is Quoted Printable
 #' encoded.
@@ -28,12 +31,19 @@ encodable <- function(text) {
 #' @return A character vector.
 #' @noRd
 as.character.encodable <- function(x, encode = FALSE, ...) {
+  # Just keep the underlying text.
   x <- unclass(x)
-  if (stri_enc_mark(x) != "ASCII" && encode) {
-    paste0("=?UTF-8?B?", base64encode(charToRaw(x)), "?=")
-  } else {
-    x
-  }
+
+  ifelse (
+    is.na(x),
+    NA,
+    if (stri_enc_mark(x) != "ASCII" && encode) {
+      # paste0("=?UTF-8?B?", base64encode(charToRaw(x)), "?=")
+      paste0("=?UTF-8?B?", map_chr(x, ~ base64encode(charToRaw(.))), "?=")
+    } else {
+      x
+    }
+  )
 }
 
 Ops.encodable <- function(e1, e2)
