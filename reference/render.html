@@ -110,7 +110,7 @@ Otherwise will use the specified language.</p></dd>
     
 
 
-<p>Plain Markdown is processed with <code><a href="https://rdrr.io/pkg/commonmark/man/commonmark.html" class="external-link">commonmark::markdown_html()</a></code>.</p>
+<p>Plain Markdown is processed with <code><a href="https://docs.ropensci.org/commonmark/reference/commonmark.html" class="external-link">commonmark::markdown_html()</a></code>.</p>
     </div>
     <div id="r-markdown">
     <h2>R Markdown</h2>
@@ -120,6 +120,12 @@ Otherwise will use the specified language.</p></dd>
 <p>R Markdown is processed with <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">rmarkdown::render()</a></code>.</p>
 <p>Regardless of what <code>output</code> type is specified in the input file,
 <code>render()</code> will always use the <code>"html_document"</code> output format.</p>
+<p>Rending an R Markdown document can result in a lot of CSS. When all of the
+CSS is included in the HTML <code>&lt;head&gt;</code> and sent to GMail it can result in a
+message which is not correctly displayed inline in the Gmail web client.
+To get around this you can specify <code>include_css = FALSE</code>. This will mean
+that some styling will not be present in the resulting message, but that
+the message content will be correctly rendered inline.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
