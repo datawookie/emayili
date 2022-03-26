@@ -163,6 +163,9 @@ rmarkdown::draft(
 ADDRESS_HANS_DISPLAY <- "Hansjörg Müller"
 ADDRESS_HANS <- address(email = "hans@gmail.com", display = ADDRESS_HANS_DISPLAY)
 
+ADDRESS_BETHANY_DISPLAY <- "Betânia Guaraná"
+ADDRESS_BETHANY <- address(email = "bethany@gmail.com", display = ADDRESS_BETHANY_DISPLAY)
+
 SUBJECT_FURNITURE_FEET <- encodable("Möbelträgerfüße")
 
 # UTILITY ----------------------------------------------------------------------
