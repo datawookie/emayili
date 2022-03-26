@@ -119,18 +119,6 @@ address <- function(
   local <- as.character(local)
   domain <- as.character(domain)
 
-  args <- possibly(data.frame, NULL)(
-    email,
-    display,
-    local,
-    domain
-  )
-  if (is.null(args)) stop("Unable to recycle arguments in a meaningful way.")
-
-  args <- args %>% mutate(
-    email = ifelse(is.na(email), paste0(local, "@", domain), email)
-  )
-
   email = ifelse(is.na(email), paste0(local, "@", domain), email)
 
   if (normalise) {

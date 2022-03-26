@@ -17,15 +17,6 @@ test_that("create address from local and domain", {
   )
 })
 
-test_that("unable to recycle", {
-  expect_error(
-    address(
-      email = c("bob@gmail.com", "alice@yahoo.com"),
-      display = c("Bob", "Alice", "Jim")
-    )
-  )
-})
-
 test_that("mandatory arguments", {
   expect_error(address())
   expect_error(address(NA, "Bob"))
