@@ -78,22 +78,14 @@ test_that("split address list", {
     as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com")),
     addr_list
   )
-  expect_equal(
-    as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com"),
-    addr_list
-  )
-  expect_equal(
-    as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com, jim@aol.com")),
-    addr_list
-  )
 
-  last_first <- as.address("Durrell, Gerald <gerry@gmail.com>", split = FALSE)
+  last_first <- as.address("Durrell, Gerald <gerry@gmail.com>")
   expect_equal(
     last_first,
     address("gerry@gmail.com", "Durrell, Gerald")
   )
   expect_equal(
     as.character(last_first),
-    '"Durrell, Gerald" <gerry@gmail.com>'
+    'Durrell, Gerald <gerry@gmail.com>'
   )
 })

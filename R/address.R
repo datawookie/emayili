@@ -159,14 +159,6 @@ format.address <- function(x, quote = TRUE, encode = FALSE, ...) {
   email <- x$email
   display <- x$display
 
-  # If the display name includes a comma, then quote it.
-  #
-  display <- ifelse(
-    !is.na(display) & str_detect(display, ",") & quote,
-    paste0('"', display, '"'),
-    display
-  )
-
   display <- encodable(display) %>% as.character(encode = encode)
 
   fmt <- ifelse(is.na(display), email, glue("{display} <{email}>"))
@@ -209,8 +201,6 @@ Ops.address <- function(e1, e2)
 
 #' Create an address object
 #'
-#' This is capable of handling more than one address at a time.
-#'
 #' @param addr An email address.
 #' @param split Pattern for splitting multiple addresses.
 #'
@@ -222,17 +212,11 @@ Ops.address <- function(e1, e2)
 #' as.address("Gerald <gerry@gmail.com>")
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
-#' as.address("Durrell, Gerald <gerry@gmail.com>", FALSE)
-as.address <- function(addr, split = ", *") {
+#' as.address("Durrell, Gerald <gerry@gmail.com>")
+as.address <- function(addr) {
   if ("address" %in% class(addr)) {
     addr
   } else {
-    # Check if multiple addresses.
-    #
-    if (is.character(split)) {
-      addr <- str_split(addr, split) %>% unlist()
-    }
-    #
     display <- ifelse(
       str_detect(addr, "[<>]"),
       str_extract(addr, ".*<") %>% str_remove("<"),

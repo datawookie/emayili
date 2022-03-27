@@ -8,10 +8,6 @@ test_that("to: set multiple recipients", {
   recipients <- as.address(c("bob@gmail.com", "alice@yahoo.com"))
 
   expect_equal(
-    envelope() %>% to("bob@gmail.com, alice@yahoo.com") %>% to(),
-    recipients
-  )
-  expect_equal(
     envelope() %>% to("bob@gmail.com", "alice@yahoo.com") %>% to(),
     recipients
   )
@@ -27,6 +23,9 @@ test_that("from: set/get", {
 })
 test_that("from: only one sender", {
   expect_error(envelope() %>% from(c("bob@gmail.com", "craig@gmail.com")))
+})
+test_that("from: handle 'Last, First' order", {
+  expect_error(envelope() %>% from('Smith, Bob <bob@gmail.com>'), NA)
 })
 
 test_that("cc: set/get", {

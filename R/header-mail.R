@@ -22,21 +22,21 @@ recipient <- function(key, single = FALSE) {
   force(single)
 
   if (single) {
-    function(msg, addr = NULL, split = ", *") {
+    function(msg, addr = NULL) {
       if (is.null(addr)) {
         header_get(msg, key)
       } else {
-        addr <- as.address(addr, split = split)
+        addr <- as.address(addr)
         if (length(addr) > 1) stop("Only one address allowed.")
         msg <- header_set(msg, key, addr, append = FALSE)
         if (get_option_invisible()) invisible(msg) else msg
       }
     }
   } else {
-    function(msg, ..., append = TRUE, split = ", *") {
+    function(msg, ..., append = TRUE) {
       addr <- list(...)
       if (length(addr)) {
-        addr <- map(addr, as.address, split = split) %>% do.call(c, .)
+        addr <- map(addr, as.address) %>% do.call(c, .)
         msg <- header_set(msg, key, addr, append = append, sep = ",")
         if (get_option_invisible()) invisible(msg) else msg
       } else {
@@ -49,7 +49,6 @@ recipient <- function(key, single = FALSE) {
 #' @rdname addresses
 #'
 #' @param ... Addresses.
-#' @inheritParams as.address
 #'
 #' @export
 #' @examples

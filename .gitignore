@@ -6,7 +6,7 @@
 .httr-oauth
 attachment-*
 TODO
-test.R
+test*.R
 untitled.Rmd
 README.html
 emayili.Rcheck/

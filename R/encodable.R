@@ -37,12 +37,11 @@ as.character.encodable <- function(x, encode = FALSE, ...) {
   ifelse (
     is.na(x),
     NA,
-    if (stri_enc_mark(x) != "ASCII" && encode) {
-      # paste0("=?UTF-8?B?", base64encode(charToRaw(x)), "?=")
-      paste0("=?UTF-8?B?", map_chr(x, ~ base64encode(charToRaw(.))), "?=")
-    } else {
+    ifelse(
+      (stri_enc_mark(x) != "ASCII" | str_detect(x, ",")) & encode,
+      paste0("=?UTF-8?B?", map_chr(x, ~ base64encode(charToRaw(.))), "?="),
       x
-    }
+    )
   )
 }
 
@@ -53,10 +52,3 @@ Ops.encodable <- function(e1, e2)
 
   get(.Generic)(as.character(e1), as.character(e2))
 }
-
-# x <- encodable("foo")
-# y <- "foo"
-# z <- "bar"
-#
-# x == y
-# x == z

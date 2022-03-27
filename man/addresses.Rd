@@ -11,19 +11,19 @@
 \alias{sender}
 \title{Add address fields to message}
 \usage{
-to(msg, ..., append = TRUE, split = ", *")
+to(msg, ..., append = TRUE)
 
-cc(msg, ..., append = TRUE, split = ", *")
+cc(msg, ..., append = TRUE)
 
-bcc(msg, ..., append = TRUE, split = ", *")
+bcc(msg, ..., append = TRUE)
 
-from(msg, addr = NULL, split = ", *")
+from(msg, addr = NULL)
 
-reply(msg, addr = NULL, split = ", *")
+reply(msg, addr = NULL)
 
-return_path(msg, addr = NULL, split = ", *")
+return_path(msg, addr = NULL)
 
-sender(msg, addr = NULL, split = ", *")
+sender(msg, addr = NULL)
 }
 \arguments{
 \item{msg}{A message object.}
@@ -31,8 +31,6 @@ sender(msg, addr = NULL, split = ", *")
 \item{...}{Addresses.}
 
 \item{append}{Whether to append or replace addresses.}
-
-\item{split}{Pattern for splitting multiple addresses.}
 
 \item{addr}{Single address.}
 }
