@@ -52,7 +52,7 @@ Imports:
     htmltools,
     httr,
     logger,
-    magrittr,
+    magrittr (>= 2.0.1),
     mime,
     purrr,
     rmarkdown,
