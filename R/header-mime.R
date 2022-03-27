@@ -1,4 +1,6 @@
 content_type <- function(type, protocol, charset, boundary, format = NA, name = NA) {
+  name = encodable(name) %>% as.character(encode = TRUE)
+
   header(
     "Content-Type",
     c(
@@ -7,24 +9,28 @@ content_type <- function(type, protocol, charset, boundary, format = NA, name = 
       if (!is.na(charset)) glue('charset={charset}') else NULL,
       if (!is.na(boundary)) glue('boundary="{boundary}"') else NULL,
       if (!is.na(format)) glue('format={format}') else NULL,
-      if (!is.na(name)) glue('name{parameter_value_encode(name)}') else NULL
+      if (!is.na(name)) glue('name="{name}"') else NULL
     ),
     sep = "; "
   )
 }
 
 content_disposition <- function(disposition = NA, filename = NA) {
+  filename = encodable(filename) %>% as.character(encode = TRUE)
+
   if (is.na(disposition)) {
     NULL
   } else {
     if (!is.na(filename)) {
-      disposition <- paste(
-        disposition,
-        glue('filename{parameter_value_encode(filename)}'),
+      header(
+        "Content-Disposition",
+        c(
+          disposition,
+          if (!is.na(filename)) glue('filename="{filename}"') else NULL
+        ),
         sep = "; "
       )
     }
-    header("Content-Disposition", disposition)
   }
 }
 

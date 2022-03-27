@@ -437,7 +437,6 @@ other <- function(
   } else {
     type <- guess_type(filename, empty = "application/octet-stream")
   }
-  type <- glue('{type}; name{parameter_value_encode(name)}')
 
   if (is.na(disposition)) {
     disposition <- ifelse(
@@ -521,7 +520,7 @@ as.character.MIME <- function(x, ...) {
   })
   #
   headers <- list(
-    content_type(type(x), x$protocol, x$charset, x$boundary, x$format, x$name),
+    content_type(type(x), x$protocol, x$charset, x$boundary, x$format, x$filename),
     content_description(x$description),
     content_disposition(x$disposition, x$filename),
     content_transfer_encoding(x$encoding),
