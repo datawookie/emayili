@@ -22,6 +22,10 @@
 #' @importFrom xfun read_utf8
 NULL
 
+.onLoad <- function(libname, pkgname){
+  log_layout(layout_glue_generator('{str_pad(level, 7, side = "right")} [{time}] {msg}'))
+}
+
 globalVariables(
   c(
     ".",
