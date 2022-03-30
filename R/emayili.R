@@ -15,7 +15,7 @@
 #' @importFrom mime guess_type
 #' @importFrom rmarkdown render html_document
 #' @importFrom stats setNames na.omit
-#' @importFrom stringi stri_replace_all_fixed stri_replace_all_regex stri_enc_mark
+#' @importFrom stringi stri_replace_all_fixed stri_replace_all_regex stri_enc_mark stri_trans_nfkc
 #' @importFrom tools file_ext
 #' @importFrom urltools url_decode
 #' @importFrom utils packageVersion download.file modifyList
@@ -23,7 +23,7 @@
 NULL
 
 .onLoad <- function(libname, pkgname){
-  log_layout(layout_glue_generator('{str_pad(level, 7, side = "right")} [{time}] {msg}'))
+  log_layout(layout_glue_generator('{stringr::str_pad(level, 7, side = "right")} [{time}] {msg}')) # nocov
 }
 
 globalVariables(

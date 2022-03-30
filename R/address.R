@@ -1,13 +1,79 @@
-sanitise <- function(email, strip_comments = TRUE) {
-  email %>%
+#' Normalise email address
+#'
+#' Ensure that email address is in a standard format.
+#'
+#' Performs the following transformations:
+#'
+#' - lowercase the domain part
+#' - replace some Unicode characters with compatible equivalents. See
+#'   [Unicode equivalence](https://en.wikipedia.org/wiki/Unicode_equivalence).
+#'
+#' @param email An email address.
+#'
+#' @return An email address.
+#' @export
+#'
+#' @examples
+#' normalise("bob@GMAIL.COM")
+#' normalise("bob@ｇｍａｉｌ.com")
+normalise <- function(email) {
+  email <- email %>%
     str_trim() %>%
-    str_replace("[:blank:]+@[:blank:]+", "@") %>% {
-      if (strip_comments) {
-        str_remove_all(., "\\([^)]*\\)")
+    str_replace("[:blank:]+@[:blank:]+", "@")
+
+  # Strip comments.
+  email <- str_remove_all(email, "\\([^)]*\\)")
+
+  # Unicode NFC normalisation.
+  email <- stri_trans_nfkc(email)
+
+  # Domain part to lowercase.
+  #
+  # Need to use sub() here because {stringr} doesn't support perl option, which
+  # is required to get "\\L" (lowercase) working.
+  #
+  email <- sub('(?<=@)(.*)', '\\L\\1', email, perl = TRUE)
+
+  email
+}
+
+#' Validate email address
+#'
+#' @param addr An email address.
+#' @param deliverability Whether to check for deliverability (valid domain).
+#'
+#' @return A `logical` indicating whether or not the address is valid.
+#' @export
+#'
+#' @examples
+#' # A valid address.
+#' validate("cran-sysadmin@r-project.org")
+#' # An invalid address.
+#' validate("help@this-domain-does-not-exist.com")
+validate <- function(addr, deliverability = TRUE) {
+  if (!inherits(addr, "address")) addr <- as.address(addr)
+
+  addr <- addr$email
+  log_debug("Check address: {addr}")
+
+  log_debug("- syntax")
+  if (!compliant(addr)) {
+    log_warn("Email address doesn't satisfy syntax requirements.")
+    FALSE
+  } else {
+    if (deliverability) {
+      domain <- domain(addr)
+      log_debug("- domain:      {domain}")
+      if (is.null(safely(nslookup)(domain)$result)) {
+        log_warn("* Email address does not have a valid domain.")
+        FALSE
       } else {
-        . # nocov
+        TRUE
       }
+    } else {
+      TRUE
     }
+  }
 }
 
 #' Tests whether an email address is syntactically correct
@@ -82,6 +148,7 @@ compliant <- function(addr, error = FALSE) {
 #' @param local Local part of email address.
 #' @param domain Domain part of email address.
 #' @param normalise Whether to try to normalise address to RFC-5321 requirements.
+#' @param validate Whether to validate the address.
 #'
 #' @return An \code{address} object, representing an email address.
 #' @export
@@ -99,7 +166,8 @@ address <- function(
   display = NA,
   local = NA,
   domain = NA,
-  normalise = TRUE
+  normalise = TRUE,
+  validate = FALSE
 ) {
   if (any(is.na(email) & is.na(local) & is.na(domain))) {
     stop("Either email or local and domain must be specified.", call. = FALSE)
@@ -122,8 +190,12 @@ address <- function(
   email = ifelse(is.na(email), paste0(local, "@", domain), email)
 
   if (normalise) {
-    email = sanitise(email)
+    email = normalise(email)
     display = str_squish(display)
+  }
+
+  if (validate) {
+    if (!validate(email)) stop("Email address is not valid!")
   }
 
   structure(
@@ -202,7 +274,7 @@ Ops.address <- function(e1, e2)
 #' Create an address object
 #'
 #' @param addr An email address.
-#' @param split Pattern for splitting multiple addresses.
+#' @inheritParams address
 #'
 #' @return A list of \code{address} objects.
 #' @export
@@ -213,7 +285,7 @@ Ops.address <- function(e1, e2)
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
 #' as.address("Durrell, Gerald <gerry@gmail.com>")
-as.address <- function(addr) {
+as.address <- function(addr, validate = FALSE) {
   if ("address" %in% class(addr)) {
     addr
   } else {
@@ -228,7 +300,7 @@ as.address <- function(addr) {
       addr
     )
 
-    address(email, display)
+    address(email, display, validate = validate)
   }
 }
 

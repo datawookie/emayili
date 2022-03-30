@@ -4,12 +4,12 @@
 \alias{as.address}
 \title{Create an address object}
 \usage{
-as.address(addr)
+as.address(addr, validate = FALSE)
 }
 \arguments{
 \item{addr}{An email address.}
 
-\item{split}{Pattern for splitting multiple addresses.}
+\item{validate}{Whether to validate the address.}
 }
 \value{
 A list of \code{address} objects.
