@@ -91,6 +91,9 @@
     <loc>/reference/mime-parameters.html</loc>
   </url>
   <url>
+    <loc>/reference/normalise.html</loc>
+  </url>
+  <url>
     <loc>/reference/parties.html</loc>
   </url>
   <url>
@@ -134,5 +137,8 @@
   </url>
   <url>
     <loc>/reference/text.html</loc>
+  </url>
+  <url>
+    <loc>/reference/validate.html</loc>
   </url>
 </urlset>
