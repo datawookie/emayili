@@ -3,6 +3,25 @@ on: [push, pull_request, workflow_dispatch]
 name: check
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: lintr
+
+      - name: Lint
+        run: lintr::lint_package()
+        shell: Rscript {0}
+
   coverage:
     runs-on: ubuntu-latest
     env:
