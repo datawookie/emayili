@@ -355,13 +355,13 @@ mailfence <- function(
   username,
   password,
   ...) {
-  fcall <- match.call(expand.dots = TRUE)
+  fcall <- match.call(expand.dots = TRUE)                          # nocov start
 
   fcall[[1]] <- server
   fcall$host = "smtp.mailfence.com"
   fcall$port = 465
 
-  eval(fcall, parent.frame())
+  eval(fcall, parent.frame())                                      # nocov end
 }
 
 #' @rdname server
