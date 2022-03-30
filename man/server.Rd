@@ -7,6 +7,7 @@
 \alias{mailgun}
 \alias{sendinblue}
 \alias{mailersend}
+\alias{mailfence}
 \alias{smtpbucket}
 \title{Create a SMTP server object.}
 \usage{
@@ -34,6 +35,8 @@ mailgun(username, password, ...)
 sendinblue(username, password, ...)
 
 mailersend(username, password, ...)
+
+mailfence(username, password, ...)
 
 smtpbucket(...)
 }
@@ -123,6 +126,12 @@ that all messages have at minimum a valid subject and either text or HTML
 content.
 }
 
+\section{Mailfence}{
+
+
+To use Mailfence you'll need to create a premium account.
+}
+
 \section{SMTP Bucket}{
 
 
@@ -196,6 +205,12 @@ smtp <- sendinblue(
 smtp <- mailersend(
   username = "NS_Pf3ALM@gmail.com",
   password = "e5ATWLlTnWWDaKeE"
+)
+
+# Set username and password for Mailfence SMTP server.
+smtp <- mailfence(
+  username = "bob",
+  password = "F!Uosd6xbhSjd\%63"
 )
 
 # SMTP Bucket server.

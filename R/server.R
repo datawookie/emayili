@@ -338,6 +338,34 @@ mailersend <- function(
 
 #' @rdname server
 #'
+#' @section Mailfence:
+#'
+#' To use Mailfence you'll need to create a premium account.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set username and password for Mailfence SMTP server.
+#' smtp <- mailfence(
+#'   username = "bob",
+#'   password = "F!Uosd6xbhSjd%63"
+#' )
+mailfence <- function(
+  username,
+  password,
+  ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$host = "smtp.mailfence.com"
+  fcall$port = 465
+
+  eval(fcall, parent.frame())
+}
+
+#' @rdname server
+#'
 #' @section SMTP Bucket:
 #'
 #' SMTP Bucket is a fake SMTP server that captures all the messages it receives
