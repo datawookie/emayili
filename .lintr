@@ -4,7 +4,4 @@ linters: with_defaults(
   object_name_linter = NULL
   )
 exclusions: list()
-exclude: "# Exclude Linting"
-exclude_start: "# Begin Exclude Linting"
-exclude_end: "# End Exclude Linting"
 encoding: "ISO-8859-1"
