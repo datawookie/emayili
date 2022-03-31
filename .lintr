@@ -1,0 +1,10 @@
+linters: with_defaults(
+  line_length_linter(120),
+  commented_code_linter = NULL,
+  object_name_linter(c("snake_case", "UPPERCASE"))
+  )
+exclusions: list()
+exclude: "# Exclude Linting"
+exclude_start: "# Begin Exclude Linting"
+exclude_end: "# End Exclude Linting"
+encoding: "ISO-8859-1"
