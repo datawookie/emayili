@@ -1,7 +1,7 @@
 linters: with_defaults(
   line_length_linter(120),
   commented_code_linter = NULL,
-  object_name_linter(c("snake_case", "UPPERCASE"))
+  object_name_linter = NULL
   )
 exclusions: list()
 exclude: "# Exclude Linting"
