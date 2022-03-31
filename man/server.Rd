@@ -90,7 +90,7 @@ Then use the app password rather than your usual account password.
 \section{Sendgrid}{
 
 
-To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
+To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}. # nolint
 Then use the API key as the password.
 
 SendGrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
@@ -119,7 +119,8 @@ settings.
 
 
 To use MailerSend you'll need to first create an account. You'll find your
-SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails via SMTP with MailerSend}.
+SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails
+via SMTP with MailerSend}.
 
 Although this is not likely to be a problem in practice, MailerSend insists
 that all messages have at minimum a valid subject and either text or HTML

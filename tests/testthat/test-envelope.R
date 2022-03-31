@@ -73,7 +73,16 @@ test_that("not splitting addresses", {
     bcc = c("Durrell, Gerald <gerry@gmail.com>", "Jones, Bob <bob@yahoo.com>")
   )
 
-  expect_match(headers(msg), 'To:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>')
-  expect_match(headers(msg), 'Cc:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>')
-  expect_no_match(headers(msg), 'Bcc:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>')
+  expect_match(
+    headers(msg),
+    "To:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>"
+  )
+  expect_match(
+    headers(msg),
+    "Cc:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>"
+  )
+  expect_no_match(
+    headers(msg),
+    "Bcc:[[:space:]]+Durrell, Gerald <gerry@gmail.com>,\r\n[[:space:]]+Jones, Bob <bob@yahoo.com>"
+  )
 })

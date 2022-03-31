@@ -1,4 +1,4 @@
-is.envelope <- function(x) {
+is.envelope <- function(x) {                                        # nolint
   "envelope" %in% class(x)
 }
 
@@ -16,8 +16,10 @@ is.envelope <- function(x) {
 #' @param html See [html()].
 #' @param encrypt Whether to encrypt the message. If \code{TRUE} then the entire
 #'   message will be encrypted using the private key of the sender.
-#' @param sign Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.
-#' @param public_key Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.
+#' @param sign Whether to sign the message. If \code{TRUE} then the entire
+#'   message will be signed using the private key of the sender.
+#' @param public_key Whether to attach a public key. If \code{TRUE} then the
+#'   public key of the sender will be attached.
 #'
 #' @return A message object.
 #' @seealso [subject()], [from()], [to()], [cc()], [bcc()], [reply()] and
@@ -64,7 +66,7 @@ envelope <- function(
       public_key = public_key,
       parts = NULL
     ),
-    class="envelope"
+    class = "envelope"
   ) %>%
     header_set("Date", http_date(Sys.time()), append = FALSE) %>%
     header_set("X-Mailer", paste("{emayili}", packageVersion("emayili"), sep = "-"), append = FALSE) %>%
@@ -112,7 +114,7 @@ headers <- function(x, encode = FALSE) {
 #' print(msg)
 print.envelope <- function(x, details = NA, ...) {
   if (is.na(details)) {
-    details = get_option_details(default = FALSE)
+    details <- get_option_details(default = FALSE)
   }
   stopifnot(is.logical(details))
   #
@@ -158,8 +160,8 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
 #'
 #' @param x Message object
 #' @param child A child to be appended
-after.envelope <- function(x, child) {
-  if(is.null(x$parts)) {
+after.envelope <- function(x, child) {                              # nolint
+  if (is.null(x$parts)) {
     log_debug("Adding first child.")
     x$parts <- list(child)
   } else {

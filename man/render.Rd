@@ -21,15 +21,18 @@ render(
 \arguments{
 \item{msg}{A message object.}
 
-\item{input}{The input Markdown file to be rendered or a character vector of Markdown text.}
+\item{input}{The input Markdown file to be rendered or a character vector of
+Markdown text.}
 
-\item{params}{A list of named parameters that override custom parameters specified in the YAML front-matter.}
+\item{params}{A list of named parameters that override custom parameters
+specified in the YAML front-matter.}
 
 \item{squish}{Whether to clean up whitespace in rendered document.}
 
 \item{css_files}{Extra CSS files.}
 
-\item{include_css}{Whether to include rendered CSS from various sources (\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS).}
+\item{include_css}{Whether to include rendered CSS from various sources
+(\code{"rmd"} — native R Markdown CSS; \code{"bootstrap"} — Bootstrap CSS).}
 
 \item{language}{Language of content. If \code{FALSE} then will not include
 language field. If \code{TRUE} then will attempt to auto-detect language.

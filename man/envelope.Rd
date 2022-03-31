@@ -44,9 +44,11 @@ envelope(
 \item{encrypt}{Whether to encrypt the message. If \code{TRUE} then the entire
 message will be encrypted using the private key of the sender.}
 
-\item{sign}{Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.}
+\item{sign}{Whether to sign the message. If \code{TRUE} then the entire
+message will be signed using the private key of the sender.}
 
-\item{public_key}{Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.}
+\item{public_key}{Whether to attach a public key. If \code{TRUE} then the
+public key of the sender will be attached.}
 }
 \value{
 A message object.

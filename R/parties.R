@@ -16,7 +16,6 @@
 parties <- function(msg) {
   # Avoid "no visible binding for global variable" note.
   address <- NULL # nocov
-  values <- NULL # nocov
 
   PARTIES <- c("From", "To", "Cc", "Bcc")
   #

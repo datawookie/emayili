@@ -24,7 +24,7 @@ expires <- function(msg, datetime = NULL, tz = "") {
   if (is.null(datetime)) {
     header_get(msg, "Expires")
   } else {
-    datetime <- parse_datetime(datetime, tz)%>%
+    datetime <- parse_datetime(datetime, tz) %>%
       format_datetime()
 
     msg <- header_set(msg, "Expires", datetime, append = FALSE)
@@ -43,7 +43,7 @@ replyby <- function(msg, datetime = NULL, tz = "") {
   if (is.null(datetime)) {
     header_get(msg, "Reply-By")
   } else {
-    datetime <- parse_datetime(datetime, tz)%>%
+    datetime <- parse_datetime(datetime, tz) %>%
       format_datetime()
 
     msg <- header_set(msg, "Reply-By", datetime, append = FALSE)

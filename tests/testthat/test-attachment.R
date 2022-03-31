@@ -25,4 +25,3 @@ test_that("attachment: number of files", {
   expect_error(msg %>% attachment())
   expect_error(msg %>% attachment(c(TXTPATH, JPGPATH)))
 })
-

@@ -1,4 +1,4 @@
-`%|>%` <- magrittr::pipe_nested
+`%|>%` <- magrittr::pipe_nested                                     # nolint
 
 #' Add message body from template
 #'
@@ -43,12 +43,12 @@
 #' envelope() %>%
 #'   template("./templates/custom-template")
 #' }
-template <- function (msg, .name, ..., .envir = parent.frame()) {
-  if(!requireNamespace("jinjar", quietly = TRUE)) {
-    stop("Install {jinjar} to to use templates.")    # nocov
+template <- function(msg, .name, ..., .envir = parent.frame()) {
+  if (!requireNamespace("jinjar", quietly = TRUE)) {
+    stop("Install {jinjar} to to use templates.")                   # nocov
   }
 
-  JINJAR_CONFIG <- jinjar::jinjar_config(
+  JINJAR_CONFIG <- jinjar::jinjar_config(                           # nolint
     lstrip_blocks = FALSE
   )
 
@@ -82,8 +82,8 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     template_html <- jinjar::render(template_html, !!!params, .config = JINJAR_CONFIG)
     log_debug("Done.")
   } else {
-    template_html <- NULL                            # nocov
-    log_debug("Unable to find HTML template.")       # nocov
+    template_html <- NULL                                       # nocov
+    log_debug("Unable to find HTML template.")                  # nocov
   }
   if (file.exists(path_text)) {
     template_text <- read_text(path_text)
@@ -114,5 +114,5 @@ template <- function (msg, .name, ..., .envir = parent.frame()) {
     }
   }
 
-  if (get_option_invisible()) invisible(msg) else msg # nocov
+  if (get_option_invisible()) invisible(msg) else msg           # nocov
 }

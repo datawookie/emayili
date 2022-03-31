@@ -32,7 +32,7 @@ normalise <- function(email) {
   # Need to use sub() here because {stringr} doesn't support perl option, which
   # is required to get "\\L" (lowercase) working.
   #
-  email <- sub('(?<=@)(.*)', '\\L\\1', email, perl = TRUE)
+  email <- sub("(?<=@)(.*)", "\\L\\1", email, perl = TRUE)
 
   email
 }
@@ -103,7 +103,7 @@ compliant <- function(addr, error = FALSE) {
 
   # Test on whole email address.
   #
-  email <- grepl("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}", email, ignore.case=TRUE)
+  email <- grepl("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}", email, ignore.case = TRUE)
 
   # Test on local part.
   #
@@ -120,7 +120,7 @@ compliant <- function(addr, error = FALSE) {
       # Quoted.
       TRUE,
       # Unquoted.
-      !grepl('[[:blank:]]+.*', local)             # No spaces in local.
+      !grepl("[[:blank:]]+.*", local)             # No spaces in local.
     )
 
   # Test on domain.
@@ -187,11 +187,11 @@ address <- function(
   local <- as.character(local)
   domain <- as.character(domain)
 
-  email = ifelse(is.na(email), paste0(local, "@", domain), email)
+  email <- ifelse(is.na(email), paste0(local, "@", domain), email)
 
   if (normalise) {
-    email = normalise(email)
-    display = str_squish(display)
+    email <- normalise(email)
+    display <- str_squish(display)
   }
 
   if (validate) {
@@ -263,8 +263,7 @@ as.character.address <- function(x, ...) {
 #' @return A Boolean, \code{TRUE} if the \code{e1} address is the same as the
 #'   \code{e2} address (ignores the display name).
 #' @export
-Ops.address <- function(e1, e2)
-{
+Ops.address <- function(e1, e2) {
   if (!("address" %in% class(e1))) e1 <- as.address(e1)
   if (!("address" %in% class(e2))) e2 <- as.address(e2)
 
@@ -285,7 +284,7 @@ Ops.address <- function(e1, e2)
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
 #' as.address("Durrell, Gerald <gerry@gmail.com>")
-as.address <- function(addr, validate = FALSE) {
+as.address <- function(addr, validate = FALSE) {                # nolint
   if ("address" %in% class(addr)) {
     addr
   } else {

@@ -142,7 +142,7 @@ test_that("css: inject CSS", {
 })
 
 test_that("css: multiple CSS sources", {
-  MSG = "<html>
+  MSG <- "<html>
   <head>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');

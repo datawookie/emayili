@@ -22,7 +22,7 @@
 #' @importFrom xfun read_utf8
 NULL
 
-.onLoad <- function(libname, pkgname){
+.onLoad <- function(libname, pkgname) {                             # nolint
   log_layout(layout_glue_generator('{stringr::str_pad(level, 7, side = "right")} [{time}] {msg}')) # nocov
 }
 

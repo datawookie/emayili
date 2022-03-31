@@ -28,7 +28,7 @@ test_that("mandatory arguments", {
 
 test_that("convert to character", {
   expect_equal(as.character(address("gerry@gmail.com")), "gerry@gmail.com")
-  expect_equal(as.character( address("gerry@gmail.com", "Gerald")), "Gerald <gerry@gmail.com>")
+  expect_equal(as.character(address("gerry@gmail.com", "Gerald")), "Gerald <gerry@gmail.com>")
 })
 
 test_that("normalise", {
@@ -86,6 +86,6 @@ test_that("split address list", {
   )
   expect_equal(
     as.character(last_first),
-    'Durrell, Gerald <gerry@gmail.com>'
+    "Durrell, Gerald <gerry@gmail.com>"
   )
 })

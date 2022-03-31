@@ -2,7 +2,7 @@
 #
 # See https://stackoverflow.com/questions/40976213/decoding-quoted-printable-string-in-r.
 
-MAXLINESIZE = 76
+MAXLINESIZE <- 76
 
 ASCII_QP_ENCODED <- c(
   "=00", "=01", "=02", "=03", "=04", "=05", "=06", "=07", "=08", "=09", "=0A",
@@ -102,7 +102,7 @@ qp_encode <- function(x, crlf = CRLF) {
   x <- stri_replace_all_fixed(x, ascii_qp_decoded, ascii_qp_encoded, vectorize_all = FALSE)
 
   find_line_breaks <- function(l) {
-    len = nchar(l)
+    len <- nchar(l)
 
     lhs <- 1
     breaks <- c()
@@ -118,7 +118,7 @@ qp_encode <- function(x, crlf = CRLF) {
     }
 
     rhs <- breaks
-    lhs <- c(0, breaks[1:length(breaks) - 1]) + 1
+    lhs <- c(0, breaks[seq_along(breaks) - 1]) + 1
 
     paste(str_sub(l, lhs, rhs), collapse = "=\n")
   }
@@ -137,6 +137,6 @@ qp_decode <- function(x) {
 
   x %>%
     # Handle soft line breaks ()
-    stri_replace_all_regex("=\\n", "", vectorize_all=FALSE) %>%
+    stri_replace_all_regex("=\\n", "", vectorize_all = FALSE) %>%
     stri_replace_all_fixed(ASCII_QP_ENCODED, ASCII_QP_DECODED, vectorize_all = FALSE)
 }

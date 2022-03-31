@@ -54,7 +54,7 @@ attach_images <- function(
 
   images <- map(images, function(img) {
     log_debug("* Processing image in HTML.")
-    src = img %>% html_attr("src")
+    src <- img %>% html_attr("src")
     if (is.na(src)) stop("Image doesn't have src attribute.")
 
     if (grepl("^cid:", src)) {

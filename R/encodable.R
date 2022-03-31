@@ -34,7 +34,7 @@ as.character.encodable <- function(x, encode = FALSE, ...) {
   # Just keep the underlying text.
   x <- unclass(x)
 
-  ifelse (
+  ifelse(
     is.na(x),
     NA,
     ifelse(
@@ -45,8 +45,7 @@ as.character.encodable <- function(x, encode = FALSE, ...) {
   )
 }
 
-Ops.encodable <- function(e1, e2)
-{
+Ops.encodable <- function(e1, e2) {
   e1 <- encodable(e1)
   e2 <- encodable(e2)
 

@@ -1,7 +1,7 @@
-after <- function (x, ...) {
+after <- function(x, ...) {
   UseMethod("after", x)
 }
 
-before <- function (x, ...) {
+before <- function(x, ...) {
   UseMethod("before", x)
 }

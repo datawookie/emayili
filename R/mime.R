@@ -1,8 +1,8 @@
-ERROR_NOT_MIME_OBJECT <- "Child is not a MIME object."
+ERROR_NOT_MIME_OBJECT <- "Child is not a MIME object."              # nolint
 
 # CONSTRUCTOR -----------------------------------------------------------------
 
-is.mime <- function(x) {
+is.mime <- function(x) {                                            # nolint
   "MIME" %in% class(x)
 }
 
@@ -53,16 +53,25 @@ NULL
 #' There are a number of options for multipart messages:
 #'
 #' \itemize{
-#'  \item{\code{multipart/mixed} — }{Used for sending content with multiple independent parts either inline or as attachments. Each part can have different \code{Content-Type}.}
-#'  \item{\code{multipart/alternative} — }{Used when each part of the message is an "alternative" version of the same content. The order of the parts is important: preferred and/or more complex formats should be found towards the end.
+#'  \item{\code{multipart/mixed} — }{Used for sending content with multiple
+#'    independent parts either inline or as attachments. Each part can have
+#'    different \code{Content-Type}.}
+#'  \item{\code{multipart/alternative} — }{Used when each part of the message
+#'    is an "alternative" version of the same content. The order of the parts
+#'    is important: preferred and/or more complex formats should be found
+#'    towards the end.
 #'
 #'  \emph{Example:} A message with both plain text and HTML versions.}
-#'  \item{\code{multipart/digest} — }{Used to send multiple plain text messages.}
-#'  \item{\code{multipart/related} — }{Used when each part of the the message represents a component of the complete message.
+#'  \item{\code{multipart/digest} — }{Used to send multiple plain text
+#'    messages.}
+#'  \item{\code{multipart/related} — }{Used when each part of the the message
+#'    represents a component of the complete message.
 #'
 #'  \emph{Example:} A web page with images.}
-#'  \item{\code{multipart/signed} — }{Used when a message has a digital signature attached.}
-#'  \item{\code{multipart/encrypted} — }{Used for a message with encrypted content.}
+#'  \item{\code{multipart/signed} — }{Used when a message has a digital
+#'    signature attached.}
+#'  \item{\code{multipart/encrypted} — }{Used for a message with encrypted
+#'    content.}
 #' }
 #'
 #' A nice illustration of how some of these relate can be found at \url{https://stackoverflow.com/a/40420648/633961}.
@@ -176,7 +185,7 @@ multipart_signed <- function(
   micalg = "pgp-sha256",
   ...
 ) {
-  if (!(micalg %in% LEVELS_MICALG)) stop('Invalid micalg.')
+  if (!(micalg %in% LEVELS_MICALG)) stop("Invalid micalg.")
   structure(
     c(
       MIME(
@@ -547,9 +556,9 @@ as.character.MIME <- function(x, ...) {
     # Content (if any).
     content,
     # Children (if any).
-    if(length(children)) children else NULL,
+    if (length(children)) children else NULL,
     # Foot.
-    if (!is.na(x$boundary)) glue('--{x$boundary}--') else NULL
+    if (!is.na(x$boundary)) glue("--{x$boundary}--") else NULL
   )
 
   paste(body, collapse = "\r\n")

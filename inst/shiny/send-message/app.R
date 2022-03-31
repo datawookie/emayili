@@ -14,16 +14,16 @@ library(emayili)
 #
 # 2. Deploy using rsconnect::deployApp().
 
-SMTP_SERVER <- Sys.getenv("SMTP_SERVER")
-SMTP_PORT <- Sys.getenv("SMTP_PORT")
-SMTP_USERNAME <- Sys.getenv("SMTP_USERNAME")
+smtp_server <- Sys.getenv("SMTP_SERVER")
+smtp_port <- Sys.getenv("SMTP_PORT")
+smtp_username <- Sys.getenv("SMTP_USERNAME")
 
 IP <- content(GET("https://api.ipify.org?format=json"))$ip
 
 smtp <- server(
-  host = SMTP_SERVER,
-  port = SMTP_PORT,
-  username = SMTP_USERNAME,
+  host = smtp_server,
+  port = smtp_port,
+  username = smtp_username,
   password = Sys.getenv("SMTP_PASSWORD"),
   max_times = 1
 )
@@ -57,11 +57,11 @@ ui <- fluidPage(
         ),
         tags$tr(
           tags$th("SMTP server:"),
-          tags$td(SMTP_SERVER)
+          tags$td(smtp_server)
         ),
         tags$tr(
           tags$th("SMTP port:"),
-          tags$td(SMTP_PORT)
+          tags$td(smtp_port)
         )
       )
     ),
@@ -80,10 +80,10 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   observeEvent(input$send, {
-    message('Sending message to ', SMTP_USERNAME,'.')
+    message("Sending message to ", smtp_username, ".")
     envelope(
-      to = Sys.getenv("SMTP_USERNAME"),
-      from = Sys.getenv("SMTP_USERNAME"),
+      to = smtp_username,
+      from = smtp_username,
       subject = strftime(Sys.time(), "{emayili} & Shiny [%F %X]")
     ) %>%
       text("This message was sent from Shiny on {{ IP }} using {emayili}.") %>%

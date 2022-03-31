@@ -1,4 +1,4 @@
-REGEX_BARE_LINEFEED = "(?<!\r)\n"
+REGEX_BARE_LINEFEED <- "(?<!\r)\n"                                  # nolint
 
 #' Pipe operator
 #'
@@ -48,7 +48,7 @@ read_text <- function(path, encoding = "UTF-8", collapse = "\n") {
     if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
     readLines(p, encoding = encoding, warn = FALSE)
   }) %>%
-    unlist()%>%
+    unlist() %>%
     str_c(collapse = collapse)
 }
 
@@ -184,7 +184,7 @@ wrap_angle_brackets <- function(x) {
 #' @noRd
 #' @param x A list.
 #' @return A Boolean.
-is.nested <- function(x) {
+is.nested <- function(x) {                                          # nolint
   stopifnot(is.list(x))
   any(sapply(x, function(x) any(class(x) == "list")))
 }
@@ -204,7 +204,7 @@ smtp_url <- function(host, port, protocol = NA, helo = NA) {
     }
     protocol <- paste0(protocol, "://")
   } else {
-    protocol= ""
+    protocol <- ""
   }
 
   sprintf("%s%s:%d/%s", protocol, host, port, helo)

@@ -64,7 +64,7 @@ test_that("invalid value for include_css", {
   expect_error(
     envelope() %>%
       render(RMD_TEMPLATE, include_css = "css"),
-    'Valid options for include_css'
+    "Valid options for include_css"
   )
 })
 

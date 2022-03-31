@@ -2,7 +2,8 @@
 #'
 #' Specify whether the message should be encrypted, signed or have a public key attached.
 #'
-#' If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the message contents.
+#' If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the
+#' message contents.
 #'
 #' @name encrypt
 #'
@@ -51,7 +52,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
   if ((encrypt || sign) && is.null(content) && !public_key) stop("Can't sign or encrypt an empty message!")
 
   if (encrypt || sign || public_key) {
-    if(!requireNamespace("gpg", quietly = TRUE)) {
+    if (!requireNamespace("gpg", quietly = TRUE)) {
       stop("Install {gpg} to encrypt and/or sign messages.")    # nocov
     }
     log_debug("Encrypt message: {encrypt}")

@@ -88,16 +88,16 @@ server <- function(
   #   Run curl_options('ssl') to see other options.
   #
   if (insecure) {
-    ssl_verifypeer = FALSE
+    ssl_verifypeer <- FALSE
   } else {
-    ssl_verifypeer = TRUE
+    ssl_verifypeer <- TRUE
   }
 
   port <- as.integer(port)
   if (port %in% c(465, 587)) {
-    use_ssl = 1
+    use_ssl <- 1
   } else {
-    use_ssl = 0
+    use_ssl <- 0
   }
 
   # Create an insistent version of send_mail().
@@ -204,8 +204,8 @@ gmail <- function(
   # Substitute server() as function to call.
   fcall[[1]] <- server
   # Fill in host and port arguments.
-  fcall$host = "smtp.gmail.com"
-  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
+  fcall$host <- "smtp.gmail.com"
+  fcall$port <- ifelse(is.null(fcall$port), 587, fcall$port)
   # Now run the function call.
   eval(fcall, parent.frame())
 }
@@ -214,7 +214,7 @@ gmail <- function(
 #'
 #' @section Sendgrid:
 #'
-#' To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}.
+#' To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}. # nolint
 #' Then use the API key as the password.
 #'
 #' SendGrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
@@ -234,9 +234,9 @@ sendgrid <- function(
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
-  fcall$host = "smtp.sendgrid.net"
-  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
-  fcall$username = "apikey"
+  fcall$host <- "smtp.sendgrid.net"
+  fcall$port <- ifelse(is.null(fcall$port), 587, fcall$port)
+  fcall$username <- "apikey"
 
   eval(fcall, parent.frame())
 }
@@ -267,8 +267,8 @@ mailgun <- function(
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
-  fcall$host = "smtp.mailgun.org"
-  fcall$port = ifelse(is.null(fcall$port), 587, fcall$port)
+  fcall$host <- "smtp.mailgun.org"
+  fcall$port <- ifelse(is.null(fcall$port), 587, fcall$port)
 
   eval(fcall, parent.frame())
 }
@@ -297,8 +297,8 @@ sendinblue <- function(
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
-  fcall$host = "smtp-relay.sendinblue.com"
-  fcall$port = 587
+  fcall$host <- "smtp-relay.sendinblue.com"
+  fcall$port <- 587
 
   eval(fcall, parent.frame())
 }
@@ -308,7 +308,8 @@ sendinblue <- function(
 #' @section MailerSend:
 #'
 #' To use MailerSend you'll need to first create an account. You'll find your
-#' SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails via SMTP with MailerSend}.
+#' SMTP username and password under Domains. See \href{https://www.mailersend.com/help/smtp-relay}{How to send emails
+#' via SMTP with MailerSend}.
 #'
 #' Although this is not likely to be a problem in practice, MailerSend insists
 #' that all messages have at minimum a valid subject and either text or HTML
@@ -330,8 +331,8 @@ mailersend <- function(
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
-  fcall$host = "smtp.mailersend.net"
-  fcall$port = 587
+  fcall$host <- "smtp.mailersend.net"
+  fcall$port <- 587
 
   eval(fcall, parent.frame())
 }
@@ -355,13 +356,13 @@ mailfence <- function(
   username,
   password,
   ...) {
-  fcall <- match.call(expand.dots = TRUE)                          # nocov start
+  fcall <- match.call(expand.dots = TRUE)                       # nocov start
 
   fcall[[1]] <- server
-  fcall$host = "smtp.mailfence.com"
-  fcall$port = 465
+  fcall$host <- "smtp.mailfence.com"
+  fcall$port <- 465
 
-  eval(fcall, parent.frame())                                      # nocov end
+  eval(fcall, parent.frame())                                   # nocov end
 }
 
 #' @rdname server
@@ -381,8 +382,8 @@ smtpbucket <- function(...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
-  fcall$host = "mail.smtpbucket.com"
-  fcall$port = 8025
+  fcall$host <- "mail.smtpbucket.com"
+  fcall$port <- 8025
 
   eval(fcall, parent.frame())
 }

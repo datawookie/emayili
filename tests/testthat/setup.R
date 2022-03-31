@@ -28,7 +28,11 @@ IMG_URL <- "https://cran.r-project.org/Rlogo.svg"
 
 # This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
 #
-JPGPATH <- system.file("cats.jpg", package = "emayili", mustWork = TRUE)
+JPGPATH <- system.file(
+  "cats.jpg",
+  package = "emayili",
+  mustWork = TRUE
+)
 # If have not installed yet.
 if (!file.exists(JPGPATH)) JPGPATH <- here("inst", "cats.jpg")
 
@@ -37,7 +41,7 @@ TXTCONTENT <- "Some random text."
 PLAIN_MARKDOWN <- "## Section\n[link](https://www.google.com)"
 PLAIN_MARKDOWN_INTERPOLATE <- "Hi {{name}}!"
 
-COLOUR_GLAUCOUS = "#6082b6"
+COLOUR_GLAUCOUS <- "#6082b6"
 
 ACCENTED_NAME <- "señor-gonzález.csv"
 ACCENTED_PATH <- file.path(tempdir(), ACCENTED_NAME)
@@ -51,7 +55,7 @@ writeLines(TXTCONTENT, TXTPATH, sep = "")
 TXTCONTENT_ENCODED <- emayili:::mime_base64encode(charToRaw(TXTCONTENT))
 
 writeLines(
-  paste0("body {color: ", COLOUR_GLAUCOUS," !important;}"),
+  paste0("body {color: ", COLOUR_GLAUCOUS, " !important;}"),
   CSSPATH
 )
 
@@ -70,8 +74,8 @@ file.create(ACCENTED_PATH)
 # - https://mailtrap.io/
 # - https://www.smtpbucket.com/
 #
-SMTP_SERVER   = "mail.smtpbucket.com"
-SMTP_PORT     = 8025
+SMTP_SERVER <- "mail.smtpbucket.com"
+SMTP_PORT   <- 8025
 SMTP_USERNAME_GMAIL <- Sys.getenv("GMAIL_USERNAME", NA)
 SMTP_PASSWORD_GMAIL <- Sys.getenv("GMAIL_PASSWORD", NA)
 SMTP_PASSWORD_SENDGRID <- Sys.getenv("SENDGRID_API_KEY")

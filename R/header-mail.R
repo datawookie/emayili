@@ -150,8 +150,8 @@ subject <- function(
   if (is.null(subject)) {
     header_get(msg, "Subject")
   } else {
-    if (is.null(.envir)) .envir = parent.frame()
-    else .envir = list2env(.envir)
+    if (is.null(.envir)) .envir <- parent.frame()
+    else .envir <- list2env(.envir)
 
     if (interpolate) subject <- glue(subject, .open = .open, .close = .close, .envir = .envir)
 

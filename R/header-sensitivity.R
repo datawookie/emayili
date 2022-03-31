@@ -1,4 +1,4 @@
-LEVELS_SENSITIVITY <- c("personal", "private", "company-confidential")
+LEVELS_SENSITIVITY <- c("personal", "private", "company-confidential")  # nolint
 
 #' Set or query message sensitivity
 #'

@@ -27,7 +27,10 @@ test_that("in-reply-to & references", {
     "In-Reply-To: +<6163c08e.1c69fb81.65b78.183c@mx.google.com>"
   )
   expect_match(
-    envelope() %>% subject("Test") %>% inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>% as.character(),
+    envelope() %>%
+      subject("Test") %>%
+      inreplyto("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>%
+      as.character(),
     "Subject: +AW: Test"
   )
   expect_match(
@@ -35,7 +38,10 @@ test_that("in-reply-to & references", {
     "References: +<6163c08e.1c69fb81.65b78.183c@mx.google.com>"
   )
   expect_match(
-    envelope() %>% subject("Test") %>% references("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>% as.character(),
+    envelope() %>%
+      subject("Test") %>%
+      references("<6163c08e.1c69fb81.65b78.183c@mx.google.com>", "AW: ") %>%
+      as.character(),
     "Subject: +AW: Test"
   )
 })

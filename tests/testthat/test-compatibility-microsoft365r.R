@@ -1,7 +1,7 @@
 skip_on_ci()
 skip_on_cran()
 skip_if_not(
-  require(Microsoft365R, quietly=TRUE),
+  require(Microsoft365R, quietly = TRUE),
   "{Microsoft365R} tests skipped (package not available)."
 )
 

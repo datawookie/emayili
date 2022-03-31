@@ -24,7 +24,8 @@ test_that("detect language", {
       html(
         "<p>Hij heeft de klok horen luiden maar weet niet waar de klepel hangt.</p>",
         language = TRUE
-      ) %>% as.character(),
+      ) %>%
+      as.character(),
     "Content-Language: +nl"
   )
 })

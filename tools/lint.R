@@ -1,1 +1,1 @@
-lintr::lint_package()
+lintr::lint_package(cache = TRUE)

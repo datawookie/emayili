@@ -15,9 +15,11 @@ signature(msg, public_key = TRUE)
 \item{encrypt}{Whether to encrypt the message. If \code{TRUE} then the entire
 message will be encrypted using the private key of the sender.}
 
-\item{sign}{Whether to sign the message. If \code{TRUE} then the entire message will be signed using the private key of the sender.}
+\item{sign}{Whether to sign the message. If \code{TRUE} then the entire
+message will be signed using the private key of the sender.}
 
-\item{public_key}{Whether to attach a public key. If \code{TRUE} then the public key of the sender will be attached.}
+\item{public_key}{Whether to attach a public key. If \code{TRUE} then the
+public key of the sender will be attached.}
 }
 \value{
 A message object.
@@ -26,7 +28,8 @@ A message object.
 Specify whether the message should be encrypted, signed or have a public key attached.
 }
 \details{
-If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the message contents.
+If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the
+message contents.
 }
 \examples{
 \dontrun{

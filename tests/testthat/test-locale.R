@@ -30,7 +30,7 @@ check_render <- function(locale, unicode, txt) {
 
 # Get current locale.
 #
-CURRENT_LOCALE = Sys.getlocale("LC_CTYPE")
+CURRENT_LOCALE <- Sys.getlocale("LC_CTYPE")
 
 # Spanish
 #
