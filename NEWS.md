@@ -1,3 +1,22 @@
+# {emayili} 0.7.9
+
+* Handle multiple keys on keychain for sender.
+
+# {emayili} 0.7.8
+
+* Add normalise() and validate().
+
+# {emayili} 0.7.7
+
+* Add support for Mailfence SMTP.
+
+# {emayili} 0.7.6
+
+* Cater for non-ASCII characters in email address display name.
+* Don't include Bcc in headers.
+* Add signature().
+* Clean up whitespace in HTML.
+
 # {emayili} 0.7.5
 
 * More robust handling of addresses.
