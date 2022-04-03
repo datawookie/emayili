@@ -84,7 +84,22 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     # Get the fingerprints of the senders' keys.
     #
     sender_fingerprint <- keys %>%
-      inner_join(sender, by = "email") %>%
+      inner_join(sender, by = "email")
+
+    if (nrow(sender_fingerprint) > 1) {
+      log_warn("There are multiple keys for sender.")
+    }
+
+    if (nrow(sender_fingerprint) > 1) {
+      log_warn("Selecting most recent key.")
+
+      sender_fingerprint <- sender_fingerprint %>%
+        # Timestamp reflects when key was created not when added to keychain.
+        arrange(desc(timestamp)) %>%
+        slice(1)
+    }
+
+    sender_fingerprint <- sender_fingerprint %>%
       pull(fingerprint)
 
     # Get the fingerprints of the recipients' keys.
@@ -92,6 +107,8 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
     recipients_fingerprint <- keys %>%
       inner_join(recipients, by = "email") %>%
       pull(fingerprint)
+
+    log_debug("Found fingerprints for {length(recipients_fingerprint)} recipient(s).")
 
     TMPFILE <- tempfile()
 
