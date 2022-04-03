@@ -18,6 +18,7 @@ if (Sys.getenv("CI") == "") {
 gpg_keygen(name = "Alice", email = "alice@yahoo.com")
 gpg_keygen(name = "Bob", email = "bob@gmail.com")
 gpg_keygen(name = "Jim", email = "jim@aol.com")
+gpg_keygen(name = "Jim", email = "jim@aol.com")
 #
 # The keys should all be RSA.
 #
@@ -148,4 +149,12 @@ test_that("sign with/without body", {
   # Without public key.
   expect_error(nobody %>% encrypt(FALSE, TRUE, FALSE) %>% as.character(), "empty message")
   expect_error(body %>% encrypt(FALSE, TRUE, FALSE) %>% as.character(), NA)
+})
+
+test_that("multiple keys", {
+  msg <- envelope(to = "alice@yahoo.com", from = "jim@aol.com") %>%
+    text("Hello!") %>%
+    encrypt()
+
+  expect_error(msg %>% as.character(), NA)
 })
