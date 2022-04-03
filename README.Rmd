@@ -337,7 +337,7 @@ There is a selection of other R packages which also send emails:
   </tr>
   <tr>
     <td>
-      <img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px">
+      <img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.jpg" width="100px">
     </td>
     <td>
       <a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message Precedence</a>
@@ -345,7 +345,7 @@ There is a selection of other R packages which also send emails:
   </tr>
   <tr>
     <td>
-      <img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px">
+      <img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.jpg" width="100px">
     </td>
     <td>
       <a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message Integrity</a>

@@ -196,8 +196,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sat, 05 Mar 2022 06:48:02 GMT
-    X-Mailer:                     {emayili}-0.7.5
+    Date:                         Sun, 03 Apr 2022 16:09:21 GMT
+    X-Mailer:                     {emayili}-0.7.9
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -222,8 +222,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sat, 05 Mar 2022 06:48:02 GMT
-    X-Mailer:                     {emayili}-0.7.5
+    Date:                         Sun, 03 Apr 2022 16:09:21 GMT
+    X-Mailer:                     {emayili}-0.7.9
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
@@ -390,7 +390,7 @@ for Gmail, SendGrid & Mailgun</a>
 </tr>
 <tr>
 <td>
-<img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.png" width="100px">
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-precedence/featured.jpg" width="100px">
 </td>
 <td>
 <a href="https://datawookie.dev/blog/2021/10/emayili-message-precedence/">Message
@@ -399,7 +399,7 @@ Precedence</a>
 </tr>
 <tr>
 <td>
-<img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.png" width="100px">
+<img src="https://datawookie.dev/blog/2021/10/emayili-message-integrity/featured.jpg" width="100px">
 </td>
 <td>
 <a href="https://datawookie.dev/blog/2021/10/emayili-message-integrity/">Message
