@@ -1,8 +1,4 @@
 skip_if_not_installed("gpg")
-#
-# Encryption tests currently don't work with macOS on GitHub Actions.
-#
-skip_on_os(os = "mac")
 
 library(gpg)
 
