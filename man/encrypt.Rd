@@ -44,6 +44,7 @@ contents.
 \examples{
 \dontrun{
 msg <- envelope(
+  from = "flotilla@kriegsmarine.gov",
   to = "schunk@u-boat.com",
   subject = "Top Secret Message",
   text = "Immediate readiness. There are indications that the invasion has begun."
