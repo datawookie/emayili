@@ -131,6 +131,7 @@ test_that("replace bare line feeds", {
 
 test_that("send: Sendinblue", {
   skip_on_ci()
+  skip_on_cran()
   expect_error(smtp_sendinblue(msg %>% subject("{emayili} test (Sendinblue)")), NA)
 })
 
@@ -138,6 +139,7 @@ test_that("send: Sendinblue", {
 
 test_that("send: Mailgun", {
   skip_on_ci()
+  skip_on_cran()
   expect_error(smtp_mailgun(msg %>% subject("{emayili} test (Mailgun)")), NA)
 })
 
@@ -145,6 +147,7 @@ test_that("send: Mailgun", {
 
 test_that("send: MailerSend", {
   skip_on_ci()
+  skip_on_cran()
   expect_error(smtp_mailersend(msg %>% subject("{emayili} test (MailerSend)")), NA)
 })
 
