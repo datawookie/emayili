@@ -34,6 +34,7 @@ globalVariables(
     "fingerprint",
     "msg",
     "runif",
-    "detect_language"
+    "detect_language",
+    "timestamp"
   )
 )
