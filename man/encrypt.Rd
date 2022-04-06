@@ -25,11 +25,21 @@ public key of the sender will be attached.}
 A message object.
 }
 \description{
-Specify whether the message should be encrypted, signed or have a public key attached.
+Specify whether the message should be encrypted, signed or have a public key
+attached.
 }
 \details{
-If a recipient's email client is unable to decrypt an encrypted message then they will not be able to access the
-message contents.
+The \code{signature()} function will add a digital signature to a message. It will
+also optionally include a copy of the sender's public key.
+
+The \code{encrypt()} function will encrypt the contents of a message using the
+public key(s) of the recipient(s). It can also add a digital signature to the
+message (this is the default behaviour) and include a copy of the sender's
+public key. Signing happens \emph{before} encryption, so the digital signature
+will only be accessible once the message has been decrypted. If a recipient
+no longer has access to their private key or their email client is unable to
+decrypt the message then they will not be able to access the message
+contents.
 }
 \examples{
 \dontrun{
@@ -38,6 +48,12 @@ msg <- envelope(
   subject = "Top Secret Message",
   text = "Immediate readiness. There are indications that the invasion has begun."
 )
+# Encrypt and sign the message.
 msg \%>\% encrypt()
+# Only encrypt the message.
+msg \%>\% encrypt(sign = FALSE)
+# Only sign the message.
+msg \%>\% signature()
+msg \%>\% encrypt(encrypt = FALSE)
 }
 }

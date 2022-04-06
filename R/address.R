@@ -65,7 +65,7 @@ validate <- function(addr, deliverability = TRUE) {
       domain <- domain(addr)
       log_debug("- domain:      {domain}")
       if (is.null(safely(nslookup)(domain)$result)) {
-        log_warn("* Email address does not have a valid domain.")
+        log_warn("* Email address doesn't have a valid domain.")
         FALSE
       } else {
         TRUE
