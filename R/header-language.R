@@ -18,6 +18,7 @@ content_language <- function(language, content) {
       }                                                         # nocov end
 
       language <- detect_language(content)
+      log_debug("Auto-detected language: {language}")
     } else {
       # Don't include Content-Language.
       return(NULL)
