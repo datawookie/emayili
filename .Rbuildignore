@@ -11,7 +11,7 @@
 codecov.yml
 README.Rmd
 README.html
-test.R
+^test.*\.R
 examples/
 ^\.github$
 .pre-commit-config.yaml
