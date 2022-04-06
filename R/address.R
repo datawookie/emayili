@@ -15,7 +15,10 @@
 #'
 #' @examples
 #' normalise("bob@GMAIL.COM")
+#' \dontshow{
+#' # This breaks creation of the PDF manual.
 #' normalise("bob@ｇｍａｉｌ.com")
+#' }
 normalise <- function(email) {
   email <- email %>%
     str_trim() %>%
