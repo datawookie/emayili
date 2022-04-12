@@ -21,7 +21,7 @@ rhub::check_for_cran(
     # ==========================================================================
     # -> devel
     # ==========================================================================
-    # "debian-clang-devel",
+    "debian-clang-devel",
     "debian-gcc-devel",
     # "ubuntu-gcc-devel",
     "fedora-clang-devel",
