@@ -25,8 +25,4 @@ Performs the following transformations:
 }
 \examples{
 normalise("bob@GMAIL.COM")
-\dontshow{
-# This breaks creation of the PDF manual.
-normalise("bob@ｇｍａｉｌ.com")
-}
 }
