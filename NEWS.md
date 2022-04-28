@@ -1,3 +1,7 @@
+# {emayili} 0.7.10
+
+* Remove `normalise()` example with challenging UTF-8 characters.
+
 # {emayili} 0.7.9
 
 * Handle multiple keys on keychain for sender.
