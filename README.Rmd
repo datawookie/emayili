@@ -276,9 +276,9 @@ email <- envelope() %>%
   attachment(path = "image.jpg", cid = "image")
 ```
 
-### Sending a Message
+### Create a Server Object
 
-Create a SMTP server object and send the message.
+Create a SMTP server object.
 
 ```{r eval=FALSE}
 smtp <- server(
@@ -287,6 +287,31 @@ smtp <- server(
   username = "bob@gmail.com",
   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
 )
+```
+
+It's bad practice to include credentials in a script. A better approach would be to keep the credentials in your `.Renviron` file.
+
+```
+GMAIL_USERNAME="bob@gmail.com"
+GMAIL_PASSWORD="bd40ef6d4a9413de9c1318a65cbae5d7"
+```
+
+You can then pull these variables into R using `Sys.getenv()` and then create the server object.
+
+```{r eval=FALSE}
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = Sys.getenv("GMAIL_USERNAME"),
+  password = Sys.getenv("GMAIL_PASSWORD")
+)
+```
+
+### Sending a Message
+
+Send the message.
+
+```{r eval=FALSE}
 smtp(email, verbose = TRUE)
 ```
 

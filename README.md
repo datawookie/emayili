@@ -56,7 +56,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.9'
+    [1] '0.7.10'
 
 Create a message object.
 
@@ -147,8 +147,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sun, 03 Apr 2022 16:04:25 GMT
-    X-Mailer:                     {emayili}-0.7.9
+    Date:                         Wed, 08 Jun 2022 16:44:34 GMT
+    X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
     To:                           bob@google.com
@@ -196,8 +196,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sun, 03 Apr 2022 16:04:25 GMT
-    X-Mailer:                     {emayili}-0.7.9
+    Date:                         Wed, 08 Jun 2022 16:44:35 GMT
+    X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -221,8 +221,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sun, 03 Apr 2022 16:04:25 GMT
-    X-Mailer:                     {emayili}-0.7.9
+    Date:                         Wed, 08 Jun 2022 16:44:35 GMT
+    X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
@@ -257,8 +257,9 @@ You can control which of these propagate to the message using the
 `include_css` parameter which, by default, is set to
 `c("rmd", "bootstrap", "highlight")`.
 
-🚨 *Note:* Gmail doesn’t like the Bootstrap CSS. If you want your styling
-to work on Gmail you should set `include_css =  c("rmd", "highlight")`.
+🚨 *Note:* Gmail doesn’t like the Bootstrap CSS. If you want your
+styling to work on Gmail you should set
+`include_css =  c("rmd", "highlight")`.
 
 ### Extra CSS
 
@@ -321,9 +322,9 @@ email <- envelope() %>%
   attachment(path = "image.jpg", cid = "image")
 ```
 
-### Sending a Message
+### Create a Server Object
 
-Create a SMTP server object and send the message.
+Create a SMTP server object.
 
 ``` r
 smtp <- server(
@@ -332,6 +333,31 @@ smtp <- server(
   username = "bob@gmail.com",
   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
 )
+```
+
+It’s bad practice to include credentials in a script. A better approach
+would be to keep the credentials in your `.Renviron` file.
+
+    GMAIL_USERNAME="bob@gmail.com"
+    GMAIL_PASSWORD="bd40ef6d4a9413de9c1318a65cbae5d7"
+
+You can then pull these variables into R using `Sys.getenv()` and then
+create the server object.
+
+``` r
+smtp <- server(
+  host = "smtp.gmail.com",
+  port = 465,
+  username = Sys.getenv("GMAIL_USERNAME"),
+  password = Sys.getenv("GMAIL_PASSWORD")
+)
+```
+
+### Sending a Message
+
+Send the message.
+
+``` r
 smtp(email, verbose = TRUE)
 ```
 
