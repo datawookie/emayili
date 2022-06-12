@@ -63,10 +63,15 @@ option is <code>TRUE</code>.</p>
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>A message object.</p></dd>
+
+
 <dt>details</dt>
 <dd><p>Whether or not to display full message content.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments passed to or from other methods.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
@@ -74,11 +79,11 @@ option is <code>TRUE</code>.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="text.html">text</a></span><span class="op">(</span><span class="st">"Hello, World!"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Wed, 08 Jun 2022 17:15:49 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Sun, 12 Jun 2022 06:13:42 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                     {emayili}-0.7.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                 1.0</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Wed, 08 Jun 2022 17:15:49 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Sun, 12 Jun 2022 06:13:42 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                     {emayili}-0.7.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                 1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Content-Type:                 text/plain; </span>
@@ -91,7 +96,7 @@ option is <code>TRUE</code>.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>envelope_details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Wed, 08 Jun 2022 17:15:49 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Date:                         Sun, 12 Jun 2022 06:13:42 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> X-Mailer:                     {emayili}-0.7.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIME-Version:                 1.0</span>
 </code></pre></div>
@@ -108,7 +113,7 @@ option is <code>TRUE</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

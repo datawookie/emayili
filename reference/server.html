@@ -87,33 +87,58 @@
     <h2>Arguments</h2>
     <dl><dt>host</dt>
 <dd><p>DNS name or IP address of the SMTP server.</p></dd>
+
+
 <dt>port</dt>
 <dd><p>Port that the SMTP server is listening on.</p></dd>
+
+
 <dt>username</dt>
 <dd><p>Username for SMTP server.</p></dd>
+
+
 <dt>password</dt>
 <dd><p>Password for SMTP server or API key.</p></dd>
+
+
 <dt>insecure</dt>
 <dd><p>Whether to ignore SSL issues.</p></dd>
+
+
 <dt>reuse</dt>
 <dd><p>Whether the connection to the SMTP server should be left open for reuse.</p></dd>
+
+
 <dt>helo</dt>
 <dd><p>The HELO domain name of the sending host. If left as <code>NA</code> then will use local host name.</p></dd>
+
+
 <dt>protocol</dt>
 <dd><p>Which protocol (SMTP or SMTPS) to use for communicating with
 the server. Default will choose appropriate protocol based on port.</p></dd>
+
+
 <dt>test</dt>
 <dd><p>Test login to server.</p></dd>
+
+
 <dt>pause_base</dt>
 <dd><p>Base delay (in seconds) for exponential backoff. See <a href="https://purrr.tidyverse.org/reference/rate-helpers.html" class="external-link">rate_backoff</a>.</p></dd>
+
+
 <dt>max_times</dt>
 <dd><p>Maximum number of times to retry.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional curl options. See <code><a href="https://rdrr.io/pkg/curl/man/curl_options.html" class="external-link">curl::curl_options()</a></code> for a list of supported options.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A function which is used to send messages to the server.</p>
+    
+
+<p>A function which is used to send messages to the server.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -276,7 +301,7 @@ and makes them available through a website or REST API.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
