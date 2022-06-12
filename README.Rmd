@@ -307,6 +307,14 @@ smtp <- server(
 )
 ```
 
+If you're trying to send email with a host that uses the STARTTLS security protocol (like Gmail, Yahoo! or AOL), then it will most probably be blocked due to insufficient security. In order to circumvent this, you can grant access to less secure apps. See the links below for specifics:
+
+* [Gmail](https://myaccount.google.com/security)
+* [Yahoo!](https://login.yahoo.com/account/security) and
+* [AOL](https://login.aol.com/account/security).
+
+Gmail has recently changed their authentication procedure. If you are having trouble connecting to the Gmail SMTP server then take a look at [this](https://datawookie.dev/blog/2022/03/updated-gmail-authentication/).
+
 ### Sending a Message
 
 Send the message.
@@ -320,14 +328,6 @@ To see the guts of the message as passed to the SMTP server:
 ```{r eval=FALSE}
 print(email, details = TRUE)
 ```
-
-### Using STARTTLS
-
-If you're trying to send email with a host that uses the STARTTLS security protocol (like Google Mail, Yahoo! or AOL), then it will most probably be blocked due to insufficient security. In order to circumvent this, you can grant access to less secure apps. See the links below for specifics:
-
-* [Google](https://myaccount.google.com/security)
-* [Yahoo!](https://login.yahoo.com/account/security) and
-* [AOL](https://login.aol.com/account/security).
 
 ## Standards Documents
 
@@ -438,6 +438,14 @@ There is a selection of other R packages which also send emails:
     </td>
     <td>
       <a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary Email Address Validation</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://datawookie.dev/blog/2022/03/updated-gmail-authentication/featured.jpg" width="100px">
+    </td>
+    <td>
+      <a href="https://datawookie.dev/blog/2022/03/updated-gmail-authentication/">Updated Gmail Authentication</a>
     </td>
   </tr>
 </table>

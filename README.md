@@ -147,7 +147,7 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Wed, 08 Jun 2022 16:44:34 GMT
+    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
     X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
@@ -196,7 +196,7 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Wed, 08 Jun 2022 16:44:35 GMT
+    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
     X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
@@ -221,7 +221,7 @@ envelope() %>%
   )
 ```
 
-    Date:                         Wed, 08 Jun 2022 16:44:35 GMT
+    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
     X-Mailer:                     {emayili}-0.7.10
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
@@ -353,6 +353,20 @@ smtp <- server(
 )
 ```
 
+If you’re trying to send email with a host that uses the STARTTLS
+security protocol (like Gmail, Yahoo! or AOL), then it will most
+probably be blocked due to insufficient security. In order to circumvent
+this, you can grant access to less secure apps. See the links below for
+specifics:
+
+-   [Gmail](https://myaccount.google.com/security)
+-   [Yahoo!](https://login.yahoo.com/account/security) and
+-   [AOL](https://login.aol.com/account/security).
+
+Gmail has recently changed their authentication procedure. If you are
+having trouble connecting to the Gmail SMTP server then take a look at
+[this](https://datawookie.dev/blog/2022/03/updated-gmail-authentication/).
+
 ### Sending a Message
 
 Send the message.
@@ -366,18 +380,6 @@ To see the guts of the message as passed to the SMTP server:
 ``` r
 print(email, details = TRUE)
 ```
-
-### Using STARTTLS
-
-If you’re trying to send email with a host that uses the STARTTLS
-security protocol (like Google Mail, Yahoo! or AOL), then it will most
-probably be blocked due to insufficient security. In order to circumvent
-this, you can grant access to less secure apps. See the links below for
-specifics:
-
--   [Google](https://myaccount.google.com/security)
--   [Yahoo!](https://login.yahoo.com/account/security) and
--   [AOL](https://login.aol.com/account/security).
 
 ## Standards Documents
 
@@ -499,6 +501,15 @@ Message Content</a>
 <td>
 <a href="https://datawookie.dev/blog/2021/08/emayili-rudimentary-email-address-validation">Rudimentary
 Email Address Validation</a>
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://datawookie.dev/blog/2022/03/updated-gmail-authentication/featured.jpg" width="100px">
+</td>
+<td>
+<a href="https://datawookie.dev/blog/2022/03/updated-gmail-authentication/">Updated
+Gmail Authentication</a>
 </td>
 </tr>
 </table>
