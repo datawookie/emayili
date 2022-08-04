@@ -42,14 +42,18 @@ compare <- function(lhs, rhs) {
 #' @param path Relative or absolute file path. This can also be a vector of
 #'             paths, in which case their content is concatenated.
 #'
-#' @return A character vector
+#' @return A character vector. If `path` is `NULL` or an empty vector then return `NULL`.
 read_text <- function(path, encoding = "UTF-8", collapse = "\n") {
-  map(path, function(p) {
-    if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
-    readLines(p, encoding = encoding, warn = FALSE)
-  }) %>%
-    unlist() %>%
-    str_c(collapse = collapse)
+  if (is.null(path) || !length(path)) {
+    NULL
+  } else {
+    map(path, function(p) {
+      if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
+      readLines(p, encoding = encoding, warn = FALSE)
+    }) %>%
+      unlist() %>%
+      str_c(collapse = collapse)
+  }
 }
 
 #' Read entire binary file into character vector
