@@ -53,7 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">keywords</span><span class="op">(</span><span class="va">msg</span>, <span class="va">...</span>, append <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">keywords</span><span class="op">(</span><span class="va">msg</span>, <span class="va">...</span>, append <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -83,14 +83,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Create a message and set the keywords.</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter, marketing"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter"</span>, <span class="st">"marketing"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"newsletter"</span>, <span class="st">"marketing"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Retrieve the keywords for a message.</span></span>
-<span class="r-in"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter, marketing"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">keywords</span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a message and set the keywords.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter, marketing"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter"</span>, <span class="st">"marketing"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"newsletter"</span>, <span class="st">"marketing"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve the keywords for a message.</span></span></span>
+<span class="r-in"><span><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">keywords</span><span class="op">(</span><span class="st">"newsletter, marketing"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">keywords</span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "newsletter, marketing"</span>
 </code></pre></div>
     </div>
@@ -106,7 +106,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

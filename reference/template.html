@@ -55,7 +55,7 @@ environment with the same name.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">template</span><span class="op">(</span><span class="va">msg</span>, <span class="va">.name</span>, <span class="va">...</span>, .envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">template</span><span class="op">(</span><span class="va">msg</span>, <span class="va">.name</span>, <span class="va">...</span>, .envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,28 +94,28 @@ operator.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Use a builtin template.</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">template</span><span class="op">(</span></span>
-<span class="r-in">    <span class="st">"newsletter"</span>,</span>
-<span class="r-in">    title <span class="op">=</span> <span class="st">"A Sample Newsletter"</span>,</span>
-<span class="r-in">    articles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"title"</span> <span class="op">=</span> <span class="st">"Article (with date)"</span>,</span>
-<span class="r-in">        <span class="st">"content"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="st">"Vivamus, justo quisque, sed."</span><span class="op">)</span>,</span>
-<span class="r-in">        <span class="st">"date"</span> <span class="op">=</span> <span class="st">"1 January 2022"</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"title"</span> <span class="op">=</span> <span class="st">"Another Article (without date)"</span>,</span>
-<span class="r-in">        <span class="st">"content"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="st">"Quam lorem sed metus egestas."</span><span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="co"># Use a custom local template.</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">template</span><span class="op">(</span><span class="st">"./templates/custom-template"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Use a builtin template.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">template</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"newsletter"</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"A Sample Newsletter"</span>,</span></span>
+<span class="r-in"><span>    articles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"title"</span> <span class="op">=</span> <span class="st">"Article (with date)"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"content"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="st">"Vivamus, justo quisque, sed."</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"date"</span> <span class="op">=</span> <span class="st">"1 January 2022"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"title"</span> <span class="op">=</span> <span class="st">"Another Article (without date)"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"content"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="st">"Quam lorem sed metus egestas."</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Use a custom local template.</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">template</span><span class="op">(</span><span class="st">"./templates/custom-template"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -130,7 +130,7 @@ operator.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

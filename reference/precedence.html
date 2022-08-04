@@ -55,9 +55,9 @@ A hint to the message recipient about how important the message is."><!-- mathja
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">priority</span><span class="op">(</span><span class="va">msg</span>, priority <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">importance</span><span class="op">(</span><span class="va">msg</span>, importance <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">priority</span><span class="op">(</span><span class="va">msg</span>, priority <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">importance</span><span class="op">(</span><span class="va">msg</span>, importance <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -87,23 +87,23 @@ A hint to the message recipient about how important the message is."><!-- mathja
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># How rapidly does the message need to be delivered?</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Deliver this immediately!"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">priority</span><span class="op">(</span><span class="st">"urgent"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"non-urgent"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"No rush with this."</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># How much attention should be paid by recipient?</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Read this immediately!"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">importance</span><span class="op">(</span><span class="st">"high"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span>importance <span class="op">=</span> <span class="st">"low"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Not important at all. Just delete."</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># How rapidly does the message need to be delivered?</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Deliver this immediately!"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">priority</span><span class="op">(</span><span class="st">"urgent"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"non-urgent"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"No rush with this."</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># How much attention should be paid by recipient?</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Read this immediately!"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">importance</span><span class="op">(</span><span class="st">"high"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span>importance <span class="op">=</span> <span class="st">"low"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="subject.html">subject</a></span><span class="op">(</span><span class="st">"Not important at all. Just delete."</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +118,7 @@ A hint to the message recipient about how important the message is."><!-- mathja
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
