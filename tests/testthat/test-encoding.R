@@ -85,3 +85,14 @@ test_that("subject encoded in message", {
     fixed = TRUE
   )
 })
+
+test_that("accented characters in Rmd file", {
+  ACCENTS <- "öäå"
+  rmd <- tempfile(fileext = ".Rmd")
+  writeLines(ACCENTS, rmd)
+  expect_match(
+    envelope() %>% render(rmd) %>% as.character(),
+    ACCENTS
+  )
+  unlink(rmd)
+})
