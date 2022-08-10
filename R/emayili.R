@@ -5,6 +5,7 @@
 #' @import logger
 #' @import purrr
 #' @import rvest
+#' @import stringi
 #' @import stringr
 #' @import tidyr
 #' @import xml2

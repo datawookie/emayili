@@ -43,13 +43,13 @@ compare <- function(lhs, rhs) {
 #'             paths, in which case their content is concatenated.
 #'
 #' @return A character vector. If `path` is `NULL` or an empty vector then return `NULL`.
-read_text <- function(path, encoding = "UTF-8", collapse = "\n") {
+read_text <- function(path, encoding = NULL, collapse = "\n") {
   if (is.null(path) || !length(path)) {
     NULL
   } else {
     map(path, function(p) {
       if (!file.exists(p)) stop("Unable to find file: ", p, ".", call. = FALSE)
-      readLines(p, encoding = encoding, warn = FALSE)
+      stri_read_lines(p, encoding = encoding)
     }) %>%
       unlist() %>%
       str_c(collapse = collapse)
