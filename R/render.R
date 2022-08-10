@@ -1,11 +1,11 @@
 manifest <- function(
-  msg,
-  markdown,
-  params = NULL,
-  squish = TRUE,
-  css,
-  include_css,
-  language
+    msg,
+    markdown,
+    params = NULL,
+    squish = TRUE,
+    css,
+    include_css,
+    language
 ) {
   stopifnot(is.null(params) || is.list(params))
 
@@ -94,8 +94,15 @@ manifest <- function(
     xml_remove(xml_find_all(output, "//style"))
   }
 
-  css_file <- tempfile(fileext = ".css")
-  cat(paste(css, collapse = "\n"), file = css_file)
+  # Drop NULL items.
+  css <- discard(css, is.null)
+
+  if (length(css)) {
+    css_file <- tempfile(fileext = ".css")
+    cat(paste(css, collapse = "\n"), file = css_file)
+  } else {
+    css_file <- NULL
+  }
 
   attach_images(msg, output, disposition = "inline", charset = "utf-8", encoding = NA, css_file, language)
 }
@@ -196,17 +203,17 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' # Cleanup.
 #' file.remove(filename)
 render <- function(
-  msg,
-  input,
-  params = NULL,
-  squish = TRUE,
-  css_files = c(),
-  include_css = c("rmd", "bootstrap"),
-  language = FALSE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
+    msg,
+    input,
+    params = NULL,
+    squish = TRUE,
+    css_files = c(),
+    include_css = c("rmd", "bootstrap"),
+    language = FALSE,
+    interpolate = TRUE,
+    .open = "{{",
+    .close = "}}",
+    .envir = NULL
 ) {
   stopifnot(is.envelope(msg))
   stopifnot(is.logical(interpolate))
