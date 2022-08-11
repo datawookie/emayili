@@ -38,7 +38,7 @@ css_inline <- function(content) {
       url <- import %>% str_remove_all("(^@import url\\([\"']|[\"']\\);$)")
       # Pull content from URL.
       log_debug("Import CSS from {url}.")
-      imported <- readLines(url) %>% paste(collapse = "\n")
+      imported <- stri_read_lines(url) %>% paste(collapse = "\n")
       # Replace @import url(); with downloaded content.
       css_text <- sub(import, imported, css_text, fixed = TRUE)
     }
@@ -58,7 +58,7 @@ css_inline <- function(content) {
     external = xml_find_all(content, "//link[starts-with(@href, 'http') and @rel='stylesheet']") %>%
       xml_attr("href") %>%
       map(function(href) {
-        readLines(href, warn = FALSE) %>% paste(collapse = "\n")
+        stri_read_lines(href) %>% paste(collapse = "\n")
       }),
     # * Inline CSS in <style> tags.
     style = xml_find_all(content, "//style") %>%

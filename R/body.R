@@ -105,7 +105,7 @@ html <- function(
   # Check if it's a file.
   #
   if (file.exists(content)) {
-    content <- paste(readLines(content), collapse = "\n")
+    content <- stri_read_lines(content) %>% paste(collapse = "\n")
   }
 
   if (is.null(.envir)) {
