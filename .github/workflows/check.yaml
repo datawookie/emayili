@@ -94,10 +94,22 @@ jobs:
       - name: Install OS dependencies
         if: runner.os == 'Linux'
         run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+          sudo apt-get install -y pandoc \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            make \
+            libicu-dev \
+            libxml2-dev \
+            libprotobuf-dev \
+            protobuf-compiler \
+            libgpgme11-dev \
+            haveged \
+            git \
+            libfreetype6-dev \
+            libpng-dev \
+            zlib1g-dev \
+            libharfbuzz-dev \
+            libfribidi-dev
 
       - name: Install dependencies
         run: |
