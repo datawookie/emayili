@@ -25,7 +25,7 @@ manifest <- function(
     on.exit(unlink(sub("\\.Rmd", "*", input), recursive = TRUE))
 
     # Write input to file.
-    cat(markdown, file = input)
+    stri_write_lines(markdown, input)
 
     output_format <- html_document(
       self_contained = TRUE,
