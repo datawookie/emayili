@@ -1,3 +1,7 @@
+# {emayili} 0.7.11
+
+* Improve handling of non-ASCII characters in markdown documents.
+
 # {emayili} 0.7.10
 
 * Remove `normalise()` example with challenging UTF-8 characters.
