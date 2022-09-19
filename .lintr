@@ -1,7 +1,8 @@
-linters: with_defaults(
-  line_length_linter(120),
-  commented_code_linter = NULL,
-  object_name_linter = NULL
+linters: linters_with_defaults(
+    line_length_linter(120),
+    object_usage_linter = NULL,
+    object_name_linter(c("snake_case", "SNAKE_CASE")),
+    commented_code_linter = NULL
   )
 exclusions: list()
-encoding: "ISO-8859-1"
+encoding: "UTF-8"
