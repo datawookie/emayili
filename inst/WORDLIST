@@ -2,11 +2,14 @@ alt
 andrew
 aut
 backoff
+bcc
+Bcc
 bichat
 Bichat
 Bista
 blatr
 BugReports
+bumpversion
 cld
 Codecov
 colinfay
@@ -39,6 +42,7 @@ jinjar
 johann
 js
 KeepSource
+keychain
 kleinbub
 Kleinbub
 lifecycle
@@ -52,12 +56,14 @@ matt
 memoise
 Moulos
 nolint
+normalise
 ORCID
 Panagiotis
 pandoc
 params
 pmoulos
 ponyexpress
+pre
 purrr
 rhub
 rmarkdown
