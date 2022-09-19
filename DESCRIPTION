@@ -64,7 +64,7 @@ Imports:
     xfun,
     xml2
 Suggests:
-    dmi3kno/bunny,
+    bunny,
     cld2,
     cld3,
     gpg,
@@ -76,6 +76,8 @@ Suggests:
     roxygen2,
     showtext,
     Microsoft365R
+Remotes:  
+    dmi3kno/bunny
 SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
   To use PGP/GnuPG encryption requires gpg.
 Encoding: UTF-8
