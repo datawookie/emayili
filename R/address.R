@@ -119,7 +119,7 @@ compliant <- function(addr, error = FALSE) {
       # Quoted.
       TRUE,
       # Unquoted.
-      !grepl("[[:blank:]]+.*", local)             # No spaces in local.
+      !grepl("[[:blank:]]+.*", local) # No spaces in local.
     )
 
   # Test on domain.
@@ -160,14 +160,12 @@ compliant <- function(addr, error = FALSE) {
 #' address("gerry@gmail.com", "Durrell, Gerald")
 #' # Display name contains non-ASCII characters.
 #' address("hans@gmail.com", "Hansjörg Müller")
-address <- function(
-  email = NA,
-  display = NA,
-  local = NA,
-  domain = NA,
-  normalise = TRUE,
-  validate = FALSE
-) {
+address <- function(email = NA,
+                    display = NA,
+                    local = NA,
+                    domain = NA,
+                    normalise = TRUE,
+                    validate = FALSE) {
   if (any(is.na(email) & is.na(local) & is.na(domain))) {
     stop("Either email or local and domain must be specified.", call. = FALSE)
   }
@@ -283,7 +281,7 @@ Ops.address <- function(e1, e2) {
 #' as.address(c("Gerald <gerry@gmail.com>", "alice@yahoo.com", "jim@aol.com"))
 #' as.address("Gerald <gerry@gmail.com>, alice@yahoo.com, jim@aol.com")
 #' as.address("Durrell, Gerald <gerry@gmail.com>")
-as.address <- function(addr, validate = FALSE) {                # nolint
+as.address <- function(addr, validate = FALSE) {
   if ("address" %in% class(addr)) {
     addr
   } else {

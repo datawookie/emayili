@@ -1,8 +1,8 @@
-ERROR_NOT_MIME_OBJECT <- "Child is not a MIME object."              # nolint
+ERROR_NOT_MIME_OBJECT <- "Child is not a MIME object."
 
 # CONSTRUCTOR -----------------------------------------------------------------
 
-is.mime <- function(x) {                                            # nolint
+is.mime <- function(x) {
   "MIME" %in% class(x)
 }
 
@@ -78,21 +78,19 @@ NULL
 #'
 #' @noRd
 #' @return A MIME object.
-MIME <- function(
-  content = NULL,
-  disposition = NA,
-  protocol = NA,
-  charset = NA,
-  encoding = NA,
-  language = NA,
-  description = NA,
-  name = NA,
-  filename = NA,
-  format = NA,
-  boundary = hexkey(),
-  type = NA,
-  children = list()
-) {
+MIME <- function(content = NULL,
+                 disposition = NA,
+                 protocol = NA,
+                 charset = NA,
+                 encoding = NA,
+                 language = NA,
+                 description = NA,
+                 name = NA,
+                 filename = NA,
+                 format = NA,
+                 boundary = hexkey(),
+                 type = NA,
+                 children = list()) {
   # If just a single child, convert to list.
   if (!all(class(children) == c("list"))) children <- list(children)
   # Check that all children are MIME.
@@ -155,10 +153,8 @@ multipart_mixed <- function(...) {
 #' @noRd
 #'
 #' @inheritParams MIME
-multipart_encrypted <- function(
-  content,
-  ...
-) {
+multipart_encrypted <- function(content,
+                                ...) {
   structure(
     c(
       MIME(
@@ -181,10 +177,8 @@ multipart_encrypted <- function(
 #'   \code{"pgp-sha256"}, \code{"pgp-md5"}, \code{"pgp-sha1"},
 #'   \code{"pgp-ripemd160"}, \code{"pgp-md2"}, \code{"pgp-tiger192"}, and
 #'  \code{"pgp-haval-5-160"}.
-multipart_signed <- function(
-  micalg = "pgp-sha256",
-  ...
-) {
+multipart_signed <- function(micalg = "pgp-sha256",
+                             ...) {
   if (!(micalg %in% LEVELS_MICALG)) stop("Invalid micalg.")
   structure(
     c(
@@ -200,10 +194,8 @@ multipart_signed <- function(
   )
 }
 
-application_pgp_encrypted <- function(
-  content = "Version: 1",
-  ...
-) {
+application_pgp_encrypted <- function(content = "Version: 1",
+                                      ...) {
   structure(
     c(
       MIME(
@@ -219,10 +211,8 @@ application_pgp_encrypted <- function(
   )
 }
 
-application_pgp_signature <- function(
-  content,
-  ...
-) {
+application_pgp_signature <- function(content,
+                                      ...) {
   structure(
     c(
       MIME(
@@ -241,10 +231,8 @@ application_pgp_signature <- function(
   )
 }
 
-application_pgp_keys <- function(
-  content,
-  ...
-) {
+application_pgp_keys <- function(content,
+                                 ...) {
   structure(
     c(
       MIME(
@@ -264,12 +252,10 @@ application_pgp_keys <- function(
   )
 }
 
-application_octet_stream <- function(
-  content,
-  disposition = "inline",
-  filename,
-  ...
-) {
+application_octet_stream <- function(content,
+                                     disposition = "inline",
+                                     filename,
+                                     ...) {
   structure(
     c(
       MIME(
@@ -288,13 +274,11 @@ application_octet_stream <- function(
   )
 }
 
-text_plain <- function(
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = "7bit",
-  ...
-) {
+text_plain <- function(content,
+                       disposition = "inline",
+                       charset = "utf-8",
+                       encoding = "7bit",
+                       ...) {
   structure(
     c(
       MIME(content, disposition, NA, charset, encoding, format = "flowed", boundary = NA, ...),
@@ -315,15 +299,13 @@ text_plain <- function(
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A \code{text_html} object derived from \code{MIME}.
-text_html <- function(
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = NA,
-  squish = FALSE,
-  css = NA,
-  ...
-) {
+text_html <- function(content,
+                      disposition = "inline",
+                      charset = "utf-8",
+                      encoding = NA,
+                      squish = FALSE,
+                      css = NA,
+                      ...) {
   if (!("xml_document" %in% class(content))) {
     content <- read_html(content)
   }
@@ -425,15 +407,13 @@ text_html <- function(
 #'
 #' @param cid An optional Content-Id.
 #' @param ... Further arguments passed to or from other methods.
-other <- function(
-  filename,
-  name = NA,
-  type = NA,
-  cid = NA,
-  disposition = "attachment",
-  encoding = "base64",
-  ...
-) {
+other <- function(filename,
+                  name = NA,
+                  type = NA,
+                  cid = NA,
+                  disposition = "attachment",
+                  encoding = "base64",
+                  ...) {
   charset <- NA
   if (is.na(name)) name <- basename(filename)
 
@@ -551,7 +531,9 @@ as.character.MIME <- function(x, ...) {
   #
   body <- c(
     # Head.
-    headers %>% compact() %>% sapply(as.character),
+    headers %>%
+      compact() %>%
+      sapply(as.character),
     "",
     # Content (if any).
     content,
@@ -573,7 +555,7 @@ as.character.MIME <- function(x, ...) {
 #' @param x MIME object
 #' @param ... Further arguments passed to or from other methods.
 print.MIME <- function(x, ...) {
-  cat(as.character(x))                               # nocov
+  cat(as.character(x)) # nocov
 }
 
 # LENGTH ----------------------------------------------------------------------

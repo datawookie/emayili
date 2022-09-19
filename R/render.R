@@ -1,12 +1,10 @@
-manifest <- function(
-    msg,
-    markdown,
-    params = NULL,
-    squish = TRUE,
-    css,
-    include_css,
-    language
-) {
+manifest <- function(msg,
+                     markdown,
+                     params = NULL,
+                     squish = TRUE,
+                     css,
+                     include_css,
+                     language) {
   stopifnot(is.null(params) || is.list(params))
 
   if (plain <- attr(markdown, "plain")) {
@@ -139,7 +137,7 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #' message which is not correctly displayed inline in the Gmail web client.
 #' To get around this you can specify `include_css = FALSE`. This will mean
 #' that some styling will not be present in the resulting message, but that
-#'the message content will be correctly rendered inline.
+#' the message content will be correctly rendered inline.
 #'
 #' @inheritParams text
 #' @inheritParams html
@@ -202,19 +200,17 @@ if (requireNamespace("memoise", quietly = TRUE)) {
 #'
 #' # Cleanup.
 #' file.remove(filename)
-render <- function(
-    msg,
-    input,
-    params = NULL,
-    squish = TRUE,
-    css_files = c(),
-    include_css = c("rmd", "bootstrap"),
-    language = FALSE,
-    interpolate = TRUE,
-    .open = "{{",
-    .close = "}}",
-    .envir = NULL
-) {
+render <- function(msg,
+                   input,
+                   params = NULL,
+                   squish = TRUE,
+                   css_files = c(),
+                   include_css = c("rmd", "bootstrap"),
+                   language = FALSE,
+                   interpolate = TRUE,
+                   .open = "{{",
+                   .close = "}}",
+                   .envir = NULL) {
   stopifnot(is.envelope(msg))
   stopifnot(is.logical(interpolate))
   stopifnot(is.character(.open))
@@ -222,7 +218,7 @@ render <- function(
   stopifnot(!length(css_files) || is.character(css_files))
 
   # What are permissible options for include_css?
-  INCLUDE_CSS_OPTIONS <- eval(formals(render)$include_css)          # nolint
+  INCLUDE_CSS_OPTIONS <- eval(formals(render)$include_css)
 
   # Translate Boolean include_css:
   #
@@ -242,8 +238,11 @@ render <- function(
     )
   }
 
-  if (is.null(.envir)) .envir <- parent.frame()
-  else .envir <- list2env(.envir) # nocov
+  if (is.null(.envir)) {
+    .envir <- parent.frame()
+  } else {
+    .envir <- list2env(.envir)
+  } # nocov
 
   if (is_filepath(input)) {
     log_debug("Interpreting input as path to file.")

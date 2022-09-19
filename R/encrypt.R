@@ -40,13 +40,13 @@
 #' msg %>% encrypt(encrypt = FALSE)
 #' }
 encrypt <- function(msg, encrypt = TRUE, sign = TRUE, public_key = TRUE) {
-  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt)           # nocov start
+  encrypt <- ifelse(is.null(encrypt), FALSE, encrypt) # nocov start
   sign <- ifelse(is.null(sign), FALSE, sign)
   stopifnot(is.logical(encrypt) && is.logical(sign))
 
   msg$encrypt <- encrypt
   msg$sign <- sign
-  msg$public_key <- public_key                                  # nocov end
+  msg$public_key <- public_key # nocov end
 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
@@ -70,7 +70,7 @@ encrypt_body <- function(content, parties, encrypt, sign, public_key) {
 
   if (encrypt || sign || public_key) {
     if (!requireNamespace("gpg", quietly = TRUE)) {
-      stop("Install {gpg} to encrypt and/or sign messages.")    # nocov
+      stop("Install {gpg} to encrypt and/or sign messages.") # nocov
     }
     log_debug("Encrypt message: {encrypt}")
     log_debug("Sign message:    {sign}")

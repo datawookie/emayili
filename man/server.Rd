@@ -176,8 +176,10 @@ smtp(msg, verbose = TRUE)
 
 # With explicit HELO domain.
 #
-smtp <- server(host = "mail.example.com",
-               helo = "client.example.com")
+smtp <- server(
+  host = "mail.example.com",
+  helo = "client.example.com"
+)
 
 # Set parameters for Gmail SMTP server. The host and port are implicit.
 smtp <- gmail(

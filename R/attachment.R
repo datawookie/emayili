@@ -9,9 +9,9 @@
 #' @return A message object.
 #' @export
 #' @examples
-#' path_mtcars  <- tempfile(fileext = ".csv")
+#' path_mtcars <- tempfile(fileext = ".csv")
 #' path_scatter <- tempfile(fileext = ".png")
-#' path_cats    <- system.file("cats.jpg", package = "emayili")
+#' path_cats <- system.file("cats.jpg", package = "emayili")
 #'
 #' write.csv(mtcars, path_mtcars)
 #'
@@ -27,8 +27,9 @@
 #'
 #' file.remove(path_scatter, path_mtcars)
 attachment <- function(msg, path, name = NA, type = NA, cid = NA, disposition = "attachment") {
-  if (length(path) != 1)
-    stop("Must be precisely one attachment.", call. = F)
+  if (length(path) != 1) {
+    stop("Must be precisely one attachment.", call. = FALSE)
+  }
 
   body <- other(path, name, type, cid, disposition)
 
@@ -37,15 +38,13 @@ attachment <- function(msg, path, name = NA, type = NA, cid = NA, disposition = 
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }
 
-attach_images <- function(
-  msg,
-  content,
-  disposition,
-  charset = "utf-8",
-  encoding = NA,
-  css_files = NA,
-  language = NA
-) {
+attach_images <- function(msg,
+                          content,
+                          disposition,
+                          charset = "utf-8",
+                          encoding = NA,
+                          css_files = NA,
+                          language = NA) {
   if (!("xml_document" %in% class(content))) {
     content <- read_html(content)
   }

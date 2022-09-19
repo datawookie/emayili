@@ -1,4 +1,4 @@
-is.envelope <- function(x) {                                        # nolint
+is.envelope <- function(x) {
   "envelope" %in% class(x)
 }
 
@@ -43,21 +43,19 @@ is.envelope <- function(x) {                                        # nolint
 #'   subject = "Hiya!",
 #'   text = "Hi Bob, how are you?"
 #' )
-envelope <- function(
-  to = NULL,
-  from = NULL,
-  cc = NULL,
-  bcc = NULL,
-  reply = NULL,
-  subject = NULL,
-  importance = NULL,
-  priority = NULL,
-  text = NULL,
-  html = NULL,
-  encrypt = FALSE,
-  sign = FALSE,
-  public_key = FALSE
-) {
+envelope <- function(to = NULL,
+                     from = NULL,
+                     cc = NULL,
+                     bcc = NULL,
+                     reply = NULL,
+                     subject = NULL,
+                     importance = NULL,
+                     priority = NULL,
+                     text = NULL,
+                     html = NULL,
+                     encrypt = FALSE,
+                     sign = FALSE,
+                     public_key = FALSE) {
   koevert <- structure(
     list(
       headers = list(),
@@ -160,7 +158,7 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
 #'
 #' @param x Message object
 #' @param child A child to be appended
-after.envelope <- function(x, child) {                              # nolint
+after.envelope <- function(x, child) {
   if (is.null(x$parts)) {
     log_debug("Adding first child.")
     x$parts <- list(child)

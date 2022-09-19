@@ -17,6 +17,7 @@ css
 ctb
 datawookie
 dev
+DNS
 dpfahey
 dplyr
 emayili
@@ -43,10 +44,14 @@ Kleinbub
 lifecycle
 lintr
 magrittr
+MailerSend
+Mailfence
+Mailgun
 mailR
 matt
 memoise
 Moulos
+nolint
 ORCID
 Panagiotis
 pandoc
@@ -61,8 +66,14 @@ roxygen
 Roxygen
 RoxygenNote
 rvest
+Sendgrid
+SendGrid
+Sendinblue
 sendmailR
 showtext
+SMTP
+SMTPS
+SSL
 STARTTLS
 stringi
 stringr

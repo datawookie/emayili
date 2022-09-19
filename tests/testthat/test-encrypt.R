@@ -20,12 +20,12 @@ gpg_keygen(name = "Jim", email = "jim@aol.com")
 #
 stopifnot(all(gpg_list_keys() %>% pull(algo) %in% c("RSA", "EdDSA")))
 
-BEGIN_PGP_MESSAGE          <- "-----BEGIN PGP MESSAGE-----"
-END_PGP_MESSAGE            <- "-----END PGP MESSAGE-----"
-BEGIN_PGP_SIGNATURE        <- "-----BEGIN PGP SIGNATURE-----"
-END_PGP_SIGNATURE          <- "-----END PGP SIGNATURE-----"
+BEGIN_PGP_MESSAGE <- "-----BEGIN PGP MESSAGE-----"
+END_PGP_MESSAGE <- "-----END PGP MESSAGE-----"
+BEGIN_PGP_SIGNATURE <- "-----BEGIN PGP SIGNATURE-----"
+END_PGP_SIGNATURE <- "-----END PGP SIGNATURE-----"
 BEGIN_PGP_PUBLIC_KEY_BLOCK <- "-----BEGIN PGP PUBLIC KEY BLOCK-----"
-END_PGP_PUBLIC_KEY_BLOCK   <- "-----END PGP PUBLIC KEY BLOCK-----"
+END_PGP_PUBLIC_KEY_BLOCK <- "-----END PGP PUBLIC KEY BLOCK-----"
 
 test_that("sign/encrypt empty message", {
   msg <- envelope(
@@ -108,11 +108,11 @@ test_that("fail without sender or recipients", {
   expect_error(
     envelope(to = "alice@yahoo.com") %>% encrypt() %>% as.character(),
     "without sender"
-    )
+  )
   expect_error(
     envelope(from = "bob@gmail.com") %>% encrypt() %>% as.character(),
     "without recipients"
-    )
+  )
 })
 
 test_that("missing public keys", {

@@ -1,4 +1,4 @@
-REGEX_BARE_LINEFEED <- "(?<!\r)\n"                                  # nolint
+REGEX_BARE_LINEFEED <- "(?<!\r)\n"
 
 #' Pipe operator
 #'
@@ -64,7 +64,7 @@ read_text <- function(path, encoding = NULL, collapse = "\n") {
 #'
 #' @return A character vector
 read_bin <- function(path) {
-  readBin(path, "raw",  file.info(path)$size)
+  readBin(path, "raw", file.info(path)$size)
 }
 
 #' Normalise file path
@@ -89,7 +89,7 @@ is_filepath <- function(path) {
   !is.na(normalise_filepath(path))
 }
 
-hexkey <- function(object = runif(1), algorithm="crc32") {
+hexkey <- function(object = runif(1), algorithm = "crc32") {
   digest(object, algorithm)
 }
 
@@ -188,7 +188,7 @@ wrap_angle_brackets <- function(x) {
 #' @noRd
 #' @param x A list.
 #' @return A Boolean.
-is.nested <- function(x) {                                          # nolint
+is.nested <- function(x) {
   stopifnot(is.list(x))
   any(sapply(x, function(x) any(class(x) == "list")))
 }
@@ -214,10 +214,12 @@ smtp_url <- function(host, port, protocol = NA, helo = NA) {
   sprintf("%s%s:%d/%s", protocol, host, port, helo)
 }
 
+# nolint start
 stop <- function(..., call. = FALSE, domain = NULL) {
   txt <- glue::glue(...)
   base::stop(txt, call. = call., domain = domain)
 }
+# nolint end
 
 file.ext <- function(path) {
   sub(".*\\.", "", basename(path))
@@ -240,8 +242,8 @@ list_to_char <- function(content) {
   if (
     # We do the change if the element is a
     # tag or a tag.list
-    inherits(content, "shiny.tag.list") |
-    inherits(content, "shiny.tag")
+    inherits(content, "shiny.tag.list") ||
+      inherits(content, "shiny.tag")
   ) {
     content <- as.character(content)
   }

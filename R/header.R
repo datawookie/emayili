@@ -1,8 +1,6 @@
-header <- function(
-  name,
-  values,
-  sep = NULL
-) {
+header <- function(name,
+                   values,
+                   sep = NULL) {
   structure(
     list(
       name = name,
@@ -29,8 +27,8 @@ as.character.header <- function(x, width = 30, ...) {
 
   paste0(
     sprintf(
-        FORMAT,
-        paste0(x$name, ":")
+      FORMAT,
+      paste0(x$name, ":")
     ),
     paste(
       as.character(x$values, ...),

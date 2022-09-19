@@ -33,9 +33,9 @@ A message object.
 Add attachments to a message object
 }
 \examples{
-path_mtcars  <- tempfile(fileext = ".csv")
+path_mtcars <- tempfile(fileext = ".csv")
 path_scatter <- tempfile(fileext = ".png")
-path_cats    <- system.file("cats.jpg", package = "emayili")
+path_cats <- system.file("cats.jpg", package = "emayili")
 
 write.csv(mtcars, path_mtcars)
 

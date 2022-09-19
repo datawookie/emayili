@@ -54,7 +54,9 @@ test_that("body html", {
 })
 
 test_that("append another body", {
-  msg <- envelope() %>% text("Hello!") %>% html("<p>Goodbye!</p>")
+  msg <- envelope() %>%
+    text("Hello!") %>%
+    html("<p>Goodbye!</p>")
   expect_equal(length(msg$parts), 2)
 })
 

@@ -75,7 +75,7 @@ file.create(ACCENTED_PATH)
 # - https://www.smtpbucket.com/
 #
 SMTP_SERVER <- "mail.smtpbucket.com"
-SMTP_PORT   <- 8025
+SMTP_PORT <- 8025
 SMTP_USERNAME_GMAIL <- Sys.getenv("GMAIL_USERNAME", NA)
 SMTP_PASSWORD_GMAIL <- Sys.getenv("GMAIL_PASSWORD", NA)
 SMTP_PASSWORD_SENDGRID <- Sys.getenv("SENDGRID_API_KEY")
@@ -133,8 +133,7 @@ smtp_mailersend <- mailersend(
   password = SMTP_PASSWORD_MAILERSEND
 )
 
-smtp_smtpbucket <- smtpbucket(
-)
+smtp_smtpbucket <- smtpbucket()
 
 # TEMPLATE ---------------------------------------------------------------------
 

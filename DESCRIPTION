@@ -80,5 +80,5 @@ SystemRequirements: The function render() requires Pandoc (http://pandoc.org).
   To use PGP/GnuPG encryption requires gpg.
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 KeepSource: true

@@ -58,21 +58,22 @@
 #'
 #' # With explicit HELO domain.
 #' #
-#' smtp <- server(host = "mail.example.com",
-#'                helo = "client.example.com")
-server <- function(
-  host,
-  port = 25,
-  username = NULL,
-  password = NULL,
-  insecure = FALSE,
-  reuse = TRUE,
-  helo = NA,
-  protocol = NA,
-  test = FALSE,
-  pause_base = 1,
-  max_times = 5,
-  ...) {
+#' smtp <- server(
+#'   host = "mail.example.com",
+#'   helo = "client.example.com"
+#' )
+server <- function(host,
+                   port = 25,
+                   username = NULL,
+                   password = NULL,
+                   insecure = FALSE,
+                   reuse = TRUE,
+                   helo = NA,
+                   protocol = NA,
+                   test = FALSE,
+                   pause_base = 1,
+                   max_times = 5,
+                   ...) {
   # See curl::curl_options() for available options.
   #
   # * SSL
@@ -195,10 +196,9 @@ server <- function(
 #'   username = "bob@gmail.com",
 #'   password = "bd40ef6d4a9413de9c1318a65cbae5d7"
 #' )
-gmail <- function(
-  username,
-  password,
-  ...) {
+gmail <- function(username,
+                  password,
+                  ...) {
   # Retrieve function.
   fcall <- match.call(expand.dots = TRUE)
   # Substitute server() as function to call.
@@ -228,9 +228,8 @@ gmail <- function(
 #' smtp <- sendgrid(
 #'   password = "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"
 #' )
-sendgrid <- function(
-  password,
-  ...) {
+sendgrid <- function(password,
+                     ...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
@@ -260,10 +259,9 @@ sendgrid <- function(
 #'   username = "postmaster@sandbox9ptce35fdf0b31338dec4284eb7aaa59.mailgun.org",
 #'   password = "44d072e7g2b5f3bf23b2b642da0fe3a7-2ac825a1-a5be680a"
 #' )
-mailgun <- function(
-  username,
-  password,
-  ...) {
+mailgun <- function(username,
+                    password,
+                    ...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
@@ -290,10 +288,9 @@ mailgun <- function(
 #'   username = "bob@gmail.com",
 #'   password = "xsmtpsib-c75cf91323adc53a1747c005447cbc9a893c35888635bb7bef1a624bf773da33"
 #' )
-sendinblue <- function(
-  username,
-  password,
-  ...) {
+sendinblue <- function(username,
+                       password,
+                       ...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
@@ -324,10 +321,9 @@ sendinblue <- function(
 #'   username = "NS_Pf3ALM@gmail.com",
 #'   password = "e5ATWLlTnWWDaKeE"
 #' )
-mailersend <- function(
-  username,
-  password,
-  ...) {
+mailersend <- function(username,
+                       password,
+                       ...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server
@@ -352,17 +348,16 @@ mailersend <- function(
 #'   username = "bob",
 #'   password = "F!Uosd6xbhSjd%63"
 #' )
-mailfence <- function(
-  username,
-  password,
-  ...) {
-  fcall <- match.call(expand.dots = TRUE)                       # nocov start
+mailfence <- function(username,
+                      password,
+                      ...) {
+  fcall <- match.call(expand.dots = TRUE) # nocov start
 
   fcall[[1]] <- server
   fcall$host <- "smtp.mailfence.com"
   fcall$port <- 465
 
-  eval(fcall, parent.frame())                                   # nocov end
+  eval(fcall, parent.frame()) # nocov end
 }
 
 #' @rdname server

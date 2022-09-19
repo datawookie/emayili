@@ -18,7 +18,7 @@ NULL
 #' @return A header function.
 #' @noRd
 recipient <- function(key, single = FALSE) {
-  force(key)                                                       # nocov start
+  force(key) # nocov start
   force(single)
 
   if (single) {
@@ -43,7 +43,7 @@ recipient <- function(key, single = FALSE) {
         header_get(msg, key)
       }
     }
-  }                                                                # nocov end
+  } # nocov end
 }
 
 #' @rdname addresses
@@ -139,19 +139,20 @@ sender <- recipient("Sender", TRUE)
 #'
 #' # Retrieve the subject for a message
 #' subject(msg)
-subject <- function(
-  msg,
-  subject = NULL,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
-) {
+subject <- function(msg,
+                    subject = NULL,
+                    interpolate = TRUE,
+                    .open = "{{",
+                    .close = "}}",
+                    .envir = NULL) {
   if (is.null(subject)) {
     header_get(msg, "Subject")
   } else {
-    if (is.null(.envir)) .envir <- parent.frame()
-    else .envir <- list2env(.envir)
+    if (is.null(.envir)) {
+      .envir <- parent.frame()
+    } else {
+      .envir <- list2env(.envir)
+    }
 
     if (interpolate) subject <- glue(subject, .open = .open, .close = .close, .envir = .envir)
 
@@ -243,7 +244,7 @@ comments <- function(msg, comments = NULL) {
 #' msg <- envelope() %>% keywords("newsletter, marketing")
 #' keywords(msg)
 keywords <- function(msg, ..., append = FALSE) {
-   arguments <- c(...)
+  arguments <- c(...)
   if (is.null(arguments)) {
     header_get(msg, "Keywords")
   } else {

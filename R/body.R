@@ -33,18 +33,16 @@ check_message_body <- function(content) {
 #' # Disable {glue} interpolation.
 #' #
 #' msg <- envelope() %>% text("This is a set: {1, 2, 3}.", interpolate = FALSE)
-text <- function(
-  msg,
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = "7bit",
-  language = FALSE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
-) {
+text <- function(msg,
+                 content,
+                 disposition = "inline",
+                 charset = "utf-8",
+                 encoding = "7bit",
+                 language = FALSE,
+                 interpolate = TRUE,
+                 .open = "{{",
+                 .close = "}}",
+                 .envir = NULL) {
   check_message_body(content)
 
   if (is.null(.envir)) {
@@ -87,19 +85,17 @@ text <- function(
 #'   library(htmltools)
 #'   envelope() %>% html(tagList(h2("Hello"), p("World!")))
 #' }
-html <- function(
-  msg,
-  content,
-  disposition = "inline",
-  charset = "utf-8",
-  encoding = NA,
-  css_files = c(),
-  language = FALSE,
-  interpolate = TRUE,
-  .open = "{{",
-  .close = "}}",
-  .envir = NULL
-) {
+html <- function(msg,
+                 content,
+                 disposition = "inline",
+                 charset = "utf-8",
+                 encoding = NA,
+                 css_files = c(),
+                 language = FALSE,
+                 interpolate = TRUE,
+                 .open = "{{",
+                 .close = "}}",
+                 .envir = NULL) {
   content <- list_to_char(content)
 
   # Check if it's a file.
