@@ -10,20 +10,20 @@ hex <- image_read(here::here("man/figures/emayili-hex.png")) %>%
 gh_logo <- bunny::github %>% image_scale("50x50")
 
 gh_card <- image_canvas_ghcard("#ffffff") %>%
-  image_compose(hex, gravity = "East", offset = "+100+0") %>%
+  image_compose(hex, gravity = "East", offset = "+80+0") %>%
   image_annotate(
     "emayili: Email from R",
     gravity = "West",
-    location = "+100-30",
+    location = "+80-30",
     color = "#0d4448",
     size = 50,
     font = "Roboto Slab"
   ) %>%
-  image_compose(gh_logo, gravity = "West", offset = "+100+45") %>%
+  image_compose(gh_logo, gravity = "West", offset = "+80+45") %>%
   image_annotate(
     "datawookie/emayili",
     gravity = "West",
-    location = "+160+45",
+    location = "+140+45",
     size = 50,
     font = "Ubuntu Mono"
   ) %>%
