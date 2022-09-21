@@ -6,29 +6,6 @@ repos:
     hooks:
     -   id: style-files
         args: [--style_pkg=styler, --style_fun=tidyverse_style]
-    -   id: roxygenize
-        # roxygen requires loading pkg -> add dependencies from DESCRIPTION
-        additional_dependencies:
-        -    base64enc
-        -    commonmark
-        -    curl
-        -    digest
-        -    dplyr
-        -    glue
-        -    htmltools
-        -    httr
-        -    logger
-        -    magrittr
-        -    mime
-        -    purrr
-        -    rmarkdown
-        -    rvest
-        -    stringi
-        -    stringr
-        -    tidyr
-        -    urltools
-        -    xfun
-        -    xml2
     # codemeta must be above use-tidy-description when both are used
     # -   id: codemeta-description-updated
     -   id: use-tidy-description
