@@ -30,7 +30,6 @@ smtp <- server(
 
 ui <- fluidPage(
   titlePanel("{emayili} & Shiny"),
-
   tags$head(
     tags$style(HTML("
       body {
@@ -42,7 +41,6 @@ ui <- fluidPage(
       }
     "))
   ),
-
   fluidRow(
     column(
       width = 6,
