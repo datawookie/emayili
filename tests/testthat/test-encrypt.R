@@ -11,10 +11,12 @@ if (Sys.getenv("CI") == "") {
   gpg_restart(home = tempdir(), silent = TRUE)
 }
 #
-gpg_keygen(name = "Alice", email = "alice@yahoo.com")
-gpg_keygen(name = "Bob", email = "bob@gmail.com")
-gpg_keygen(name = "Jim", email = "jim@aol.com")
-gpg_keygen(name = "Jim", email = "jim@aol.com")
+suppressWarnings({
+  gpg_keygen(name = "Alice", email = "alice@yahoo.com")
+  gpg_keygen(name = "Bob", email = "bob@gmail.com")
+  gpg_keygen(name = "Jim", email = "jim@aol.com")
+  gpg_keygen(name = "Jim", email = "jim@aol.com")
+})
 #
 # The keys should all be RSA.
 #
