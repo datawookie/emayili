@@ -241,8 +241,10 @@ render <- function(msg,
   if (is.null(.envir)) {
     .envir <- parent.frame()
   } else {
-    .envir <- list2env(.envir)
-  } # nocov
+    if (class(.envir) != "environment") {
+      .envir <- list2env(.envir)
+    }
+  }
 
   if (is_filepath(input)) {
     log_debug("Interpreting input as path to file.")

@@ -30,6 +30,35 @@ test_that("interpolate into Markdown", {
   )
 })
 
+test_that("specify environment", {
+  # Missing environment.
+  expect_error(
+    envelope() %>%
+      render("Hello {{name}}!") %>%
+      as.character()
+  )
+
+  # List as environment.
+  env <- list(name = "Alice")
+  expect_match(
+    envelope() %>%
+      render("Hello {{name}}!", .envir = env) %>%
+      as.character(),
+    "Hello Alice!"
+  )
+
+  # Actual environment.
+  env <- new.env()
+  assign("name", "Alice", envir = env)
+
+  expect_match(
+    envelope() %>%
+      render("Hello {{name}}!", .envir = env) %>%
+      as.character(),
+    "Hello Alice!"
+  )
+})
+
 test_that("whether to include rendered CSS", {
   # No rendered CSS.
   expect_no_match(
