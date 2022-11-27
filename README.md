@@ -18,9 +18,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecy
 `{emayili}` is a package for sending emails from R. The design goals
 are:
 
--   works on all manner of SMTP servers and
--   has minimal dependencies (or dependencies which are easily
-    satisfied).
+- works on all manner of SMTP servers and
+- has minimal dependencies (or dependencies which are easily satisfied).
 
 The package name is an adaption of the Zulu word for email, *imeyili*.
 
@@ -56,7 +55,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.10'
+    [1] '0.7.12'
 
 Create a message object.
 
@@ -88,9 +87,9 @@ There are also `bcc()` and `reply()` functions for setting the `Bcc` and
 
 You can supply multiple addresses in a variety of formats:
 
--   as a single comma-separated string
--   as separate strings; or
--   as a vector of strings.
+- as a single comma-separated string
+- as separate strings; or
+- as a vector of strings.
 
 ``` r
 envelope() %>% to("bob@google.com, craig@google.com, erin@gmail.com")
@@ -147,8 +146,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
-    X-Mailer:                     {emayili}-0.7.10
+    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
+    X-Mailer:                     {emayili}-0.7.12
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
     To:                           bob@google.com
@@ -196,8 +195,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
-    X-Mailer:                     {emayili}-0.7.10
+    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
+    X-Mailer:                     {emayili}-0.7.12
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -221,8 +220,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sun, 12 Jun 2022 06:09:16 GMT
-    X-Mailer:                     {emayili}-0.7.10
+    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
+    X-Mailer:                     {emayili}-0.7.12
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
@@ -249,9 +248,9 @@ Interpolation also works with `render()`.
 When you render an R Markdown document the resulting HTML includes CSS
 from three sources:
 
--   [Bootstrap](https://getbootstrap.com/)
--   [highlightjs](https://highlightjs.org/) and
--   `{rmarkdown}`.
+- [Bootstrap](https://getbootstrap.com/)
+- [highlightjs](https://highlightjs.org/) and
+- `{rmarkdown}`.
 
 You can control which of these propagate to the message using the
 `include_css` parameter which, by default, is set to
@@ -359,9 +358,9 @@ probably be blocked due to insufficient security. In order to circumvent
 this, you can grant access to less secure apps. See the links below for
 specifics:
 
--   [Gmail](https://myaccount.google.com/security)
--   [Yahoo!](https://login.yahoo.com/account/security) and
--   [AOL](https://login.aol.com/account/security).
+- [Gmail](https://myaccount.google.com/security)
+- [Yahoo!](https://login.yahoo.com/account/security) and
+- [AOL](https://login.aol.com/account/security).
 
 Gmail has recently changed their authentication procedure. If you are
 having trouble connecting to the Gmail SMTP server then take a look at
@@ -385,22 +384,22 @@ print(email, details = TRUE)
 
 The following (draft) standards documents relate to emails:
 
--   [RFC 2822](https://tools.ietf.org/html/rfc2822)
--   [RFC 5322](https://tools.ietf.org/html/rfc5322)
--   [RFC 6854](https://tools.ietf.org/html/rfc6854) (an update to RFC
-    5322).
+- [RFC 2822](https://www.rfc-editor.org/rfc/rfc2822)
+- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322)
+- [RFC 6854](https://www.rfc-editor.org/rfc/rfc6854) (an update to RFC
+  5322).
 
 ## Similar Packages
 
 There is a selection of other R packages which also send emails:
 
--   [blastula](https://cran.r-project.org/package=blastula)
--   [blatr](https://cran.r-project.org/package=blatr) (Windows)
--   [gmailr](https://cran.r-project.org/package=gmailr)
--   [mail](https://cran.r-project.org/package=mail)
--   [mailR](https://cran.r-project.org/package=mailR)
--   [sendmailR](https://cran.r-project.org/package=sendmailR)
--   [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
+- [blastula](https://cran.r-project.org/package=blastula)
+- [blatr](https://cran.r-project.org/package=blatr) (Windows)
+- [gmailr](https://cran.r-project.org/package=gmailr)
+- [mail](https://cran.r-project.org/package=mail)
+- [mailR](https://cran.r-project.org/package=mailR)
+- [sendmailR](https://cran.r-project.org/package=sendmailR)
+- [ponyexpress](https://github.com/ropensci-archive/ponyexpress)
 
 ## Blog Posts
 

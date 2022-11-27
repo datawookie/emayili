@@ -333,9 +333,9 @@ print(email, details = TRUE)
 
 The following (draft) standards documents relate to emails:
 
-- [RFC 2822](https://tools.ietf.org/html/rfc2822)
-- [RFC 5322](https://tools.ietf.org/html/rfc5322)
-- [RFC 6854](https://tools.ietf.org/html/rfc6854) (an update to RFC 5322).
+- [RFC 2822](https://www.rfc-editor.org/rfc/rfc2822)
+- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322)
+- [RFC 6854](https://www.rfc-editor.org/rfc/rfc6854) (an update to RFC 5322).
 
 ## Similar Packages
 
