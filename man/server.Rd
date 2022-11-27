@@ -228,7 +228,7 @@ smtp <- mailfence(
 
 # Set password for ZeptoMail SMTP server.
 # nolint start
-smtp <- zeptomail("yA6KbHsL4l2mw2tZRkdo3JmI8Ns0/fs9iSTj8yG0dYBgfIG0j6Fs1RU4doO5JDeMjYHV5fhQY4hPIdrsvo5Xe8JnMYNWfJTGTuv4P2uV32xh8ciEYNYlgJSvArQTFq5AcRkgCC7wRfkgWA==")
+smtp <- zeptomail("yA6KbHsL4l2mmI8Ns0/fs9iSTj8yG0dYBgfIG0j6Fsv4P2uV32xh8ciEYNYlRkgCC7wRfkgWA==")
 # nolint end
 
 # SMTP Bucket server.
