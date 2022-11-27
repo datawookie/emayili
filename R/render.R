@@ -241,7 +241,7 @@ render <- function(msg,
   if (is.null(.envir)) {
     .envir <- parent.frame()
   } else {
-    if (class(.envir) != "environment") {
+    if (!inherits(.envir, "environment")) {
       .envir <- list2env(.envir)
     }
   }
