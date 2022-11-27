@@ -362,6 +362,34 @@ mailfence <- function(username,
 
 #' @rdname server
 #'
+#' @section ZeptoMail:
+#'
+#' SMTP Bucket is a fake SMTP server that captures all the messages it receives
+#' and makes them available through a website or REST API.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Set password for ZeptoMail SMTP server.
+#' # nolint start
+#' smtp <- zeptomail("yA6KbHsL4l2mw2tZRkdo3JmI8Ns0/fs9iSTj8yG0dYBgfIG0j6Fs1RU4doO5JDeMjYHV5fhQY4hPIdrsvo5Xe8JnMYNWfJTGTuv4P2uV32xh8ciEYNYlgJSvArQTFq5AcRkgCC7wRfkgWA==")
+#' # nolint end
+zeptomail <- function(password,
+                      ...) {
+  fcall <- match.call(expand.dots = TRUE) # nocov start
+
+  fcall[[1]] <- server
+  fcall$host <- "smtp.zeptomail.eu"
+  # Available ports: 465 (SSL) and 587 (TLS).
+  fcall$port <- 587
+  fcall$username <- "emailapikey"
+
+  eval(fcall, parent.frame()) # nocov end
+}
+
+#' @rdname server
+#'
 #' @section SMTP Bucket:
 #'
 #' SMTP Bucket is a fake SMTP server that captures all the messages it receives
