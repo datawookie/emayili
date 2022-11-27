@@ -1,3 +1,7 @@
+# {emayili} 0.7.13
+
+* Add server support for ZeptoMail.
+
 # {emayili} 0.7.12
 
 * Add pre-commit hooks to enforce linting and style.
