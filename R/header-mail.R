@@ -126,9 +126,16 @@ sender <- recipient("Sender", TRUE)
 
 #' Add or query subject of message.
 #'
+#' @details
+#' The `prefix` and `suffix` can be used to add extra
+#' \href{https://en.wikipedia.org/wiki/List_of_email_subject_abbreviations}{subject
+#' abbreviations}.
+#'
 #' @inheritParams text
 #' @param msg A message object.
 #' @param subject A subject for the message.
+#' @param prefix A subject prefix.
+#' @param suffix A subject suffix.
 #'
 #' @return A message object or the subject of the message object (if \code{subject} is \code{NULL}).
 #' @seealso \code{\link{to}}, \code{\link{from}}, \code{\link{cc}}, \code{\link{bcc}} and \code{\link{reply}}
@@ -141,6 +148,8 @@ sender <- recipient("Sender", TRUE)
 #' subject(msg)
 subject <- function(msg,
                     subject = NULL,
+                    prefix = NA,
+                    suffix = NA,
                     interpolate = TRUE,
                     .open = "{{",
                     .close = "}}",
@@ -153,6 +162,9 @@ subject <- function(msg,
     } else {
       .envir <- list2env(.envir)
     }
+
+    if (!is.na(prefix)) subject <- paste(prefix, subject)
+    if (!is.na(suffix)) subject <- paste(subject, suffix)
 
     if (interpolate) subject <- glue(subject, .open = .open, .close = .close, .envir = .envir)
 

@@ -7,6 +7,8 @@
 subject(
   msg,
   subject = NULL,
+  prefix = NA,
+  suffix = NA,
   interpolate = TRUE,
   .open = "{{",
   .close = "}}",
@@ -17,6 +19,10 @@ subject(
 \item{msg}{A message object.}
 
 \item{subject}{A subject for the message.}
+
+\item{prefix}{A subject prefix.}
+
+\item{suffix}{A subject suffix.}
 
 \item{interpolate}{Whether or not to interpolate into input using \link[glue]{glue}.}
 
@@ -31,6 +37,9 @@ A message object or the subject of the message object (if \code{subject} is \cod
 }
 \description{
 Add or query subject of message.
+}
+\details{
+The \code{prefix} and \code{suffix} can be used to add extra \href{https://en.wikipedia.org/wiki/List_of_email_subject_abbreviations}{subject abbreviations}.
 }
 \examples{
 # Create a message and set the subject

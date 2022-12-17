@@ -20,3 +20,13 @@ test_that("interpolate", {
     encodable("Hello Alice!")
   )
 })
+
+test_that("subject: prefix", {
+  msg <- envelope() %>% subject("Your message", prefix = "Re:")
+  expect_equal(subject(msg), encodable("Re: Your message"))
+})
+
+test_that("subject: suffix", {
+  msg <- envelope() %>% subject("Message has no body", suffix = "EOM")
+  expect_equal(subject(msg), encodable("Message has no body EOM"))
+})
