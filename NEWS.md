@@ -1,3 +1,8 @@
+# {emayili} 0.7.14
+
+* Add subject prefix and suffix.
+* Improve documentation for `priority()` and `importance()`.
+
 # {emayili} 0.7.13
 
 * Add server support for ZeptoMail.
