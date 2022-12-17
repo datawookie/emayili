@@ -1,5 +1,7 @@
 #' Add fields for message importance and priority
 #'
+#' Functions to influence message delivery speed and importance.
+#'
 #' @name precedence
 #'
 #' @param msg A message object.
@@ -8,7 +10,12 @@ NULL
 
 #' Set message priority
 #'
-#' A hint to influence transmission speed and delivery.
+#' @details
+#' The `priority()` function adds the `Priority` header field which gives a hint
+#' to influence transmission speed and delivery. Valid values are
+#' `"non-urgent"`, `"normal"`, and `"urgent"`. The non-standard `X-Priority`
+#' header field is similar, for which valid values are `1` (Highest), `2`
+#' (High), `3` (Normal, the default), `4` (Low), and `5` (Lowest).
 #'
 #' @rdname precedence
 #' @param priority Priority level. One of \code{"non-urgent"}, \code{"normal"}, or \code{"urgent"}.
@@ -41,9 +48,10 @@ priority <- function(msg, priority = NULL) {
 
 #' Set message importance
 #'
-#' A hint to the message recipient about how important the message is.
-#'
-#' Does not influence transmission speed or delivery.
+#' @details
+#' The `importance()` function adds the `Importance` header field, which gives a
+#' hint to the message recipient about how important the message is. Does not
+#' influence delivery speed.
 #'
 #' @rdname precedence
 #' @param importance Importance level. One of \code{"low"}, \code{"normal"}, or \code{"high"}.
