@@ -55,7 +55,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.12'
+    [1] '0.7.13'
 
 Create a message object.
 
@@ -146,8 +146,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
-    X-Mailer:                     {emayili}-0.7.12
+    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
+    X-Mailer:                     {emayili}-0.7.13
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
     To:                           bob@google.com
@@ -195,8 +195,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
-    X-Mailer:                     {emayili}-0.7.12
+    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
+    X-Mailer:                     {emayili}-0.7.13
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -220,8 +220,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sun, 27 Nov 2022 15:12:00 GMT
-    X-Mailer:                     {emayili}-0.7.12
+    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
+    X-Mailer:                     {emayili}-0.7.13
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
@@ -380,14 +380,28 @@ To see the guts of the message as passed to the SMTP server:
 print(email, details = TRUE)
 ```
 
+### Encryption
+
+Both transport-level encryption and end-to-end [email
+encryption](https://en.wikipedia.org/wiki/Email_encryption) are
+supported. An SMTP connection can be initiated on port 465 (SMTPS, see
+[RFC 8314](https://www.rfc-editor.org/rfc/rfc8314)) or 587 (SMTP-MSA,
+see [RFC 6409](https://www.rfc-editor.org/rfc/rfc6409)), enabling
+transport-level encryption. Public-key cryptography (via GnuPG) can be
+used to sign and/or encrypt message contents for end-to-end encryption.
+
 ## Standards Documents
 
 The following (draft) standards documents relate to emails:
 
-- [RFC 2822](https://www.rfc-editor.org/rfc/rfc2822)
-- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322)
-- [RFC 6854](https://www.rfc-editor.org/rfc/rfc6854) (an update to RFC
-  5322).
+- [RFC 2822](https://www.rfc-editor.org/rfc/rfc2822) — Internet Message
+  Format
+- [RFC 5321](https://www.rfc-editor.org/rfc/rfc5321) — Simple Mail
+  Transfer Protocol
+- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322) — Internet Message
+  Format
+- [RFC 6854](https://www.rfc-editor.org/rfc/rfc6854) — an update to RFC
+  5322.
 
 ## Similar Packages
 
