@@ -465,7 +465,8 @@ NULL
 #' @export
 #' @noRd
 #'
-after.MIME <- function(x, child) {
+after.MIME <- function(x, ...) {
+  child <- list(...)[[1]]
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(x$children, list(child))
   x
@@ -475,7 +476,8 @@ after.MIME <- function(x, child) {
 #' @export
 #' @noRd
 #'
-before.MIME <- function(x, child) {
+before.MIME <- function(x, ...) {
+  child <- list(...)[[1]]
   if (!is.mime(child)) stop(ERROR_NOT_MIME_OBJECT)
   x$children <- c(list(child), x$children)
   x
