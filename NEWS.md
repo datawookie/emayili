@@ -1,3 +1,8 @@
+# {emayili} 0.7.15
+
+* Consistent signatures for `before()` and `after()` generic functions.
+* Added section about encryption in `README`.
+
 # {emayili} 0.7.14
 
 * Add subject prefix and suffix.
