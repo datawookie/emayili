@@ -39,7 +39,9 @@ A message object or the subject of the message object (if \code{subject} is \cod
 Add or query subject of message.
 }
 \details{
-The \code{prefix} and \code{suffix} can be used to add extra \href{https://en.wikipedia.org/wiki/List_of_email_subject_abbreviations}{subject abbreviations}.
+The \code{prefix} and \code{suffix} can be used to add extra
+\href{https://en.wikipedia.org/wiki/List_of_email_subject_abbreviations}{subject
+abbreviations}.
 }
 \examples{
 # Create a message and set the subject

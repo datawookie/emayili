@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/emayili)](https://cran.r-project.or
 ![GitHub Actions build
 status](https://github.com/datawookie/emayili/actions/workflows/build.yaml/badge.svg)
 [![Codecov test
-coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://codecov.io/github/datawookie/emayili)
+coverage](https://img.shields.io/codecov/c/github/datawookie/emayili.svg)](https://app.codecov.io/gh/datawookie/emayili)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
@@ -55,7 +55,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.13'
+    [1] '0.7.15'
 
 Create a message object.
 
@@ -146,8 +146,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
-    X-Mailer:                     {emayili}-0.7.13
+    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
+    X-Mailer:                     {emayili}-0.7.15
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
     To:                           bob@google.com
@@ -195,8 +195,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
-    X-Mailer:                     {emayili}-0.7.13
+    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
+    X-Mailer:                     {emayili}-0.7.15
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -220,8 +220,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sun, 18 Dec 2022 07:44:58 GMT
-    X-Mailer:                     {emayili}-0.7.13
+    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
+    X-Mailer:                     {emayili}-0.7.15
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
