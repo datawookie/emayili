@@ -14,7 +14,9 @@
 #' @param reuse Whether the connection to the SMTP server should be left open for reuse.
 #' @param helo The HELO domain name of the sending host. If left as \code{NA} then will use local host name.
 #' @param protocol Which protocol (SMTP or SMTPS) to use for communicating with
-#'   the server. Default will choose appropriate protocol based on port.
+#'  the server. Default will choose appropriate protocol based on port.
+#' @param use_ssl Whether to use SSL. If not specified then SSL will be used if the port is 465 or 587.
+#'  This enables SSL on non-standard ports.
 #' @param test Test login to server.
 #' @param max_times Maximum number of times to retry.
 #' @param pause_base Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.
@@ -70,6 +72,7 @@ server <- function(host,
                    reuse = TRUE,
                    helo = NA,
                    protocol = NA,
+                   use_ssl = NA,
                    test = FALSE,
                    pause_base = 1,
                    max_times = 5,
@@ -95,10 +98,20 @@ server <- function(host,
   }
 
   port <- as.integer(port)
-  if (port %in% c(465, 587)) {
-    use_ssl <- 1
+  if (is.na(use_ssl)) {
+    if (port %in% c(465, 587)) {
+      use_ssl <- 1
+    } else {
+      use_ssl <- 0
+    }
   } else {
-    use_ssl <- 0
+    # If use_ssl can be interpreted as Boolean then set accordingly.
+    use_ssl <- ifelse(use_ssl, 1, 0)
+    # If not then set use_ssl to false.
+    #
+    # NOTE: Need to check for NA again here because NA can come from previous ifelse().
+    #
+    use_ssl <- ifelse(is.na(use_ssl), 0, use_ssl)
   }
 
   # Create an insistent version of send_mail().

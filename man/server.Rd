@@ -21,6 +21,7 @@ server(
   reuse = TRUE,
   helo = NA,
   protocol = NA,
+  use_ssl = NA,
   test = FALSE,
   pause_base = 1,
   max_times = 5,
@@ -60,6 +61,9 @@ smtpbucket(...)
 
 \item{protocol}{Which protocol (SMTP or SMTPS) to use for communicating with
 the server. Default will choose appropriate protocol based on port.}
+
+\item{use_ssl}{Whether to use SSL. If not specified then SSL will be used if the port is 465 or 587.
+This enables SSL on non-standard ports.}
 
 \item{test}{Test login to server.}
 
