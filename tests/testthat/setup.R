@@ -178,7 +178,7 @@ skip_if_neither_installed <- function(paks) {
     paks,
     requireNamespace,
     FUN.VALUE = logical(1),
-    quietly  = TRUE
+    quietly = TRUE
   )
   if (!any(are_there)) {
     testthat::skip(
