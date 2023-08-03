@@ -14,3 +14,4 @@ emayili*.tar.gz
 emayili*.tgz
 docs/
 rsconnect
+.venv/
