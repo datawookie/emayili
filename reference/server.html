@@ -62,6 +62,7 @@
 <span>  reuse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  helo <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  protocol <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  use_ssl <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  pause_base <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  max_times <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -118,6 +119,11 @@
 <dt>protocol</dt>
 <dd><p>Which protocol (SMTP or SMTPS) to use for communicating with
 the server. Default will choose appropriate protocol based on port.</p></dd>
+
+
+<dt>use_ssl</dt>
+<dd><p>Whether to use SSL. If not specified then SSL will be used if the port is 465 or 587.
+This enables SSL on non-standard ports.</p></dd>
 
 
 <dt>test</dt>
