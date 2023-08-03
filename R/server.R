@@ -98,7 +98,7 @@ server <- function(host,
   }
 
   port <- as.integer(port)
-  if (is.na(ssl)) {
+  if (is.na(use_ssl)) {
     if (port %in% c(465, 587)) {
       use_ssl <- 1
     } else {
@@ -108,6 +108,9 @@ server <- function(host,
     # If use_ssl can be interpreted as Boolean then set accordingly.
     use_ssl <- ifelse(use_ssl, 1, 0)
     # If not then set use_ssl to false.
+    #
+    # NOTE: Need to check for NA again here because NA can come from previous ifelse().
+    #
     use_ssl <- ifelse(is.na(use_ssl), 0, use_ssl)
   }
 
