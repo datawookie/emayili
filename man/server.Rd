@@ -80,7 +80,28 @@ A function which is used to send messages to the server.
 Create an object which can be used to send messages to an SMTP server.
 }
 \details{
-These functions return a function which can then be called with a message object.
+These functions return a function that can then be called with a message
+object. This function mediates the interaction with the Simple Mail Transfer
+Protocol (SMTP) server.
+
+SMTP is a plain text protocol, which means that it is not secure. The secure
+variant, SMTPS, comes in two flavours: TLS and StartTLS. With TLS (also
+called Implicit TLS) the connection with the server is initiated using an
+Secure Socket Layer (SSL) or Transport Layer Security (TLS) certificate. Such
+a connection is secure from the start. By contract, a StartTLS connection is
+initiated in plain text and then upgraded to TLS if possible. By convention
+TLS operates on port 465 and StartTLS on port 587.
+
+The specifications of an SMTP server are given in an SMTP URL, which takes one
+of the following forms:
+\itemize{
+\item \code{mail.example.com} — hostname only
+\item \code{mail.example.com:587} — hostname and port
+\item \verb{smtp://mail.example.com} — SMTP URL (default port)
+\item \verb{smtps://mail.example.com} — SMTPS URL (default port)
+\item \verb{smtp://mail.example.com:25} — SMTP URL (explicit port)
+\item \verb{smtps://mail.example.com:587} — SMTPS URL (explicit port)
+}
 }
 \section{Gmail}{
 
