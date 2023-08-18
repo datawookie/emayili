@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.17</span>
       </span>
     </div>
 
@@ -150,8 +150,24 @@ This enables SSL on non-standard ports.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>These functions return a function which can then be called with a message object.</p>
-    </div>
+    <p>These functions return a function that can then be called with a message
+object. This function mediates the interaction with the Simple Mail Transfer
+Protocol (SMTP) server.</p>
+<p>SMTP is a plain text protocol, which means that it is not secure. The secure
+variant, SMTPS, comes in two flavours: TLS and StartTLS. With TLS (also
+called Implicit TLS) the connection with the server is initiated using an
+Secure Socket Layer (SSL) or Transport Layer Security (TLS) certificate. Such
+a connection is secure from the start. By contract, a StartTLS connection is
+initiated in plain text and then upgraded to TLS if possible. By convention
+TLS operates on port 465 and StartTLS on port 587.</p>
+<p>The specifications of an SMTP server are given in an SMTP URL, which takes one
+of the following forms:</p><ul><li><p><code>mail.example.com</code> — hostname only</p></li>
+<li><p><code>mail.example.com:587</code> — hostname and port</p></li>
+<li><p><code>smtp://mail.example.com</code> — SMTP URL (default port)</p></li>
+<li><p><code>smtps://mail.example.com</code> — SMTPS URL (default port)</p></li>
+<li><p><code>smtp://mail.example.com:25</code> — SMTP URL (explicit port)</p></li>
+<li><p><code>smtps://mail.example.com:587</code> — SMTPS URL (explicit port)</p></li>
+</ul></div>
     <div id="gmail">
     <h2>Gmail</h2>
     
