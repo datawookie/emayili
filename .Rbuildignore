@@ -8,6 +8,7 @@ README.html
 ^\.httr-oauth$
 ^\.lintr$
 ^\.pre-commit-config\.yaml$
+^\.venv$
 ^_pkgdown\.yml$
 ^docs$
 ^emayili.*\.tar\.gz$
