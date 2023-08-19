@@ -499,9 +499,17 @@ Check spelling.
 spelling::spell_check_package()
 ```
 
-Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
+Quick local checks.
 
 ```{r eval = FALSE}
+devtools::check()
+```
+
+Remote checks (take longer but more thorough).
+
+```{r eval = FALSE}
+devtools::check_win_devel()
+
 # Check for a specific platform.
 #
 rhub::check(platform = "debian-gcc-devel")

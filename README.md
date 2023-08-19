@@ -55,7 +55,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.15'
+    [1] '0.7.17'
 
 Create a message object.
 
@@ -146,8 +146,8 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
-    X-Mailer:                     {emayili}-0.7.15
+    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
+    X-Mailer:                     {emayili}-0.7.17
     MIME-Version:                 1.0
     From:                         alice@yahoo.com
     To:                           bob@google.com
@@ -195,8 +195,8 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
-    X-Mailer:                     {emayili}-0.7.15
+    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
+    X-Mailer:                     {emayili}-0.7.17
     MIME-Version:                 1.0
     Content-Type:                 text/plain; 
                                   charset=utf-8; 
@@ -220,8 +220,8 @@ envelope() %>%
   )
 ```
 
-    Date:                         Wed, 08 Mar 2023 10:00:26 GMT
-    X-Mailer:                     {emayili}-0.7.15
+    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
+    X-Mailer:                     {emayili}-0.7.17
     MIME-Version:                 1.0
     Content-Type:                 text/html; 
                                   charset=utf-8
@@ -574,9 +574,17 @@ Check spelling.
 spelling::spell_check_package()
 ```
 
-Use [rhub](https://r-hub.github.io/rhub/) to test on various platforms.
+Quick local checks.
 
 ``` r
+devtools::check()
+```
+
+Remote checks (take longer but more thorough).
+
+``` r
+devtools::check_win_devel()
+
 # Check for a specific platform.
 #
 rhub::check(platform = "debian-gcc-devel")
