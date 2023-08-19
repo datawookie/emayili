@@ -98,7 +98,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://datawookie.github.io/emayili/" class="external-link">emayili</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"emayili"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.15'</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.17'</span></span></code></pre></div>
 <p>Create a message object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -156,8 +156,8 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">email</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Wed, <span class="dv">08</span> Mar <span class="dv">2023</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">26</span> GMT</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.15</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>From<span class="sc">:</span>                         alice<span class="sc">@</span>yahoo.com</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>To<span class="sc">:</span>                           bob<span class="sc">@</span>google.com</span>
@@ -190,8 +190,8 @@
 <span></span>
 <span><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Wed, <span class="dv">08</span> Mar <span class="dv">2023</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">26</span> GMT</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.15</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                 text<span class="sc">/</span>plain; </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                              charset<span class="ot">=</span>utf<span class="dv">-8</span>; </span>
@@ -212,8 +212,8 @@
 <span>  <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Wed, <span class="dv">08</span> Mar <span class="dv">2023</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">26</span> GMT</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.15</span></span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                 text<span class="sc">/</span>html; </span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                              charset<span class="ot">=</span>utf<span class="dv">-8</span></span>
@@ -492,9 +492,14 @@
 <p>Check spelling.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spelling</span><span class="fu">::</span><span class="fu">spell_check_package</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Use <a href="https://r-hub.github.io/rhub/" class="external-link">rhub</a> to test on various platforms.</p>
+<p>Quick local checks.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Check for a specific platform.</span></span>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Remote checks (take longer but more thorough).</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check_win.html" class="external-link">check_win_devel</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check for a specific platform.</span></span>
 <span><span class="co">#</span></span>
 <span><span class="fu">rhub</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>platform <span class="op">=</span> <span class="st">"debian-gcc-devel"</span><span class="op">)</span></span>
 <span><span class="fu">rhub</span><span class="fu">::</span><span class="fu">check_on_windows</span><span class="op">(</span>check_args <span class="op">=</span> <span class="st">"--force-multiarch"</span><span class="op">)</span></span>
