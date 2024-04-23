@@ -56,10 +56,10 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}
-          - {os: macos-11, r: 'release'}
-          - {os: macos-12, r: 'release'}
-          - {os: macos-13, r: 'release'}
-          - {os: macos-14, r: 'release'}
+          - {os: macos-11, r: 'release', arch: 'x86_64', os_version: 'macos-11'}
+          - {os: macos-12, r: 'release', arch: 'x86_64', os_version: 'macos-12'}
+          - {os: macos-13, r: 'release', arch: 'x86_64', os_version: 'macos-13'}
+          - {os: macos-14, r: 'release', arch: 'x86_64', os_version: 'macos-14'}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", http-user-agent: "R/4.1.0 (ubuntu-20.04) R (4.1.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions" }
 
@@ -90,8 +90,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+          key: ${{ matrix.config.os_version }}-${{ matrix.config.arch }}-R-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ matrix.config.os_version }}-${{ matrix.config.arch }}-R-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install OS dependencies
         if: runner.os == 'Linux'
