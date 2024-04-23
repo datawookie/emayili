@@ -85,7 +85,7 @@
 <span></span>
 <span><span class="fu">smtpbucket</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">mailtrap</span><span class="op">(</span>sandbox <span class="op">=</span> <span class="cn">FALSE</span>, bulk <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">mailtrap</span><span class="op">(</span><span class="va">username</span>, <span class="va">password</span>, sandbox <span class="op">=</span> <span class="cn">FALSE</span>, bulk <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -142,6 +142,14 @@ This enables SSL on non-standard ports.</p></dd>
 
 <dt>...</dt>
 <dd><p>Additional curl options. See <code><a href="https://rdrr.io/pkg/curl/man/curl_options.html" class="external-link">curl::curl_options()</a></code> for a list of supported options.</p></dd>
+
+
+<dt>sandbox</dt>
+<dd><p>Use email sandbox to test server.</p></dd>
+
+
+<dt>bulk</dt>
+<dd><p>Send bulk mail to multiple recipients.</p></dd>
 
 </dl></div>
     <div id="value">
