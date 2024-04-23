@@ -443,3 +443,33 @@ smtpbucket <- function(...) {
 
   eval(fcall, parent.frame())
 }
+
+#' @rdname server
+#'
+#' @section SMTP Bucket:
+#'
+#' SMTP Bucket is a fake SMTP server that captures all the messages it receives
+#' and makes them available through a website or REST API.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # SMTP Bucket server.
+#' smtp <- smtpbucket()
+mailtrap <- function(sandbox = FALSE, bulk = FALSE, ...) {
+  fcall <- match.call(expand.dots = TRUE)
+
+  fcall[[1]] <- server
+  fcall$port <- 587
+
+  if (sandbox) {
+    fcall$host <- "sandbox.smtp.mailtrap.io"
+  } else if (bulk) {
+    fcall$host <- "bulk.smtp.mailtrap.io"
+  } else {
+    fcall$host <- "live.smtp.mailtrap.io"
+  }
+
+  eval(fcall, parent.frame())
+}

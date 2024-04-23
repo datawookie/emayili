@@ -85,6 +85,8 @@ SMTP_USERNAME_SENDINBLUE <- Sys.getenv("SENDINBLUE_SMTP_USERNAME")
 SMTP_PASSWORD_SENDINBLUE <- Sys.getenv("SENDINBLUE_SMTP_PASSWORD")
 SMTP_USERNAME_MAILERSEND <- Sys.getenv("MAILERSEND_SMTP_USERNAME")
 SMTP_PASSWORD_MAILERSEND <- Sys.getenv("MAILERSEND_SMTP_PASSWORD")
+SMTP_USERNAME_MAILTRAP <- Sys.getenv("MAILTRAP_SMTP_USERNAME")
+SMTP_PASSWORD_MAILTRAP <- Sys.getenv("MAILTRAP_SMTP_PASSWORD")
 
 EMAIL_FROM <- ifelse(is.na(SMTP_USERNAME_GMAIL), "alice@gmail.com", SMTP_USERNAME_GMAIL)
 EMAIL_TO <- ifelse(is.na(SMTP_USERNAME_GMAIL), "bob@yahoo.com", SMTP_USERNAME_GMAIL)
@@ -134,6 +136,12 @@ smtp_mailersend <- mailersend(
 )
 
 smtp_smtpbucket <- smtpbucket()
+
+smtp_mailtrap <- mailtrap(
+  sandbox = TRUE,
+  username = SMTP_USERNAME_MAILTRAP,
+  password = SMTP_PASSWORD_MAILTRAP
+)
 
 # TEMPLATE ---------------------------------------------------------------------
 
