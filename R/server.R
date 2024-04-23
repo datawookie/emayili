@@ -40,6 +40,8 @@
 #' @param test Test login to server.
 #' @param max_times Maximum number of times to retry.
 #' @param pause_base Base delay (in seconds) for exponential backoff. See \link[purrr]{rate_backoff}.
+#' @param sandbox Use email sandbox to test server.
+#' @param bulk Send bulk mail to multiple recipients.
 #' @param ... Additional curl options. See \code{curl::curl_options()} for a list of supported options.
 #'
 #' @return A function which is used to send messages to the server.
@@ -381,9 +383,7 @@ mailersend <- function(username,
 #'   username = "bob",
 #'   password = "F!Uosd6xbhSjd%63"
 #' )
-mailfence <- function(username,
-                      password,
-                      ...) {
+mailfence <- function(username, password, ...) {
   fcall <- match.call(expand.dots = TRUE) # nocov start
 
   fcall[[1]] <- server
@@ -408,8 +408,7 @@ mailfence <- function(username,
 #' # nolint start
 #' smtp <- zeptomail("yA6KbHsL4l2mmI8Ns0/fs9iSTj8yG0dYBgfIG0j6Fsv4P2uV32xh8ciEYNYlRkgCC7wRfkgWA==")
 #' # nolint end
-zeptomail <- function(password,
-                      ...) {
+zeptomail <- function(password, ...) {
   fcall <- match.call(expand.dots = TRUE) # nocov start
 
   fcall[[1]] <- server
@@ -457,7 +456,7 @@ smtpbucket <- function(...) {
 #'
 #' # SMTP Bucket server.
 #' smtp <- smtpbucket()
-mailtrap <- function(sandbox = FALSE, bulk = FALSE, ...) {
+mailtrap <- function(username, password, sandbox = FALSE, bulk = FALSE, ...) {
   fcall <- match.call(expand.dots = TRUE)
 
   fcall[[1]] <- server

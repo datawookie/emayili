@@ -45,7 +45,7 @@ zeptomail(password, ...)
 
 smtpbucket(...)
 
-mailtrap(sandbox = FALSE, bulk = FALSE, ...)
+mailtrap(username, password, sandbox = FALSE, bulk = FALSE, ...)
 }
 \arguments{
 \item{host}{DNS name or IP address of the SMTP server.}
@@ -75,6 +75,10 @@ This enables SSL on non-standard ports.}
 \item{max_times}{Maximum number of times to retry.}
 
 \item{...}{Additional curl options. See \code{curl::curl_options()} for a list of supported options.}
+
+\item{sandbox}{Use email sandbox to test server.}
+
+\item{bulk}{Send bulk mail to multiple recipients.}
 }
 \value{
 A function which is used to send messages to the server.
