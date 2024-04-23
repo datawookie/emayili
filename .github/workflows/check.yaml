@@ -44,7 +44,7 @@ jobs:
           R CMD INSTALL .
       - name: Coverage upload
         run: |
-          Rscript -e 'covr::codecov()'
+          Rscript -e 'covr::codecov(token="${{ secrets.CODECOV_TOKEN }}")'
 
   check:
     runs-on: ${{ matrix.config.os }}
