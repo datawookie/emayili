@@ -45,6 +45,7 @@ as.character.encodable <- function(x, encode = FALSE, ...) {
   )
 }
 
+#' @export
 Ops.encodable <- function(e1, e2) {
   e1 <- encodable(e1)
   e2 <- encodable(e2)

@@ -38,6 +38,7 @@ as.character.header <- function(x, width = 30, ...) {
 }
 # as.character.header(msg$headers$To) %>% cat()
 
+#' @export
 print.header <- function(x, ...) {
   print(as.character(x))
 }
