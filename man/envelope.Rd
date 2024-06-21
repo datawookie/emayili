@@ -11,6 +11,7 @@ envelope(
   bcc = NULL,
   reply = NULL,
   subject = NULL,
+  id = NULL,
   importance = NULL,
   priority = NULL,
   text = NULL,
@@ -32,6 +33,8 @@ envelope(
 \item{reply}{See \code{\link[=reply]{reply()}}.}
 
 \item{subject}{See \code{\link[=subject]{subject()}}.}
+
+\item{id}{See \code{\link[=id]{id()}}.}
 
 \item{importance}{See \code{\link[=importance]{importance()}}.}
 

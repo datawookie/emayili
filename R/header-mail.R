@@ -173,6 +173,30 @@ subject <- function(msg,
   }
 }
 
+#' Set message ID.
+#'
+#' @param msg A message object.
+#' @param id An ID for the message.
+#'
+#' @return A message object.
+#' @export
+#' @examples
+#' # Create a message and set the ID
+#' msg <- envelope() %>% id("1234567890.123456@example.com")
+#' # Create a message with specified ID
+#' msg <- envelope(id="1234567890.123456@example.com")
+id <- function(msg, id) {
+  # Remove inclosing <> to standardise argument.
+  id <- gsub("^<|>$", "", id)
+  # Validate id.
+  if (!grepl("^[^@]+@[^@]+\\.[^@]+$", id)) {
+    stop("Invalid message ID!")
+  }
+
+  msg <- header_set(msg, "Message-ID", paste0("<", id, ">"), append = FALSE)
+  if (get_option_invisible()) invisible(msg) else msg # nocov
+}
+
 #' Add In-Reply-To and References header fields
 #'
 #' @name response

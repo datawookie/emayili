@@ -10,6 +10,7 @@ is.envelope <- function(x) {
 #' @param bcc See [bcc()].
 #' @param reply See [reply()].
 #' @param subject See [subject()].
+#' @param id See [id()].
 #' @param importance See [importance()].
 #' @param priority See [priority()].
 #' @param text See [text()].
@@ -49,6 +50,7 @@ envelope <- function(to = NULL,
                      bcc = NULL,
                      reply = NULL,
                      subject = NULL,
+                     id = NULL,
                      importance = NULL,
                      priority = NULL,
                      text = NULL,
@@ -76,6 +78,7 @@ envelope <- function(to = NULL,
   if (!is.null(bcc)) koevert <- bcc(koevert, bcc)
   if (!is.null(reply)) koevert <- reply(koevert, reply)
   if (!is.null(subject)) koevert <- subject(koevert, subject)
+  if (!is.null(id)) koevert <- id(koevert, id)
   if (!is.null(importance)) koevert <- importance(koevert, importance)
   if (!is.null(priority)) koevert <- priority(koevert, priority)
   if (!is.null(text)) koevert <- text(koevert, text)

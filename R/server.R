@@ -397,8 +397,11 @@ mailfence <- function(username, password, ...) {
 #'
 #' @section ZeptoMail:
 #'
-#' SMTP Bucket is a fake SMTP server that captures all the messages it receives
-#' and makes them available through a website or REST API.
+#' Zeptomail is an email sending service provided by Zoho Corporation. It is
+#' designed primarily for transactional email delivery, which includes emails
+#' like password resets, order confirmations, notifications, and other
+#' automated, non-marketing communications that websites and applications need
+#' to send to their users.
 #'
 #' @export
 #'
