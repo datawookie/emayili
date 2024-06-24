@@ -125,7 +125,7 @@ Then use the app password rather than your usual account password.
 \section{Sendgrid}{
 
 
-To use SendGrid you'll need to first \href{https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}. # nolint
+To use SendGrid you'll need to first \href{https://www.twilio.com/docs/sendgrid/for-developers/sending-email/integrating-with-the-smtp-api}{create an API key}. # nolint
 Then use the API key as the password.
 
 SendGrid will accept messages on ports 25, 587 and 2525 (using SMTP) as well
