@@ -252,3 +252,24 @@ list_to_char <- function(content) {
   }
   content
 }
+
+#' Create a message ID
+#'
+#' @param domain Originating domain.
+#'
+#' @return A message ID.
+#' @export
+#'
+#' @examples
+message_id <- function(domain = "mail.gmail.com") {
+  unique_id <- paste(
+    format(Sys.time(), "%Y%m%d%H%M%S"),
+    paste0(
+      sample(c(0:9, letters, LETTERS), 10, replace = TRUE),
+      collapse = ""
+    ),
+    sep = "-"
+  )
+
+  paste0(unique_id, "@", domain)
+}
