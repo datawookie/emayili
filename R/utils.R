@@ -178,9 +178,7 @@ format_datetime <- function(datetime) {
 #'
 #' @noRd
 wrap_angle_brackets <- function(x) {
-  if (!grepl("^<", x)) x <- paste0("<", x)
-  if (!grepl(">$", x)) x <- paste0(x, ">")
-  x
+  sub("(?<!>)$", ">", sub("^(?!<)", "<", x, perl = TRUE), perl = TRUE)
 }
 
 #' Test if list is nested or flat
