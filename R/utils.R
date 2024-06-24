@@ -261,6 +261,8 @@ list_to_char <- function(content) {
 #' @export
 #'
 #' @examples
+#' message_id()
+#' message_id("example.com")
 message_id <- function(domain = "mail.gmail.com") {
   unique_id <- paste(
     format(Sys.time(), "%Y%m%d%H%M%S"),

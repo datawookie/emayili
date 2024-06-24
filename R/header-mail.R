@@ -231,9 +231,19 @@ inreplyto <- function(msg, msgid, subject_prefix = "Re: ") {
 #' # And also for Danish, Norwegian and Swedish (but not Finnish!).
 #' envelope() %>%
 #'   references("6163c08e.1c69fb81.65b78.183c@mx.google.com", "SV: ")
+#' # Can reference multiple messages.
+#' envelope() %>%
+#'   references(c(
+#'     "6163c08e.1c69fb81.65b78.183c@mx.google.com",
+#'     "e8e338ff-a05c-4c0f-99f2-0dc8fb72682f@mail.gmail.com"
+#'   ))
 references <- function(msg, msgid, subject_prefix = "Re: ") {
   msg <- msg %>%
-    header_set("References", wrap_angle_brackets(msgid), append = FALSE) %>%
+    header_set(
+      "References",
+      paste(wrap_angle_brackets(msgid), collapse = " "),
+      append = FALSE
+    ) %>%
     subject(paste0(subject_prefix, subject(msg)))
   if (get_option_invisible()) invisible(msg) else msg # nocov
 }

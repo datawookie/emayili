@@ -33,4 +33,10 @@ envelope() \%>\%
 # And also for Danish, Norwegian and Swedish (but not Finnish!).
 envelope() \%>\%
   references("6163c08e.1c69fb81.65b78.183c@mx.google.com", "SV: ")
+# Can reference multiple messages.
+envelope() \%>\%
+  references(c(
+    "6163c08e.1c69fb81.65b78.183c@mx.google.com",
+    "e8e338ff-a05c-4c0f-99f2-0dc8fb72682f@mail.gmail.com"
+  ))
 }
