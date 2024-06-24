@@ -76,6 +76,9 @@
     <loc>/reference/html.html</loc>
   </url>
   <url>
+    <loc>/reference/id.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -86,6 +89,9 @@
   </url>
   <url>
     <loc>/reference/local.html</loc>
+  </url>
+  <url>
+    <loc>/reference/message_id.html</loc>
   </url>
   <url>
     <loc>/reference/mime-parameters.html</loc>

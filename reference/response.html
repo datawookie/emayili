@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">emayili</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
       </span>
     </div>
 
@@ -90,6 +90,12 @@ onto the <code>Subject</code> field. Set to <code>NULL</code> if not required.</
 <span class="r-in"><span><span class="co"># And also for Danish, Norwegian and Swedish (but not Finnish!).</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">references</span><span class="op">(</span><span class="st">"6163c08e.1c69fb81.65b78.183c@mx.google.com"</span>, <span class="st">"SV: "</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Can reference multiple messages.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">references</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"6163c08e.1c69fb81.65b78.183c@mx.google.com"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"e8e338ff-a05c-4c0f-99f2-0dc8fb72682f@mail.gmail.com"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
