@@ -1,150 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/addresses.html</loc>
-  </url>
-  <url>
-    <loc>/reference/after.envelope.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.character.MIME.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.character.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.character.envelope.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.character.header.html</loc>
-  </url>
-  <url>
-    <loc>/reference/attachment.html</loc>
-  </url>
-  <url>
-    <loc>/reference/c.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cleave.html</loc>
-  </url>
-  <url>
-    <loc>/reference/comments.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compare.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compliant.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cutoff.html</loc>
-  </url>
-  <url>
-    <loc>/reference/display.html</loc>
-  </url>
-  <url>
-    <loc>/reference/domain.html</loc>
-  </url>
-  <url>
-    <loc>/reference/encrypt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/envelope.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/html.html</loc>
-  </url>
-  <url>
-    <loc>/reference/id.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/keywords.html</loc>
-  </url>
-  <url>
-    <loc>/reference/length.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/local.html</loc>
-  </url>
-  <url>
-    <loc>/reference/message_id.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mime-parameters.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normalise.html</loc>
-  </url>
-  <url>
-    <loc>/reference/parties.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/precedence.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.address.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.envelope.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/raw.html</loc>
-  </url>
-  <url>
-    <loc>/reference/receipt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/render.html</loc>
-  </url>
-  <url>
-    <loc>/reference/response.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sensitivity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/server.html</loc>
-  </url>
-  <url>
-    <loc>/reference/subject.html</loc>
-  </url>
-  <url>
-    <loc>/reference/template.html</loc>
-  </url>
-  <url>
-    <loc>/reference/text.html</loc>
-  </url>
-  <url>
-    <loc>/reference/validate.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://datawookie.github.io/emayili/404.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/authors.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/index.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/news/index.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/addresses.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/after.envelope.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/as.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/as.character.MIME.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/as.character.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/as.character.envelope.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/as.character.header.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/attachment.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/c.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/cleave.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/comments.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/compare.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/compliant.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/cutoff.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/display.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/domain.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/encrypt.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/envelope.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/format.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/html.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/id.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/index.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/keywords.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/length.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/local.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/message_id.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/mime-parameters.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/normalise.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/parties.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/pipe.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/precedence.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/print.address.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/print.envelope.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/qp.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/raw.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/receipt.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/render.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/response.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/sensitivity.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/server.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/subject.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/template.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/text.html</loc></url>
+<url><loc>https://datawookie.github.io/emayili/reference/validate.html</loc></url>
 </urlset>
+
