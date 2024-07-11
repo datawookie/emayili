@@ -1,5 +1,9 @@
 destination: docs
+url: https://datawookie.github.io/emayili/
+template:
+  bootstrap: 5
+  light-switch: true
 
 authors:
   Andrew B. Collier:
-    href: https://datawookie.netlify.com/
+    href: https://datawookie.dev/
