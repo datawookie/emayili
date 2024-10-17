@@ -7,7 +7,7 @@ on:
     tags:
       -'*'
 
-name: pkgdown
+name: build
 
 jobs:
   pkgdown:
