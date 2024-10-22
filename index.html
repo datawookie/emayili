@@ -66,6 +66,7 @@
 </ul>
 <p>The package name is an adaption of the Zulu word for email, <em>imeyili</em>.</p>
 <p>The documentation for <a href="https://datawookie.github.io/emayili/">emayili</a> can be found <a href="https://datawookie.github.io/emayili/">here</a>.</p>
+<p><a href="https://star-history.com/datawookie/emayili&amp;Date" class="external-link"><img src="https://api.star-history.com/svg?repos=datawookie/emayili&amp;type=Date" alt="Star History Chart"></a></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -87,7 +88,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://datawookie.github.io/emayili/">emayili</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"emayili"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.17'</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">'0.7.4'</span></span></code></pre></div>
 <p>Create a message object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -145,13 +146,13 @@
 <p>Simply printing a message displays the header information.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">email</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>From<span class="sc">:</span>                         alice<span class="sc">@</span>yahoo.com</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>To<span class="sc">:</span>                           bob<span class="sc">@</span>google.com</span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>Cc<span class="sc">:</span>                           craig<span class="sc">@</span>google.com</span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>Subject<span class="sc">:</span>                      This is a plain text message<span class="sc">!</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>Date<span class="sc">:</span>                        Tue, <span class="dv">22</span> Oct <span class="dv">2024</span> <span class="dv">03</span><span class="sc">:</span><span class="dv">42</span><span class="sc">:</span><span class="dv">52</span> GMT</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                    {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.4</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                <span class="fl">1.0</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>From<span class="sc">:</span>                        alice<span class="sc">@</span>yahoo.com</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>To<span class="sc">:</span>                          bob<span class="sc">@</span>google.com</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>Cc<span class="sc">:</span>                          craig<span class="sc">@</span>google.com</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>Subject<span class="sc">:</span>                     This is a plain text message<span class="sc">!</span></span></code></pre></div>
 <p>You can identify emails which have been sent using <a href="https://datawookie.github.io/emayili/">emayili</a> by the presence of an <code>X-Mailer</code> header which includes both the package name and version.</p>
 <p>If you want to see the complete MIME object, just convert to a string.</p>
 <p>You can also call the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method and specify <code>details = TRUE</code>.</p>
@@ -179,16 +180,17 @@
 <span></span>
 <span><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/text.html">text</a></span><span class="op">(</span><span class="st">"Hello {{name}}!"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                 text<span class="sc">/</span>plain; </span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>                              charset<span class="ot">=</span>utf<span class="dv">-8</span>; </span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>Date<span class="sc">:</span>                        Tue, <span class="dv">22</span> Oct <span class="dv">2024</span> <span class="dv">03</span><span class="sc">:</span><span class="dv">42</span><span class="sc">:</span><span class="dv">52</span> GMT</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                    {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.4</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                <span class="fl">1.0</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                text<span class="sc">/</span>plain;</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>                              charset<span class="ot">=</span>utf<span class="dv">-8</span>;</span>
 <span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>                              format<span class="ot">=</span>flowed</span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>Content<span class="sc">-</span>Transfer<span class="sc">-</span>Encoding<span class="sc">:</span>    <span class="dv">7</span>bit</span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>Content<span class="sc">-</span>MD5<span class="sc">:</span>                  nhjeY5ZYMzru<span class="sc">+</span>kSCGUzNKg<span class="sc">==</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>Hello Alice<span class="sc">!</span></span></code></pre></div>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>Content<span class="sc">-</span>Disposition<span class="sc">:</span>         inline</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>Content<span class="sc">-</span>Transfer<span class="sc">-</span>Encoding<span class="sc">:</span>   <span class="dv">7</span>bit</span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>Content<span class="sc">-</span>MD5<span class="sc">:</span>                 nhjeY5ZYMzru<span class="sc">+</span>kSCGUzNKg<span class="sc">==</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>Hello Alice<span class="sc">!</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="rendering-markdown">Rendering Markdown<a class="anchor" aria-label="anchor" href="#rendering-markdown"></a>
@@ -201,13 +203,14 @@
 <span>  <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Check out [`{emayili}`](https://cran.r-project.org/package=emayili)."</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>Date<span class="sc">:</span>                         Sat, <span class="dv">19</span> Aug <span class="dv">2023</span> <span class="dv">04</span><span class="sc">:</span><span class="dv">44</span><span class="sc">:</span><span class="dv">05</span> GMT</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                     {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.17</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                 <span class="fl">1.0</span></span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                 text<span class="sc">/</span>html; </span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>Date<span class="sc">:</span>                        Tue, <span class="dv">22</span> Oct <span class="dv">2024</span> <span class="dv">03</span><span class="sc">:</span><span class="dv">42</span><span class="sc">:</span><span class="dv">52</span> GMT</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>X<span class="sc">-</span>Mailer<span class="sc">:</span>                    {emayili}<span class="sc">-</span><span class="dv">0</span>.<span class="fl">7.4</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>MIME<span class="sc">-</span>Version<span class="sc">:</span>                <span class="fl">1.0</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>Content<span class="sc">-</span>Type<span class="sc">:</span>                text<span class="sc">/</span>html;</span>
 <span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                              charset<span class="ot">=</span>utf<span class="dv">-8</span></span>
-<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="sc">&lt;</span>html<span class="sc">&gt;</span><span class="er">&lt;</span>body<span class="sc">&gt;</span><span class="er">&lt;</span>p<span class="sc">&gt;</span>Check out <span class="sc">&lt;</span>a href<span class="ot">=</span><span class="st">"https://cran.r-project.org/package=emayili"</span><span class="sc">&gt;</span><span class="er">&lt;</span>code<span class="sc">&gt;</span>{emayili}<span class="sc">&lt;</span><span class="er">/</span>code<span class="sc">&gt;</span><span class="er">&lt;/</span>a<span class="sc">&gt;</span>.<span class="sc">&lt;</span><span class="er">/</span>p<span class="sc">&gt;</span><span class="er">&lt;/</span>body<span class="sc">&gt;</span><span class="er">&lt;/</span>html<span class="sc">&gt;</span></span></code></pre></div>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>Content<span class="sc">-</span>Disposition<span class="sc">:</span>         inline</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="sc">&lt;</span>html<span class="sc">&gt;</span><span class="er">&lt;</span>body<span class="sc">&gt;</span><span class="er">&lt;</span>p<span class="sc">&gt;</span>Check out <span class="sc">&lt;</span>a href<span class="ot">=</span><span class="st">"https://cran.r-project.org/package=emayili"</span><span class="sc">&gt;</span><span class="er">&lt;</span>code<span class="sc">&gt;</span>{emayili}<span class="sc">&lt;</span><span class="er">/</span>code<span class="sc">&gt;</span><span class="er">&lt;/</span>a<span class="sc">&gt;</span>.<span class="sc">&lt;</span><span class="er">/</span>p<span class="sc">&gt;</span><span class="er">&lt;/</span>body<span class="sc">&gt;</span><span class="er">&lt;/</span>html<span class="sc">&gt;</span></span></code></pre></div>
 <p>Or R Markdown.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/envelope.html">envelope</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
