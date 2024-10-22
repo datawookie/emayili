@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-10-22T03:46Z
+last_built: 2024-10-22T03:49Z
 urls:
   reference: https://datawookie.github.io/emayili/reference
   article: https://datawookie.github.io/emayili/articles
