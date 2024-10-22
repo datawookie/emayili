@@ -26,6 +26,12 @@ The package name is an adaption of the Zulu word for email, *imeyili*.
 The documentation for `{emayili}` can be found
 [here](https://datawookie.github.io/emayili/).
 
+Not that I pretend to have many stars on this project, but these plots
+are quite fun.
+
+[![Star History
+Chart](https://api.star-history.com/svg?repos=datawookie/emayili&type=Date)](https://star-history.com/datawookie/emayili&Date)
+
 ## Installation
 
 Get the stable version from
@@ -55,7 +61,7 @@ library(emayili)
 packageVersion("emayili")
 ```
 
-    [1] '0.7.17'
+    [1] '0.7.4'
 
 Create a message object.
 
@@ -146,13 +152,13 @@ Simply printing a message displays the header information.
 email
 ```
 
-    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
-    X-Mailer:                     {emayili}-0.7.17
-    MIME-Version:                 1.0
-    From:                         alice@yahoo.com
-    To:                           bob@google.com
-    Cc:                           craig@google.com
-    Subject:                      This is a plain text message!
+    Date:                        Tue, 22 Oct 2024 03:44:31 GMT
+    X-Mailer:                    {emayili}-0.7.4
+    MIME-Version:                1.0
+    From:                        alice@yahoo.com
+    To:                          bob@google.com
+    Cc:                          craig@google.com
+    Subject:                     This is a plain text message!
 
 You can identify emails which have been sent using `{emayili}` by the
 presence of an `X-Mailer` header which includes both the package name
@@ -195,14 +201,15 @@ envelope() %>%
   text("Hello {{name}}!")
 ```
 
-    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
-    X-Mailer:                     {emayili}-0.7.17
-    MIME-Version:                 1.0
-    Content-Type:                 text/plain; 
-                                  charset=utf-8; 
+    Date:                        Tue, 22 Oct 2024 03:44:31 GMT
+    X-Mailer:                    {emayili}-0.7.4
+    MIME-Version:                1.0
+    Content-Type:                text/plain;
+                                  charset=utf-8;
                                   format=flowed
-    Content-Transfer-Encoding:    7bit
-    Content-MD5:                  nhjeY5ZYMzru+kSCGUzNKg==
+    Content-Disposition:         inline
+    Content-Transfer-Encoding:   7bit
+    Content-MD5:                 nhjeY5ZYMzru+kSCGUzNKg==
 
     Hello Alice!
 
@@ -220,11 +227,12 @@ envelope() %>%
   )
 ```
 
-    Date:                         Sat, 19 Aug 2023 04:44:05 GMT
-    X-Mailer:                     {emayili}-0.7.17
-    MIME-Version:                 1.0
-    Content-Type:                 text/html; 
+    Date:                        Tue, 22 Oct 2024 03:44:31 GMT
+    X-Mailer:                    {emayili}-0.7.4
+    MIME-Version:                1.0
+    Content-Type:                text/html;
                                   charset=utf-8
+    Content-Disposition:         inline
 
     <html><body><p>Check out <a href="https://cran.r-project.org/package=emayili"><code>{emayili}</code></a>.</p></body></html>
 

@@ -26,6 +26,10 @@ The package name is an adaption of the Zulu word for email, _imeyili_.
 
 The documentation for `{emayili}` can be found [here](https://datawookie.github.io/emayili/).
 
+Not that I pretend to have many stars on this project, but these plots are quite fun.
+
+[![Star History Chart](https://api.star-history.com/svg?repos=datawookie/emayili&type=Date)](https://star-history.com/datawookie/emayili&Date)
+
 ## Installation
 
 Get the stable version from [CRAN](https://CRAN.R-project.org/package=emayili).
