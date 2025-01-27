@@ -137,7 +137,7 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
   )
 
   if (length(x$parts) > 1) {
-    body <- multipart_mixed(children = x$parts)
+    body <- multipart_alternative(children = x$parts)
   } else {
     body <- x$parts[[1]]
   }
