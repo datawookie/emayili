@@ -56,11 +56,13 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}
-          - {os: macos-12, r: 'release', arch: 'x86_64', os_version: 'macos-12'}
           - {os: macos-13, r: 'release', arch: 'x86_64', os_version: 'macos-13'}
           - {os: macos-14, r: 'release', arch: 'x86_64', os_version: 'macos-14'}
+          - {os: macos-15, r: 'release', arch: 'x86_64', os_version: 'macos-15'}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", http-user-agent: "R/4.1.0 (ubuntu-20.04) R (4.1.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions" }
+          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          # - {os: ubuntu-22.04, r: 'release', rspm: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"}
+          - {os: ubuntu-22.04, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true

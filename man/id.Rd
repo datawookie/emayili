@@ -21,5 +21,5 @@ Set message ID.
 # Create a message and set the ID
 msg <- envelope() \%>\% id("1234567890.123456@example.com")
 # Create a message with specified ID
-msg <- envelope(id="1234567890.123456@example.com")
+msg <- envelope(id = "1234567890.123456@example.com")
 }

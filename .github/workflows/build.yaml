@@ -11,7 +11,7 @@ name: build
 
 jobs:
   pkgdown:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -41,12 +41,12 @@ jobs:
           while read -r cmd
           do
             eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-          sudo apt-get install libharfbuzz-dev libfribidi-dev
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "22.04"))')
+          sudo apt-get install libharfbuzz-dev libfribidi-dev libfontconfig1-dev
 
       - name: Install R dependencies
         run: |
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE, upgrade = "never")
           install.packages(c("pkgdown", "curl", "httr", "stringi"))
         shell: Rscript {0}
 
