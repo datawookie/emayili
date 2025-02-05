@@ -24,7 +24,7 @@ TEMPLATE_TEXT <- "letter-text"
 TEMPLATE_BOTH <- "letter-both"
 TEMPLATE_NONE <- "letter-none"
 
-IMG_URL <- "https://cran.r-project.org/Rlogo.svg"
+IMG_URL <- "https://raw.githubusercontent.com/datawookie/emayili/refs/heads/master/man/figures/emayili-hex.png"
 
 # This file comes from https://bit.ly/2P4LUO8 (cat poster on WikiPedia).
 #
