@@ -117,3 +117,27 @@ test_that("order doesn't matter", {
 test_that("invalid hash algorithm", {
   expect_error(multipart_signed(micalg = "pgp-sha0"))
 })
+
+test_that("message with just text", {
+  expect_true(FALSE)
+})
+
+test_that("message with just HTML", {
+  expect_true(FALSE)
+})
+
+test_that("message with text and HTML", {
+  expect_true(FALSE)
+})
+
+test_that("message with just text and attachment", {
+  expect_true(FALSE)
+})
+
+test_that("message with just HTML and attachment", {
+  expect_true(FALSE)
+})
+
+test_that("message with text and HTML and attachment", {
+  expect_true(FALSE)
+})
