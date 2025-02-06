@@ -119,25 +119,40 @@ test_that("invalid hash algorithm", {
 })
 
 test_that("message with just text", {
-  expect_true(FALSE)
+  mime <- envelope() %>%
+    text("Hello!") %>%
+    as.character()
+
+  expect_match(mime, "Hello!$")
 })
 
 test_that("message with just HTML", {
-  expect_true(FALSE)
+  mime <- envelope() %>%
+    html("<p>Hello!</p>") %>%
+    as.character()
+
+  expect_match(mime, "<html><body><p>Hello!</p></body></html>$")
 })
 
 test_that("message with text and HTML", {
-  expect_true(FALSE)
+  mime <- envelope() %>%
+    text("Hello!") %>%
+    html("<p>Hello!</p>") %>%
+    as.character()
+
+  expect_match(mime, "multipart/alternative")
+  expect_match(mime, "Hello!")
+  expect_match(mime, "<html><body><p>Hello!</p></body></html>")
 })
 
-test_that("message with just text and attachment", {
-  expect_true(FALSE)
-})
-
-test_that("message with just HTML and attachment", {
-  expect_true(FALSE)
-})
-
-test_that("message with text and HTML and attachment", {
-  expect_true(FALSE)
-})
+# test_that("message with just text and attachment", {
+#   expect_true(FALSE)
+# })
+#
+# test_that("message with just HTML and attachment", {
+#   expect_true(FALSE)
+# })
+#
+# test_that("message with text and HTML and attachment", {
+#   expect_true(FALSE)
+# })
