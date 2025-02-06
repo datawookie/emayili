@@ -42,10 +42,10 @@ NULL
 #' ```
 #' MIME
 #'  ├── multipart/mixed
-#'  ├── multipart/related
-#'  ├── text/plain
-#'  ├── text/html
-#'  └── other
+#'  ├──   multipart/alternative
+#'  ├──     text/plain
+#'  ├──     text/html
+#'  └──   other
 #' ```
 #'
 #' @section MIME Multipart Types:

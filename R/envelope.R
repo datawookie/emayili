@@ -136,10 +136,26 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
     headers(x, encode = encode)
   )
 
-  if (length(x$parts) > 1) {
-    body <- multipart_alternative(children = x$parts)
+  dispositions <- map_chr(x$parts, "disposition")
+
+  content <- list()
+  attachments <- list()
+  for (part in x$parts) {
+    if (part$disposition == "attachment") {
+      attachments <- c(attachments, list(part))
+    } else {
+      content <- c(content, list(part))
+    }
+  }
+
+  if (sum(dispositions == "attachment") > 0) {
+    body <- multipart_mixed(children = c(content, attachments))
   } else {
-    body <- x$parts[[1]]
+    if (sum(dispositions == "inline") > 1) {
+      body <- multipart_alternative(children = content)
+    } else {
+      body <- content[[1]]
+    }
   }
 
   body <- encrypt_body(
