@@ -136,30 +136,27 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
     headers(x, encode = encode)
   )
 
-  dispositions <- map_chr(x$parts, "disposition")
+  # Extract HTML and/or text.
+  body <- discard(x$parts, ~ .x$disposition == "attachment")
+  # Extract attachments.
+  attachments <- keep(x$parts, ~ .x$disposition == "attachment")
 
-  content <- list()
-  attachments <- list()
-  for (part in x$parts) {
-    if (part$disposition == "attachment") {
-      attachments <- c(attachments, list(part))
-    } else {
-      content <- c(content, list(part))
-    }
+  if (length(body) > 1) {
+    # Both HTML and text.
+    body <- multipart_alternative(children = body)
+  } else {
+    # Either HTML or text.
+    body <- body[[1]]
   }
 
-  if (sum(dispositions == "attachment") > 0) {
-    body <- multipart_mixed(children = c(content, attachments))
+  if (length(attachments) > 0) {
+    content <- multipart_mixed(children = c(list(body), attachments))
   } else {
-    if (sum(dispositions == "inline") > 1) {
-      body <- multipart_alternative(children = content)
-    } else {
-      body <- content[[1]]
-    }
+    content <- body
   }
 
   body <- encrypt_body(
-    body,
+    content,
     parties(x),
     encrypt = x$encrypt,
     sign = x$sign,

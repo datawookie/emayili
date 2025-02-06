@@ -2,6 +2,8 @@ msg <- envelope() %>%
   from(EMAIL_FROM) %>%
   to(EMAIL_TO)
 
+SEND <- FALSE
+
 test_that("message with just text", {
   msg <- msg %>%
     subject("MIME: text") %>%
@@ -13,8 +15,10 @@ test_that("message with just text", {
   expect_no_match(txt, "multipart/mixed")
   expect_match(txt, "Hello!$")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
 
 test_that("message with just HTML", {
@@ -28,8 +32,10 @@ test_that("message with just HTML", {
   expect_no_match(txt, "multipart/mixed")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>$")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
 
 test_that("message with text and HTML", {
@@ -45,8 +51,10 @@ test_that("message with text and HTML", {
   expect_match(txt, "Hello!")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
 
 test_that("message with just text and attachment", {
@@ -63,8 +71,10 @@ test_that("message with just text and attachment", {
   expect_match(txt, "Content-Disposition: +attachment;")
   expect_match(txt, "Hello!")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
 
 test_that("message with just HTML and attachment", {
@@ -81,8 +91,10 @@ test_that("message with just HTML and attachment", {
   expect_match(txt, "Content-Disposition: +attachment;")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
 
 test_that("message with text and HTML and attachment", {
@@ -94,13 +106,16 @@ test_that("message with text and HTML and attachment", {
 
   txt <- as.character(msg)
 
-  expect_no_match(txt, "multipart/alternative")
   expect_match(txt, "multipart/mixed")
+  expect_match(txt, "multipart/alternative")
   expect_match(txt, "Content-Type: +text/plain;")
+  expect_match(txt, "Content-Type: +text/html;")
   expect_match(txt, "Content-Disposition: +attachment;")
   expect_match(txt, "Hello!")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  skip_on_cran()
-  expect_error(smtp_gmail(msg), NA)
+  if (SEND) {
+    skip_on_cran()
+    expect_error(smtp_gmail(msg), NA)
+  }
 })
