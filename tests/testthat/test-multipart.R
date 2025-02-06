@@ -2,7 +2,17 @@ msg <- envelope() %>%
   from(EMAIL_FROM) %>%
   to(EMAIL_TO)
 
-SEND <- FALSE
+test_that("message with just attachment", {
+  msg <- msg %>%
+    attachment(TXTPATH)
+
+  txt <- as.character(msg)
+
+  expect_match(as.character(msg), TXTCONTENT_ENCODED)
+  expect_match(txt, "multipart/mixed")
+  expect_match(txt, "Content-Type: +text/plain;")
+  expect_match(txt, "Content-Disposition: +attachment;")
+})
 
 test_that("message with just text", {
   msg <- msg %>%

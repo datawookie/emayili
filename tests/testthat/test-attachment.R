@@ -1,9 +1,3 @@
-test_that("attachment: set", {
-  msg <- envelope() %>% attachment(TXTPATH)
-
-  expect_match(as.character(msg), TXTCONTENT_ENCODED)
-})
-
 test_that("attachment: specify CID", {
   cid <- "histogram"
 
