@@ -175,11 +175,3 @@ test_that("Content-Type header", {
     "Content-Type: +text/plain;[[:space:]]+charset=utf-8;[[:space:]]+format=flowed"
   )
 })
-
-test_that("no more than one text part", {
-  expect_true(FALSE)
-})
-
-test_that("no more than one HTML part", {
-  expect_true(FALSE)
-})

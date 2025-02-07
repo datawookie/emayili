@@ -137,9 +137,9 @@ as.character.envelope <- function(x, ..., details = TRUE, encode = FALSE) {
   )
 
   # Extract HTML and/or text.
-  body <- discard(x$parts, ~ .x$disposition == "attachment")
+  body <- discard(x$parts, ~ identical(.x$disposition, "attachment"))
   # Extract attachments.
-  attachments <- keep(x$parts, ~ .x$disposition == "attachment")
+  attachments <- keep(x$parts, ~ identical(.x$disposition, "attachment"))
 
   if (length(body) > 0) {
     if (length(body) > 1) {
