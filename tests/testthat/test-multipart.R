@@ -25,10 +25,9 @@ test_that("message with just text", {
   expect_no_match(txt, "multipart/mixed")
   expect_match(txt, "Hello!$")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("message with just HTML", {
@@ -42,10 +41,9 @@ test_that("message with just HTML", {
   expect_no_match(txt, "multipart/mixed")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>$")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("message with text and HTML", {
@@ -61,10 +59,9 @@ test_that("message with text and HTML", {
   expect_match(txt, "Hello!")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("message with just text and attachment", {
@@ -81,10 +78,9 @@ test_that("message with just text and attachment", {
   expect_match(txt, "Content-Disposition: +attachment;")
   expect_match(txt, "Hello!")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("message with just HTML and attachment", {
@@ -101,10 +97,9 @@ test_that("message with just HTML and attachment", {
   expect_match(txt, "Content-Disposition: +attachment;")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
 
 test_that("message with text and HTML and attachment", {
@@ -124,8 +119,7 @@ test_that("message with text and HTML and attachment", {
   expect_match(txt, "Hello!")
   expect_match(txt, "<html><body><p>Hello!</p></body></html>")
 
-  if (SEND) {
-    skip_on_cran()
-    expect_error(smtp_gmail(msg), NA)
-  }
+  skip_on_ci()
+  skip_on_cran()
+  expect_error(smtp_gmail(msg), NA)
 })
