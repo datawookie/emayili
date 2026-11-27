@@ -128,7 +128,7 @@ compliant <- function(addr, error = FALSE) {
     # No funky symbols.
     !grepl("[_]*", domain) &
     # Not longer than 255 characters.
-    !grepl(".{256,}", domain)
+    nchar(domain) <= 255
 
   okay <- email & local
   if (error && !okay) {
